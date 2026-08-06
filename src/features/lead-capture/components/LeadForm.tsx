@@ -126,7 +126,7 @@ function LeadFormInner({ defaultCourse = "" }: { defaultCourse?: string }) {
           <input
             id="lead-phone"
             type="tel"
-            placeholder="9876543210"
+            placeholder="9217999511"
             {...register('phone')}
             disabled={isSubmitting}
             className={`w-full pl-15 pr-4 py-3 bg-card text-navy border rounded-md text-sm transition-colors focus:outline-none ${

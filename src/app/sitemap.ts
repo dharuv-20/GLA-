@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { coursesList } from '@/data/courses-db';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.gla-academy.com";
+  const baseUrl = "https://www.glaind.com";
 
   // Static routes
   const routes = ["", "/about", "/courses", "/services", "/contact"].map((route) => ({

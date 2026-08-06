@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/'],
     },
-    sitemap: 'https://www.gla-academy.com/sitemap.xml',
+    sitemap: 'https://www.glaind.com/sitemap.xml',
   };
 }

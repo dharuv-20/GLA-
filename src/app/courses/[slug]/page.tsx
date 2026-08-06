@@ -55,13 +55,13 @@ export default async function CourseLandingPage({ params }: PageProps) {
   const courseSchema = {
     "@context": "https://schema.org",
     "@type": "Course",
-    "@id": `https://www.gla-academy.com/courses/${course.slug}`,
+    "@id": `https://www.glaind.com/courses/${course.slug}`,
     "name": course.title,
     "description": course.shortDescription,
     "provider": {
       "@type": "EducationalOrganization",
       "name": "The Global Language Academy",
-      "sameAs": "https://www.gla-academy.com"
+      "sameAs": "https://www.glaind.com"
     }
   };
 

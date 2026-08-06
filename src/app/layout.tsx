@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | The Global Language Academy (GLA)",
   },
   description: "GLA offers professional IELTS, PTE, German language coaching (A1-B2), and Personality Development programs with certified trainers and guaranteed exam success.",
-  metadataBase: new URL("https://www.gla-academy.com"),
+  metadataBase: new URL("https://www.glaind.com"),
   alternates: {
     canonical: "/",
   },

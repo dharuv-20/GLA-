@@ -34,10 +34,19 @@ export default function ScrollRevealProvider({ children }: { children: React.Rea
         // Observe all elements with class 'reveal'
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach((el) => observer.observe(el));
+
+        return () => {
+          observer.disconnect();
+        };
       });
     }, 400); // 400ms is a safe buffer for dev-mode dynamic compilations
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      // Clean up active classes on HMR/Fast Refresh to prevent dev-mode hydration mismatches
+      const revealElements = document.querySelectorAll('.reveal');
+      revealElements.forEach((el) => el.classList.remove('active'));
+    };
   }, [pathname]); // re-evaluate on path changes
 
   return <>{children}</>;
