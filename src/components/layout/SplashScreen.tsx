@@ -30,19 +30,19 @@ export default function SplashScreen() {
         }
         return prev + 5;
       });
-    }, 60); // 20 steps of 5% every 60ms = exactly 1200ms (1.2 seconds)
+    }, 35); // 20 steps of 5% every 35ms = exactly 700ms (0.7 seconds)
 
-    // Start fade out after 1.2s
+    // Start fade out after 0.7s
     const fadeTimeout = setTimeout(() => {
       setIsFadingOut(true);
       sessionStorage.setItem("splash-played", "true");
-    }, 1200);
+    }, 700);
 
-    // Completely destroy element after fade-out transition completes (1.5s total)
+    // Completely destroy element after fade-out transition completes (1.0s total)
     const destroyTimeout = setTimeout(() => {
       setIsFinished(true);
       document.body.style.overflow = "";
-    }, 1500);
+    }, 1000);
 
     return () => {
       clearInterval(progressInterval);

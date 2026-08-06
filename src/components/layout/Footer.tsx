@@ -23,10 +23,10 @@ export default function Footer() {
               The Global Language Academy is a premium education platform helping candidates clear international language exams and achieve global career opportunities.
             </p>
             <div className="flex gap-4 mt-2">
-              <a href="#" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Follow us on Facebook">
+              <a href="https://www.facebook.com/share/1RcNQDJLLG/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Follow us on Facebook">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Follow us on Instagram">
+              <a href="https://www.instagram.com/the.globallanguageacademy/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Follow us on Instagram">
                 <Instagram className="w-4 h-4" />
               </a>
               <a href="#" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Connect on LinkedIn">
@@ -66,15 +66,15 @@ export default function Footer() {
             <h3 className="text-base font-bold font-display uppercase tracking-wider mb-2 text-purple-300">Contact Info</h3>
             <div className="flex items-start gap-2.5 text-sm text-slate-300">
               <MapPin className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />
-              <span>1st Floor, Premium Plaza, Main Road Sector 15, Metro Station Gate 3, New Delhi, India</span>
+              <span>3rd Floor, Plot no 94, PKT- 10, Dwarka Sec.13 Opp. Metro station, Near Radisson Blu Hotel, Delhi 110078</span>
             </div>
             <div className="flex items-center gap-2.5 text-sm text-slate-300">
               <Phone className="w-5 h-5 text-purple-300 shrink-0" />
-              <a href="tel:+919876543210" className="hover:text-white">+91 98765 43210</a>
+              <a href="tel:+919217999511" className="hover:text-white">+91 92179 99511</a>
             </div>
             <div className="flex items-center gap-2.5 text-sm text-slate-300">
               <Mail className="w-5 h-5 text-purple-300 shrink-0" />
-              <a href="mailto:admissions@gla-academy.com" className="hover:text-white">admissions@gla-academy.com</a>
+              <a href="mailto:care@glaind.com" className="hover:text-white">care@glaind.com</a>
             </div>
             <div className="flex items-start gap-2.5 text-sm text-slate-300">
               <Clock className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />

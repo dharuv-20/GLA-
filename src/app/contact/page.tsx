@@ -50,21 +50,21 @@ export default function ContactPage() {
                 className="reveal hover-lift bg-section-alt p-6 rounded-xl border border-card-border flex flex-col gap-4 transition-colors duration-300"
                 style={{ transitionDelay: '0ms' }}
               >
-                <h3 className="text-base font-bold font-display text-navy border-b border-card-border/40 pb-2">GLA physical Branch</h3>
+                <h3 className="text-base font-bold font-display text-navy border-b border-card-border/40 pb-2">GLA Physical Branch</h3>
                 
                 <div className="flex items-start gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">
                   <MapPin className="w-5 h-5 text-purple shrink-0 mt-0.5" />
-                  <span>1st Floor, Premium Plaza, Main Road Sector 15, Metro Station Gate 3, New Delhi, India</span>
+                  <span>3rd Floor, Plot no 94, PKT- 10, Dwarka Sec.13 Opp. Metro station, Near Radisson Blu Hotel, Delhi 110078</span>
                 </div>
                 
                 <div className="flex items-center gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">
                   <Phone className="w-5 h-5 text-purple shrink-0" />
-                  <a href="tel:+919876543210" className="hover:text-purple text-navy font-semibold transition-colors">+91 98765 43210</a>
+                  <a href="tel:+919217999511" className="hover:text-purple text-navy font-semibold transition-colors">+91 92179 99511</a>
                 </div>
                 
                 <div className="flex items-center gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">
                   <Mail className="w-5 h-5 text-purple shrink-0" />
-                  <a href="mailto:admissions@gla-academy.com" className="hover:text-purple text-navy font-semibold transition-colors">admissions@gla-academy.com</a>
+                  <a href="mailto:care@glaind.com" className="hover:text-purple text-navy font-semibold transition-colors">care@glaind.com</a>
                 </div>
 
                 <div className="flex items-start gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">
@@ -123,24 +123,20 @@ export default function ContactPage() {
           </div>
           
           <div
-            className="reveal w-full h-80 sm:h-96 bg-card border border-card-border rounded-xl overflow-hidden relative shadow-sm transition-colors duration-300"
+            className="reveal w-full h-80 sm:h-96 border border-card-border rounded-xl overflow-hidden relative shadow-sm transition-colors duration-300"
             style={{ transitionDelay: '150ms' }}
           >
-            <div className="absolute inset-0 bg-[#E5E3DF] dark:bg-slate-900 flex flex-col items-center justify-center p-6 text-center">
-              <MapPin className="w-10 h-10 text-purple mb-2 animate-bounce" />
-              <h4 className="font-bold text-navy mb-1">The Global Language Academy</h4>
-              <p className="text-xs text-navy-muted max-w-xs mb-4">
-                Sector 15 Main Road, next to the metro station entrance. Premium Plaza Building.
-              </p>
-              <a
-                href="https://maps.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 bg-purple text-white text-xs font-bold rounded-md hover:bg-purple-hover transition-colors duration-200"
-              >
-                Open in Google Maps
-              </a>
-            </div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d35068.13912469187!2d77.030589!3d28.594833!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b3c8edb5021%3A0xa58f068e97394567!2sThe%20Global%20Language%20Academy!5e1!3m2!1sen!2sin!4v1786024730032!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="The Global Language Academy Location Map"
+              className="w-full h-full"
+            ></iframe>
           </div>
         </div>
       </section>

@@ -131,11 +131,11 @@ export default function Header() {
             </button>
 
             <a
-              href="tel:+919876543210"
+              href="tel:+919217999511"
               className="flex items-center gap-1.5 text-sm font-semibold text-navy hover:text-purple transition-colors"
             >
               <Phone className="w-4 h-4 text-purple" />
-              <span>+91 98765 43210</span>
+              <span>+91 92179 99511</span>
             </a>
             
             <Link
@@ -225,11 +225,11 @@ export default function Header() {
 
             <div className="flex flex-col gap-4 pt-4">
               <a
-                href="tel:+919876543210"
+                href="tel:+919217999511"
                 className="flex items-center justify-center gap-2 text-base font-semibold text-navy py-3 bg-navy-light rounded-md border border-card-border"
               >
                 <Phone className="w-5 h-5 text-purple" />
-                <span>Call Us: +91 98765 43210</span>
+                <span>Call Us: +91 92179 99511</span>
               </a>
               <Link
                 href="/contact"

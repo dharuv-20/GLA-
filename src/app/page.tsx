@@ -100,7 +100,7 @@ export default function HomePage() {
                   <span>Book Free Demo Class</span>
                 </a>
                 <a
-                  href="https://wa.me/919876543210?text=Hi!%20I'm%20interested%20in%20a%20free%20demo%20at%20TGLA."
+                  href="https://wa.me/919217999511?text=Hi!%20I'm%20interested%20in%20a%20free%20demo%20at%20The%20Global%20Language%20Academy."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#25D366] text-white font-bold text-sm rounded-md shadow-md hover:opacity-95 hover:scale-102 transition-all"
@@ -346,12 +346,12 @@ export default function HomePage() {
                 <div className="reveal flex items-start gap-3 hover:translate-x-1 transition-transform duration-200" style={{ transitionDelay: '200ms' }}>
                   <MapPin className="w-5 h-5 text-purple shrink-0 mt-0.5" />
                   <span>
-                    1st Floor, Premium Plaza, Main Road Sector 15, Metro Station Gate 3, New Delhi, India
+                    3rd Floor, Plot no 94, PKT- 10, Dwarka Sec.13 Opp. Metro station, Near Radisson Blu Hotel, Delhi 110078
                   </span>
                 </div>
                 <div className="reveal flex items-center gap-3 hover:translate-x-1 transition-transform duration-200" style={{ transitionDelay: '300ms' }}>
                   <Phone className="w-5 h-5 text-purple shrink-0" />
-                  <a href="tel:+919876543210" className="text-navy font-semibold hover:text-purple transition-colors">+91 98765 43210</a>
+                  <a href="tel:+919217999511" className="text-navy font-semibold hover:text-purple transition-colors">+91 92179 99511</a>
                 </div>
                 <div className="reveal flex items-start gap-3 hover:translate-x-1 transition-transform duration-200" style={{ transitionDelay: '400ms' }}>
                   <Award className="w-5 h-5 text-purple shrink-0 mt-0.5" />
@@ -361,7 +361,7 @@ export default function HomePage() {
 
               <div className="reveal flex gap-4 mt-2" style={{ transitionDelay: '500ms' }}>
                 <a
-                  href="https://maps.google.com"
+                  href="https://share.google/9sdBlqouLRzFM8gFr"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex justify-center items-center px-5 py-3 border border-navy text-navy text-xs font-bold rounded-md hover:bg-section-alt transition-all duration-200 hover:scale-102"
@@ -371,18 +371,19 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Google Maps mock/embed Column */}
-            <div className="reveal lg:col-span-7 w-full h-80 sm:h-96 bg-section-alt rounded-xl overflow-hidden shadow-sm relative border border-card-border transition-colors duration-300" style={{ transitionDelay: '300ms' }}>
-              <div className="absolute inset-0 bg-[#E5E3DF] dark:bg-slate-900 flex flex-col items-center justify-center p-6 text-center text-navy">
-                <MapPin className="w-10 h-10 text-purple mb-2 animate-bounce" />
-                <h4 className="font-bold text-navy mb-1">The Global Language Academy Campus Map</h4>
-                <p className="text-xs text-navy-muted max-w-sm mb-4">
-                  Sector 15 Main Road, next to the metro station entrance. Premium Plaza Building.
-                </p>
-                <span className="px-3 py-1 bg-card text-navy text-xs font-bold border border-card-border rounded-full shadow-sm">
-                  Interactive Maps Widget Loaded
-                </span>
-              </div>
+            {/* Google Maps Embed Column */}
+            <div className="reveal lg:col-span-7 w-full h-80 sm:h-96 rounded-xl overflow-hidden shadow-sm relative border border-card-border transition-colors duration-300" style={{ transitionDelay: '300ms' }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d35068.13912469187!2d77.030589!3d28.594833!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b3c8edb5021%3A0xa58f068e97394567!2sThe%20Global%20Language%20Academy!5e1!3m2!1sen!2sin!4v1786024730032!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="The Global Language Academy Location Map"
+                className="w-full h-full"
+              ></iframe>
             </div>
 
           </div>

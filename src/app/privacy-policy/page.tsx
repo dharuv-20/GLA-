@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">5. Consent & Data Opt-Out</h2>
             <p>
-              By filling out our demo forms or scheduling consultations, you consent to receive direct telephone advisories from GLA. If you wish to delete your database records or unsubscribe from updates, contact us directly at <a href="mailto:admissions@gla-academy.com" className="text-purple hover:underline font-bold">admissions@gla-academy.com</a>.
+              By filling out our demo forms or scheduling consultations, you consent to receive direct telephone advisories from GLA. If you wish to delete your database records or unsubscribe from updates, contact us directly at <a href="mailto:care@glaind.com" className="text-purple hover:underline font-bold">care@glaind.com</a>.
             </p>
           </div>
 

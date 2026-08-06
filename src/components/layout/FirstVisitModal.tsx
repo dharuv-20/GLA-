@@ -18,10 +18,10 @@ export default function FirstVisitModal() {
       if (hasPlayed) {
         setIsOpen(true);
       } else {
-        // Wait for 1.5s splash loading screen + 100ms layout buffer
+        // Wait for 1.0s splash loading screen + 100ms layout buffer
         const timer = setTimeout(() => {
           setIsOpen(true);
-        }, 1600);
+        }, 1100);
         return () => clearTimeout(timer);
       }
       hasBeenShownInLifecycle = true;
