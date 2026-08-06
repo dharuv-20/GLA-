@@ -64,15 +64,19 @@ function LeadFormInner({ defaultCourse = "" }: { defaultCourse?: string }) {
 
   if (submitResult?.success) {
     return (
-      <div className="bg-section-alt border border-purple-light p-8 rounded-xl shadow-lg text-center flex flex-col items-center justify-center gap-4 animate-fade-in">
-        <CheckCircle2 className="w-16 h-16 text-purple" />
-        <h3 className="text-xl font-bold font-display text-navy">Booking Confirmed!</h3>
-        <p className="text-sm text-navy-muted leading-relaxed max-w-sm">
-          {submitResult.message}
-        </p>
+      <div className="bg-card border border-card-border p-8 rounded-xl shadow-lg text-center flex flex-col items-center justify-center gap-6 animate-fade-in text-foreground min-h-[350px]">
+        <div className="p-4 bg-purple-hero/10 rounded-full border border-purple-hero/20 animate-bounce">
+          <CheckCircle2 className="w-12 h-12 text-purple-hero" />
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-xl font-bold font-display text-navy dark:text-white tracking-tight">Booking Confirmed!</h3>
+          <p className="text-sm text-navy-muted dark:text-slate-300 leading-relaxed max-w-sm">
+            {submitResult.message}
+          </p>
+        </div>
         <button
           onClick={() => setSubmitResult(null)}
-          className="mt-4 px-6 py-2.5 bg-navy text-white text-sm font-semibold rounded-md hover:bg-navy-muted transition-all cursor-pointer"
+          className="mt-2 w-full px-6 py-3 bg-purple text-white dark:text-slate-900 text-xs font-bold tracking-wide uppercase rounded-xl shadow-md hover:scale-102 active:scale-98 transition-all cursor-pointer"
         >
           Book Another Session
         </button>
