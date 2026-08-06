@@ -26,16 +26,16 @@ export default function ContactPage() {
     <div className="flex flex-col overflow-x-hidden">
       {/* 1. Header Page Title Hero */}
       <section className="bg-[#00122E] dark:bg-[#020c1b] text-white py-16 sm:py-20 border-b border-card-border transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-4">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-purple-hero animate-fade-in-up [animation-delay:100ms] fill-mode-forwards">Get In Touch</span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-white animate-fade-in-up [animation-delay:250ms] fill-mode-forwards">
-            Connect with GLA Advisors
-          </h1>
-          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed animate-fade-in-up [animation-delay:400ms] fill-mode-forwards">
-            Have questions about levels, fees, or class schedules? Drop us a line, chat on WhatsApp, or book a free trial demo directly.
-          </p>
-        </div>
-      </section>
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-4">
+           <span className="text-xs font-extrabold uppercase tracking-widest text-purple-hero animate-fade-in-up [animation-delay:100ms] fill-mode-forwards">Get In Touch</span>
+           <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-white animate-fade-in-up [animation-delay:250ms] fill-mode-forwards">
+             Connect with GLA Advisors
+           </h1>
+           <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed animate-fade-in-up [animation-delay:400ms] fill-mode-forwards">
+             Have questions about levels, fees, or class schedules? Drop us a line, chat on WhatsApp, or book a free trial demo directly.
+           </p>
+         </div>
+       </section>
 
       {/* 2. Interactive Form & Info splits */}
       <section className="bg-card text-navy py-20 border-b border-card-border transition-colors duration-300">

@@ -10,6 +10,7 @@ import StickyMobileCTA from "@/components/layout/StickyMobileCTA";
 import FirstVisitModal from "@/components/layout/FirstVisitModal";
 import PageTransition from "@/components/layout/PageTransition";
 import ScrollRevealProvider from "@/components/layout/ScrollRevealProvider";
+import SplashScreen from "@/components/layout/SplashScreen";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -61,7 +62,24 @@ export default function RootLayout({
       className={`${montserrat.variable} ${dmSans.variable} scroll-smooth antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col font-sans">
+      <head>
+        {/* Anti-flash inline script to disable splash screen instantly on repeat visits before body paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  if (sessionStorage.getItem("splash-played") === "true") {
+                    document.documentElement.classList.add("splash-disabled");
+                  }
+                } catch (e) {}
+              })();
+            `
+          }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col font-sans" suppressHydrationWarning>
+        <SplashScreen />
         <ScrollRevealProvider>
           <AnnouncementBar />
           <Header />

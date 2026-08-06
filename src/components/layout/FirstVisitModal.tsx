@@ -14,7 +14,16 @@ export default function FirstVisitModal() {
 
   useEffect(() => {
     if (!hasBeenShownInLifecycle) {
-      setIsOpen(true);
+      const hasPlayed = sessionStorage.getItem("splash-played");
+      if (hasPlayed) {
+        setIsOpen(true);
+      } else {
+        // Wait for 1.5s splash loading screen + 100ms layout buffer
+        const timer = setTimeout(() => {
+          setIsOpen(true);
+        }, 1600);
+        return () => clearTimeout(timer);
+      }
       hasBeenShownInLifecycle = true;
     }
   }, []);

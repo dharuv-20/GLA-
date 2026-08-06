@@ -202,3 +202,8 @@ html {
   background: var(--accent-purple-hover);
 }
 
+/* Instant display override to hide the splash screen before first paint on repeat visits */
+.splash-disabled #splash-screen-container {
+  display: none !important;
+}
+
