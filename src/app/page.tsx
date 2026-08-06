@@ -56,30 +56,30 @@ export default function HomePage() {
               </p>
 
               {/* Core outcomes checklist to address customer goals */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2 max-w-md mx-auto lg:mx-0 text-left animate-fade-in-up [animation-delay:400ms] fill-mode-forwards">
-                <div className="flex items-center gap-2.5 text-sm text-slate-200">
+              <div className="grid grid-cols-2 gap-x-5 gap-y-3 mt-2 mx-auto w-fit lg:mx-0 text-xs sm:text-sm animate-fade-in-up [animation-delay:400ms] fill-mode-forwards">
+                <div className="flex items-center gap-2 text-slate-200">
                   <span className="p-0.5 rounded-full bg-purple/35 text-purple-200 border border-purple-300/25 shrink-0">
                     <Check className="w-3.5 h-3.5" />
                   </span>
-                  <span>Max 10 students per batch</span>
+                  <span>Max 10 students <span className="hidden sm:inline">per batch</span></span>
                 </div>
-                <div className="flex items-center gap-2.5 text-sm text-slate-200">
+                <div className="flex items-center gap-2 text-slate-200">
                   <span className="p-0.5 rounded-full bg-purple/35 text-purple-200 border border-purple-300/25 shrink-0">
                     <Check className="w-3.5 h-3.5" />
                   </span>
-                  <span>Goethe & IDP certified mentors</span>
+                  <span>Goethe & IDP <span className="hidden sm:inline">certified</span> mentors</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-sm text-slate-200">
+                <div className="flex items-center gap-2 text-slate-200">
                   <span className="p-0.5 rounded-full bg-purple/35 text-purple-200 border border-purple-300/25 shrink-0">
                     <Check className="w-3.5 h-3.5" />
                   </span>
-                  <span>8 Timed mock testing runs</span>
+                  <span>8 Mock testing <span className="hidden sm:inline">runs</span></span>
                 </div>
-                <div className="flex items-center gap-2.5 text-sm text-slate-200">
+                <div className="flex items-center gap-2 text-slate-200">
                   <span className="p-0.5 rounded-full bg-purple/35 text-purple-200 border border-purple-300/25 shrink-0">
                     <Check className="w-3.5 h-3.5" />
                   </span>
-                  <span>100% Spoken-first classrooms</span>
+                  <span>100% Spoken-first <span className="hidden sm:inline">classrooms</span></span>
                 </div>
               </div>
 
