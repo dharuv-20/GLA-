@@ -1,11 +1,34 @@
-"use client";
+import fs from 'fs';
+import path from 'path';
+import AdminDashboard from './AdminDashboard';
+import { BlogPost } from '@/types';
 
-import { useEffect } from 'react';
+export const metadata = {
+  title: "TGLA Control Panel | Global Language Academy",
+  robots: "noindex, nofollow",
+};
 
 export default function AdminPage() {
-  useEffect(() => {
-    window.location.replace('/admin/index.html');
-  }, []);
+  const blogsDirectory = path.join(process.cwd(), 'src/content/blogs');
+  let posts: BlogPost[] = [];
 
-  return null;
+  try {
+    if (fs.existsSync(blogsDirectory)) {
+      const filenames = fs.readdirSync(blogsDirectory);
+      posts = filenames
+        .filter((file) => file.endsWith('.json'))
+        .map((file) => {
+          const filePath = path.join(blogsDirectory, file);
+          const fileContent = fs.readFileSync(filePath, 'utf8');
+          return JSON.parse(fileContent) as BlogPost;
+        });
+      
+      // Sort posts by ID in descending order
+      posts.sort((a, b) => b.id - a.id);
+    }
+  } catch (error) {
+    console.error("Error reading blogs directory for admin panel:", error);
+  }
+
+  return <AdminDashboard initialPosts={posts} />;
 }
