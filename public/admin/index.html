@@ -8,7 +8,10 @@
   <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
-<body>
+<body data-gramm="false" spellcheck="false">
+  <!-- Dedicated mount root for Decap CMS to prevent body/script collisions -->
+  <div id="nc-root"></div>
+
   <!-- Include Decap CMS CDN -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
