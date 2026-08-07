@@ -133,10 +133,11 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
 
     // Calculate automatic ID if creating a new post
     let postID = selectedPost ? selectedPost.id : Math.max(...posts.map(p => p.id), 0) + 1;
-    const slug = getSlug(title);
+    const slug = selectedPost ? selectedPost.slug : getSlug(title);
 
     const postPayload: BlogPost = {
       id: postID,
+      slug,
       title,
       category,
       author,
@@ -236,7 +237,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
     if (!confirmDelete) return;
 
     setSaveStatus({ type: 'loading', message: 'Deleting article...' });
-    const slug = getSlug(selectedPost.title);
+    const slug = selectedPost.slug;
 
     const isLocalhost = typeof window !== 'undefined' && 
       (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');

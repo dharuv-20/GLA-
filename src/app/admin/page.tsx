@@ -20,7 +20,9 @@ export default function AdminPage() {
         .map((file) => {
           const filePath = path.join(blogsDirectory, file);
           const fileContent = fs.readFileSync(filePath, 'utf8');
-          return JSON.parse(fileContent) as BlogPost;
+          const post = JSON.parse(fileContent) as BlogPost;
+          post.slug = file.replace('.json', '');
+          return post;
         });
       
       // Sort posts by ID in descending order

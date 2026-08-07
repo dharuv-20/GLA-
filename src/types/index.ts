@@ -86,6 +86,7 @@ export interface ServiceItem {
 
 export interface BlogPost {
   id: number;
+  slug: string;
   title: string;
   category: 'IELTS' | 'PTE' | 'German' | 'Career';
   author: string;
