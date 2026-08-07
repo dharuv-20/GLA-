@@ -1,5 +1,11 @@
-import { redirect } from 'next/navigation';
+"use client";
+
+import { useEffect } from 'react';
 
 export default function AdminPage() {
-  redirect('/admin/index.html');
+  useEffect(() => {
+    window.location.replace('/admin/index.html');
+  }, []);
+
+  return null;
 }
