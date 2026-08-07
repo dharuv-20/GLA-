@@ -30,24 +30,43 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
 
   // Sync and bind Netlify Identity Widget callbacks on mount
   useEffect(() => {
-    const netlifyIdentity = (window as any).netlifyIdentity;
-    if (netlifyIdentity) {
-      setIsIdentityLoaded(true);
-      
-      // Get current logged in user
-      const currentUser = netlifyIdentity.currentUser();
-      if (currentUser) {
-        setUser(currentUser);
-      }
+    const initIdentity = () => {
+      const netlifyIdentity = (window as any).netlifyIdentity;
+      if (netlifyIdentity) {
+        setIsIdentityLoaded(true);
+        
+        // Get current logged in user
+        const currentUser = netlifyIdentity.currentUser();
+        if (currentUser) {
+          setUser(currentUser);
+        }
 
-      // Bind events
-      netlifyIdentity.on('login', (u: any) => {
-        setUser(u);
-        netlifyIdentity.close();
-      });
-      netlifyIdentity.on('logout', () => {
-        setUser(null);
-      });
+        // Bind events
+        netlifyIdentity.on('login', (u: any) => {
+          setUser(u);
+          netlifyIdentity.close();
+        });
+        netlifyIdentity.on('logout', () => {
+          setUser(null);
+        });
+      }
+    };
+
+    // If script is already loaded, initialize immediately
+    if ((window as any).netlifyIdentity) {
+      initIdentity();
+    } else {
+      // Otherwise, load script dynamically and initialize on load to prevent race conditions
+      const script = document.createElement("script");
+      script.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
+      script.async = true;
+      script.onload = () => {
+        initIdentity();
+      };
+      script.onerror = () => {
+        console.error("Failed to load Netlify Identity script.");
+      };
+      document.body.appendChild(script);
     }
   }, []);
 
