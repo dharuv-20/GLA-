@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { User, LogOut, FileText, Plus, Save, Eye, Edit2, CheckCircle, AlertTriangle, ArrowLeft } from 'lucide-react';
+import { User, LogOut, FileText, Plus, Save, Eye, Edit2, CheckCircle, AlertTriangle, Trash2, Sun, Moon } from 'lucide-react';
 import { BlogPost } from '@/types';
 
 interface AdminDashboardProps {
@@ -25,9 +25,10 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit');
   const [user, setUser] = useState<any>(null);
   const [isIdentityLoaded, setIsIdentityLoaded] = useState(false);
+  const [isDark, setIsDark] = useState(true); // Defaults to brand dark mode
   const [saveStatus, setSaveStatus] = useState<{ type: 'success' | 'error' | 'loading' | null; message: string }>({ type: null, message: '' });
 
-  // 1. Sync and bind Netlify Identity Widget callbacks on mount
+  // Sync and bind Netlify Identity Widget callbacks on mount
   useEffect(() => {
     const netlifyIdentity = (window as any).netlifyIdentity;
     if (netlifyIdentity) {
@@ -139,7 +140,6 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
         
         const resData = await response.json();
         if (response.ok && resData.success) {
-          // Update client state
           updateLocalPostsState(postPayload);
           setSaveStatus({ type: 'success', message: `Saved locally to src/content/blogs/${slug}.json!` });
         } else {
@@ -209,6 +209,93 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
     }
   };
 
+  // Delete blog post pipeline
+  const handleDelete = async () => {
+    if (!selectedPost) return;
+
+    const confirmDelete = window.confirm(`Are you sure you want to delete the article "${selectedPost.title}"? This cannot be undone.`);
+    if (!confirmDelete) return;
+
+    setSaveStatus({ type: 'loading', message: 'Deleting article...' });
+    const slug = getSlug(selectedPost.title);
+
+    const isLocalhost = typeof window !== 'undefined' && 
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+    if (isLocalhost) {
+      // --- DEVELOPMENT: Delete file from local filesystem ---
+      try {
+        const response = await fetch('/api/delete-blog', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug })
+        });
+        
+        const resData = await response.json();
+        if (response.ok && resData.success) {
+          removeLocalPostState(selectedPost.id);
+          setSaveStatus({ type: 'success', message: 'Article deleted successfully from local workspace!' });
+        } else {
+          throw new Error(resData.error || 'Failed to delete');
+        }
+      } catch (err: any) {
+        setSaveStatus({ type: 'error', message: `Local deletion failed: ${err.message}` });
+      }
+    } else {
+      // --- PRODUCTION: Delete file from GitHub repository ---
+      if (!user) {
+        setSaveStatus({ type: 'error', message: 'Authentication required.' });
+        return;
+      }
+
+      try {
+        const token = user.token.access_token;
+        const gatewayUrl = `/.netlify/git/github/contents/src/content/blogs/${slug}.json`;
+
+        // 1. Get the commit SHA first
+        let sha: string | null = null;
+        const checkResponse = await fetch(gatewayUrl, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        if (checkResponse.ok) {
+          const fileData = await checkResponse.json();
+          sha = fileData.sha;
+        }
+
+        if (!sha) {
+          throw new Error("Could not retrieve the file SHA from GitHub.");
+        }
+
+        // 2. Commit the deletion request
+        const payload = {
+          message: `cms: delete blog post "${selectedPost.title}"`,
+          sha: sha,
+          branch: "main"
+        };
+
+        const deleteResponse = await fetch(gatewayUrl, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (deleteResponse.ok) {
+          removeLocalPostState(selectedPost.id);
+          setSaveStatus({ type: 'success', message: 'Article deleted from GitHub successfully!' });
+        } else {
+          const errText = await deleteResponse.text();
+          throw new Error(`Git Gateway rejected delete command: ${errText}`);
+        }
+      } catch (err: any) {
+        setSaveStatus({ type: 'error', message: `Deletion failed: ${err.message}` });
+      }
+    }
+  };
+
   const updateLocalPostsState = (savedPost: BlogPost) => {
     setPosts(prev => {
       const exists = prev.some(p => p.id === savedPost.id);
@@ -218,23 +305,35 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
         return [savedPost, ...prev].sort((a, b) => b.id - a.id);
       }
     });
-    // Set active
     setSelectedPost(savedPost);
     setIsCreatingNew(false);
   };
 
+  const removeLocalPostState = (idToDelete: number) => {
+    setPosts(prev => prev.filter(p => p.id !== idToDelete));
+    setSelectedPost(null);
+    setIsCreatingNew(false);
+  };
+
+  // Theme styling variables mapping
+  const containerTheme = isDark ? 'bg-[#00122E] text-white' : 'bg-slate-50 text-slate-800';
+  const headerTheme = isDark ? 'bg-[#010814]/80 border-card-border' : 'bg-white border-slate-200';
+  const sidebarTheme = isDark ? 'bg-[#010814]/30 border-card-border' : 'bg-slate-100/50 border-slate-200';
+  const inputTheme = isDark ? 'bg-[#010814]/60 border-slate-700 text-white focus:border-purple' : 'bg-white border-slate-300 text-slate-900 focus:border-purple';
+  const editorHeaderTheme = isDark ? 'bg-[#010814]/40 border-card-border' : 'bg-slate-50 border-slate-200';
+
   // --- RENDER LOGIN VIEW ---
   if (!user) {
     return (
-      <div className="min-h-screen bg-[#00122E] flex items-center justify-center p-6 relative overflow-hidden">
+      <div className={`min-h-screen ${containerTheme} flex items-center justify-center p-6 relative overflow-hidden transition-colors duration-300`}>
         {/* Soft background light spots */}
         <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-purple/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple/10 rounded-full blur-3xl" />
 
-        <div className="bg-[#010814]/60 backdrop-blur-md border border-card-border p-8 rounded-2xl w-full max-w-md shadow-2xl text-center flex flex-col gap-6 relative z-10">
-          <div className="flex flex-col gap-2">
+        <div className={`${isDark ? 'bg-[#010814]/60 border-card-border' : 'bg-white border-slate-200 shadow-xl'} backdrop-blur-md border p-8 rounded-2xl w-full max-w-md flex flex-col gap-6 relative z-10 transition-colors duration-300`}>
+          <div className="flex flex-col gap-2 text-center">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">Global Language Academy</span>
-            <h1 className="text-2xl font-extrabold tracking-tight text-white font-display">
+            <h1 className={`text-2xl font-extrabold tracking-tight font-display ${isDark ? 'text-white' : 'text-slate-900'}`}>
               Academy Control Center
             </h1>
             <p className="text-xs text-slate-400">
@@ -256,27 +355,47 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
 
   // --- RENDER DASHBOARD VIEW ---
   return (
-    <div className="min-h-screen bg-[#00122E] text-white flex flex-col font-sans">
+    <div className={`min-h-screen ${containerTheme} flex flex-col font-sans transition-colors duration-300`}>
       
       {/* Top Banner Control Header */}
-      <header className="bg-[#010814]/80 border-b border-card-border px-6 py-4 flex justify-between items-center shrink-0 sticky top-0 z-20 backdrop-blur-md">
+      <header className={`${headerTheme} border-b px-6 py-4 flex justify-between items-center shrink-0 sticky top-0 z-20 backdrop-blur-md transition-colors duration-300`}>
         <div className="flex items-center gap-3">
           <span className="bg-purple/20 p-2 rounded-lg border border-purple/30">
             <FileText className="w-5 h-5 text-purple" />
           </span>
           <div className="flex flex-col">
-            <h1 className="text-sm font-bold tracking-wide">TGLA Control Panel</h1>
+            <h1 className={`text-sm font-bold tracking-wide ${isDark ? 'text-white' : 'text-slate-900'}`}>TGLA Control Panel</h1>
             <span className="text-[10px] text-slate-400">Manage site blog publications</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 text-xs">
-          <span className="hidden sm:inline text-slate-400 font-medium">
-            Active User: <span className="text-white font-semibold">{user.email}</span>
+        <div className="flex items-center gap-3 text-xs">
+          <span className="hidden lg:inline text-slate-400 font-medium mr-2">
+            Active User: <span className={isDark ? 'text-white font-semibold' : 'text-slate-800 font-semibold'}>{user.email}</span>
           </span>
+
+          {/* Theme Toggler Button */}
+          <button
+            type="button"
+            onClick={() => setIsDark(!isDark)}
+            aria-label="Toggle theme"
+            className={`p-2 rounded-lg border transition-colors cursor-pointer ${
+              isDark 
+                ? 'border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white' 
+                : 'border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+            }`}
+          >
+            {isDark ? <Sun className="w-4.5 h-4.5" /> : <Moon className="w-4.5 h-4.5" />}
+          </button>
+
+          {/* Logout Button */}
           <button
             onClick={handleLogout}
-            className="flex items-center gap-1.5 px-3.5 py-2 border border-slate-700 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg transition-colors cursor-pointer text-xs"
+            className={`flex items-center gap-1.5 px-3.5 py-2 border rounded-lg transition-colors cursor-pointer text-xs ${
+              isDark
+                ? 'border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white'
+                : 'border-slate-300 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+            }`}
           >
             <LogOut className="w-4 h-4" />
             Logout
@@ -288,7 +407,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
       <div className="flex-grow flex flex-col md:flex-row overflow-hidden">
         
         {/* Left Column: Post Sidebar list */}
-        <aside className="w-full md:w-80 border-b md:border-b-0 md:border-r border-card-border bg-[#010814]/30 flex flex-col shrink-0">
+        <aside className={`w-full md:w-80 border-b md:border-b-0 md:border-r ${sidebarTheme} flex flex-col shrink-0 transition-colors duration-300`}>
           <div className="p-4 border-b border-card-border flex justify-between items-center gap-3">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">Articles ({posts.length})</span>
             <button
@@ -308,16 +427,18 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
                 className={`w-full text-left p-3.5 rounded-xl border transition-all duration-200 flex flex-col gap-2 cursor-pointer ${
                   selectedPost?.id === post.id
                     ? 'bg-purple/20 border-purple text-white shadow-inner'
-                    : 'bg-[#010814]/40 border-card-border hover:bg-[#010814]/90 text-slate-300'
+                    : isDark 
+                      ? 'bg-[#010814]/40 border-card-border hover:bg-[#010814]/90 text-slate-300'
+                      : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-700 shadow-sm'
                 }`}
               >
                 <div className="flex justify-between items-start gap-2">
                   <span className="px-2 py-0.5 bg-purple/10 text-purple border border-purple/20 rounded text-[9px] font-extrabold uppercase tracking-wider">
                     {post.category}
                   </span>
-                  <span className="text-[9px] text-slate-500 font-bold">ID: {post.id}</span>
+                  <span className="text-[9px] text-slate-400 font-bold">ID: {post.id}</span>
                 </div>
-                <h3 className="text-xs font-bold line-clamp-1 leading-snug">{post.title}</h3>
+                <h3 className={`text-xs font-bold line-clamp-1 leading-snug ${isDark ? 'text-white' : 'text-slate-900'}`}>{post.title}</h3>
                 <p className="text-[10px] text-slate-400 line-clamp-2 leading-relaxed">{post.excerpt}</p>
               </button>
             ))}
@@ -325,11 +446,11 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
         </aside>
 
         {/* Right Column: Editor Workspace form */}
-        <main className="flex-grow flex flex-col overflow-hidden bg-[#00122E]/20">
+        <main className="flex-grow flex flex-col overflow-hidden">
           {(!selectedPost && !isCreatingNew) ? (
             <div className="flex-grow flex flex-col items-center justify-center p-8 text-center gap-3">
-              <FileText className="w-12 h-12 text-slate-600 animate-pulse" />
-              <h2 className="text-base font-bold text-white">No article selected</h2>
+              <FileText className="w-12 h-12 text-slate-500 animate-pulse" />
+              <h2 className={`text-base font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>No article selected</h2>
               <p className="text-xs text-slate-400 max-w-xs">
                 Select an existing article from the left sidebar to edit, or click the "+ New Blog" button to compose a new entry.
               </p>
@@ -338,7 +459,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
             <form onSubmit={handleSave} className="flex-grow flex flex-col overflow-hidden">
               
               {/* Form Tab toggle controls */}
-              <div className="bg-[#010814]/40 border-b border-card-border px-6 py-2 flex justify-between items-center shrink-0">
+              <div className={`${editorHeaderTheme} border-b px-6 py-2 flex justify-between items-center shrink-0 transition-colors duration-300`}>
                 <div className="flex gap-2">
                   <button
                     type="button"
@@ -346,7 +467,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
                     className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                       activeTab === 'edit'
                         ? 'bg-purple/20 text-purple border border-purple/30'
-                        : 'text-slate-400 hover:text-white'
+                        : 'text-slate-400 hover:text-slate-600'
                     }`}
                   >
                     <Edit2 className="w-4 h-4" />
@@ -358,7 +479,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
                     className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                       activeTab === 'preview'
                         ? 'bg-purple/20 text-purple border border-purple/30'
-                        : 'text-slate-400 hover:text-white'
+                        : 'text-slate-400 hover:text-slate-600'
                     }`}
                   >
                     <Eye className="w-4 h-4" />
@@ -370,6 +491,21 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
                   <span className="text-[10px] text-slate-400 font-semibold hidden sm:inline mr-2">
                     {selectedPost ? `Editing ID: ${selectedPost.id}` : "New Post (Auto-assign ID)"}
                   </span>
+
+                  {/* Delete Button (Visible only when editing an existing post) */}
+                  {selectedPost && (
+                    <button
+                      type="button"
+                      onClick={handleDelete}
+                      disabled={saveStatus.type === 'loading'}
+                      className="flex items-center gap-1.5 px-3 py-2 border border-rose-500 hover:bg-rose-500/10 text-rose-500 text-xs font-bold rounded-lg transition-colors cursor-pointer disabled:opacity-50"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      Delete Post
+                    </button>
+                  )}
+
+                  {/* Publish Save Button */}
                   <button
                     type="submit"
                     disabled={saveStatus.type === 'loading'}
@@ -408,7 +544,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
                         placeholder="e.g. 10 Essential Tips to Score 8+ Band in IELTS Writing..."
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full px-4 py-3 bg-[#010814]/60 border border-slate-700 focus:border-purple rounded-xl text-sm focus:outline-none transition-colors text-white"
+                        className={`w-full px-4 py-3 border rounded-xl text-sm focus:outline-none transition-colors ${inputTheme}`}
                         required
                       />
                     </div>
@@ -422,7 +558,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
                         <select
                           value={category}
                           onChange={(e) => setCategory(e.target.value as any)}
-                          className="w-full px-4 py-3 bg-[#010814]/60 border border-slate-700 focus:border-purple rounded-xl text-xs focus:outline-none transition-colors text-white cursor-pointer"
+                          className={`w-full px-4 py-3 border rounded-xl text-xs focus:outline-none transition-colors cursor-pointer ${inputTheme}`}
                         >
                           <option value="IELTS">IELTS</option>
                           <option value="PTE">PTE</option>
@@ -438,7 +574,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
                           type="text"
                           value={author}
                           onChange={(e) => setAuthor(e.target.value)}
-                          className="w-full px-4 py-3 bg-[#010814]/60 border border-slate-700 focus:border-purple rounded-xl text-xs focus:outline-none transition-colors text-white"
+                          className={`w-full px-4 py-3 border rounded-xl text-xs focus:outline-none transition-colors ${inputTheme}`}
                           required
                         />
                       </div>
@@ -450,7 +586,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
                           type="text"
                           value={readTime}
                           onChange={(e) => setReadTime(e.target.value)}
-                          className="w-full px-4 py-3 bg-[#010814]/60 border border-slate-700 focus:border-purple rounded-xl text-xs focus:outline-none transition-colors text-white"
+                          className={`w-full px-4 py-3 border rounded-xl text-xs focus:outline-none transition-colors ${inputTheme}`}
                           required
                         />
                       </div>
@@ -465,7 +601,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
                         placeholder="Write a brief, high-impact summary that will appear on the blog list card..."
                         value={excerpt}
                         onChange={(e) => setExcerpt(e.target.value)}
-                        className="w-full px-4 py-3 bg-[#010814]/60 border border-slate-700 focus:border-purple rounded-xl text-xs focus:outline-none transition-colors text-white resize-none"
+                        className={`w-full px-4 py-3 border rounded-xl text-xs focus:outline-none transition-colors resize-none ${inputTheme}`}
                         required
                       />
                     </div>
@@ -481,7 +617,7 @@ export default function AdminDashboard({ initialPosts }: AdminDashboardProps) {
                         placeholder="Compose your article body here. Hit enter twice to start a new paragraph..."
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
-                        className="w-full px-4 py-4 bg-[#010814]/60 border border-slate-700 focus:border-purple rounded-xl text-sm focus:outline-none transition-colors text-white font-mono leading-relaxed"
+                        className={`w-full px-4 py-4 border rounded-xl text-sm focus:outline-none transition-colors font-mono leading-relaxed ${inputTheme}`}
                         required
                       />
                     </div>
