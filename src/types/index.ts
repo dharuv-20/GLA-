@@ -91,5 +91,5 @@ export interface BlogPost {
   author: string;
   readTime: string;
   excerpt: string;
-  content: string[];
+  body: string;
 }

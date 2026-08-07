@@ -199,7 +199,7 @@ export default function BlogsClient({ initialPosts }: BlogsClientProps) {
 
                   {/* Content Paragraphs */}
                   <div className="flex flex-col gap-5 text-sm sm:text-base text-navy-muted leading-relaxed">
-                    {activePost.content.map((paragraph, index) => {
+                    {activePost.body.split('\n').filter((p: string) => p.trim() !== '').map((paragraph: string, index: number) => {
                       const isNumberedItem = /^[1-9]\./.test(paragraph);
                       if (isNumberedItem) {
                         const [numAndTitle, ...rest] = paragraph.split(':');
