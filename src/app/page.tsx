@@ -52,7 +52,7 @@ export default function HomePage() {
               </h1>
               
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 animate-fade-in-up [animation-delay:300ms] fill-mode-forwards">
-                Overcome test anxiety and score higher on your first attempt. Join hybrid batches led by Goethe-Institut & British Council certified trainers.
+                Overcome test anxiety and score higher on your first attempt. Join online or offline batches led by Goethe-Institut & British Council certified trainers.
               </p>
 
               {/* Core outcomes checklist to address customer goals */}
@@ -61,7 +61,7 @@ export default function HomePage() {
                   <span className="p-0.5 rounded-full bg-purple/35 text-purple-200 border border-purple-300/25 shrink-0">
                     <Check className="w-3.5 h-3.5" />
                   </span>
-                  <span>Max 10 students <span className="hidden sm:inline">per batch</span></span>
+                  <span>Max 5-7 students <span className="hidden sm:inline">per batch</span></span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-200">
                   <span className="p-0.5 rounded-full bg-purple/35 text-purple-200 border border-purple-300/25 shrink-0">
@@ -164,7 +164,7 @@ export default function HomePage() {
               High-Converting Exam & Skill Pathways
             </h2>
             <p className="reveal text-sm sm:text-base text-navy-muted leading-relaxed" style={{ transitionDelay: '200ms' }}>
-              We design specialized hybrid classrooms focusing on practice metrics, individual corrections, and proven exam methodologies.
+              We design specialized online & offline classrooms focusing on practice metrics, individual corrections, and proven exam methodologies.
             </p>
           </div>
 
@@ -214,7 +214,7 @@ export default function HomePage() {
                     <CheckCircle className="w-4 h-4" />
                   </span>
                   <div>
-                    <h4 className="text-sm font-bold text-navy">Small Batches (Max 10-12 Students)</h4>
+                    <h4 className="text-sm font-bold text-navy">Small Batches (Max 5-7 Students)</h4>
                     <p className="text-xs text-navy-muted">Guarantees that you receive active feedback on essays and speaking sessions.</p>
                   </div>
                 </li>
@@ -233,7 +233,7 @@ export default function HomePage() {
                   </span>
                   <div>
                     <h4 className="text-sm font-bold text-navy">Bespoke Level Milestone Tracking</h4>
-                    <p className="text-xs text-navy-muted">Clearly tells you when you are ready to transition from B1 to B2 level.</p>
+                    <p className="text-xs text-navy-muted">Clearly tells you when you are ready to transition to the next Goethe level (A1 to C2).</p>
                   </div>
                 </li>
               </ul>

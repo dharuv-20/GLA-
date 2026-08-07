@@ -43,10 +43,11 @@ export default function Footer() {
             <h3 className="text-base font-bold font-display uppercase tracking-wider mb-6 text-purple-300">Quick Links</h3>
             <ul className="flex flex-col gap-3 text-sm text-slate-300">
               <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/courses" className="hover:text-white transition-colors">All Courses</Link></li>
-              <li><Link href="/services" className="hover:text-white transition-colors">Additional Services</Link></li>
-              <li><Link href="/about" className="hover:text-white transition-colors">About the Academy</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact & Location</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link href="/courses" className="hover:text-white transition-colors">Courses</Link></li>
+              <li><Link href="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
+              <li><Link href="/services" className="hover:text-white transition-colors">Services</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 
@@ -54,7 +55,7 @@ export default function Footer() {
           <div>
             <h3 className="text-base font-bold font-display uppercase tracking-wider mb-6 text-purple-300">Language Courses</h3>
             <ul className="flex flex-col gap-3 text-sm text-slate-300">
-              <li><Link href="/courses/german-language" className="hover:text-white transition-colors">German Language (A1 - B2)</Link></li>
+              <li><Link href="/courses/german-language" className="hover:text-white transition-colors">German Language (A1 - C2)</Link></li>
               <li><Link href="/courses/ielts-preparation" className="hover:text-white transition-colors">IELTS Masterclass</Link></li>
               <li><Link href="/courses/pte-academic" className="hover:text-white transition-colors">PTE Strategy Preparation</Link></li>
               <li><Link href="/courses/personality-development" className="hover:text-white transition-colors">Personality Development</Link></li>
@@ -79,8 +80,10 @@ export default function Footer() {
             <div className="flex items-start gap-2.5 text-sm text-slate-300">
               <Clock className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />
               <div>
-                <p>Mon - Sat: 8:00 AM - 8:00 PM</p>
-                <p className="text-xs text-slate-400">Sunday: Closed</p>
+                <p className="font-semibold text-white">Working Hours</p>
+                <p>Online (7 Days): 7:00 AM - 11:00 PM</p>
+                <p>Offline (Mon - Fri): 10:00 AM - 6:00 PM</p>
+                <p className="text-xs text-slate-400">Offline Closed on Weekends</p>
               </div>
             </div>
           </div>
@@ -89,7 +92,7 @@ export default function Footer() {
 
         {/* Footer Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-navy-muted flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-          <p>&copy; {new Date().getFullYear()} The Global Language Academy. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} TGLA Learning Pvt. Ltd. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>

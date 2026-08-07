@@ -99,7 +99,7 @@ export default async function CourseLandingPage({ params }: PageProps) {
               </p>
 
               {/* Core Details Grid */}
-              <div className="grid grid-cols-3 gap-4 border-t border-b border-navy-muted/50 py-4 max-w-xl mx-auto lg:mx-0 animate-fade-in-up [animation-delay:400ms] fill-mode-forwards">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-b border-navy-muted/50 py-4 max-w-2xl mx-auto lg:mx-0 animate-fade-in-up [animation-delay:400ms] fill-mode-forwards">
                 <div>
                   <span className="block text-[10px] uppercase font-bold text-slate-400">Duration</span>
                   <span className="text-sm font-semibold text-white">{course.durationLabel}</span>
@@ -109,8 +109,12 @@ export default async function CourseLandingPage({ params }: PageProps) {
                   <span className="text-sm font-semibold text-white">Max {course.maxClassSize} Students</span>
                 </div>
                 <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400">Intake</span>
-                  <span className="text-sm font-semibold text-white">Weekly Batches</span>
+                  <span className="block text-[10px] uppercase font-bold text-slate-400">Online Batches</span>
+                  <span className="text-xs font-semibold text-white">7 Days, 7 AM - 11 PM</span>
+                </div>
+                <div>
+                  <span className="block text-[10px] uppercase font-bold text-slate-400">Offline Batches</span>
+                  <span className="text-xs font-semibold text-white">Mon - Fri, 10 AM - 6 PM</span>
                 </div>
               </div>
             </div>

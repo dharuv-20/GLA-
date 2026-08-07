@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Phone, Sun, Moon, ChevronDown, BookOpen, MessageCircle } from 'lucide-react';
 
 export default function Header() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [isCoursesOpen, setIsCoursesOpen] = useState(false);
@@ -48,7 +50,7 @@ export default function Header() {
   };
 
   const courses = [
-    { label: "German Language (A1 - B2)", href: "/courses/german-language" },
+    { label: "German Language (A1 - C2)", href: "/courses/german-language" },
     { label: "IELTS Masterclass", href: "/courses/ielts-preparation" },
     { label: "PTE Academic Strategy", href: "/courses/pte-academic" },
     { label: "Personality Development", href: "/courses/personality-development" },
@@ -70,17 +72,32 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm font-semibold text-navy hover:text-purple transition-colors">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+            <Link
+              href="/"
+              className={`text-sm font-semibold transition-colors ${
+                pathname === '/' ? 'text-purple' : 'text-navy hover:text-purple'
+              }`}
+            >
               Home
+            </Link>
+
+            <Link
+              href="/about"
+              className={`text-sm font-semibold transition-colors ${
+                pathname === '/about' ? 'text-purple' : 'text-navy hover:text-purple'
+              }`}
+            >
+              About Us
             </Link>
 
             {/* Courses Dynamic Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsCoursesOpen(!isCoursesOpen)}
-                className="flex items-center gap-1 text-sm font-semibold text-navy hover:text-purple transition-colors focus:outline-none cursor-pointer"
+                className={`flex items-center gap-1 text-sm font-semibold transition-colors focus:outline-none cursor-pointer ${
+                  pathname.startsWith('/courses') ? 'text-purple' : 'text-navy hover:text-purple'
+                }`}
                 aria-expanded={isCoursesOpen ? "true" : "false"}
               >
                 <span>Courses</span>
@@ -95,9 +112,9 @@ export default function Header() {
                       <Link
                         href={course.href}
                         onClick={() => setIsCoursesOpen(false)}
-                        className={`block px-4 py-2.5 text-xs font-semibold text-navy hover:bg-navy-light hover:text-purple transition-colors ${
-                          course.isDivider ? 'text-purple' : ''
-                        }`}
+                        className={`block px-4 py-2.5 text-xs font-semibold hover:bg-navy-light hover:text-purple transition-colors ${
+                          pathname === course.href ? 'text-purple bg-navy-light/50' : 'text-navy'
+                        } ${course.isDivider ? 'text-purple' : ''}`}
                       >
                         {course.label}
                       </Link>
@@ -107,13 +124,32 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/services" className="text-sm font-semibold text-navy hover:text-purple transition-colors">
+
+
+            <Link
+              href="/blogs"
+              className={`text-sm font-semibold transition-colors ${
+                pathname === '/blogs' ? 'text-purple' : 'text-navy hover:text-purple'
+              }`}
+            >
+              Blogs
+            </Link>
+
+            <Link
+              href="/services"
+              className={`text-sm font-semibold transition-colors ${
+                pathname === '/services' ? 'text-purple' : 'text-navy hover:text-purple'
+              }`}
+            >
               Services
             </Link>
-            <Link href="/about" className="text-sm font-semibold text-navy hover:text-purple transition-colors">
-              About
-            </Link>
-            <Link href="/contact" className="text-sm font-semibold text-navy hover:text-purple transition-colors">
+
+            <Link
+              href="/contact"
+              className={`text-sm font-semibold transition-colors ${
+                pathname === '/contact' ? 'text-purple' : 'text-navy hover:text-purple'
+              }`}
+            >
               Contact
             </Link>
           </nav>
@@ -177,14 +213,28 @@ export default function Header() {
             <Link
               href="/"
               onClick={() => setIsOpen(false)}
-              className="text-base font-semibold text-navy hover:text-purple transition-colors py-2 border-b border-card-border/50"
+              className={`text-base font-semibold transition-colors py-2 border-b border-card-border/50 ${
+                pathname === '/' ? 'text-purple' : 'text-navy hover:text-purple'
+              }`}
             >
               Home
             </Link>
 
+            <Link
+              href="/about"
+              onClick={() => setIsOpen(false)}
+              className={`text-base font-semibold transition-colors py-2 border-b border-card-border/50 ${
+                pathname === '/about' ? 'text-purple' : 'text-navy hover:text-purple'
+              }`}
+            >
+              About Us
+            </Link>
+
             {/* Mobile Courses Dropdown Segment */}
             <div className="py-2 border-b border-card-border/50 flex flex-col gap-1.5">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-purple-light">Courses</span>
+              <span className={`text-xs font-extrabold uppercase tracking-wider ${
+                pathname.startsWith('/courses') ? 'text-purple' : 'text-purple-light'
+              }`}>Courses</span>
               <div className="pl-4 flex flex-col gap-2.5 mt-1.5">
                 {courses.map((course, idx) => (
                   <Link
@@ -192,7 +242,9 @@ export default function Header() {
                     href={course.href}
                     onClick={() => setIsOpen(false)}
                     className={`text-sm font-semibold hover:text-purple transition-colors ${
-                      course.isDivider ? 'text-purple text-xs font-bold pt-1 border-t border-card-border/50' : 'text-navy'
+                      pathname === course.href ? 'text-purple' : 'text-navy'
+                    } ${
+                      course.isDivider ? 'text-purple text-xs font-bold pt-1 border-t border-card-border/50' : ''
                     }`}
                   >
                     {course.label}
@@ -201,24 +253,34 @@ export default function Header() {
               </div>
             </div>
 
+
+
+            <Link
+              href="/blogs"
+              onClick={() => setIsOpen(false)}
+              className={`text-base font-semibold transition-colors py-2 border-b border-card-border/50 ${
+                pathname === '/blogs' ? 'text-purple' : 'text-navy hover:text-purple'
+              }`}
+            >
+              Blogs
+            </Link>
+
             <Link
               href="/services"
               onClick={() => setIsOpen(false)}
-              className="text-base font-semibold text-navy hover:text-purple transition-colors py-2 border-b border-card-border/50"
+              className={`text-base font-semibold transition-colors py-2 border-b border-card-border/50 ${
+                pathname === '/services' ? 'text-purple' : 'text-navy hover:text-purple'
+              }`}
             >
               Services
             </Link>
-            <Link
-              href="/about"
-              onClick={() => setIsOpen(false)}
-              className="text-base font-semibold text-navy hover:text-purple transition-colors py-2 border-b border-card-border/50"
-            >
-              About
-            </Link>
+
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="text-base font-semibold text-navy hover:text-purple transition-colors py-2 border-b border-card-border/50"
+              className={`text-base font-semibold transition-colors py-2 border-b border-card-border/50 ${
+                pathname === '/contact' ? 'text-purple' : 'text-navy hover:text-purple'
+              }`}
             >
               Contact
             </Link>

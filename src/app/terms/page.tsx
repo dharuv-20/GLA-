@@ -27,14 +27,14 @@ export default function TermsPage() {
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">1. Enrollment & Course Access</h2>
             <p>
-              By registering for IELTS, PTE, German, or Personality Development classes at The Global Language Academy (GLA), you agree to provide truthful contact and background credentials. Course access is limited to the student name listed on the enrollment receipt and is non-transferable.
+              By registering for IELTS, PTE, German, or Personality Development classes at The Global Language Academy (a brand of TGLA Learning Pvt. Ltd.), you agree to provide truthful contact and background credentials. Course access is limited to the student name listed on the enrollment receipt and is non-transferable.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">2. Batch Transfers & Attendance</h2>
             <p>
-              To maintain academic progress metrics, students are expected to attend scheduled sessions regularly. Batches are kept at a small maximum size (10-12 students). If you need to request a batch transfer due to work conflicts, you must notify the academy coordinators 7 days in advance.
+              To maintain academic progress metrics, students are expected to attend scheduled sessions regularly. Batches are kept at a small maximum size (5-7 students). If you need to request a batch transfer due to work conflicts, you must notify the academy coordinators 7 days in advance.
             </p>
           </div>
 

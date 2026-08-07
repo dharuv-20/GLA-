@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">1. Information We Collect</h2>
             <p>
-              When you submit a demo class slot or inquiry form on The Global Language Academy (GLA), we collect personal contact credentials including your full name, email address, phone number, and targeted language goals (such as German levels, IELTS, or PTE prep requirements).
+              When you submit a demo class slot or inquiry form on The Global Language Academy (a brand of TGLA Learning Pvt. Ltd.), we collect personal contact credentials including your full name, email address, phone number, and targeted language goals (such as German levels, IELTS, or PTE prep requirements).
             </p>
           </div>
 

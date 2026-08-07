@@ -155,7 +155,7 @@ function LeadFormInner({ defaultCourse = "" }: { defaultCourse?: string }) {
           aria-describedby={errors.course ? 'course-error' : undefined}
         >
           <option value="" className="bg-card text-navy">Select a Program...</option>
-          <option value="german-language" className="bg-card text-navy">German Language (A1 - B2)</option>
+          <option value="german-language" className="bg-card text-navy">German Language (A1 - C2)</option>
           <option value="ielts-preparation" className="bg-card text-navy">IELTS Masterclass</option>
           <option value="pte-academic" className="bg-card text-navy">PTE Academic strategy</option>
           <option value="personality-development" className="bg-card text-navy">Personality Development</option>

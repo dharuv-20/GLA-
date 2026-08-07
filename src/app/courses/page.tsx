@@ -4,7 +4,7 @@ import CourseCard from '@/components/CourseCard';
 
 export const metadata = {
   title: "Language & Skill Development Courses",
-  description: "Browse premium exam preparation and language classes including IELTS, PTE Academic, German Language (A1-B2), and Personality Development.",
+  description: "Browse premium exam preparation and language classes including IELTS, PTE Academic, German Language (A1-C2), and Personality Development.",
 };
 
 export default function CoursesPage() {
@@ -52,7 +52,7 @@ export default function CoursesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Format 1 */}
+             {/* Format 1 */}
             <div
               className="reveal hover-lift bg-card p-8 rounded-xl border border-card-border shadow-sm flex flex-col gap-4"
               style={{ transitionDelay: '150ms' }}
@@ -60,9 +60,9 @@ export default function CoursesPage() {
               <div className="p-3 bg-purple-light text-purple rounded-lg w-fit border border-card-border">
                 <BookOpen className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold font-display text-navy">Physical Classroom Batches</h3>
+              <h3 className="text-lg font-bold font-display text-navy">Offline Classroom Batches</h3>
               <p className="text-xs text-navy-muted leading-relaxed">
-                Attend intensive lessons at our branch. Equipped with state-of-the-art computer labs for PTE and spoken classes.
+                Attend intensive offline lessons at our branch (Monday - Friday, 10:00 AM - 6:00 PM). Equipped with state-of-the-art computer labs for PTE and spoken classes.
               </p>
             </div>
 
@@ -74,9 +74,9 @@ export default function CoursesPage() {
               <div className="p-3 bg-purple-light text-purple rounded-lg w-fit border border-card-border">
                 <GraduationCap className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold font-display text-navy">Live Synchronous Online</h3>
+              <h3 className="text-lg font-bold font-display text-navy">Live Online Classes</h3>
               <p className="text-xs text-navy-muted leading-relaxed">
-                Join our small group virtual classrooms. Interact in real-time, share screen, and receive direct assignments with certified trainers.
+                Join our small group virtual classrooms (7 Days Open, 7:00 AM - 11:00 PM). Interact in real-time, share screen, and receive direct assignments with certified trainers.
               </p>
             </div>
 

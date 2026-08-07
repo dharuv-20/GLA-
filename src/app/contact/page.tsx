@@ -71,8 +71,9 @@ export default function ContactPage() {
                   <Clock className="w-5 h-5 text-purple shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-navy">Working Hours</p>
-                    <p>Mon - Sat: 8:00 AM - 8:00 PM</p>
-                    <p className="text-xs text-navy-muted/60">Sunday: Closed</p>
+                    <p>Online Classes (7 Days Open): 7:00 AM - 11:00 PM</p>
+                    <p>Offline Classes (Monday - Friday): 10:00 AM - 6:00 PM</p>
+                    <p className="text-xs text-navy-muted/60">Offline Branch Closed on Weekends</p>
                   </div>
                 </div>
               </div>

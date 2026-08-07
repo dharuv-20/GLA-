@@ -153,14 +153,14 @@ export const coursesList: Course[] = [
   {
     id: "crs-german",
     slug: "german-language",
-    title: "German Language Program (A1 - B2)",
-    metaTitle: "German Language Classes (A1 - B2) | Certified Academy",
-    metaDescription: "Learn German from certified Goethe B2/C2 instructors. Dynamic level course modules (A1, A2, B1, B2) tailored for student visas and career migration.",
+    title: "German Language Program (A1 - C2)",
+    metaTitle: "German Language Classes (A1 - C2) | Certified Academy",
+    metaDescription: "Learn German from certified Goethe instructors. Dynamic level course modules (A1, A2, B1, B2, C1, C2) tailored for student visas and career migration.",
     shortDescription: "Your gateway to tuition-free university education and job opportunities in Germany.",
-    longDescription: "Master German grammar, listening, and speaking through our specialized immersion methodology. Designed to take candidates from absolute beginners (A1) to workplace proficiency (B2), this program focuses on building functional communication skills alongside rigorous exam preparation.",
+    longDescription: "Master German grammar, listening, and speaking through our specialized immersion methodology. Designed to take candidates from absolute beginners (A1) to native fluency (C2), this program focuses on building functional communication skills alongside rigorous exam preparation.",
     durationLabel: "6 Months Intensive",
     nextBatchStartDate: "2026-09-01",
-    maxClassSize: 10,
+    maxClassSize: "5-7",
     levels: [
       {
         levelCode: "A1 (Beginner)",
@@ -189,6 +189,20 @@ export const coursesList: Course[] = [
         weeklyHours: 12,
         description: "Communicate fluently with native speakers. Understand complex topics, technical debates, and write detailed essays.",
         modules: ["Subjunctive II (Konjunktiv II)", "Advanced Adjective Declensions", "Debating Complex Social Topics", "Goethe B2 Exam Preparation Drill"]
+      },
+      {
+        levelCode: "C1 (Advanced/Proficient)",
+        durationWeeks: 8,
+        weeklyHours: 12,
+        description: "Understand a wide range of demanding, longer texts and recognize implicit meaning. Express yourself fluently and spontaneously.",
+        modules: ["Advanced Idiomatic Expressions", "Complex Sentence Structures (Nomen-Verb-Verbindungen)", "Academic Reading & Writing", "Expressing Nuanced Opinions"]
+      },
+      {
+        levelCode: "C2 (Mastery/Fluency)",
+        durationWeeks: 8,
+        weeklyHours: 14,
+        description: "Understand practically everything heard or read with ease. Summarize information from different spoken and written sources.",
+        modules: ["Nuances of German Literature & Media", "Advanced Rhetoric & Presentation", "Professional Business Communication", "Goethe C2 GDS Exam Mastery Drill"]
       }
     ],
     faculty: [facultyList[0]],
@@ -209,7 +223,7 @@ export const coursesList: Course[] = [
     ],
     learningOutcomes: [
       "Fluently hold complex everyday and professional debates in German",
-      "Pass the official Goethe-Institut B2 exam with high scores",
+      "Pass the official Goethe-Institut A1 to C2 exams with high scores",
       "Write coherent structured essays, business letters, and reports",
       "Confidently navigate visa interview questions at the German Embassy"
     ],
@@ -225,7 +239,7 @@ export const coursesList: Course[] = [
     longDescription: "Prepare for your IELTS Academic or General Training exam with confidence. Our strategic masterclass focuses on diagnostic assessments, timed speaking simulations, and step-by-step essay blueprints, teaching you the exact methodology examiners use to assign band scores.",
     durationLabel: "8 Weeks Program",
     nextBatchStartDate: "2026-08-20",
-    maxClassSize: 12,
+    maxClassSize: "5-7",
     levels: [
       {
         levelCode: "Diagnostic & Strategy",
@@ -283,7 +297,7 @@ export const coursesList: Course[] = [
     longDescription: "Achieve your target score in the computer-delivered Pearson Test of English (PTE) Academic exam. Our program combines expert trainer strategies with simulated software assessments, training you on specific microphone techniques and oral scoring patterns.",
     durationLabel: "6 Weeks Core Course",
     nextBatchStartDate: "2026-08-25",
-    maxClassSize: 10,
+    maxClassSize: "5-7",
     levels: [
       {
         levelCode: "Introduction & Strategy Templates",
@@ -341,7 +355,7 @@ export const coursesList: Course[] = [
     longDescription: "Prepare for competitive job markets with our transformational communication program. From accent correction and public speaking to mock group discussions and resume optimization, this course is designed to build your professional confidence.",
     durationLabel: "4 Weeks Boot Camp",
     nextBatchStartDate: "2026-09-05",
-    maxClassSize: 15,
+    maxClassSize: "5-7",
     levels: [
       {
         levelCode: "Spoken Polish & Confidence",

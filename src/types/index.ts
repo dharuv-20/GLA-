@@ -53,7 +53,7 @@ export interface Course {
   longDescription: string;
   durationLabel: string;
   nextBatchStartDate: string;
-  maxClassSize: number;
+  maxClassSize: string;
   levels: CourseLevel[];
   faculty: FacultyMember[];
   testimonials: Testimonial[];
@@ -82,4 +82,14 @@ export interface ServiceItem {
   longDescription: string;
   benefits: string[];
   icon: string;
+}
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  category: 'IELTS' | 'PTE' | 'German' | 'Career';
+  author: string;
+  readTime: string;
+  excerpt: string;
+  content: string[];
 }

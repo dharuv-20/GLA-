@@ -11,6 +11,7 @@ import FirstVisitModal from "@/components/layout/FirstVisitModal";
 import PageTransition from "@/components/layout/PageTransition";
 import ScrollRevealProvider from "@/components/layout/ScrollRevealProvider";
 import SplashScreen from "@/components/layout/SplashScreen";
+import AppLayoutWrapper from "@/components/layout/AppLayoutWrapper";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -31,14 +32,14 @@ export const metadata: Metadata = {
     default: "The Global Language Academy (GLA) | Premium Language Institute",
     template: "%s | The Global Language Academy (GLA)",
   },
-  description: "GLA offers professional IELTS, PTE, German language coaching (A1-B2), and Personality Development programs with certified trainers and guaranteed exam success.",
+  description: "GLA offers professional IELTS, PTE, German language coaching (A1-C2), and Personality Development programs with certified trainers and guaranteed exam success.",
   metadataBase: new URL("https://www.glaind.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "The Global Language Academy (GLA)",
-    description: "Premium coaching for IELTS, PTE, German levels A1-B2, and corporate personality workshops.",
+    description: "Premium coaching for IELTS, PTE, German levels A1-C2, and corporate personality workshops.",
     url: "/",
     siteName: "The Global Language Academy",
     locale: "en_US",
@@ -77,21 +78,27 @@ export default function RootLayout({
             `
           }}
         />
+        {/* Netlify Identity widget for admin authentication */}
+        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async />
       </head>
       <body className="min-h-screen flex flex-col font-sans" suppressHydrationWarning>
         <SplashScreen />
         <ScrollRevealProvider>
-          <AnnouncementBar />
-          <Header />
+          <AppLayoutWrapper>
+            <AnnouncementBar />
+            <Header />
+          </AppLayoutWrapper>
           <main className="flex-grow">
             <PageTransition>
               {children}
             </PageTransition>
           </main>
-          <Footer />
-          <FloatingWhatsApp />
-          <StickyMobileCTA />
-          <FirstVisitModal />
+          <AppLayoutWrapper>
+            <Footer />
+            <FloatingWhatsApp />
+            <StickyMobileCTA />
+            <FirstVisitModal />
+          </AppLayoutWrapper>
         </ScrollRevealProvider>
       </body>
     </html>

@@ -12,7 +12,7 @@ export default function SitemapPage() {
       icon: <Home className="w-5 h-5 text-purple" />,
       title: "Core Pages",
       links: [
-        { name: "Homepage", path: "/" },
+        { name: "Home", path: "/" },
         { name: "About the Academy", path: "/about" },
         { name: "Contact & Branch Directions", path: "/contact" }
       ]
@@ -22,7 +22,7 @@ export default function SitemapPage() {
       title: "Language Exam Programs",
       links: [
         { name: "All Language Courses", path: "/courses" },
-        { name: "German Language Course (A1 - B2)", path: "/courses/german-language" },
+        { name: "German Language Course (A1 - C2)", path: "/courses/german-language" },
         { name: "IELTS Exam Preparation Masterclass", path: "/courses/ielts-preparation" },
         { name: "PTE Academic Prep & Simulation", path: "/courses/pte-academic" },
         { name: "Personality Development & Spoken English", path: "/courses/personality-development" }
