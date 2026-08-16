@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Check, ArrowRight, BookOpen, Award, CheckCircle, Clock, BookOpenCheck, MapPin, Calendar, HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Check, ArrowRight, BookOpen, Award, CheckCircle, Clock, BookOpenCheck, MapPin, Calendar, HelpCircle, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Course, FacultyMember, Testimonial, FAQItem, StudentResult } from '@/types';
 import FacultyCard from '@/components/FacultyCard';
 import TestimonialCard from '@/components/TestimonialCard';
@@ -562,6 +562,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
   const [activeLevelIdx, setActiveLevelIdx] = useState(0);
   const [expandedWeeks, setExpandedWeeks] = useState<Record<string, boolean>>({ "0-Week 1": true });
   const [curriculumTab, setCurriculumTab] = useState<'C1' | 'C2'>('C1');
+  const [activeReviewIdx, setActiveReviewIdx] = useState(0);
 
   const activeLevel = germanSyllabus[activeLevelIdx];
 
@@ -573,16 +574,26 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
     }));
   };
 
+  const prevReview = () => {
+    setActiveReviewIdx((prev) => (prev === 0 ? course.testimonials.length - 1 : prev - 1));
+  };
+
+  const nextReview = () => {
+    setActiveReviewIdx((prev) => (prev === course.testimonials.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <div className="flex flex-col overflow-x-hidden text-navy bg-card transition-colors duration-300">
       
       {/* 1. Hero Landing Block */}
       <section className="bg-[#00122E] dark:bg-[#010814] text-white py-16 sm:py-20 lg:py-24 border-b border-card-border relative overflow-hidden transition-colors duration-300">
-        {/* Background image overlay with linear gradient masking */}
-        <div className="absolute inset-0 opacity-45 dark:opacity-25 pointer-events-none">
+        {/* Background image overlay with linear gradient masking (Desktop only) */}
+        <div className="absolute inset-0 opacity-45 dark:opacity-25 pointer-events-none hidden sm:block">
           <div className="absolute inset-0 bg-gradient-to-r from-[#00122E] via-[#00122E]/65 to-[#00122E]/10 dark:from-[#010814] dark:via-[#010814]/65 dark:to-[#010814]/10 z-10"></div>
           <img src="/images/berlin-skyline.jpg" alt="Berlin Skyline" className="w-full h-full object-cover object-center" />
         </div>
+        {/* Radial glow for Mobile view (clean and high quality) */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(147,51,234,0.15),transparent_70%)] sm:hidden pointer-events-none"></div>
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-purple rounded-full blur-3xl"></div>
         </div>
@@ -594,7 +605,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
             <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left">
               <div className="flex justify-center lg:justify-start items-center gap-3">
                 <span className="text-[10px] font-extrabold uppercase tracking-widest bg-purple/20 text-purple-hero px-3.5 py-1.5 rounded-full border border-purple-hero/35">
-                  Goethe / telc / ÖSD Exam Center
+                  Goethe / telc / ÖSD / DSH / TestDaF Preparation
                 </span>
                 <img src="/images/german-flag-ribbon.png" alt="German Ribbon" className="h-6 object-contain select-none pointer-events-none hidden sm:block animate-pulse-slow" />
               </div>
@@ -603,15 +614,15 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                 {course.title}
               </h1>
               
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                A comprehensive, step-by-step learning program designed to build German-language skills progressively from foundational A1 through upper-intermediate B2. Designed for study abroad, career growth, travel, and international opportunities.
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-sans">
+                A comprehensive, fully structured program designed to build German language proficiency progressively from A1 to C2. Integrating vocabulary, grammar (Grammatik), speaking, listening, reading, writing, and targeted mock preparation for international exams.
               </p>
 
               {/* Core Details Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-b border-navy-muted/50 py-4 max-w-2xl mx-auto lg:mx-0">
                 <div>
                   <span className="block text-[10px] uppercase font-bold text-slate-400">Total Duration</span>
-                  <span className="text-sm font-semibold text-white">11 Months (A1 - B2)</span>
+                  <span className="text-sm font-semibold text-white">19 Months (A1 - C2)</span>
                 </div>
                 <div>
                   <span className="block text-[10px] uppercase font-bold text-slate-400">Class Size Limit</span>
@@ -812,7 +823,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
 
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-4 p-3 bg-section-alt rounded-xl border border-card-border hover-lift transition-all duration-200">
-                  <div className="w-16 h-10 bg-white dark:bg-slate-900 rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
+                  <div className="w-16 h-10 bg-white rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
                     <img src="/images/goethe-logo.png" alt="Goethe-Institut" className="max-w-full max-h-full object-contain" />
                   </div>
                   <div>
@@ -822,7 +833,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                 </div>
 
                 <div className="flex items-center gap-4 p-3 bg-section-alt rounded-xl border border-card-border hover-lift transition-all duration-200">
-                  <div className="w-16 h-10 bg-white dark:bg-slate-900 rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
+                  <div className="w-16 h-10 bg-white rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
                     <img src="/images/telc-logo.jpg" alt="telc" className="max-w-full max-h-full object-contain" />
                   </div>
                   <div>
@@ -832,7 +843,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                 </div>
 
                 <div className="flex items-center gap-4 p-3 bg-section-alt rounded-xl border border-card-border hover-lift transition-all duration-200">
-                  <div className="w-16 h-10 bg-white dark:bg-slate-900 rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
+                  <div className="w-16 h-10 bg-white rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
                     <img src="/images/osd-logo.jpg" alt="ÖSD" className="max-w-full max-h-full object-contain" />
                   </div>
                   <div>
@@ -842,8 +853,8 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                 </div>
 
                 <div className="flex items-center gap-4 p-3 bg-section-alt rounded-xl border border-card-border hover-lift transition-all duration-200">
-                  <div className="w-16 h-10 bg-white dark:bg-slate-900 rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
-                    <span className="text-xs font-extrabold text-purple tracking-wider">DSH</span>
+                  <div className="w-16 h-10 bg-white rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
+                    <img src="/images/dsh-logo.jpg" alt="DSH" className="max-w-full max-h-full object-contain" />
                   </div>
                   <div>
                     <span className="block text-xs font-extrabold text-navy">DSH Hochschulzugang</span>
@@ -852,8 +863,8 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                 </div>
 
                 <div className="flex items-center gap-4 p-3 bg-section-alt rounded-xl border border-card-border hover-lift transition-all duration-200">
-                  <div className="w-16 h-10 bg-white dark:bg-slate-900 rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
-                    <span className="text-xs font-extrabold text-purple tracking-wider">TestDaF</span>
+                  <div className="w-16 h-10 bg-white rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
+                    <img src="/images/testdaf-logo.jpg" alt="TestDaF" className="max-w-full max-h-full object-contain" />
                   </div>
                   <div>
                     <span className="block text-xs font-extrabold text-navy">TestDaF Academic</span>
@@ -966,13 +977,13 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                             : 'bg-card hover:bg-section-alt/60'
                         }`}
                       >
-                        <div className="flex items-center gap-3">
-                          <span className={`px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-widest shadow-sm ${
+                        <div className="flex items-start sm:items-center gap-3">
+                          <span className={`px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-widest shadow-sm shrink-0 whitespace-nowrap ${
                             isExpanded ? 'bg-purple text-white' : 'bg-purple/10 text-purple border border-purple/20'
                           }`}>
                             {week.weekNum}
                           </span>
-                          <span className="text-xs font-bold text-navy">
+                          <span className="text-xs font-bold text-navy pt-0.5 sm:pt-0">
                             {week.title}
                           </span>
                         </div>
@@ -1268,16 +1279,63 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
       <section className="bg-section-alt text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
+          <div className="text-center max-w-3xl mx-auto mb-12 flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-widest text-purple">Alumni Reviews</span>
             <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">Scorecard Results & Reviews</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {course.testimonials.map((test) => (
-              <div key={test.id} className="hover-lift rounded-xl">
-                <TestimonialCard testimonial={test} />
+          <div className="relative max-w-3xl mx-auto flex items-center gap-2 sm:gap-6">
+            {/* Prev button */}
+            <button
+              onClick={prevReview}
+              type="button"
+              className="p-2 sm:p-3.5 rounded-full bg-card border border-card-border text-navy hover:text-purple hover:border-purple/35 transition-all duration-200 cursor-pointer shadow-sm shrink-0"
+              aria-label="Previous Review"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            {/* Reviews display container */}
+            <div className="flex-1 overflow-hidden py-4">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ 
+                  transform: `translateX(-${activeReviewIdx * 100}%)` 
+                }}
+              >
+                {course.testimonials.map((test) => (
+                  <div key={test.id} className="w-full shrink-0 px-2 sm:px-4">
+                    <div className="hover-lift rounded-xl bg-card border border-card-border p-6 sm:p-8 shadow-sm">
+                      <TestimonialCard testimonial={test} />
+                    </div>
+                  </div>
+                ))}
               </div>
+            </div>
+
+            {/* Next button */}
+            <button
+              onClick={nextReview}
+              type="button"
+              className="p-2 sm:p-3.5 rounded-full bg-card border border-card-border text-navy hover:text-purple hover:border-purple/35 transition-all duration-200 cursor-pointer shadow-sm shrink-0"
+              aria-label="Next Review"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-6">
+            {course.testimonials.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveReviewIdx(idx)}
+                type="button"
+                className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  activeReviewIdx === idx ? 'bg-purple w-6' : 'bg-navy-muted/30 hover:bg-navy-muted/50'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
             ))}
           </div>
         </div>

@@ -206,7 +206,41 @@ export const coursesList: Course[] = [
       }
     ],
     faculty: [facultyList[0]],
-    testimonials: [testimonialsList[0]],
+    testimonials: [
+      testimonialsList[0],
+      {
+        id: "test-ger-c1",
+        authorName: "Dr. Aarav Mehta",
+        authorAvatar: { src: "/images/students/aarav.jpg", alt: "Dr. Aarav Mehta", width: 80, height: 80 },
+        ratingStars: 5,
+        quote: "Dr. Elena's immersion methodology helped me clear Goethe C1. I'm now working as a pediatric resident in Heidelberg!",
+        outcomeTag: "Passed Goethe C1"
+      },
+      {
+        id: "test-ger-dsh",
+        authorName: "Priyashee Sharma",
+        authorAvatar: { src: "/images/students/priyashee.jpg", alt: "Priyashee Sharma", width: 80, height: 80 },
+        ratingStars: 5,
+        quote: "DSH-3 score achieved! The intensive academic writing templates and grammar revision at GLA are unmatched.",
+        outcomeTag: "Achieved DSH-3"
+      },
+      {
+        id: "test-ger-testdaf",
+        authorName: "Arjun Malhotra",
+        authorAvatar: { src: "/images/students/arjun.jpg", alt: "Arjun Malhotra", width: 80, height: 80 },
+        ratingStars: 5,
+        quote: "I passed my TestDaF exam with TDN 5 in all modules. The mock simulations under timed conditions were extremely helpful.",
+        outcomeTag: "Scored TDN 5 (TestDaF)"
+      },
+      {
+        id: "test-ger-c2",
+        authorName: "Kabir Verma",
+        authorAvatar: { src: "/images/students/kabir.jpg", alt: "Kabir Verma", width: 80, height: 80 },
+        ratingStars: 5,
+        quote: "Achieving C2 mastery felt impossible, but Dr. Elena's guidance on style, register, and collocations made it happen.",
+        outcomeTag: "Passed Goethe C2 Mastery"
+      }
+    ],
     faqs: [faqsList[0], faqsList[2]],
     studentResults: [studentResultsList[0]],
     benefits: [
