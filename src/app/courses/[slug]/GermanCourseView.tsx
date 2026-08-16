@@ -586,14 +586,12 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
     <div className="flex flex-col overflow-x-hidden text-navy bg-card transition-colors duration-300">
       
       {/* 1. Hero Landing Block */}
-      <section className="bg-[#00122E] dark:bg-[#010814] text-white py-16 sm:py-20 lg:py-24 border-b border-card-border relative overflow-hidden transition-colors duration-300">
-        {/* Background image overlay with linear gradient masking (Desktop only) */}
-        <div className="absolute inset-0 opacity-45 dark:opacity-25 pointer-events-none hidden sm:block">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#00122E] via-[#00122E]/65 to-[#00122E]/10 dark:from-[#010814] dark:via-[#010814]/65 dark:to-[#010814]/10 z-10"></div>
-          <img src="/images/berlin-skyline.jpg" alt="Berlin Skyline" className="w-full h-full object-cover object-center" />
+      <section className="bg-[#00122E] dark:bg-[#010814] text-white min-h-screen sm:min-h-0 py-16 sm:py-20 lg:py-24 border-b border-card-border relative overflow-hidden transition-colors duration-300 flex items-center justify-center">
+        {/* Background image overlay with linear gradient masking */}
+        <div className="absolute inset-0 opacity-45 dark:opacity-25 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-[#00122E] via-[#00122E]/70 to-[#00122E]/10 dark:from-[#010814] dark:via-[#010814]/70 dark:to-[#010814]/10 z-10"></div>
+          <img src="/images/bg.svg" alt="German Program Background" className="w-full h-full object-cover object-center" />
         </div>
-        {/* Radial glow for Mobile view (clean and high quality) */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(147,51,234,0.15),transparent_70%)] sm:hidden pointer-events-none"></div>
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-purple rounded-full blur-3xl"></div>
         </div>
