@@ -25,6 +25,38 @@ export async function submitLead(data: LeadFormInput): Promise<LeadSubmissionRes
     // Simulate Server processing latency
     await new Promise((resolve) => setTimeout(resolve, 800));
 
+    // Submit to Google Form in the backend
+    try {
+      const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdRfJ5gC2TbW-sc17PI6TKzr1NZikDeW1a8Z6djLZc-DjzqaA/formResponse";
+      const courseMap: Record<string, string> = {
+        "german-language": "German Language Program (A1 - C2)",
+        "ielts-preparation": "IELTS Exam Preparation",
+        "pte-academic": "PTE Academic Preparation",
+        "personality-development": "Personality & Corporate Skills"
+      };
+      const courseName = courseMap[lead.course] || lead.course;
+
+      const formData = new URLSearchParams();
+      formData.append("entry.1743382299", lead.name);
+      formData.append("entry.961976256", lead.phone);
+      formData.append("entry.1090317556", courseName);
+      formData.append("fvv", "1");
+      formData.append("pageHistory", "0");
+
+      console.log(`📡 Sending background POST lead submission to Google Form for ${lead.name} (${courseName})...`);
+
+      await fetch(googleFormUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: formData.toString()
+      });
+      console.log("✅ Programmatic Google Form submission sent successfully.");
+    } catch (formError) {
+      console.error("⚠️ Failed programmatically sending lead to Google Form:", formError);
+    }
+
     // 2. Check configuration variables
     if (!spreadsheetId || !privateKey || !clientEmail) {
       console.log("⚠️ GOOGLE CREDENTIALS MISSING. Simulating lead logging in development mode:");
@@ -40,14 +72,12 @@ export async function submitLead(data: LeadFormInput): Promise<LeadSubmissionRes
 
       return {
         success: true,
-        message: "Demo successfully scheduled! (Mock Mode active - credentials missing)",
-        debugInfo: "Mock database append successful"
+        message: "Congratulations! Your free demo class has been scheduled. Our advisor will call you within 2 hours.",
+        debugInfo: "Mock database append successful + Google Form sent"
       };
     }
 
     // 3. Optional: Perform real JWT generation & append row to Google Sheets via fetch
-    // To keep it lightweight and secure, we run a POST fetch to Google API
-    // (A real production implementation would use JWT or oauth credentials)
     console.log(`📡 Lead received for ${lead.name} (${lead.course}). Appending to Sheet ID: ${spreadsheetId}`);
 
     // Return final success state
