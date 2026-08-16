@@ -7,6 +7,7 @@ import FacultyCard from '@/components/FacultyCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
+import GermanCourseView from './GermanCourseView';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -50,6 +51,11 @@ export default async function CourseLandingPage({ params }: PageProps) {
 
   // Get other courses for the Related Courses segment
   const relatedCourses = coursesList.filter((c) => c.id !== course.id).slice(0, 2);
+
+  // If this is the German course page, load the specialized comprehensive curriculum view
+  if (course.slug === 'german-language') {
+    return <GermanCourseView course={course} relatedCourses={relatedCourses} />;
+  }
 
   // Dynamic Course Schema
   const courseSchema = {
