@@ -1305,9 +1305,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
               >
                 {course.testimonials.map((test) => (
                   <div key={test.id} className="w-full shrink-0 px-2 sm:px-4">
-                    <div className="hover-lift rounded-xl bg-card border border-card-border p-6 sm:p-8 shadow-sm">
-                      <TestimonialCard testimonial={test} />
-                    </div>
+                    <TestimonialCard testimonial={test} />
                   </div>
                 ))}
               </div>
