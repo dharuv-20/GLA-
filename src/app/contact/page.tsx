@@ -57,9 +57,12 @@ export default function ContactPage() {
                   <span>3rd Floor, Plot no 94, PKT- 10, Dwarka Sec.13 Opp. Metro station, Near Radisson Blu Hotel, Delhi 110078</span>
                 </div>
                 
-                <div className="flex items-center gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">
-                  <Phone className="w-5 h-5 text-purple shrink-0" />
-                  <a href="tel:+919217999511" className="hover:text-purple text-navy font-semibold transition-colors">+91 92179 99511</a>
+                <div className="flex items-start gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">
+                  <Phone className="w-5 h-5 text-purple shrink-0 mt-0.5" />
+                  <div className="flex flex-col gap-1">
+                    <a href="tel:+919217999511" className="hover:text-purple text-navy font-semibold transition-colors">+91 92179 99511</a>
+                    <a href="tel:+919217669511" className="hover:text-purple text-navy font-semibold transition-colors">+91 92176 69511</a>
+                  </div>
                 </div>
                 
                 <div className="flex items-center gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">

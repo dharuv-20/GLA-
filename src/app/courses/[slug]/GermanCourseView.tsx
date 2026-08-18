@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Check, ArrowRight, BookOpen, Award, CheckCircle, Clock, BookOpenCheck, MapPin, Calendar, HelpCircle, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Check, ArrowRight, BookOpen, Award, CheckCircle, Clock, BookOpenCheck, MapPin, Calendar, HelpCircle, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Users, Laptop } from 'lucide-react';
 import { Course, FacultyMember, Testimonial, FAQItem, StudentResult } from '@/types';
 import FacultyCard from '@/components/FacultyCard';
 import TestimonialCard from '@/components/TestimonialCard';
@@ -617,22 +617,49 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
               </p>
 
               {/* Core Details Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-b border-navy-muted/50 py-4 max-w-2xl mx-auto lg:mx-0">
-                <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400">Total Duration</span>
-                  <span className="text-sm font-semibold text-white">19 Months (A1 - C2)</span>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 border-t border-b border-white/5 py-6 max-w-2xl mx-auto lg:mx-0">
+                {/* Total Duration */}
+                <div className="flex items-center gap-2 sm:gap-3 bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3.5 backdrop-blur-sm">
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-purple/35 text-purple-300 shrink-0">
+                    <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Total Duration</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">3 to 19 Months</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400">Class Size Limit</span>
-                  <span className="text-sm font-semibold text-white">5-7 Students Max</span>
+                
+                {/* Batch Size */}
+                <div className="flex items-center gap-2 sm:gap-3 bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3.5 backdrop-blur-sm">
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-purple/35 text-purple-300 shrink-0">
+                    <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Batch Size</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">5-7 Students Max</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400">Online Batches</span>
-                  <span className="text-xs font-semibold text-white">7 Days, 7 AM - 11 PM</span>
+                
+                {/* Online Batches */}
+                <div className="flex items-center gap-2 sm:gap-3 bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3.5 backdrop-blur-sm">
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-purple/35 text-purple-300 shrink-0">
+                    <Laptop className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Online Batches</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">7 Days, 7 AM - 11 PM</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400">Offline Batches</span>
-                  <span className="text-xs font-semibold text-white">Mon - Fri, 10 AM - 6 PM</span>
+                
+                {/* Offline Batches */}
+                <div className="flex items-center gap-2 sm:gap-3 bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3.5 backdrop-blur-sm">
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-purple/35 text-purple-300 shrink-0">
+                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Offline Batches</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">Mon - Fri, 10 AM - 6 PM</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -951,7 +978,14 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
 
               {/* Weeks list timeline accordion */}
               <div className="flex flex-col gap-4">
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-navy mb-2 block">Weekly Schedule Breakdown</span>
+                <div className="flex flex-col gap-1.5 mb-2">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-navy block">Weekly Schedule Breakdown</span>
+                  <div className="flex items-center gap-1.5 text-xs text-navy-muted font-medium bg-purple/5 border border-purple-200/20 p-3 rounded-xl">
+                    <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-purple text-white font-extrabold text-[10px] shrink-0 animate-bounce">i</span>
+                    <span>Click on any week bar below to expand and view the vocabulary & grammar syllabus.</span>
+                  </div>
+                </div>
+                
                 {activeLevel.weeks.map((week) => {
                   const key = `${activeLevelIdx}-${week.weekNum}`;
                   const isExpanded = expandedWeeks[key] || false;
@@ -962,30 +996,42 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                       className={`border transition-all duration-300 rounded-xl overflow-hidden mb-4 ${
                         isExpanded
                           ? 'border-purple-300/30 dark:border-purple/35 shadow-md border-l-4 border-l-purple scale-[1.005]'
-                          : 'border-card-border shadow-sm border-l-4 border-l-transparent bg-card hover:scale-[1.002]'
+                          : 'border-card-border shadow-sm border-l-4 border-l-transparent bg-card hover:scale-[1.002] hover:shadow-md'
                       }`}
                     >
                       {/* Accordion Header */}
                       <button
                         onClick={() => toggleWeek(activeLevelIdx, week.weekNum)}
                         type="button"
-                        className={`w-full p-5 flex justify-between items-center text-left transition-colors cursor-pointer border-b border-card-border ${
+                        className={`group w-full p-5 flex justify-between items-center text-left transition-colors cursor-pointer border-b border-card-border ${
                           isExpanded
                             ? 'bg-purple/5 dark:bg-purple/10'
-                            : 'bg-card hover:bg-section-alt/60'
+                            : 'bg-card hover:bg-purple/[0.02]'
                         }`}
                       >
                         <div className="flex items-start sm:items-center gap-3">
-                          <span className={`px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-widest shadow-sm shrink-0 whitespace-nowrap ${
+                          <span className={`px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-widest shadow-sm shrink-0 whitespace-nowrap transition-colors duration-200 ${
                             isExpanded ? 'bg-purple text-white' : 'bg-purple/10 text-purple border border-purple/20'
                           }`}>
                             {week.weekNum}
                           </span>
-                          <span className="text-xs font-bold text-navy pt-0.5 sm:pt-0">
+                          <span className="text-xs font-bold text-navy pt-0.5 sm:pt-0 group-hover:text-purple transition-colors duration-200">
                             {week.title}
                           </span>
                         </div>
-                        {isExpanded ? <ChevronUp className="w-4 h-4 text-purple" /> : <ChevronDown className="w-4 h-4 text-purple" />}
+                        
+                        <div className="flex items-center gap-2">
+                          <span className="hidden sm:inline text-[9px] uppercase font-bold text-navy-muted tracking-wider group-hover:text-purple transition-colors duration-200">
+                            {isExpanded ? 'Click to collapse' : 'Click to expand'}
+                          </span>
+                          <div className={`p-1.5 rounded-full border transition-all duration-300 ${
+                            isExpanded 
+                              ? 'bg-purple border-purple text-white' 
+                              : 'bg-purple/10 border-purple/20 text-purple group-hover:bg-purple group-hover:text-white group-hover:border-purple animate-pulse'
+                          }`}>
+                            {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                          </div>
+                        </div>
                       </button>
 
                       {/* Accordion Body */}

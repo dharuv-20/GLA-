@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, Clock, Users, Laptop, MapPin } from 'lucide-react';
 import { coursesList } from '@/data/courses-db';
 import FacultyCard from '@/components/FacultyCard';
 import TestimonialCard from '@/components/TestimonialCard';
@@ -105,22 +105,49 @@ export default async function CourseLandingPage({ params }: PageProps) {
               </p>
 
               {/* Core Details Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-b border-navy-muted/50 py-4 max-w-2xl mx-auto lg:mx-0 animate-fade-in-up [animation-delay:400ms] fill-mode-forwards">
-                <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400">Duration</span>
-                  <span className="text-sm font-semibold text-white">{course.durationLabel}</span>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 border-t border-b border-white/5 py-6 max-w-2xl mx-auto lg:mx-0 animate-fade-in-up [animation-delay:400ms] fill-mode-forwards">
+                {/* Duration */}
+                <div className="flex items-center gap-2 sm:gap-3 bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3.5 backdrop-blur-sm">
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-purple/35 text-purple-300 shrink-0">
+                    <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Duration</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">{course.durationLabel}</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400">Class Size</span>
-                  <span className="text-sm font-semibold text-white">Max {course.maxClassSize} Students</span>
+                
+                {/* Batch Size */}
+                <div className="flex items-center gap-2 sm:gap-3 bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3.5 backdrop-blur-sm">
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-purple/35 text-purple-300 shrink-0">
+                    <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Batch Size</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">{course.maxClassSize} Students Max</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400">Online Batches</span>
-                  <span className="text-xs font-semibold text-white">7 Days, 7 AM - 11 PM</span>
+                
+                {/* Online Batches */}
+                <div className="flex items-center gap-2 sm:gap-3 bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3.5 backdrop-blur-sm">
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-purple/35 text-purple-300 shrink-0">
+                    <Laptop className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Online Batches</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">7 Days, 7 AM - 11 PM</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400">Offline Batches</span>
-                  <span className="text-xs font-semibold text-white">Mon - Fri, 10 AM - 6 PM</span>
+                
+                {/* Offline Batches */}
+                <div className="flex items-center gap-2 sm:gap-3 bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3.5 backdrop-blur-sm">
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-purple/35 text-purple-300 shrink-0">
+                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Offline Batches</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">Mon - Fri, 10 AM - 6 PM</span>
+                  </div>
                 </div>
               </div>
             </div>

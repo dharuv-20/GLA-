@@ -68,7 +68,7 @@ export default function Header() {
             <img
               src={isDark ? "/images/logo-dark.png" : "/images/logo-light.png"}
               alt="The Global Language Academy Logo"
-              className="h-10 w-auto object-contain"
+              className="h-[45px] sm:h-[48px] md:h-[52px] w-auto object-contain transition-all duration-300"
             />
           </Link>
 

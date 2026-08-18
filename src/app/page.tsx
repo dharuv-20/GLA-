@@ -5,6 +5,7 @@ import CourseCard from '@/components/CourseCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
 import CountUp from '@/components/CountUp';
+import GallerySection from '@/components/layout/GallerySection';
 
 export default function HomePage() {
   // Take first 3 courses to highlight on home page
@@ -302,6 +303,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Gallery Section */}
+      <GallerySection />
+
       {/* 5. Success Stories & Testimonials: Staggered reviews reveal */}
       <section className="bg-section-alt text-navy py-20 lg:py-28 border-b border-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -349,9 +353,12 @@ export default function HomePage() {
                     3rd Floor, Plot no 94, PKT- 10, Dwarka Sec.13 Opp. Metro station, Near Radisson Blu Hotel, Delhi 110078
                   </span>
                 </div>
-                <div className="reveal flex items-center gap-3 hover:translate-x-1 transition-transform duration-200" style={{ transitionDelay: '300ms' }}>
-                  <Phone className="w-5 h-5 text-purple shrink-0" />
-                  <a href="tel:+919217999511" className="text-navy font-semibold hover:text-purple transition-colors">+91 92179 99511</a>
+                <div className="reveal flex items-start gap-3 hover:translate-x-1 transition-transform duration-200" style={{ transitionDelay: '300ms' }}>
+                  <Phone className="w-5 h-5 text-purple shrink-0 mt-0.5" />
+                  <div className="flex flex-col gap-1">
+                    <a href="tel:+919217999511" className="text-navy font-semibold hover:text-purple transition-colors">+91 92179 99511</a>
+                    <a href="tel:+919217669511" className="text-navy font-semibold hover:text-purple transition-colors">+91 92176 69511</a>
+                  </div>
                 </div>
                 <div className="reveal flex items-start gap-3 hover:translate-x-1 transition-transform duration-200" style={{ transitionDelay: '400ms' }}>
                   <Award className="w-5 h-5 text-purple shrink-0 mt-0.5" />

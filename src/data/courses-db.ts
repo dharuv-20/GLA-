@@ -158,7 +158,7 @@ export const coursesList: Course[] = [
     metaDescription: "Learn German from certified Goethe instructors. Dynamic level course modules (A1, A2, B1, B2, C1, C2) tailored for student visas and career migration.",
     shortDescription: "Your gateway to tuition-free university education and job opportunities in Germany.",
     longDescription: "Master German grammar, listening, and speaking through our specialized immersion methodology. Designed to take candidates from absolute beginners (A1) to native fluency (C2), this program focuses on building functional communication skills alongside rigorous exam preparation.",
-    durationLabel: "6 Months Intensive",
+    durationLabel: "3 - 18 Months",
     nextBatchStartDate: "2026-09-01",
     maxClassSize: "5-7",
     levels: [
@@ -271,7 +271,7 @@ export const coursesList: Course[] = [
     metaDescription: "Score 7.5+ overall bands with British Council and IDP certified trainers. TIMED assessment simulations, strategy workshops, and weekend bootcamps.",
     shortDescription: "Unlock migration visa points and global university admissions.",
     longDescription: "Prepare for your IELTS Academic or General Training exam with confidence. Our strategic masterclass focuses on diagnostic assessments, timed speaking simulations, and step-by-step essay blueprints, teaching you the exact methodology examiners use to assign band scores.",
-    durationLabel: "8 Weeks Program",
+    durationLabel: "2 - 3 Months",
     nextBatchStartDate: "2026-08-20",
     maxClassSize: "5-7",
     levels: [
@@ -329,7 +329,7 @@ export const coursesList: Course[] = [
     metaDescription: "Master the Pearson Test of English (PTE) with AI-simulated scoring engines. Interactive practice modules, strategy templates, and live correction.",
     shortDescription: "AI-optimized training tailored for high scores in computer-delivered exams.",
     longDescription: "Achieve your target score in the computer-delivered Pearson Test of English (PTE) Academic exam. Our program combines expert trainer strategies with simulated software assessments, training you on specific microphone techniques and oral scoring patterns.",
-    durationLabel: "6 Weeks Core Course",
+    durationLabel: "2 - 3 Months",
     nextBatchStartDate: "2026-08-25",
     maxClassSize: "5-7",
     levels: [
@@ -387,7 +387,7 @@ export const coursesList: Course[] = [
     metaDescription: "Master corporate presentation skills, workplace etiquette, and mock interviews. Designed for job seekers and college graduates.",
     shortDescription: "Build workplace confidence, public speaking authority, and leadership skills.",
     longDescription: "Prepare for competitive job markets with our transformational communication program. From accent correction and public speaking to mock group discussions and resume optimization, this course is designed to build your professional confidence.",
-    durationLabel: "4 Weeks Boot Camp",
+    durationLabel: "2 Months",
     nextBatchStartDate: "2026-09-05",
     maxClassSize: "5-7",
     levels: [

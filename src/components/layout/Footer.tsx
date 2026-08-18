@@ -69,9 +69,12 @@ export default function Footer() {
               <MapPin className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />
               <span>3rd Floor, Plot no 94, PKT- 10, Dwarka Sec.13 Opp. Metro station, Near Radisson Blu Hotel, Delhi 110078</span>
             </div>
-            <div className="flex items-center gap-2.5 text-sm text-slate-300">
-              <Phone className="w-5 h-5 text-purple-300 shrink-0" />
-              <a href="tel:+919217999511" className="hover:text-white">+91 92179 99511</a>
+            <div className="flex items-start gap-2.5 text-sm text-slate-300">
+              <Phone className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />
+              <div className="flex flex-col gap-1">
+                <a href="tel:+919217999511" className="hover:text-white transition-colors">+91 92179 99511</a>
+                <a href="tel:+919217669511" className="hover:text-white transition-colors">+91 92176 69511</a>
+              </div>
             </div>
             <div className="flex items-center gap-2.5 text-sm text-slate-300">
               <Mail className="w-5 h-5 text-purple-300 shrink-0" />
