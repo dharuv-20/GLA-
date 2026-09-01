@@ -283,11 +283,11 @@ export default async function CourseLandingPage({ params }: PageProps) {
             <h2 className="reveal text-3xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '100ms' }}>Who Will Train You?</h2>
           </div>
 
-          <div className="max-w-xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             {course.faculty.map((trainer, idx) => (
               <div
                 key={trainer.id}
-                className="reveal hover-lift rounded-xl bg-card"
+                className="reveal hover-lift rounded-3xl overflow-hidden"
                 style={{ transitionDelay: `${(idx * 150) + 150}ms` }}
               >
                 <FacultyCard faculty={trainer} />

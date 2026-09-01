@@ -7,7 +7,7 @@ import { Course, FacultyMember, Testimonial, FAQItem, StudentResult } from '@/ty
 import FacultyCard from '@/components/FacultyCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
-import LeadForm from '@/features/lead-capture/components/LeadForm';
+import GermanLeadForm from '@/features/lead-capture/components/GermanLeadForm';
 
 interface GermanCourseViewProps {
   course: Course;
@@ -234,7 +234,7 @@ const germanSyllabus: SyllabusLevel[] = [
   },
   {
     code: "B1 Plus",
-    name: "Advanced Intermediate Development",
+    name: "Upper-Intermediate Level",
     duration: "2 Months",
     books: ["Aspekte neu B1 plus"],
     slogan: "Refine Vocabulary, Master Structures, Speak Interactively.",
@@ -291,7 +291,7 @@ const germanSyllabus: SyllabusLevel[] = [
   },
   {
     code: "B2",
-    name: "Upper-Intermediate Level",
+    name: "Advanced Intermediate Development",
     duration: "2 Months",
     books: ["Aspekte neu B2"],
     slogan: "Learn. Practice. Succeed. Your German Journey Continues.",
@@ -625,7 +625,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                   </div>
                   <div>
                     <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Total Duration</span>
-                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">3 to 19 Months</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">3 to 18 Months</span>
                   </div>
                 </div>
                 
@@ -667,7 +667,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
             {/* Right Form Column */}
             <div className="lg:col-span-5 w-full max-w-md mx-auto lg:max-w-none">
               <div className="relative p-1.5 rounded-2xl bg-gradient-to-tr from-purple/30 via-white/5 to-purple/10 border border-white/10 shadow-[0_0_50px_rgba(75,36,94,0.3)]">
-                <LeadForm defaultCourse={course.slug} />
+                <GermanLeadForm />
               </div>
             </div>
 
@@ -1309,9 +1309,9 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
             <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">Who Will Train You?</h2>
           </div>
 
-          <div className="max-w-xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             {course.faculty.map((trainer) => (
-              <div key={trainer.id} className="hover-lift rounded-xl bg-card border border-card-border shadow-sm overflow-hidden">
+              <div key={trainer.id} className="hover-lift rounded-3xl overflow-hidden">
                 <FacultyCard faculty={trainer} />
               </div>
             ))}

@@ -3,17 +3,17 @@ import { Course, FacultyMember, Testimonial, FAQItem, StudentResult, ServiceItem
 export const facultyList: FacultyMember[] = [
   {
     id: "fac-1",
-    name: "Dr. Elena Rostova",
-    role: "Senior German Language Head",
-    avatar: { src: "/images/faculty/elena.jpg", alt: "Dr. Elena Rostova", width: 300, height: 300 },
-    credentials: ["Goethe-Institut C2 Certified", "12+ Years Teaching Experience", "PhD in German Philology"],
-    bio: "Elena specializes in accelerating German language acquisition for study abroad candidates, utilizing a spoken-first immersion methodology."
+    name: "Harshita",
+    role: "Lead German Language Trainer",
+    avatar: { src: "/images/faculty/harshita.jpg", alt: "Harshita - German Language Trainer", width: 300, height: 300 },
+    credentials: ["Diploma in German Language", "3+ Years Dedicated Teaching Experience", "Goethe & CEFR Exam Preparation Specialist"],
+    bio: "Harshita specializes in interactive spoken German, active grammar immersion, and comprehensive exam preparation from A1 to advanced levels."
   },
   {
     id: "fac-2",
     name: "Jonathan Myers",
     role: "Principal IELTS & PTE Trainer",
-    avatar: { src: "/images/faculty/jonathan.jpg", alt: "Jonathan Myers", width: 300, height: 300 },
+    avatar: { src: "", alt: "Jonathan Myers", width: 300, height: 300 },
     credentials: ["British Council Certified IELTS Expert", "IDP Examiner Alumnus", "MA in TESOL"],
     bio: "Jonathan has trained over 5,000 students, helping them achieve an average band score of 7.5+ through strategy-focused preparation."
   },
@@ -21,7 +21,7 @@ export const facultyList: FacultyMember[] = [
     id: "fac-3",
     name: "Simran Kaur",
     role: "Personality & Corporate Skills Lead",
-    avatar: { src: "/images/faculty/simran.jpg", alt: "Simran Kaur", width: 300, height: 300 },
+    avatar: { src: "", alt: "Simran Kaur", width: 300, height: 300 },
     credentials: ["Certified Corporate Coach", "Former HR Director at Tech MNC", "MBA in HR & Communications"],
     bio: "Simran designs workplace communication roadmaps, preparing candidates for competitive corporate recruitment processes."
   }

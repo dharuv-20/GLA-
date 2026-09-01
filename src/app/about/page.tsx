@@ -166,10 +166,10 @@ export default function AboutPage() {
             {facultyList.map((fac, idx) => (
               <div
                 key={fac.id}
-                className="reveal hover-lift rounded-xl bg-card"
+                className="reveal h-full"
                 style={{ transitionDelay: `${(idx * 150) + 200}ms` }}
               >
-                <FacultyCard faculty={fac} />
+                <FacultyCard faculty={fac} layout="vertical" />
               </div>
             ))}
           </div>
