@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState, useEffect, Suspense } from 'react';
@@ -9,6 +9,8 @@ import { germanLeadFormSchema, GermanLeadFormInput } from '../types';
 import { submitGermanLead } from '../actions/submitGermanLead';
 
 function GermanLeadFormInner() {
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null);
@@ -47,24 +49,24 @@ function GermanLeadFormInner() {
     setIsSubmitting(true);
     setSubmitResult(null);
 
-    // Invoke Server Action
-    const result = await submitGermanLead(data);
+    try {
+      // Invoke Server Action
+      const result = await submitGermanLead(data);
+      setIsSubmitting(false);
 
-    setIsSubmitting(false);
-    setSubmitResult(result);
-
-    if (result.success) {
-      reset({
-        name: "",
-        phone: "",
-        email: "",
-        education: "",
-        germanLevel: "",
-        learningMode: "",
-        utmSource: searchParams?.get('utm_source') || 'direct',
-        utmMedium: searchParams?.get('utm_medium') || 'web',
-        utmCampaign: searchParams?.get('utm_campaign') || 'organic',
-      });
+      if (result.success) {
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('gla_form_submitted', Date.now().toString());
+          window.dispatchEvent(new Event('gla_form_submitted'));
+        }
+        const returnPath = pathname || '/courses/german-language';
+        router.push(`/thank-you?submitted=true&from=${encodeURIComponent(returnPath)}&course=german-language`);
+      } else {
+        setSubmitResult(result);
+      }
+    } catch (err) {
+      setIsSubmitting(false);
+      setSubmitResult({ success: false, message: 'An unexpected error occurred. Please try again.' });
     }
   };
 

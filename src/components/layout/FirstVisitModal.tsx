@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { X } from 'lucide-react';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
 
@@ -9,12 +10,22 @@ import LeadForm from '@/features/lead-capture/components/LeadForm';
 let hasBeenShownInLifecycle = false;
 
 export default function FirstVisitModal() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Never show modal on /thank-you page
+    if (pathname === '/thank-you') {
+      setIsOpen(false);
+      return;
+    }
+
     if (!hasBeenShownInLifecycle) {
       const hasPlayed = sessionStorage.getItem("splash-played");
+      const hasSubmitted = sessionStorage.getItem("gla_form_submitted");
+      if (hasSubmitted) return;
+
       if (hasPlayed) {
         setIsOpen(true);
       } else {
@@ -26,7 +37,24 @@ export default function FirstVisitModal() {
       }
       hasBeenShownInLifecycle = true;
     }
+  }, [pathname]);
+
+  // Listen for global form submission event to close modal immediately
+  useEffect(() => {
+    const handleFormSubmitted = () => {
+      setIsOpen(false);
+    };
+
+    window.addEventListener('gla_form_submitted', handleFormSubmitted);
+    return () => window.removeEventListener('gla_form_submitted', handleFormSubmitted);
   }, []);
+
+  // Force close if navigated to /thank-you
+  useEffect(() => {
+    if (pathname === '/thank-you') {
+      setIsOpen(false);
+    }
+  }, [pathname]);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -39,7 +67,7 @@ export default function FirstVisitModal() {
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || pathname === '/thank-you') return null;
 
   return (
     <div
@@ -61,9 +89,9 @@ export default function FirstVisitModal() {
           <X className="w-4 h-4" />
         </button>
 
-        {/* Nesting Lead Capture Form */}
+        {/* Nesting Lead Capture Form with instant close callback */}
         <div className="pt-4">
-          <LeadForm />
+          <LeadForm onSuccess={() => setIsOpen(false)} />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState, useEffect, Suspense } from 'react';
@@ -8,7 +8,9 @@ import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { leadFormSchema, LeadFormInput } from '../types';
 import { submitLead } from '../actions/submitLead';
 
-function LeadFormInner({ defaultCourse = "" }: { defaultCourse?: string }) {
+function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: string; onSuccess?: () => void }) {
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null);
@@ -44,21 +46,27 @@ function LeadFormInner({ defaultCourse = "" }: { defaultCourse?: string }) {
     setIsSubmitting(true);
     setSubmitResult(null);
 
-    // Invoke Next.js Server Action
-    const result = await submitLead(data);
+    try {
+      // Invoke Next.js Server Action
+      const result = await submitLead(data);
+      setIsSubmitting(false);
 
-    setIsSubmitting(false);
-    setSubmitResult(result);
-    
-    if (result.success) {
-      reset({
-        name: "",
-        phone: "",
-        course: defaultCourse,
-        utmSource: searchParams?.get('utm_source') || 'direct',
-        utmMedium: searchParams?.get('utm_medium') || 'web',
-        utmCampaign: searchParams?.get('utm_campaign') || 'organic',
-      });
+      if (result.success) {
+        if (onSuccess) {
+          onSuccess();
+        }
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('gla_form_submitted', Date.now().toString());
+          window.dispatchEvent(new Event('gla_form_submitted'));
+        }
+        const returnPath = pathname || '/';
+        router.push(`/thank-you?submitted=true&from=${encodeURIComponent(returnPath)}&course=${encodeURIComponent(data.course || 'general')}`);
+      } else {
+        setSubmitResult(result);
+      }
+    } catch (err) {
+      setIsSubmitting(false);
+      setSubmitResult({ success: false, message: 'An unexpected error occurred. Please try again.' });
     }
   };
 
@@ -194,7 +202,7 @@ function LeadFormInner({ defaultCourse = "" }: { defaultCourse?: string }) {
   );
 }
 
-export default function LeadForm({ defaultCourse = "" }: { defaultCourse?: string }) {
+export default function LeadForm({ defaultCourse = "", onSuccess }: { defaultCourse?: string; onSuccess?: () => void }) {
   return (
     <Suspense fallback={
       <div className="bg-card border border-card-border p-6 md:p-8 rounded-xl shadow-md flex flex-col gap-5 text-navy animate-pulse min-h-[400px] justify-center items-center">
@@ -202,7 +210,7 @@ export default function LeadForm({ defaultCourse = "" }: { defaultCourse?: strin
         <span className="text-xs text-navy-muted mt-2">Loading secure form...</span>
       </div>
     }>
-      <LeadFormInner defaultCourse={defaultCourse} />
+      <LeadFormInner defaultCourse={defaultCourse} onSuccess={onSuccess} />
     </Suspense>
   );
 }
