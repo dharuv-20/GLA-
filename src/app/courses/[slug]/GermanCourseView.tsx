@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Script from 'next/script';
 import { Check, ArrowRight, BookOpen, Award, CheckCircle, Clock, BookOpenCheck, MapPin, Calendar, HelpCircle, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Users, Laptop } from 'lucide-react';
 import { Course, FacultyMember, Testimonial, FAQItem, StudentResult } from '@/types';
 import FacultyCard from '@/components/FacultyCard';
@@ -582,8 +583,38 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
     setActiveReviewIdx((prev) => (prev === course.testimonials.length - 1 ? 0 : prev + 1));
   };
 
+  // Strictly cleanup and remove Google tag scripts if user navigates away from German page
+  useEffect(() => {
+    return () => {
+      const scriptTag = document.querySelector('script[src*="G-N5LC6HNW4Z"]');
+      const inlineTag = document.getElementById('google-analytics-german');
+      if (scriptTag) scriptTag.remove();
+      if (inlineTag) inlineTag.remove();
+    };
+  }, []);
+
   return (
     <div className="flex flex-col overflow-x-hidden text-navy bg-card transition-colors duration-300">
+      {/* Google tag (gtag.js) - German Page Only */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-N5LC6HNW4Z"
+        strategy="afterInteractive"
+      />
+      <Script
+        id="google-analytics-german"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-N5LC6HNW4Z', {
+              page_path: '/courses/german-language',
+              page_title: 'German Language Classes'
+            });
+          `,
+        }}
+      />
       
       {/* 1. Hero Landing Block */}
       <section className="bg-[#00122E] dark:bg-[#010814] text-white min-h-screen sm:min-h-0 py-16 sm:py-20 lg:py-24 border-b border-card-border relative overflow-hidden transition-colors duration-300 flex items-center justify-center">
