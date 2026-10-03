@@ -52,24 +52,33 @@ export default async function CourseLandingPage({ params }: PageProps) {
   // Get other courses for the Related Courses segment
   const relatedCourses = coursesList.filter((c) => c.id !== course.id).slice(0, 2);
 
-  // If this is the German course page, load the specialized comprehensive curriculum view
-  if (course.slug === 'german-language') {
-    return <GermanCourseView course={course} relatedCourses={relatedCourses} />;
-  }
-
   // Dynamic Course Schema
   const courseSchema = {
     "@context": "https://schema.org",
     "@type": "Course",
-    "@id": `https://www.glaind.com/courses/${course.slug}`,
+    "@id": `https://tglalearning.com/courses/${course.slug}`,
     "name": course.title,
     "description": course.shortDescription,
     "provider": {
       "@type": "EducationalOrganization",
       "name": "The Global Language Academy",
-      "sameAs": "https://www.glaind.com"
+      "sameAs": "https://tglalearning.com"
     }
   };
+
+  // If this is the German course page, load the specialized comprehensive curriculum view
+  if (course.slug === 'german-language') {
+    return (
+      <>
+        {/* Dynamic SEO JSON-LD injection */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+        />
+        <GermanCourseView course={course} relatedCourses={relatedCourses} />
+      </>
+    );
+  }
 
   return (
     <div className="flex flex-col overflow-x-hidden text-navy">
