@@ -1,11 +1,21 @@
+import type { Metadata } from 'next';
 import fs from 'fs';
 import path from 'path';
 import BlogsClient from './BlogsClient';
 import { BlogPost } from '@/types';
 
-export const metadata = {
-  title: "Academic Insights & Guides",
-  description: "Explore articles written by our certified educators to help you master languages, clear exam boards, and boost your corporate career.",
+export const metadata: Metadata = {
+  title: "Academic Insights & Study Guides | Language Exam Tips",
+  description: "Read expert study guides on IELTS scoring, PTE tricks, and Goethe German certification written by senior trainers at The Global Language Academy.",
+  alternates: {
+    canonical: "/blogs",
+  },
+  openGraph: {
+    title: "Academic Insights & Study Guides | The Global Language Academy",
+    description: "Expert articles on language exams, study abroad preparation, and career development from certified educators.",
+    url: "https://tglalearning.com/blogs",
+    type: "website",
+  },
 };
 
 export default function BlogsPage() {

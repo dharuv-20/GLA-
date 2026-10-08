@@ -24,7 +24,10 @@ export default function CourseCard({ course }: { course: Course }) {
         {/* Image with hover zoom and saturation tweak */}
         <img
           src={imageUrl}
-          alt={course.title}
+          alt={`${course.title} - The Global Language Academy`}
+          loading="lazy"
+          width={600}
+          height={350}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out filter group-hover:brightness-105"
         />
         {/* Gradient shadow overlay for better card depth */}

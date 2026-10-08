@@ -54,7 +54,6 @@ export default async function CourseLandingPage({ params }: PageProps) {
 
   // Dynamic Course Schema
   const courseSchema = {
-    "@context": "https://schema.org",
     "@type": "Course",
     "@id": `https://tglalearning.com/courses/${course.slug}`,
     "name": course.title,
@@ -63,7 +62,59 @@ export default async function CourseLandingPage({ params }: PageProps) {
       "@type": "EducationalOrganization",
       "name": "The Global Language Academy",
       "sameAs": "https://tglalearning.com"
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": ["Online", "Onsite"],
+      "courseWorkload": course.durationLabel
     }
+  };
+
+  // Dynamic Breadcrumb Schema
+  const breadcrumbSchema = {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://tglalearning.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Courses",
+        "item": "https://tglalearning.com/courses"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": course.title,
+        "item": `https://tglalearning.com/courses/${course.slug}`
+      }
+    ]
+  };
+
+  // Dynamic FAQPage Schema
+  const faqSchema = course.faqs && course.faqs.length > 0 ? {
+    "@type": "FAQPage",
+    "mainEntity": course.faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null;
+
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      courseSchema,
+      breadcrumbSchema,
+      ...(faqSchema ? [faqSchema] : [])
+    ]
   };
 
   // If this is the German course page, load the specialized comprehensive curriculum view
@@ -72,8 +123,12 @@ export default async function CourseLandingPage({ params }: PageProps) {
       <>
         {/* Dynamic SEO JSON-LD injection */}
         <script
+          id="german-course-schema"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(pageSchema).replace(/</g, '\\u003c'),
+          }}
         />
         <GermanCourseView course={course} relatedCourses={relatedCourses} />
       </>
@@ -84,8 +139,12 @@ export default async function CourseLandingPage({ params }: PageProps) {
     <div className="flex flex-col overflow-x-hidden text-navy">
       {/* Dynamic SEO JSON-LD injection */}
       <script
+        id={`course-schema-${course.slug}`}
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(pageSchema).replace(/</g, '\\u003c'),
+        }}
       />
 
       {/* 1. Hero Landing Block */}

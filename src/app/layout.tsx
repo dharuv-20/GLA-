@@ -13,6 +13,8 @@ import ScrollRevealProvider from "@/components/layout/ScrollRevealProvider";
 import SplashScreen from "@/components/layout/SplashScreen";
 import AppLayoutWrapper from "@/components/layout/AppLayoutWrapper";
 
+import OrganizationSchema from "@/components/seo/OrganizationSchema";
+
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
@@ -29,18 +31,32 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "The Global Language Academy (GLA) | Premium Language Institute",
+    default: "The Global Language Academy (GLA) | IELTS, PTE & German Coaching",
     template: "%s | The Global Language Academy (GLA)",
   },
-  description: "GLA offers professional IELTS, PTE, German language coaching (A1-C2), and Personality Development programs with certified trainers and guaranteed exam success.",
+  description: "Join GLA for certified German language classes (A1-C2), IELTS (7.5+ band prep), and PTE Academic coaching in Delhi NCR & online. Small batches with guaranteed exam success.",
+  keywords: [
+    "German Language Classes",
+    "IELTS Coaching",
+    "PTE Academic Preparation",
+    "German A1 A2 B1 B2 C1 C2",
+    "Goethe Exam Preparation",
+    "Study in Germany",
+    "Personality Development Course",
+    "The Global Language Academy",
+    "GLA Learning"
+  ],
+  authors: [{ name: "The Global Language Academy", url: "https://tglalearning.com" }],
+  creator: "The Global Language Academy",
+  publisher: "The Global Language Academy",
   metadataBase: new URL("https://tglalearning.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "The Global Language Academy (GLA)",
-    description: "Premium coaching for IELTS, PTE, German levels A1-C2, and corporate personality workshops.",
-    url: "/",
+    title: "The Global Language Academy (GLA) | IELTS, PTE & German Coaching",
+    description: "Premium coaching for IELTS (7.5+ Band), PTE Academic, German levels A1-C2, and Personality Development. Certified Goethe & IDP trainers.",
+    url: "https://tglalearning.com",
     siteName: "The Global Language Academy",
     locale: "en_US",
     type: "website",
@@ -48,7 +64,18 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The Global Language Academy (GLA)",
-    description: "Premium language preparation courses and professional development.",
+    description: "Premium exam preparation for IELTS, PTE, and German Language (A1-C2). Small 5-7 student batches with certified trainers.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -82,6 +109,8 @@ export default function RootLayout({
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async />
       </head>
       <body className="min-h-screen flex flex-col font-sans" suppressHydrationWarning>
+        {/* Site-wide Structured Data Schema (Organization, LocalBusiness, WebSite) */}
+        <OrganizationSchema />
         <SplashScreen />
         <ScrollRevealProvider>
           <AppLayoutWrapper>

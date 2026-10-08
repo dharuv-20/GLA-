@@ -16,6 +16,9 @@ export default function Footer() {
               <img
                 src="/images/logo-dark.png"
                 alt="The Global Language Academy Logo"
+                loading="lazy"
+                width={180}
+                height={48}
                 className="h-12 w-auto object-contain"
               />
             </Link>
@@ -29,10 +32,10 @@ export default function Footer() {
               <a href="https://www.instagram.com/the.globallanguageacademy/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Follow us on Instagram">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Connect on LinkedIn">
+              <a href="https://www.linkedin.com/company/the-global-language-academy/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Connect on LinkedIn">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="#" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Subscribe on YouTube">
+              <a href="https://www.youtube.com/@TheGlobalLanguageAcademy" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Subscribe on YouTube">
                 <Youtube className="w-4 h-4" />
               </a>
             </div>

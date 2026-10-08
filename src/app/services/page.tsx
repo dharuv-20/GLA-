@@ -1,10 +1,20 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ClipboardCheck, MapPin, Building, ArrowRight, ShieldCheck } from 'lucide-react';
 import { servicesList } from '@/data/courses-db';
 
-export const metadata = {
-  title: "Academy Services & Support",
-  description: "Explore GLA services including admissions counselling, mock test simulator certifications, and corporate language workshops.",
+export const metadata: Metadata = {
+  title: "Student Support & Visa Advisory Services | GLA",
+  description: "End-to-end student support services: university admissions guidance for Germany, UK, Canada, real-exam mock simulator testing, and corporate workshops.",
+  alternates: {
+    canonical: "/services",
+  },
+  openGraph: {
+    title: "Student Support & Visa Advisory Services | The Global Language Academy",
+    description: "University admission advisory, embassy mock interviews, and simulated test series by GLA.",
+    url: "https://tglalearning.com/services",
+    type: "website",
+  },
 };
 
 export default function ServicesPage() {

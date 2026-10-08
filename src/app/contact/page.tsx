@@ -1,9 +1,19 @@
+import type { Metadata } from 'next';
 import { MapPin, Phone, Mail, Clock, Sparkles } from 'lucide-react';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
 
-export const metadata = {
-  title: "Contact & Location Directions",
-  description: "Get in touch with The Global Language Academy (GLA) in New Delhi. Find phone numbers, email directories, driving maps, and schedule trial classes.",
+export const metadata: Metadata = {
+  title: "Contact Us & Center Directions | Schedule Free Demo",
+  description: "Contact The Global Language Academy (GLA) in Delhi NCR. Call +91 92179 99511 or visit our center. Schedule your free 45-minute live trial class today.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Contact Us & Center Directions | The Global Language Academy",
+    description: "Get in touch with GLA advisors. Find phone numbers, center addresses, maps, and book a free demo session.",
+    url: "https://tglalearning.com/contact",
+    type: "website",
+  },
 };
 
 export default function ContactPage() {

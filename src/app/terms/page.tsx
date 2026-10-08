@@ -1,8 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata = {
-  title: "Terms of Service",
+export const metadata: Metadata = {
+  title: "Terms of Service | The Global Language Academy",
   description: "Review the Terms and Conditions governing enrollment, fee policies, batch schedules, and class guidelines at The Global Language Academy (GLA).",
+  alternates: {
+    canonical: "/terms",
+  },
 };
 
 export default function TermsPage() {

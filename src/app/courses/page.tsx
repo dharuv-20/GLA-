@@ -1,10 +1,20 @@
+import type { Metadata } from 'next';
 import { BookOpen, GraduationCap, Building } from 'lucide-react';
 import { coursesList } from '@/data/courses-db';
 import CourseCard from '@/components/CourseCard';
 
-export const metadata = {
-  title: "Language & Skill Development Courses",
-  description: "Browse premium exam preparation and language classes including IELTS, PTE Academic, German Language (A1-C2), and Personality Development.",
+export const metadata: Metadata = {
+  title: "Language & Exam Preparation Courses | German, IELTS, PTE",
+  description: "Explore certified language courses at GLA: German (A1-C2), IELTS Masterclass, PTE Academic prep, and Personality Development. Small batches with guaranteed scores.",
+  alternates: {
+    canonical: "/courses",
+  },
+  openGraph: {
+    title: "Language & Exam Preparation Courses | The Global Language Academy",
+    description: "Browse premium exam preparation: German Language (A1-C2), IELTS (7.5+ Band), and PTE Academic coaching.",
+    url: "https://tglalearning.com/courses",
+    type: "website",
+  },
 };
 
 export default function CoursesPage() {

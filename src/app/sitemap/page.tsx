@@ -1,9 +1,13 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Home, Compass, GraduationCap, Info, MessageSquare, Shield, HelpCircle } from 'lucide-react';
 
-export const metadata = {
-  title: "Website Sitemap",
+export const metadata: Metadata = {
+  title: "Website Sitemap Directory | The Global Language Academy",
   description: "Navigate all pages, language prep courses, student support services, and legal terms on The Global Language Academy (GLA) site directory.",
+  alternates: {
+    canonical: "/sitemap",
+  },
 };
 
 export default function SitemapPage() {

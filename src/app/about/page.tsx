@@ -1,11 +1,21 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Target, Users, Award, Eye, Compass, Quote } from 'lucide-react';
 import { facultyList } from '@/data/courses-db';
 import FacultyCard from '@/components/FacultyCard';
 
-export const metadata = {
-  title: "About Our Academy",
-  description: "Learn about the pedagogical history, core learning values, and certified trainers behind The Global Language Academy (GLA).",
+export const metadata: Metadata = {
+  title: "About Our Academy | Certified Trainers & Pedagogy",
+  description: "Discover The Global Language Academy (GLA) - certified Goethe & IDP faculty, small batches (5-7 students), and outcome-driven exam preparation in Delhi NCR.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Our Academy | The Global Language Academy (GLA)",
+    description: "Certified Goethe & IDP instructors, small 5-7 student batches, and outcome-driven exam preparation.",
+    url: "https://tglalearning.com/about",
+    type: "website",
+  },
 };
 
 export default function AboutPage() {

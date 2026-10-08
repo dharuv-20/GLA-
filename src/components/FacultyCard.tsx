@@ -21,7 +21,10 @@ export default function FacultyCard({ faculty, layout = 'horizontal' }: FacultyC
             {hasPhoto ? (
               <img
                 src={faculty.avatar.src}
-                alt={faculty.name}
+                alt={`${faculty.name} - ${faculty.role}`}
+                loading="lazy"
+                width={faculty.avatar.width || 300}
+                height={faculty.avatar.height || 300}
                 className="w-full h-full object-cover object-top"
               />
             ) : (
@@ -82,7 +85,10 @@ export default function FacultyCard({ faculty, layout = 'horizontal' }: FacultyC
           {hasPhoto ? (
             <img
               src={faculty.avatar.src}
-              alt={faculty.name}
+              alt={`${faculty.name} - ${faculty.role}`}
+              loading="lazy"
+              width={faculty.avatar.width || 300}
+              height={faculty.avatar.height || 300}
               className="w-full h-full object-cover object-top"
             />
           ) : (

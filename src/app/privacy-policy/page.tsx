@@ -1,8 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata = {
-  title: "Privacy Policy",
+export const metadata: Metadata = {
+  title: "Privacy Policy | The Global Language Academy",
   description: "Read the Privacy Policy of The Global Language Academy (GLA) detailing how we collect, use, and protect your personal information.",
+  alternates: {
+    canonical: "/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicyPage() {
