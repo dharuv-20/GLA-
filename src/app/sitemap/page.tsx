@@ -26,10 +26,12 @@ export default function SitemapPage() {
       title: "Language Exam Programs",
       links: [
         { name: "All Language Courses", path: "/courses" },
-        { name: "German Language Course (A1 - C2)", path: "/courses/german-language" },
+        { name: "German Language Course (A1 - C1)", path: "/courses/german-language" },
+        { name: "French Language Course (A1 - B2)", path: "/courses/french-language" },
+        { name: "Japanese Language Course (N5 - N3)", path: "/courses/japanese-language" },
+        { name: "Spoken English & Communication", path: "/courses/spoken-english" },
         { name: "IELTS Exam Preparation Masterclass", path: "/courses/ielts-preparation" },
-        { name: "PTE Academic Prep & Simulation", path: "/courses/pte-academic" },
-        { name: "Personality Development & Spoken English", path: "/courses/personality-development" }
+        { name: "PTE Academic Prep & Coaching", path: "/courses/pte-academic" }
       ]
     },
     {

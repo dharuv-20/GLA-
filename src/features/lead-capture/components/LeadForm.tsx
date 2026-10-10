@@ -164,10 +164,12 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
         >
           <option value="" className="bg-card text-navy">Select a Program...</option>
           <option value="german-language" className="bg-card text-navy">German Language (A1 - C2)</option>
-          <option value="ielts-preparation" className="bg-card text-navy">IELTS Masterclass</option>
-          <option value="pte-academic" className="bg-card text-navy">PTE Academic strategy</option>
-          <option value="personality-development" className="bg-card text-navy">Personality Development</option>
-          <option value="visa-admission-guidance" className="bg-card text-navy">Visa & Admission counseling</option>
+          <option value="french-language" className="bg-card text-navy">French Language (DELF / DALF)</option>
+          <option value="japanese-language" className="bg-card text-navy">Japanese Language (JLPT N5-N1)</option>
+          <option value="spoken-english" className="bg-card text-navy">Spoken English Language</option>
+          <option value="ielts-preparation" className="bg-card text-navy">IELTS Exam Masterclass</option>
+          <option value="pte-academic" className="bg-card text-navy">PTE Academic Strategy</option>
+          <option value="visa-admission-guidance" className="bg-card text-navy">Germany Study & Visa Counselling</option>
         </select>
         {errors.course && (
           <span id="course-error" className="text-xs text-red-500 font-semibold">{errors.course.message}</span>

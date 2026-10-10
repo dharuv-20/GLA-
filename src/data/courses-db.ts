@@ -6,24 +6,12 @@ export const facultyList: FacultyMember[] = [
     name: "Harshita",
     role: "Lead German Language Trainer",
     avatar: { src: "/images/faculty/harshita.jpg", alt: "Harshita - German Language Trainer", width: 300, height: 300 },
-    credentials: ["Diploma in German Language", "3+ Years Dedicated Teaching Experience", "Goethe & CEFR Exam Preparation Specialist"],
+    credentials: [
+      "Diploma in German Language",
+      "3+ Years Dedicated Teaching Experience",
+      "Goethe & CEFR Exam Preparation Specialist"
+    ],
     bio: "Harshita specializes in interactive spoken German, active grammar immersion, and comprehensive exam preparation from A1 to advanced levels."
-  },
-  {
-    id: "fac-2",
-    name: "Jonathan Myers",
-    role: "Principal IELTS & PTE Trainer",
-    avatar: { src: "", alt: "Jonathan Myers", width: 300, height: 300 },
-    credentials: ["British Council Certified IELTS Expert", "IDP Examiner Alumnus", "MA in TESOL"],
-    bio: "Jonathan has trained over 5,000 students, helping them achieve an average band score of 7.5+ through strategy-focused preparation."
-  },
-  {
-    id: "fac-3",
-    name: "Simran Kaur",
-    role: "Personality & Corporate Skills Lead",
-    avatar: { src: "", alt: "Simran Kaur", width: 300, height: 300 },
-    credentials: ["Certified Corporate Coach", "Former HR Director at Tech MNC", "MBA in HR & Communications"],
-    bio: "Simran designs workplace communication roadmaps, preparing candidates for competitive corporate recruitment processes."
   }
 ];
 
@@ -31,26 +19,114 @@ export const testimonialsList: Testimonial[] = [
   {
     id: "test-1",
     authorName: "Rohit Sen",
-    authorAvatar: { src: "/images/students/rohit.jpg", alt: "Rohit Sen", width: 80, height: 80 },
+    authorAvatar: { src: "", alt: "Rohit Sen", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "GLA made German language study simple. I passed my Goethe B2 exam on my first attempt and am now heading to Munich for my Master's!",
-    outcomeTag: "Passed Goethe B2"
+    quote: "GLA made German language study simple and intuitive. I cleared my Goethe B2 exam on my first attempt and secured admission for my Master's at the Technical University of Munich!",
+    outcomeTag: "Passed Goethe B2 (Munich Admits)"
   },
   {
     id: "test-2",
     authorName: "Dr. Ananya Mehta",
-    authorAvatar: { src: "/images/students/ananya.jpg", alt: "Dr. Ananya Mehta", width: 80, height: 80 },
+    authorAvatar: { src: "", alt: "Dr. Ananya Mehta", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "With a busy clinic schedule, finding weekend training was hard. Jonathan's IELTS strategies helped me score an overall 8.0 band.",
-    outcomeTag: "Scored 8.0 Band (IELTS)"
+    quote: "Balancing a demanding hospital schedule with IELTS prep was tough. GLA's flexible timings and targeted writing diagnostic feedback helped me achieve an overall 8.0 Band for my UK GMC registration.",
+    outcomeTag: "IELTS Band 8.0 (UK Medical)"
   },
   {
     id: "test-3",
-    authorName: "Vikram Malhotra",
-    authorAvatar: { src: "/images/students/vikram.jpg", alt: "Vikram Malhotra", width: 80, height: 80 },
+    authorName: "Pooja Deshmukh",
+    authorAvatar: { src: "", alt: "Pooja Deshmukh", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "The mock interviews and resume optimization sessions in the Personality Development class helped me land my dream software developer role.",
-    outcomeTag: "Hired at Top MNC"
+    quote: "The French DELF B2 training was structured and intensive. The daily conversational sessions and TEF Canada exam strategies gave me the extra 50 CRS points I needed for my Canada PR nomination.",
+    outcomeTag: "DELF B2 & Canada PR Points"
+  },
+  {
+    id: "test-4",
+    authorName: "Kunal Sharma",
+    authorAvatar: { src: "", alt: "Kunal Sharma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Passed JLPT N3 with 92% accuracy! The Kanji memory techniques, vocabulary mnemonics, and listening audio drills at GLA helped me clear my technical interview with a Tokyo software firm.",
+    outcomeTag: "JLPT N3 (Tokyo IT Placement)"
+  },
+  {
+    id: "test-5",
+    authorName: "Devansh Dixit",
+    authorAvatar: { src: "", alt: "Devansh Dixit", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Scored 84/90 in my PTE Academic exam! The AI mock assessments and voice pitch coaching were identical to the real Pearson software. Got my Australian Skilled Migration PR invite within weeks.",
+    outcomeTag: "Scored 84/90 PTE (Australia PR)"
+  },
+  {
+    id: "test-6",
+    authorName: "Sneha Mukherjee",
+    authorAvatar: { src: "", alt: "Sneha Mukherjee", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "From zero German knowledge (A1) to clearing B1 in 5 months. GLA's trainers prepared me thoroughly for the Frankfurt hospital interview and guided my complete Ausbildung visa documentation.",
+    outcomeTag: "German B1 & Nursing Ausbildung"
+  },
+  {
+    id: "test-7",
+    authorName: "Vikram Malhotra",
+    authorAvatar: { src: "", alt: "Vikram Malhotra", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Spoken English and Corporate Communication sessions completely eliminated my hesitation. The mock debates, presentations, and email etiquette coaching helped me get promoted to Team Lead at an MNC.",
+    outcomeTag: "Promoted to Team Lead (MNC)"
+  },
+  {
+    id: "test-8",
+    authorName: "Rohan Verma",
+    authorAvatar: { src: "", alt: "Rohan Verma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The small batch size (6 students) meant the trainer corrected my pronunciation every single day. I cleared Goethe A1 and A2 with 94+ marks on first attempts. Highly recommend GLA for German!",
+    outcomeTag: "Goethe A2 (94% Score)"
+  },
+  {
+    id: "test-9",
+    authorName: "Meera Iyer",
+    authorAvatar: { src: "", alt: "Meera Iyer", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I started French from scratch. The trainer's patience and active speaking exercises helped me clear DELF A2 within 3 months and now I am comfortably preparing for B1.",
+    outcomeTag: "DELF A2 First Attempt"
+  },
+  {
+    id: "test-10",
+    authorName: "Amanpreet Singh",
+    authorAvatar: { src: "", alt: "Amanpreet Singh", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I was stuck at 6.5 in IELTS Writing for months. GLA's essay blueprints and 1-on-1 feedback broke my plateau, pushing my score to Band 8.0 in Speaking and 7.5 in Writing (CLB 9 achieved!).",
+    outcomeTag: "CLB 9 Achieved (IELTS 7.5+)"
+  },
+  {
+    id: "test-11",
+    authorName: "Tanvi Patil",
+    authorAvatar: { src: "", alt: "Tanvi Patil", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Learning Japanese script felt overwhelming at first, but GLA's Hiragana and Katakana charts with interactive drills made it enjoyable. Cleared JLPT N5 with top marks in the Delhi center.",
+    outcomeTag: "JLPT N5 Cleared (Top Marks)"
+  },
+  {
+    id: "test-12",
+    authorName: "Rahul Nair",
+    authorAvatar: { src: "", alt: "Rahul Nair", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Scored 82/90 overall in PTE Academic! The computer testing lab at GLA and real-time AI scoring gave me immense confidence on test day. Cleared my target in just 25 days of preparation.",
+    outcomeTag: "PTE 82/90 (25-Day Prep)"
+  },
+  {
+    id: "test-13",
+    authorName: "Priya Raghavan",
+    authorAvatar: { src: "", alt: "Priya Raghavan", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I used to feel self-conscious speaking English in public and during client calls. The voice modulation exercises and friendly environment at GLA gave me lifelong conversational confidence.",
+    outcomeTag: "Public Speaking Fluency"
+  },
+  {
+    id: "test-14",
+    authorName: "Siddharth Joshi",
+    authorAvatar: { src: "", alt: "Siddharth Joshi", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Cleared Goethe B2 exam and got my German Employment Visa stamped! GLA's specialized technical vocabulary coaching and Goethe mock simulations were invaluable for my automotive engineering role in Stuttgart.",
+    outcomeTag: "Goethe B2 & Stuttgart Job Visa"
   }
 ];
 
@@ -154,11 +230,11 @@ export const coursesList: Course[] = [
     id: "crs-german",
     slug: "german-language",
     title: "German Language Program (A1 - C2)",
-    metaTitle: "German Language Classes (A1 - C2) | Certified Academy",
-    metaDescription: "Learn German from certified Goethe instructors. Dynamic level course modules (A1, A2, B1, B2, C1, C2) tailored for student visas and career migration.",
-    shortDescription: "Your gateway to tuition-free university education and job opportunities in Germany.",
-    longDescription: "Master German grammar, listening, and speaking through our specialized immersion methodology. Designed to take candidates from absolute beginners (A1) to native fluency (C2), this program focuses on building functional communication skills alongside rigorous exam preparation.",
-    durationLabel: "3 - 18 Months",
+    metaTitle: "German Language Classes (A1 - C2) | Goethe & TELC Exam Prep",
+    metaDescription: "Learn German from certified instructors. Level-wise courses (A1 to C2) tailored for Goethe/TELC certification, Ausbildung, and German university admissions.",
+    shortDescription: "Your gateway to tuition-free education, Ausbildung vocational training, and careers in Germany.",
+    longDescription: "Master German grammar, listening, and speaking through our specialized immersion methodology. Designed to take candidates from absolute beginners (A1) to advanced proficiency (C2), this program focuses on building functional communication skills alongside rigorous Goethe-Institut and TELC exam preparation.",
+    durationLabel: "3 - 12 Months",
     nextBatchStartDate: "2026-09-01",
     maxClassSize: "5-7",
     levels: [
@@ -184,92 +260,218 @@ export const coursesList: Course[] = [
         modules: ["Subordinate Clauses (weil, dass, wenn)", "Passive Voice (Vorgangspassiv)", "Genitive Case & Prepositions", "Writing Letters & Expressing Opinions"]
       },
       {
-        levelCode: "B2 (Vantage/Upper-Int)",
+        levelCode: "B2 (Upper-Intermediate)",
         durationWeeks: 6,
         weeklyHours: 12,
-        description: "Communicate fluently with native speakers. Understand complex topics, technical debates, and write detailed essays.",
+        description: "Communicate fluently with native speakers. Understand complex technical topics, debates, and write detailed essays.",
         modules: ["Subjunctive II (Konjunktiv II)", "Advanced Adjective Declensions", "Debating Complex Social Topics", "Goethe B2 Exam Preparation Drill"]
       },
       {
-        levelCode: "C1 (Advanced/Proficient)",
+        levelCode: "C1 (Advanced Proficiency)",
         durationWeeks: 8,
         weeklyHours: 12,
-        description: "Understand a wide range of demanding, longer texts and recognize implicit meaning. Express yourself fluently and spontaneously.",
+        description: "Understand a wide range of demanding, longer texts and recognize implicit meaning. Express yourself spontaneously.",
         modules: ["Advanced Idiomatic Expressions", "Complex Sentence Structures (Nomen-Verb-Verbindungen)", "Academic Reading & Writing", "Expressing Nuanced Opinions"]
-      },
-      {
-        levelCode: "C2 (Mastery/Fluency)",
-        durationWeeks: 8,
-        weeklyHours: 14,
-        description: "Understand practically everything heard or read with ease. Summarize information from different spoken and written sources.",
-        modules: ["Nuances of German Literature & Media", "Advanced Rhetoric & Presentation", "Professional Business Communication", "Goethe C2 GDS Exam Mastery Drill"]
       }
     ],
     faculty: [facultyList[0]],
-    testimonials: [
-      testimonialsList[0],
-      {
-        id: "test-ger-c1",
-        authorName: "Dr. Aarav Mehta",
-        authorAvatar: { src: "/images/students/aarav.jpg", alt: "Dr. Aarav Mehta", width: 80, height: 80 },
-        ratingStars: 5,
-        quote: "Dr. Elena's immersion methodology helped me clear Goethe C1. I'm now working as a pediatric resident in Heidelberg!",
-        outcomeTag: "Passed Goethe C1"
-      },
-      {
-        id: "test-ger-dsh",
-        authorName: "Priyashee Sharma",
-        authorAvatar: { src: "/images/students/priyashee.jpg", alt: "Priyashee Sharma", width: 80, height: 80 },
-        ratingStars: 5,
-        quote: "DSH-3 score achieved! The intensive academic writing templates and grammar revision at GLA are unmatched.",
-        outcomeTag: "Achieved DSH-3"
-      },
-      {
-        id: "test-ger-testdaf",
-        authorName: "Arjun Malhotra",
-        authorAvatar: { src: "/images/students/arjun.jpg", alt: "Arjun Malhotra", width: 80, height: 80 },
-        ratingStars: 5,
-        quote: "I passed my TestDaF exam with TDN 5 in all modules. The mock simulations under timed conditions were extremely helpful.",
-        outcomeTag: "Scored TDN 5 (TestDaF)"
-      },
-      {
-        id: "test-ger-c2",
-        authorName: "Kabir Verma",
-        authorAvatar: { src: "/images/students/kabir.jpg", alt: "Kabir Verma", width: 80, height: 80 },
-        ratingStars: 5,
-        quote: "Achieving C2 mastery felt impossible, but Dr. Elena's guidance on style, register, and collocations made it happen.",
-        outcomeTag: "Passed Goethe C2 Mastery"
-      }
-    ],
+    testimonials: [testimonialsList[0], testimonialsList[5], testimonialsList[7], testimonialsList[13]],
     faqs: [faqsList[0], faqsList[2]],
     studentResults: [studentResultsList[0]],
     benefits: [
-      "Goethe-Institut C2 certified trainers leading every batch",
+      "Certified trainers leading every small batch (max 5-7 students)",
       "Interactive, speaking-first curriculum ensuring functional fluency",
       "Complete mock exam series grading reading, writing, listening, speaking",
       "Dedicated visa interview preparation and mock sessions included"
     ],
     whoShouldJoin: [
-      "Students preparing to study at public universities in Germany",
-      "Healthcare professionals (nurses, doctors) migrating to German clinics",
-      "Software engineers seeking EU Blue Card career opportunities",
-      "Language enthusiasts aiming for certified fluency"
+      "Students preparing to study at universities in Germany",
+      "Candidates applying for paid Ausbildung vocational programs",
+      "Healthcare professionals (nurses, doctors) migrating to Germany",
+      "Working professionals seeking German Opportunity Card (Chancenkarte)"
     ],
     learningOutcomes: [
-      "Fluently hold complex everyday and professional debates in German",
-      "Pass the official Goethe-Institut A1 to C2 exams with high scores",
+      "Fluently hold everyday and professional conversations in German",
+      "Pass the official Goethe-Institut or TELC exams with confidence",
       "Write coherent structured essays, business letters, and reports",
       "Confidently navigate visa interview questions at the German Embassy"
     ],
     classFormats: ["On-Campus (Morning/Evening batches)", "Live Synchronous Online", "One-on-One Custom Mentorship"]
   },
   {
+    id: "crs-french",
+    slug: "french-language",
+    title: "French Language Program (DELF / DALF A1 - C2)",
+    metaTitle: "French Language Classes (A1 - C2) | DELF DALF & TEF Canada Prep",
+    metaDescription: "Learn French from certified instructors. Level-wise courses (A1 to C2) with DELF/DALF and TEF Canada exam preparation.",
+    shortDescription: "Master French for international careers, higher education in France/Europe, and Canada PR points.",
+    longDescription: "Master French grammar, pronunciation, and practical communication. From beginners to advanced speakers, our certified curriculum prepares you for DELF/DALF and TEF Canada examinations with interactive speaking drills and exam mock tests.",
+    durationLabel: "3 - 12 Months",
+    nextBatchStartDate: "2026-09-10",
+    maxClassSize: "5-7",
+    levels: [
+      {
+        levelCode: "A1 (Beginner)",
+        durationWeeks: 6,
+        weeklyHours: 8,
+        description: "Master basic pronunciation, introductions, everyday vocabulary, and present tense conjugations.",
+        modules: ["Phonetics & Accents", "Essential Greetings & Numbers", "Present Tense & Articles", "Everyday Dialogues"]
+      },
+      {
+        levelCode: "A2 (Elementary)",
+        durationWeeks: 6,
+        weeklyHours: 8,
+        description: "Express past events, talk about hobbies, shopping, and understand basic instructions.",
+        modules: ["Passé Composé vs Imparfait", "Direct & Indirect Object Pronouns", "Describing Past Experiences", "DELF A2 Mock Practice"]
+      },
+      {
+        levelCode: "B1/B2 (Intermediate/Advanced)",
+        durationWeeks: 10,
+        weeklyHours: 10,
+        description: "Participate in debates, express nuanced opinions, and draft academic essays.",
+        modules: ["Subjunctive & Conditional Moods", "Complex Connectors & Argumentation", "DELF B2 Exam Drill", "TEF Canada Preparation"]
+      }
+    ],
+    faculty: [],
+    testimonials: [testimonialsList[2], testimonialsList[8]],
+    faqs: [faqsList[0], faqsList[1]],
+    studentResults: [studentResultsList[0]],
+    benefits: [
+      "Certified language instructors with CEFR-aligned curriculum",
+      "Interactive speaking-first pedagogy with small batches (max 5-7)",
+      "Dedicated DELF / DALF & TEF Canada mock tests",
+      "Comprehensive digital study material and recorded lectures included"
+    ],
+    whoShouldJoin: [
+      "Students planning to study in France, Switzerland, or Belgium",
+      "Immigration candidates seeking additional CRS points for Canada PR via TEF/TCF",
+      "Professionals working with French MNCs and European enterprises",
+      "Language enthusiasts seeking international DELF certification"
+    ],
+    learningOutcomes: [
+      "Communicate fluently and confidently in standard spoken French",
+      "Pass official DELF A1, A2, B1, or B2 examinations with high marks",
+      "Boost Canada PR Express Entry CRS score with certified French skills",
+      "Draft professional emails and academic essays in French"
+    ],
+    classFormats: ["On-Campus Batches", "Live Synchronous Online", "Weekend Flexible Batches"]
+  },
+  {
+    id: "crs-japanese",
+    slug: "japanese-language",
+    title: "Japanese Language Program (JLPT N5 - N1)",
+    metaTitle: "Japanese Language Classes (JLPT N5 - N1) | Certified Faculty",
+    metaDescription: "Master Japanese script (Hiragana, Katakana, Kanji) and pass JLPT N5 to N1 exams. Tailored for tech careers and higher studies in Japan.",
+    shortDescription: "Open high-paying IT, engineering, and study opportunities in Japan with JLPT preparation.",
+    longDescription: "Learn Japanese through our step-by-step framework covering Hiragana, Katakana, Kanji characters, and natural spoken conversation. Specially structured to guarantee success in official JLPT N5, N4, and N3 examinations.",
+    durationLabel: "4 - 14 Months",
+    nextBatchStartDate: "2026-09-08",
+    maxClassSize: "5-7",
+    levels: [
+      {
+        levelCode: "N5 (Basic Beginner)",
+        durationWeeks: 8,
+        weeklyHours: 8,
+        description: "Master Hiragana, Katakana, 100+ Kanji characters, and basic conversational patterns.",
+        modules: ["Hiragana & Katakana Mastery", "100 Essential Kanji", "Basic Grammar Particles (wa, ga, o, ni)", "JLPT N5 Mock Tests"]
+      },
+      {
+        levelCode: "N4 (Elementary)",
+        durationWeeks: 8,
+        weeklyHours: 8,
+        description: "Learn 300+ Kanji, daily situational dialogues, and complex sentence conjunctions.",
+        modules: ["Te-form & Ta-form Verb Conjugations", "300 Kanji & Vocabulary Bank", "Listening Comprehension Drills", "JLPT N4 Mock Tests"]
+      },
+      {
+        levelCode: "N3 (Intermediate)",
+        durationWeeks: 12,
+        weeklyHours: 10,
+        description: "Understand everyday newspaper articles, business conversations, and 650+ Kanji.",
+        modules: ["Intermediate Grammar Patterns", "Business Keigo (Polite Japanese)", "650+ Kanji Character Drills", "JLPT N3 Exam Intensive"]
+      }
+    ],
+    faculty: [],
+    testimonials: [testimonialsList[3], testimonialsList[10]],
+    faqs: [faqsList[0], faqsList[1]],
+    studentResults: [studentResultsList[0]],
+    benefits: [
+      "Step-by-step Kanji memorization mnemonics and stroke order drills",
+      "Native Japanese listening audio training sessions",
+      "Full-length JLPT N5, N4, and N3 timed mock tests",
+      "Career guidance for engineering and technical pathways in Japan"
+    ],
+    whoShouldJoin: [
+      "Software engineers and IT professionals targeting jobs in Japan",
+      "Students preparing for MEXT scholarships and Japanese universities",
+      "TITP / SSW visa applicants preparing for technical placements in Japan",
+      "Anime and Japanese culture enthusiasts seeking authentic fluency"
+    ],
+    learningOutcomes: [
+      "Read, write, and converse fluently using Hiragana, Katakana, and Kanji",
+      "Clear the official JLPT N5, N4, or N3 exam on your first attempt",
+      "Understand workplace communication and polite Japanese (Keigo)",
+      "Qualify for international job interviews with Japanese MNCs"
+    ],
+    classFormats: ["On-Campus Batches", "Live Online Zoom/Meet", "Weekend Intensive Batches"]
+  },
+  {
+    id: "crs-spoken-english",
+    slug: "spoken-english",
+    title: "Spoken English & Fluency Mastery",
+    metaTitle: "Spoken English Classes | Accent Neutralization & Fluency Training",
+    metaDescription: "Overcome hesitation, master English grammar, and speak with confidence in everyday, academic, and professional environments.",
+    shortDescription: "Speak English fluently, confidently, and naturally in social and professional settings.",
+    longDescription: "Our Spoken English & Fluency program is designed to eliminate fear, build vocabulary, and improve pronunciation. Through daily conversational practice, group discussions, and accent neutralization drills, you'll speak English naturally without translating in your head.",
+    durationLabel: "2 - 3 Months",
+    nextBatchStartDate: "2026-09-01",
+    maxClassSize: "5-7",
+    levels: [
+      {
+        levelCode: "Foundation Fluency",
+        durationWeeks: 4,
+        weeklyHours: 6,
+        description: "Build correct grammar foundations, eliminate translation hesitation, and expand active vocabulary.",
+        modules: ["Everyday Conversational Phrases", "Tense Usage & Sentence Structuring", "Overcoming Stage Fear", "Daily Speaking Activities"]
+      },
+      {
+        levelCode: "Advanced Communication",
+        durationWeeks: 4,
+        weeklyHours: 8,
+        description: "Master accent neutralization, public speaking, debates, and professional presentation delivery.",
+        modules: ["Pronunciation & Intonation Tuning", "Extempore & Group Discussions", "Workplace Meetings & Email Etiquette", "Final Speech Presentation"]
+      }
+    ],
+    faculty: [],
+    testimonials: [testimonialsList[6], testimonialsList[12]],
+    faqs: [faqsList[0], faqsList[3]],
+    studentResults: [studentResultsList[1]],
+    benefits: [
+      "Daily 1-on-1 speaking time in small batches (max 5-7 students)",
+      "Accent neutralization and voice modulation training",
+      "Extensive real-life simulations: meetings, interviews, debates",
+      "Comprehensive digital workbook and vocabulary guides"
+    ],
+    whoShouldJoin: [
+      "Job seekers preparing for corporate interviews and group discussions",
+      "Working professionals seeking to lead meetings and give confident presentations",
+      "Students and homemakers wanting to speak English comfortably in public",
+      "Anyone who understands English but struggles to speak fluently"
+    ],
+    learningOutcomes: [
+      "Speak fluent English without hesitation or mental translation",
+      "Pronounce words clearly with standard, neutral intonation",
+      "Participate actively in workplace meetings, debates, and presentations",
+      "Write professional emails and communicate with executive presence"
+    ],
+    classFormats: ["On-Campus Practice Batches", "Live Interactive Online Batches"]
+  },
+  {
     id: "crs-ielts",
     slug: "ielts-preparation",
     title: "IELTS Exam Masterclass (Academic & General)",
-    metaTitle: "IELTS Coaching Classes | Achieve 7.5+ Band Score",
-    metaDescription: "Score 7.5+ overall bands with British Council and IDP certified trainers. TIMED assessment simulations, strategy workshops, and weekend bootcamps.",
-    shortDescription: "Unlock migration visa points and global university admissions.",
+    metaTitle: "IELTS Coaching Classes | Achieve 7.5+ Band Score | British Council & IDP",
+    metaDescription: "Score 7.5+ overall bands with British Council and IDP certified trainers. Timed assessment simulations, essay grading, and speaking interview drills.",
+    shortDescription: "Unlock migration visa points and global university admissions with a high band score.",
     longDescription: "Prepare for your IELTS Academic or General Training exam with confidence. Our strategic masterclass focuses on diagnostic assessments, timed speaking simulations, and step-by-step essay blueprints, teaching you the exact methodology examiners use to assign band scores.",
     durationLabel: "2 - 3 Months",
     nextBatchStartDate: "2026-08-20",
@@ -297,20 +499,20 @@ export const coursesList: Course[] = [
         modules: ["4 Timed Mock Assessments", "Individual Speaking Feedback Sessions", "Writing Grading & Reconstruction Workshops", "Final Test Day Strategy Session"]
       }
     ],
-    faculty: [facultyList[1]],
-    testimonials: [testimonialsList[1]],
+    faculty: [],
+    testimonials: [testimonialsList[1], testimonialsList[9]],
     faqs: [faqsList[1], faqsList[3]],
     studentResults: [studentResultsList[1]],
     benefits: [
       "British Council and IDP certified exam experts",
       "12 full-length, examiner-graded mock exams with diagnostic scorecards",
       "Daily individual essay evaluation and correction sessions",
-      "Timed mock interview bootcamps replicating test conditions"
+      "Timed mock interview bootcamps replicating real test conditions"
     ],
     whoShouldJoin: [
       "Students preparing to enter English-speaking universities abroad",
       "Professionals migrating to Canada (PR via Express Entry) or Australia",
-      "Nurses and pharmacists seeking work credentials in the UK or US",
+      "Healthcare professionals seeking work credentials in the UK or US",
       "Candidates looking to boost their overall visa application points"
     ],
     learningOutcomes: [
@@ -325,7 +527,7 @@ export const coursesList: Course[] = [
     id: "crs-pte",
     slug: "pte-academic",
     title: "PTE Academic Strategy Preparation",
-    metaTitle: "PTE Academic Prep Classes | AI-Score Evaluation",
+    metaTitle: "PTE Academic Prep Classes | AI-Score Evaluation & Strategy Drills",
     metaDescription: "Master the Pearson Test of English (PTE) with AI-simulated scoring engines. Interactive practice modules, strategy templates, and live correction.",
     shortDescription: "AI-optimized training tailored for high scores in computer-delivered exams.",
     longDescription: "Achieve your target score in the computer-delivered Pearson Test of English (PTE) Academic exam. Our program combines expert trainer strategies with simulated software assessments, training you on specific microphone techniques and oral scoring patterns.",
@@ -355,8 +557,8 @@ export const coursesList: Course[] = [
         modules: ["3 AI-graded Mock Examinations", "Diagnostic Performance Analysis Reports", "Trainer Consultation to fix weak sections", "Final Test Strategies"]
       }
     ],
-    faculty: [facultyList[1]],
-    testimonials: [testimonialsList[1]],
+    faculty: [],
+    testimonials: [testimonialsList[4], testimonialsList[11]],
     faqs: [faqsList[1], faqsList[2]],
     studentResults: [studentResultsList[2]],
     benefits: [
@@ -369,7 +571,7 @@ export const coursesList: Course[] = [
       "Working professionals migrating to Australia (Subclass 189/190/491)",
       "Students targeting universities accepting PTE Academic worldwide",
       "Candidates seeking a faster computer-graded alternative to IELTS",
-      "Applicants needing immediate exam results (results ready in 48 hours)"
+      "Applicants needing fast results within 48 hours"
     ],
     learningOutcomes: [
       "Secure a target score of 79+ (equivalent to IELTS Band 8) in all bands",
@@ -378,56 +580,5 @@ export const coursesList: Course[] = [
       "Successfully write summarized texts and dictate sentences under tight limits"
     ],
     classFormats: ["Computer Lab In-Person Batches", "Live Interactive Remote Classes", "Weekend Strategy Crash Course"]
-  },
-  {
-    id: "crs-pd",
-    slug: "personality-development",
-    title: "Personality Development & Professional Communication",
-    metaTitle: "Personality Development Classes | Public Speaking",
-    metaDescription: "Master corporate presentation skills, workplace etiquette, and mock interviews. Designed for job seekers and college graduates.",
-    shortDescription: "Build workplace confidence, public speaking authority, and leadership skills.",
-    longDescription: "Prepare for competitive job markets with our transformational communication program. From accent correction and public speaking to mock group discussions and resume optimization, this course is designed to build your professional confidence.",
-    durationLabel: "2 Months",
-    nextBatchStartDate: "2026-09-05",
-    maxClassSize: "5-7",
-    levels: [
-      {
-        levelCode: "Spoken Polish & Confidence",
-        durationWeeks: 2,
-        weeklyHours: 6,
-        description: "Overcome speaking hesitation, correct common grammar errors, and polish your basic vocabulary.",
-        modules: ["Removing Stage Fear & Hesitation", "Accent Correction & Tone Training", "Body Language & Non-Verbal Signals", "Everyday Professional Introductions"]
-      },
-      {
-        levelCode: "Corporate Interview Readiness",
-        durationWeeks: 2,
-        weeklyHours: 8,
-        description: "Learn structure strategies for corporate recruitment processes, mock interviews, and resume updates.",
-        modules: ["HR Interview Question Frameworks", "Group Discussions Practice", "Resume Formatting & Cover Letters", "LinkedIn Networking Strategies"]
-      }
-    ],
-    faculty: [facultyList[2]],
-    testimonials: [testimonialsList[2]],
-    faqs: [faqsList[0], faqsList[3]],
-    studentResults: [studentResultsList[2]],
-    benefits: [
-      "Led by former HR Directors and certified corporate coaches",
-      "Practical workshops featuring video-recorded presentation diagnostics",
-      "Individual mock interviews with detailed feedback summaries",
-      "Custom CV re-drafting and LinkedIn profile optimization"
-    ],
-    whoShouldJoin: [
-      "Fresh college graduates preparing for campus placement interviews",
-      "Working professionals looking to transition to leadership roles",
-      "Individuals seeking to overcome stage fear and improve public speaking",
-      "Job seekers experiencing obstacles in passing HR interview stages"
-    ],
-    learningOutcomes: [
-      "Present and speak in public without stage fear or hesitation",
-      "Draft a structured, applicant-tracking-system (ATS) optimized resume",
-      "Answer difficult HR and situational questions confidently in interviews",
-      "Project professional body language, handshake etiquette, and business manners"
-    ],
-    classFormats: ["Interactive On-Campus Workshops", "Live Weekend Remote Workshops"]
   }
 ];

@@ -51,9 +51,11 @@ export default function Header() {
 
   const courses = [
     { label: "German Language (A1 - C2)", href: "/courses/german-language" },
-    { label: "IELTS Masterclass", href: "/courses/ielts-preparation" },
+    { label: "French Language (DELF / DALF)", href: "/courses/french-language" },
+    { label: "Japanese Language (JLPT N5-N1)", href: "/courses/japanese-language" },
+    { label: "Spoken English Language", href: "/courses/spoken-english" },
+    { label: "IELTS Exam Masterclass", href: "/courses/ielts-preparation" },
     { label: "PTE Academic Strategy", href: "/courses/pte-academic" },
-    { label: "Personality Development", href: "/courses/personality-development" },
     { label: "All Courses Directory", href: "/courses", isDivider: true }
   ];
 

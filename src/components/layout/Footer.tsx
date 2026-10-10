@@ -57,11 +57,13 @@ export default function Footer() {
           {/* Featured Courses */}
           <div>
             <h3 className="text-base font-bold font-display uppercase tracking-wider mb-6 text-purple-300">Language Courses</h3>
-            <ul className="flex flex-col gap-3 text-sm text-slate-300">
-              <li><Link href="/courses/german-language" className="hover:text-white transition-colors">German Language (A1 - C2)</Link></li>
-              <li><Link href="/courses/ielts-preparation" className="hover:text-white transition-colors">IELTS Masterclass</Link></li>
-              <li><Link href="/courses/pte-academic" className="hover:text-white transition-colors">PTE Strategy Preparation</Link></li>
-              <li><Link href="/courses/personality-development" className="hover:text-white transition-colors">Personality Development</Link></li>
+            <ul className="flex flex-col gap-2.5 text-sm text-slate-300">
+              <li><Link href="/courses/german-language" className="hover:text-purple-hero transition-colors">German Language (A1 - C2)</Link></li>
+              <li><Link href="/courses/french-language" className="hover:text-purple-hero transition-colors">French Language (DELF / DALF)</Link></li>
+              <li><Link href="/courses/japanese-language" className="hover:text-purple-hero transition-colors">Japanese Language (JLPT N5-N1)</Link></li>
+              <li><Link href="/courses/spoken-english" className="hover:text-purple-hero transition-colors">Spoken English Language</Link></li>
+              <li><Link href="/courses/ielts-preparation" className="hover:text-purple-hero transition-colors">IELTS Exam Masterclass</Link></li>
+              <li><Link href="/courses/pte-academic" className="hover:text-purple-hero transition-colors">PTE Academic Strategy</Link></li>
             </ul>
           </div>
 

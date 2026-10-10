@@ -4,14 +4,14 @@ import { coursesList } from '@/data/courses-db';
 import CourseCard from '@/components/CourseCard';
 
 export const metadata: Metadata = {
-  title: "Language & Exam Preparation Courses | German, IELTS, PTE",
-  description: "Explore certified language courses at GLA: German (A1-C2), IELTS Masterclass, PTE Academic prep, and Personality Development. Small batches with guaranteed scores.",
+  title: "Certified Language Courses | German, French, Japanese, Spoken English, IELTS, PTE",
+  description: "Explore accredited language courses at The Global Language Academy: German (A1-C2), French (DELF/DALF), Japanese (JLPT), Spoken English, IELTS, and PTE Academic with certified mentors.",
   alternates: {
     canonical: "/courses",
   },
   openGraph: {
-    title: "Language & Exam Preparation Courses | The Global Language Academy",
-    description: "Browse premium exam preparation: German Language (A1-C2), IELTS (7.5+ Band), and PTE Academic coaching.",
+    title: "Certified Language Courses | The Global Language Academy (GLA)",
+    description: "Browse accredited courses: German (A1-C2), French (DELF/DALF), Japanese (JLPT), Spoken English, IELTS, and PTE Academic.",
     url: "https://tglalearning.com/courses",
     type: "website",
   },
@@ -19,16 +19,16 @@ export const metadata: Metadata = {
 
 export default function CoursesPage() {
   return (
-    <div className="flex flex-col overflow-x-hidden">
+    <div className="flex flex-col overflow-x-hidden text-navy bg-white dark:bg-[#020a16] transition-colors duration-300">
       {/* 1. Header Page Title Hero */}
       <section className="bg-[#00122E] dark:bg-[#020c1b] text-white py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-4">
           <span className="text-xs font-extrabold uppercase tracking-widest text-purple-hero animate-fade-in-up [animation-delay:100ms] fill-mode-forwards">Our Programs</span>
           <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-white animate-fade-in-up [animation-delay:250ms] fill-mode-forwards">
-            Curricula Designed to Convert
+            World-Class Language Programs
           </h1>
           <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed animate-fade-in-up [animation-delay:400ms] fill-mode-forwards">
-            Select a target exam prep program or skill booster to review module breakdowns, schedules, fees, and verified student results.
+            Explore our 6 accredited language and exam preparation courses. Learn in small batches (5-7 students) with certified faculty and weekly diagnostic mock tests.
           </p>
         </div>
       </section>

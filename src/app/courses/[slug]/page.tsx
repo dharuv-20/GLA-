@@ -343,50 +343,54 @@ export default async function CourseLandingPage({ params }: PageProps) {
       </section>
 
       {/* 5. Course Faculty Profile */}
-      <section className="bg-section-alt text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="reveal text-xs font-bold uppercase tracking-widest text-purple" style={{ transitionDelay: '0ms' }}>Faculty</span>
-            <h2 className="reveal text-3xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '100ms' }}>Who Will Train You?</h2>
-          </div>
+      {course.faculty && course.faculty.length > 0 && (
+        <section className="bg-section-alt text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
+              <span className="reveal text-xs font-bold uppercase tracking-widest text-purple" style={{ transitionDelay: '0ms' }}>Faculty</span>
+              <h2 className="reveal text-3xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '100ms' }}>Who Will Train You?</h2>
+            </div>
 
-          <div className="max-w-4xl mx-auto">
-            {course.faculty.map((trainer, idx) => (
-              <div
-                key={trainer.id}
-                className="reveal hover-lift rounded-3xl overflow-hidden"
-                style={{ transitionDelay: `${(idx * 150) + 150}ms` }}
-              >
-                <FacultyCard faculty={trainer} />
-              </div>
-            ))}
+            <div className="max-w-4xl mx-auto">
+              {course.faculty.map((trainer, idx) => (
+                <div
+                  key={trainer.id}
+                  className="reveal hover-lift rounded-3xl overflow-hidden"
+                  style={{ transitionDelay: `${(idx * 150) + 150}ms` }}
+                >
+                  <FacultyCard faculty={trainer} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* 6. Success Stories Testimonials */}
-      <section className="bg-card text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="reveal text-xs font-bold uppercase tracking-widest text-purple" style={{ transitionDelay: '0ms' }}>Alumni Scores</span>
-            <h2 className="reveal text-3xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '100ms' }}>Scorecard Results & Reviews</h2>
-          </div>
+      {course.testimonials && course.testimonials.length > 0 && (
+        <section className="bg-card text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
+              <span className="reveal text-xs font-bold uppercase tracking-widest text-purple" style={{ transitionDelay: '0ms' }}>Alumni Scores</span>
+              <h2 className="reveal text-3xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '100ms' }}>Scorecard Results & Reviews</h2>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {course.testimonials.map((test, idx) => (
-              <div
-                key={test.id}
-                className="reveal hover-lift rounded-xl"
-                style={{ transitionDelay: `${(idx * 150) + 150}ms` }}
-              >
-                <TestimonialCard testimonial={test} />
-              </div>
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {course.testimonials.map((test, idx) => (
+                <div
+                  key={test.id}
+                  className="reveal hover-lift rounded-xl"
+                  style={{ transitionDelay: `${(idx * 150) + 150}ms` }}
+                >
+                  <TestimonialCard testimonial={test} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* 7. FAQ Accordion */}
       <section className="bg-card text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
