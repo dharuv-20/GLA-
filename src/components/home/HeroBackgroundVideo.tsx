@@ -33,16 +33,16 @@ export default function HeroBackgroundVideo({
       className={`absolute inset-0 overflow-hidden pointer-events-none select-none z-0 ${className}`}
       aria-hidden="true"
     >
-      {/* HTML5 Video Element with Balanced Opacity */}
+      {/* HTML5 Video Element with Responsive Object Position & GPU Acceleration */}
       <video
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        preload="metadata"
-        className={`w-full h-full object-cover object-center transition-opacity duration-700 ease-in-out ${
-          isVideoLoaded ? 'opacity-55 dark:opacity-50' : 'opacity-0'
+        preload="auto"
+        className={`w-full h-full object-cover object-[center_28%] sm:object-center transition-opacity duration-700 ease-in-out transform-gpu will-change-transform ${
+          isVideoLoaded ? 'opacity-65 dark:opacity-55' : 'opacity-0'
         }`}
       >
         <source src={videoSrc} type="video/mp4" />
@@ -50,10 +50,10 @@ export default function HeroBackgroundVideo({
       </video>
 
       {/* Balanced High-Visibility Overlay: Soft Readability Shadow on Left Text */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#00122E]/80 via-[#00122E]/50 to-[#00122E]/35 dark:from-[#020c1b]/85 dark:via-[#020c1b]/55 dark:to-[#020c1b]/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#00122E]/85 via-[#00122E]/55 to-[#00122E]/35 dark:from-[#020c1b]/90 dark:via-[#020c1b]/60 dark:to-[#020c1b]/40" />
 
       {/* Top & Bottom Cinematic Edge Vignette */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#00122E]/40 via-transparent to-[#00122E]/60 dark:from-[#020c1b]/40 dark:to-[#020c1b]/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#00122E]/50 via-transparent to-[#00122E]/70 dark:from-[#020c1b]/50 dark:to-[#020c1b]/80" />
 
       {/* Subtle Ambient Glows */}
       <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-purple/20 rounded-full blur-3xl pointer-events-none" />

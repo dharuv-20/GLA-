@@ -8,6 +8,9 @@ import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
 import GermanCourseView from './GermanCourseView';
+import FrenchCourseView from './FrenchCourseView';
+import JapaneseCourseView from './JapaneseCourseView';
+import SpokenEnglishCourseView from './SpokenEnglishCourseView';
 import PteCourseView from './PteCourseView';
 import IeltsCourseView from './IeltsCourseView';
 
@@ -133,6 +136,60 @@ export default async function CourseLandingPage({ params }: PageProps) {
           }}
         />
         <GermanCourseView course={course} relatedCourses={relatedCourses} />
+      </>
+    );
+  }
+
+  // If this is the French course page, load the specialized comprehensive curriculum view
+  if (course.slug === 'french-language') {
+    return (
+      <>
+        {/* Dynamic SEO JSON-LD injection */}
+        <script
+          id="french-course-schema"
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(pageSchema).replace(/</g, '\\u003c'),
+          }}
+        />
+        <FrenchCourseView course={course} relatedCourses={relatedCourses} />
+      </>
+    );
+  }
+
+  // If this is the Japanese course page, load the specialized comprehensive curriculum view
+  if (course.slug === 'japanese-language') {
+    return (
+      <>
+        {/* Dynamic SEO JSON-LD injection */}
+        <script
+          id="japanese-course-schema"
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(pageSchema).replace(/</g, '\\u003c'),
+          }}
+        />
+        <JapaneseCourseView course={course} relatedCourses={relatedCourses} />
+      </>
+    );
+  }
+
+  // If this is the Spoken English course page, load the specialized comprehensive curriculum view
+  if (course.slug === 'spoken-english') {
+    return (
+      <>
+        {/* Dynamic SEO JSON-LD injection */}
+        <script
+          id="spoken-english-course-schema"
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(pageSchema).replace(/</g, '\\u003c'),
+          }}
+        />
+        <SpokenEnglishCourseView course={course} relatedCourses={relatedCourses} />
       </>
     );
   }

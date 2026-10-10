@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, Clock, Users, ArrowRight, BookOpen, Star, CheckCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Clock, Users, ArrowRight, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
 import { Course } from '@/types';
 
@@ -11,36 +11,63 @@ interface CoursesSliderProps {
 }
 
 export default function CoursesSlider({ courses }: CoursesSliderProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
-  // Maximum scroll index depending on screen width
-  const [cardsPerPage, setCardsPerPage] = useState(3);
+  // Sync scroll status & active index on scroll
+  const handleScroll = useCallback(() => {
+    if (!sliderRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+
+    const firstCard = sliderRef.current.firstElementChild as HTMLElement | null;
+    if (firstCard) {
+      const cardWidth = firstCard.offsetWidth + 24; // width + gap
+      const newIndex = Math.round(scrollLeft / cardWidth);
+      setActiveIndex(Math.min(newIndex, courses.length - 1));
+    }
+  }, [courses.length]);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setCardsPerPage(1);
-      } else if (window.innerWidth < 1024) {
-        setCardsPerPage(2);
-      } else {
-        setCardsPerPage(3);
-      }
-    };
+    const slider = sliderRef.current;
+    if (slider) {
+      slider.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+      return () => slider.removeEventListener('scroll', handleScroll);
+    }
+  }, [handleScroll]);
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const maxIndex = Math.max(0, courses.length - cardsPerPage);
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => Math.max(0, prev - 1));
+  const scrollToSlide = (index: number) => {
+    if (!sliderRef.current) return;
+    const firstCard = sliderRef.current.firstElementChild as HTMLElement | null;
+    if (firstCard) {
+      const cardWidth = firstCard.offsetWidth + 24;
+      sliderRef.current.scrollTo({
+        left: index * cardWidth,
+        behavior: 'smooth'
+      });
+    }
   };
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
+  const scrollPrev = () => {
+    if (!sliderRef.current) return;
+    const firstCard = sliderRef.current.firstElementChild as HTMLElement | null;
+    if (firstCard) {
+      const cardWidth = firstCard.offsetWidth + 24;
+      sliderRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    }
+  };
+
+  const scrollNext = () => {
+    if (!sliderRef.current) return;
+    const firstCard = sliderRef.current.firstElementChild as HTMLElement | null;
+    if (firstCard) {
+      const cardWidth = firstCard.offsetWidth + 24;
+      sliderRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
   };
 
   const getCourseCategory = (slug: string) => {
@@ -84,7 +111,7 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
   return (
     <div className="relative w-full">
       {/* Slider Controls Header */}
-      <div className="flex justify-between items-end mb-8 sm:mb-10">
+      <div className="flex justify-between items-end mb-6 sm:mb-10">
         <div className="flex items-center gap-3.5">
           <Image
             src="/images/assets/prep-guarantee-seal.webp"
@@ -104,13 +131,13 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
           </div>
         </div>
 
-        {/* Arrow Navigation */}
+        {/* Arrow Navigation (Desktop + Mobile) */}
         <div className="flex items-center gap-2">
           <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
+            onClick={scrollPrev}
+            disabled={!canScrollLeft}
             className={`p-2.5 sm:p-3 rounded-xl border border-card-border transition-all duration-200 ${
-              currentIndex === 0
+              !canScrollLeft
                 ? 'opacity-35 cursor-not-allowed bg-section-alt text-navy-muted'
                 : 'bg-card hover:bg-purple hover:text-white hover:border-purple text-navy shadow-sm active:scale-95 cursor-pointer'
             }`}
@@ -119,10 +146,10 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
-            onClick={nextSlide}
-            disabled={currentIndex >= maxIndex}
+            onClick={scrollNext}
+            disabled={!canScrollRight}
             className={`p-2.5 sm:p-3 rounded-xl border border-card-border transition-all duration-200 ${
-              currentIndex >= maxIndex
+              !canScrollRight
                 ? 'opacity-35 cursor-not-allowed bg-section-alt text-navy-muted'
                 : 'bg-card hover:bg-purple hover:text-white hover:border-purple text-navy shadow-sm active:scale-95 cursor-pointer'
             }`}
@@ -133,110 +160,106 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
         </div>
       </div>
 
-      {/* Slider Track Container */}
-      <div className="overflow-hidden w-full pb-4">
-        <div
-          ref={scrollContainerRef}
-          className="flex transition-transform duration-500 ease-out gap-6"
-          style={{
-            transform: `translateX(-${currentIndex * (100 / cardsPerPage + (cardsPerPage === 1 ? 0 : 1.5))}%)`,
-          }}
-        >
-          {courses.map((course) => {
-            const imageUrl = getCourseImage(course.slug);
-            const categoryLabel = getCourseCategory(course.slug);
-            return (
-              <div
-                key={course.id}
-                className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 flex flex-col"
-              >
-                <div className="group flex flex-col bg-card border border-card-border hover:border-purple/40 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-[0_20px_40px_rgba(75,36,94,0.12)] hover:-translate-y-1.5 transition-all duration-300 h-full">
-                  {/* Course Image Banner */}
-                  <div className="relative h-52 w-full overflow-hidden bg-slate-900/10">
-                    <span className="absolute top-4 left-4 z-10 text-[10px] font-extrabold uppercase tracking-widest bg-white/95 dark:bg-slate-900/95 backdrop-blur-md text-purple border border-purple-200/40 px-3 py-1 rounded-full shadow-sm">
-                      {categoryLabel}
-                    </span>
+      {/* Touch-Scrollable, Drag-Friendly Track with CSS Scroll Snap (No Clipping) */}
+      <div
+        ref={sliderRef}
+        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar touch-pan-x gap-4 sm:gap-6 pb-6 pt-2 -mx-4 px-4 sm:mx-0 sm:px-0"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {courses.map((course) => {
+          const imageUrl = getCourseImage(course.slug);
+          const categoryLabel = getCourseCategory(course.slug);
+          return (
+            <div
+              key={course.id}
+              className="w-[86vw] max-w-[340px] sm:max-w-none sm:w-[360px] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-center md:snap-start flex flex-col"
+            >
+              <div className="group flex flex-col bg-card border border-card-border hover:border-purple/40 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-[0_20px_40px_rgba(75,36,94,0.12)] hover:-translate-y-1.5 transition-all duration-300 h-full">
+                {/* Course Image Banner */}
+                <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900/10">
+                  <span className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 z-10 text-[10px] font-extrabold uppercase tracking-widest bg-white/95 dark:bg-slate-900/95 backdrop-blur-md text-purple border border-purple-200/40 px-2.5 sm:px-3 py-1 rounded-full shadow-sm">
+                    {categoryLabel}
+                  </span>
 
-                    <img
-                      src={imageUrl}
-                      alt={`${course.title} - The Global Language Academy`}
-                      loading="lazy"
-                      width={600}
-                      height={350}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#00122E]/70 via-[#00122E]/20 to-transparent pointer-events-none"></div>
+                  <img
+                    src={imageUrl}
+                    alt={`${course.title} - The Global Language Academy`}
+                    loading="lazy"
+                    width={600}
+                    height={350}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#00122E]/70 via-[#00122E]/20 to-transparent pointer-events-none"></div>
 
-                    <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white text-xs font-semibold">
-                      <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/10">
-                        <Clock className="w-3.5 h-3.5 text-purple-light" />
-                        <span>{course.durationLabel}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/10">
-                        <Users className="w-3.5 h-3.5 text-purple-light" />
-                        <span>Max 5-7 Batch</span>
-                      </div>
+                  <div className="absolute bottom-3 left-3 right-3 sm:left-4 sm:right-4 flex items-center justify-between text-white text-[11px] sm:text-xs font-semibold">
+                    <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/10">
+                      <Clock className="w-3.5 h-3.5 text-purple-light" />
+                      <span>{course.durationLabel}</span>
                     </div>
-                  </div>
-
-                  {/* Card Body */}
-                  <div className="p-6 flex-grow flex flex-col justify-between gap-5">
-                    <div className="flex flex-col gap-2.5">
-                      <h3 className="text-xl font-extrabold font-display text-navy tracking-tight group-hover:text-purple transition-colors leading-snug">
-                        {course.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-navy-muted leading-relaxed line-clamp-3">
-                        {course.shortDescription}
-                      </p>
-                    </div>
-
-                    {/* Key Highlights */}
-                    <div className="bg-section-alt/80 rounded-xl p-3.5 border border-card-border/60">
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-navy-muted block mb-2">
-                        Key Learning Outcomes
-                      </span>
-                      <ul className="flex flex-col gap-1.5 text-xs font-medium text-navy">
-                        {course.benefits.slice(0, 2).map((benefit, i) => (
-                          <li key={i} className="flex items-start gap-2 line-clamp-1">
-                            <CheckCircle className="w-3.5 h-3.5 text-purple shrink-0 mt-0.5" />
-                            <span className="truncate">{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="grid grid-cols-2 gap-3 pt-2 border-t border-card-border/60 mt-auto">
-                      <Link
-                        href={`/courses/${course.slug}`}
-                        className="inline-flex justify-center items-center py-2.5 px-3 border border-navy/20 hover:border-purple text-navy text-xs font-bold rounded-xl hover:bg-card hover:text-purple transition-all text-center"
-                      >
-                        View Syllabus
-                      </Link>
-                      <Link
-                        href={`/contact?course=${course.slug}`}
-                        className="inline-flex justify-center items-center py-2.5 px-3 bg-gradient-to-r from-purple to-purple-hover text-white text-xs font-bold rounded-xl hover:opacity-95 shadow-sm active:scale-95 transition-all text-center"
-                      >
-                        Book Trial
-                      </Link>
+                    <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/10">
+                      <Users className="w-3.5 h-3.5 text-purple-light" />
+                      <span>Max 5-7 Batch</span>
                     </div>
                   </div>
                 </div>
+
+                {/* Card Body */}
+                <div className="p-5 sm:p-6 flex-grow flex flex-col justify-between gap-4 sm:gap-5">
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-lg sm:text-xl font-extrabold font-display text-navy tracking-tight group-hover:text-purple transition-colors leading-snug">
+                      {course.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-navy-muted leading-relaxed line-clamp-3">
+                      {course.shortDescription}
+                    </p>
+                  </div>
+
+                  {/* Key Highlights */}
+                  <div className="bg-section-alt rounded-xl p-3 sm:p-3.5 border border-card-border/60">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-navy-muted block mb-1.5">
+                      Key Outcomes
+                    </span>
+                    <ul className="flex flex-col gap-1.5 text-xs font-medium text-navy">
+                      {course.benefits.slice(0, 2).map((benefit, i) => (
+                        <li key={i} className="flex items-start gap-2 line-clamp-1">
+                          <CheckCircle className="w-3.5 h-3.5 text-purple shrink-0 mt-0.5" />
+                          <span className="truncate">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="grid grid-cols-2 gap-2.5 sm:gap-3 pt-2 border-t border-card-border/60 mt-auto">
+                    <Link
+                      href={`/courses/${course.slug}`}
+                      className="inline-flex justify-center items-center py-2.5 px-2.5 sm:px-3 border border-navy/20 hover:border-purple text-navy text-xs font-bold rounded-xl hover:bg-card hover:text-purple transition-all text-center"
+                    >
+                      View Syllabus
+                    </Link>
+                    <Link
+                      href={`/contact?course=${course.slug}`}
+                      className="inline-flex justify-center items-center py-2.5 px-2.5 sm:px-3 bg-gradient-to-r from-purple to-purple-hover text-white text-xs font-bold rounded-xl hover:opacity-95 shadow-sm active:scale-95 transition-all text-center"
+                    >
+                      Book Trial
+                    </Link>
+                  </div>
+                </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Dot Indicators */}
-      <div className="flex justify-center items-center gap-2 mt-4">
-        {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+      {/* Touch-Friendly Dot Indicators */}
+      <div className="flex justify-center items-center gap-2 mt-2">
+        {courses.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            aria-label={`Go to slide ${idx + 1}`}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              currentIndex === idx ? 'w-8 bg-purple' : 'w-2 bg-card-border hover:bg-purple/40'
+            onClick={() => scrollToSlide(idx)}
+            aria-label={`Go to course ${idx + 1}`}
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+              activeIndex === idx ? 'w-8 bg-purple' : 'w-2 bg-card-border hover:bg-purple/40'
             }`}
           />
         ))}
