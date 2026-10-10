@@ -9,6 +9,7 @@ import FAQAccordion from '@/components/FAQAccordion';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
 import GermanCourseView from './GermanCourseView';
 import PteCourseView from './PteCourseView';
+import IeltsCourseView from './IeltsCourseView';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -150,6 +151,24 @@ export default async function CourseLandingPage({ params }: PageProps) {
           }}
         />
         <PteCourseView course={course} relatedCourses={relatedCourses} />
+      </>
+    );
+  }
+
+  // If this is the IELTS course page, load the specialized comprehensive curriculum view
+  if (course.slug === 'ielts-preparation') {
+    return (
+      <>
+        {/* Dynamic SEO JSON-LD injection */}
+        <script
+          id="ielts-course-schema"
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(pageSchema).replace(/</g, '\\u003c'),
+          }}
+        />
+        <IeltsCourseView course={course} relatedCourses={relatedCourses} />
       </>
     );
   }

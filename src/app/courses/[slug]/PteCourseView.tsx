@@ -36,7 +36,10 @@ import {
   Zap,
   CheckSquare,
   Scale,
-  CalendarCheck
+  CalendarCheck,
+  PenTool,
+  Mic,
+  Star
 } from 'lucide-react';
 import { Course, Testimonial, FAQItem, StudentResult } from '@/types';
 import TestimonialCard from '@/components/TestimonialCard';
@@ -52,55 +55,49 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
   const [activeTaskTab, setActiveTaskTab] = useState<'all' | 'speaking' | 'reading' | 'listening'>('all');
   const [activeViewMode, setActiveViewMode] = useState<'cards' | 'table'>('cards');
 
-  // Sticky sub-nav anchor sections
-  const subNavLinks = [
-    { label: "1. Overview", href: "#overview" },
-    { label: "2. Structure & 20 Tasks", href: "#structure" },
-    { label: "3. 10-90 Scoring", href: "#scoring" },
-    { label: "4. AI Scoring & UKVI", href: "#ai-scoring" },
-    { label: "5. PTE vs IELTS", href: "#comparison" },
-    { label: "6. GLA Prep Programme", href: "#programme" },
-    { label: "7. Why GLA (8 Pillars)", href: "#why-gla" },
-    { label: "8. Reviews & FAQs", href: "#reviews" },
-  ];
-
   // Section 1: PTE at a Glance (6 Core Cards)
   const pteGlanceFeatures = [
     {
       icon: Building,
       title: "3,000+ Global Universities",
       description: "Accepted worldwide by prestigious institutions including Harvard, INSEAD, Yale, Oxford, and top Australian, UK, and European universities.",
-      tag: "Academic Recognition"
+      tag: "Academic Recognition",
+      accent: "text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/40 border-purple-200 dark:border-purple-800/40"
     },
     {
       icon: PlaneTakeoff,
       title: "Australia, UK & NZ Migration",
       description: "Approved for Australian (SkillSelect 189/190), UK (PTE Academic UKVI), and New Zealand student and skilled work visa pathways.",
-      tag: "Visa & Immigration"
+      tag: "Visa & Immigration",
+      accent: "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border-blue-200 dark:border-blue-800/40"
     },
     {
       icon: Clock,
       title: "48-Hour Result Turnaround",
       description: "Official score reports typically delivered within 48 hours of test completion—often in under 24 hours.",
-      tag: "Fastest Results"
+      tag: "Fastest Results",
+      accent: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border-amber-200 dark:border-amber-800/40"
     },
     {
       icon: Bot,
       title: "100% Computer-Based & AI-Scored",
       description: "Responses evaluated by Pearson's patented AI algorithms, significantly reducing human examiner subjectivity.",
-      tag: "Objective Scoring"
+      tag: "Objective AI Scoring",
+      accent: "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800/40"
     },
     {
       icon: FileCheck2,
-      title: "2-Year Score Validity",
+      title: "2-Year Official Score Validity",
       description: "Scores remain valid for 2 years and can be sent online to an unlimited number of institutions worldwide at no extra fee.",
-      tag: "Free Score Reports"
+      tag: "Free Score Reports",
+      accent: "text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/40 border-pink-200 dark:border-pink-800/40"
     },
     {
       icon: Laptop,
       title: "2-Hour Single Sitting",
       description: "Completed in a single continuous session (~2 hours) available year-round at 400+ Pearson VUE test centers globally.",
-      tag: "Single Session"
+      tag: "Single Sitting",
+      accent: "text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-950/40 border-cyan-200 dark:border-cyan-800/40"
     }
   ];
 
@@ -108,6 +105,8 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
   const speakingWritingTasks = [
     {
       id: "spk-1",
+      section: "Part 1: Speaking & Writing",
+      category: "speaking",
       task: "Read Aloud",
       skills: "Speaking + Reading",
       time: "30–40 seconds",
@@ -117,471 +116,500 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
     },
     {
       id: "spk-2",
+      section: "Part 1: Speaking & Writing",
+      category: "speaking",
       task: "Repeat Sentence",
       skills: "Speaking + Listening",
       time: "15 seconds",
-      whatToDo: "Hear a spoken sentence (3–9 seconds) and repeat it immediately with exact word sequence and natural stress.",
-      weight: "High Listening + Speaking Marks",
-      color: "border-purple/30 bg-purple/5 text-purple"
+      whatToDo: "Listen to a 3–9 second recording and repeat the sentence word-for-word with identical pacing and intonation.",
+      weight: "Crucial for Listening Score",
+      color: "border-blue-500/30 bg-blue-500/5 text-blue-500"
     },
     {
       id: "spk-3",
+      section: "Part 1: Speaking & Writing",
+      category: "speaking",
       task: "Describe Image",
       skills: "Speaking",
       time: "40 seconds",
-      whatToDo: "Describe a graph, chart, map, or process image using structured fluency and overview templates without pausing.",
-      weight: "Template-Driven Task",
-      color: "border-purple/30 bg-purple/5 text-purple"
+      whatToDo: "Describe a graph, bar chart, map, diagram, or process illustration. Use structured template connectors for fluency.",
+      weight: "Speaking Fluency Anchor",
+      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-600"
     },
     {
       id: "spk-4",
+      section: "Part 1: Speaking & Writing",
+      category: "speaking",
       task: "Re-tell Lecture",
       skills: "Speaking + Listening",
       time: "40 seconds",
-      whatToDo: "Listen to an academic lecture (60–90 seconds) and retell its core theme, key concepts, and supporting arguments.",
-      weight: "Integrated Skill Task",
-      color: "border-purple/30 bg-purple/5 text-purple"
+      whatToDo: "Listen to an academic lecture or interview (up to 90s) and retell its core arguments and supporting details in your own words.",
+      weight: "Dual Skill Assessed",
+      color: "border-cyan-500/30 bg-cyan-500/5 text-cyan-600"
     },
     {
       id: "spk-5",
+      section: "Part 1: Speaking & Writing",
+      category: "speaking",
       task: "Answer Short Question",
       skills: "Speaking + Listening",
       time: "10 seconds",
-      whatToDo: "Listen to a simple question and give a one-word or short-phrase answer assessing vocabulary accuracy.",
-      weight: "Quick Vocabulary Accuracy",
+      whatToDo: "Listen to a simple general knowledge or contextual question and respond with a concise one-word or short-phrase answer.",
+      weight: "Vocabulary Precision",
+      color: "border-amber-500/30 bg-amber-500/5 text-amber-600"
+    },
+    {
+      id: "wrt-1",
+      section: "Part 1: Speaking & Writing",
+      category: "speaking",
+      task: "Summarise Written Text",
+      skills: "Writing + Reading",
+      time: "10 minutes per item",
+      whatToDo: "Read a 300-word passage and write a single, grammatically flawless sentence of 5–75 words capturing the main theme.",
+      weight: "Complex Sentence Syntax",
       color: "border-purple/30 bg-purple/5 text-purple"
     },
     {
-      id: "spk-6",
-      task: "Summarise Written Text",
-      skills: "Writing + Reading",
-      time: "10 minutes",
-      whatToDo: "Read a passage (up to 300 words) and write a single, grammatically flawless sentence summary (5–75 words).",
-      weight: "Single Sentence Formula",
-      color: "border-indigo-500/30 bg-indigo-500/5 text-indigo-400"
-    },
-    {
-      id: "spk-7",
+      id: "wrt-2",
+      section: "Part 1: Speaking & Writing",
+      category: "speaking",
       task: "Write Essay",
       skills: "Writing",
       time: "20 minutes",
-      whatToDo: "Write a 250–300-word argumentative or discursive essay using a structured academic template and linking language.",
-      weight: "Academic Discourse Framework",
-      color: "border-indigo-500/30 bg-indigo-500/5 text-indigo-400"
+      whatToDo: "Write a 250–300-word argumentative, problem-solution, or discursive essay following structured templates.",
+      weight: "Writing Discourse Rubric",
+      color: "border-rose-500/30 bg-rose-500/5 text-rose-600"
     }
   ];
 
   // Section 2.2: Part 2 — Reading Tasks (5 Tasks)
   const readingTasks = [
     {
-      id: "rd-1",
+      id: "rdg-1",
+      section: "Part 2: Reading",
+      category: "reading",
       task: "Reading & Writing: Fill in the Blanks",
       skills: "Reading + Writing",
-      format: "Drag and drop words into blank gaps within a 300-word text.",
-      feature: "Identified in source material as a high-value task offering significant marks in Reading and Writing.",
-      weight: "Top-Scoring Reading Task",
-      color: "border-indigo-500/30 bg-indigo-500/5 text-indigo-400"
+      time: "Self-paced (~2 mins/item)",
+      whatToDo: "Drag and drop words from a contextual bank into appropriate blanks. High score contribution to both Reading and Writing.",
+      weight: "🔥 Highest Marks in Reading",
+      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-600"
     },
     {
-      id: "rd-2",
+      id: "rdg-2",
+      section: "Part 2: Reading",
+      category: "reading",
       task: "Multiple Choice (Multiple Answers)",
       skills: "Reading",
-      format: "Read passage and select all applicable correct options from the list.",
-      feature: "More than one correct answer is possible; negative scoring applies for incorrect options.",
-      weight: "Partial Credit Scoring",
-      color: "border-indigo-500/30 bg-indigo-500/5 text-indigo-400"
+      time: "Self-paced",
+      whatToDo: "Read an academic text and select more than one correct response. Negative marking applies for incorrect options.",
+      weight: "Negative Marking Beware",
+      color: "border-amber-500/30 bg-amber-500/5 text-amber-600"
     },
     {
-      id: "rd-3",
+      id: "rdg-3",
+      section: "Part 2: Reading",
+      category: "reading",
       task: "Re-order Paragraphs",
       skills: "Reading",
-      format: "Drag jumbled text boxes into their correct logical and chronological order.",
-      feature: "Tests logical sequencing, discourse connectors, and pronoun-noun references.",
-      weight: "Logical Sequencing",
-      color: "border-indigo-500/30 bg-indigo-500/5 text-indigo-400"
+      time: "Self-paced",
+      whatToDo: "Drag and re-arrange jumbled text boxes into their original, logical sequential order using discourse marker clues.",
+      weight: "Coherence & Logic Pairs",
+      color: "border-blue-500/30 bg-blue-500/5 text-blue-500"
     },
     {
-      id: "rd-4",
+      id: "rdg-4",
+      section: "Part 2: Reading",
+      category: "reading",
       task: "Fill in the Blanks (Reading)",
       skills: "Reading",
-      format: "Select missing words from drop-down menus within a passage.",
-      feature: "Evaluates academic vocabulary, contextual grammar, and common collocations.",
+      time: "Self-paced",
+      whatToDo: "Select the correct vocabulary word from a dropdown menu for each blank in a short passage.",
       weight: "Collocations & Context",
-      color: "border-indigo-500/30 bg-indigo-500/5 text-indigo-400"
+      color: "border-purple/30 bg-purple/5 text-purple"
     },
     {
-      id: "rd-5",
+      id: "rdg-5",
+      section: "Part 2: Reading",
+      category: "reading",
       task: "Multiple Choice (Single Answer)",
       skills: "Reading",
-      format: "Read a passage and select one correct answer option.",
-      feature: "Assesses main idea comprehension, author tone, or specific factual details.",
-      weight: "Direct Comprehension",
-      color: "border-indigo-500/30 bg-indigo-500/5 text-indigo-400"
+      time: "Self-paced",
+      whatToDo: "Read a short passage and choose the single correct option answering a specific comprehension question.",
+      weight: "Focused Main Idea",
+      color: "border-slate-500/30 bg-slate-500/5 text-slate-600 dark:text-slate-300"
     }
   ];
 
   // Section 2.2: Part 3 — Listening Tasks (8 Tasks)
   const listeningTasks = [
     {
-      id: "lis-1",
+      id: "lst-1",
+      section: "Part 3: Listening",
+      category: "listening",
       task: "Summarise Spoken Text",
       skills: "Listening + Writing",
-      format: "Listen to a 60–90s lecture and write a summary of 50–70 words in 10 minutes.",
-      feature: "Evaluates listening comprehension, key concept extraction, grammar, and spelling.",
-      weight: "High Weightage Task",
-      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-400"
+      time: "10 minutes per item",
+      whatToDo: "Listen to a 60–90 second lecture and write a 50–70 word summary capturing key ideas and main supporting points.",
+      weight: "Dual Marks (Listening & Writing)",
+      color: "border-purple/30 bg-purple/5 text-purple"
     },
     {
-      id: "lis-2",
+      id: "lst-2",
+      section: "Part 3: Listening",
+      category: "listening",
       task: "Multiple Choice (Multiple Answers)",
       skills: "Listening",
-      format: "Listen to audio recording and select all correct answer options.",
-      feature: "Evaluates comprehensive understanding; negative scoring applies for incorrect selections.",
-      weight: "Multi-Option Listening",
-      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-400"
+      time: "Self-paced",
+      whatToDo: "Listen to an audio recording and select all correct options. Negative marking applies for wrong selections.",
+      weight: "Negative Marking Beware",
+      color: "border-amber-500/30 bg-amber-500/5 text-amber-600"
     },
     {
-      id: "lis-3",
+      id: "lst-3",
+      section: "Part 3: Listening",
+      category: "listening",
       task: "Fill in the Blanks",
       skills: "Listening + Writing",
-      format: "Type missing words into text transcript while listening in real time.",
-      feature: "Tests auditory recognition and strict spelling accuracy for each correct word.",
+      time: "Audio Duration + Typing",
+      whatToDo: "Follow an on-screen transcript while audio plays and type the missing words in real-time. Tests spelling precision.",
       weight: "Spelling Precision",
-      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-400"
+      color: "border-blue-500/30 bg-blue-500/5 text-blue-500"
     },
     {
-      id: "lis-4",
+      id: "lst-4",
+      section: "Part 3: Listening",
+      category: "listening",
       task: "Highlight Correct Summary",
       skills: "Listening + Reading",
-      format: "Listen to audio clip and select the one paragraph summary that best matches.",
-      feature: "Tests ability to differentiate main thesis from minor supporting points.",
-      weight: "Summary Matching",
-      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-400"
+      time: "Self-paced",
+      whatToDo: "Listen to an audio clip and choose the written paragraph that best synthesizes the spoken points.",
+      weight: "Summary Synthesis",
+      color: "border-cyan-500/30 bg-cyan-500/5 text-cyan-600"
     },
     {
-      id: "lis-5",
+      id: "lst-5",
+      section: "Part 3: Listening",
+      category: "listening",
       task: "Multiple Choice (Single Answer)",
       skills: "Listening",
-      format: "Listen to audio and select one correct answer option.",
-      feature: "Evaluates speaker intention, attitude, or specific data extraction.",
-      weight: "Direct Audio Retrieval",
-      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-400"
+      time: "Self-paced",
+      whatToDo: "Listen to an audio snippet and select the one correct option based on speaker intent or factual detail.",
+      weight: "Intent & Tone",
+      color: "border-slate-500/30 bg-slate-500/5 text-slate-600 dark:text-slate-300"
     },
     {
-      id: "lis-6",
+      id: "lst-6",
+      section: "Part 3: Listening",
+      category: "listening",
       task: "Select Missing Word",
       skills: "Listening",
-      format: "Predict the final word or phrase replaced by a beep at the end of recording.",
-      feature: "Tests contextual prediction and listening anticipation.",
-      weight: "Contextual Anticipation",
-      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-400"
+      time: "Audio Duration",
+      whatToDo: "Listen to a recording where the final word or phrase is replaced by a beep. Predict the correct word from the options.",
+      weight: "Contextual Prediction",
+      color: "border-indigo-500/30 bg-indigo-500/5 text-indigo-600"
     },
     {
-      id: "lis-7",
+      id: "lst-7",
+      section: "Part 3: Listening",
+      category: "listening",
       task: "Highlight Incorrect Words",
       skills: "Listening + Reading",
-      format: "Click on words in transcript that differ from what the speaker says.",
-      feature: "Tests real-time auditory discrepancy detection; negative scoring applies.",
-      weight: "Discrepancy Detection",
-      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-400"
+      time: "Real-time as audio plays",
+      whatToDo: "Click on words in the transcript that differ from what the speaker actually says. Negative marking applies.",
+      weight: "Real-time Attention",
+      color: "border-rose-500/30 bg-rose-500/5 text-rose-600"
     },
     {
-      id: "lis-8",
+      id: "lst-8",
+      section: "Part 3: Listening",
+      category: "listening",
       task: "Write from Dictation",
       skills: "Listening + Writing",
-      format: "Hear a spoken sentence (3–5 seconds) and type it word-for-word.",
-      feature: "Identified in source material as a high-scoring Listening task with substantial point impact.",
-      weight: "Highest Score Impact in PTE",
-      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-400"
+      time: "Self-paced (~1–2 min)",
+      whatToDo: "Hear a short sentence (3–5 seconds) and type it word-for-word with exact spelling and punctuation.",
+      weight: "🔥 Highest Score Impact in PTE",
+      color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-600"
     }
   ];
 
-  // Section 3: CEFR & Score Scale Mapping (10–90 Scale)
-  const scoringScale = [
-    { score: "85 – 90", cefr: "C2", desc: "Mastery / Proficient User — Expert level", tag: "Expert (IELTS 8.5–9.0)", color: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20" },
-    { score: "76 – 84", cefr: "C1", desc: "Effective Operational Proficiency", tag: "Target 79+ (IELTS 8.0 / Max 20 PR Pts)", color: "text-purple bg-purple/10 border-purple/20" },
-    { score: "59 – 75", cefr: "B2", desc: "Vantage / Independent User — Upper-Intermediate", tag: "Target 65+ (IELTS 7.0 / Direct Uni Admits)", color: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20" },
-    { score: "43 – 58", cefr: "B1", desc: "Threshold / Independent User — Intermediate", tag: "Target 50+ (IELTS 6.0 / Aus Student Visa)", color: "text-amber-500 bg-amber-500/10 border-amber-500/20" },
-    { score: "30 – 42", cefr: "A2", desc: "Waystage / Basic User", tag: "Elementary Functional Fluency", color: "text-slate-400 bg-slate-500/10 border-slate-500/20" },
-    { score: "10 – 29", cefr: "A1", desc: "Breakthrough / Below Basic", tag: "Fundamental Beginner Level", color: "text-slate-400 bg-slate-500/10 border-slate-500/20" },
+  // Combined tasks
+  const allTasks = [...speakingWritingTasks, ...readingTasks, ...listeningTasks];
+  const displayedTasks = activeTaskTab === 'all'
+    ? allTasks
+    : allTasks.filter(t => t.category === activeTaskTab);
+
+  // Section 3.1: CEFR Mapping & Score Scale
+  const scoreScales = [
+    {
+      scoreRange: "85–90",
+      cefr: "C2",
+      proficiency: "Mastery / Proficient User — Expert Level",
+      notes: "Equivalent to IELTS 8.5–9.0. Top target for maximum immigration points (Aus 20 points)."
+    },
+    {
+      scoreRange: "76–84",
+      cefr: "C1",
+      proficiency: "Effective Operational Proficiency",
+      notes: "Equivalent to IELTS 7.5–8.0. Qualifies for top-tier Ivy League and European graduate programs."
+    },
+    {
+      scoreRange: "59–75",
+      cefr: "B2",
+      proficiency: "Vantage / Independent User — Upper-Intermediate",
+      notes: "Equivalent to IELTS 6.5–7.0. Standard benchmark for UKVI student visas and Australian admissions."
+    },
+    {
+      scoreRange: "43–58",
+      cefr: "B1",
+      proficiency: "Threshold / Independent User — Intermediate",
+      notes: "Equivalent to IELTS 5.0–6.0. Standard baseline for pathway/foundation programs."
+    },
+    {
+      scoreRange: "30–42",
+      cefr: "A2",
+      proficiency: "Waystage / Basic User",
+      notes: "Basic communication in familiar contexts."
+    },
+    {
+      scoreRange: "10–29",
+      cefr: "A1",
+      proficiency: "Breakthrough / Below Basic",
+      notes: "Initial entry-level knowledge of English."
+    }
   ];
 
   // Section 3.2: Typical Score Requirements
-  const typicalRequirements = [
-    { purpose: "UK Student Visa (UKVI)", score: "Overall 59 (Min 59 each)", notes: "Requires PTE Academic UKVI version taken at UKVI-approved centers." },
-    { purpose: "Australia Student Visa", score: "Overall 50 (Min 50 each)", notes: "Some specialized Bachelor / Master courses require 58–65+." },
-    { purpose: "Australia Skilled Migration", score: "Overall 65 (Proficient) / 79+ (Superior)", notes: "Varies by visa subclass (189/190/491); 79+ awards maximum 20 PR points." },
-    { purpose: "New Zealand Visa", score: "Overall 50 – 65", notes: "Depends on specific student or skilled migrant category." },
-    { purpose: "Top Universities (e.g., UK / Australia)", score: "65 – 79", notes: "Each institution and department sets its own specific cutoff." },
-    { purpose: "Elite Universities (e.g., US / EU)", score: "79+", notes: "Check individual faculty guidelines for communicative band minimums." }
+  const visaScoreRequirements = [
+    {
+      purpose: "UK Student Visa (UKVI)",
+      score: "Overall 59 (Min 59 in each skill)",
+      notes: "Requires PTE Academic UKVI version taken at a SELT-approved centre."
+    },
+    {
+      purpose: "Australia Student Visa",
+      score: "Overall 50 (Min 50 in each skill)",
+      notes: "Certain university master's and clinical courses require 58–65."
+    },
+    {
+      purpose: "Australia Skilled Migration (189/190)",
+      score: "Overall 65+ (Proficient) / 79+ (Superior)",
+      notes: "Scores of 79+ yield 20 immigration points (maximum available points)."
+    },
+    {
+      purpose: "New Zealand Visa",
+      score: "Overall 50–65",
+      notes: "Specific cutoff depends on student or skilled migrant visa category."
+    },
+    {
+      purpose: "Top Global Universities (UK/Australia)",
+      score: "65–79 Overall",
+      notes: "Each institution and faculty sets its own minimum module cut-offs."
+    },
+    {
+      purpose: "Elite Universities (US / EU)",
+      score: "79+ Overall",
+      notes: "Check individual faculty requirements (e.g., Harvard, Yale, INSEAD)."
+    }
   ];
 
-  // Section 4.1: How AI Scoring Works Table
-  const aiAnalysisSkills = [
+  // Section 4.1: AI Scoring Analysis Matrix
+  const aiScoringCriteria = [
     {
       skill: "Speaking",
-      analyzes: "Oral fluency, pronunciation, rhythm, stress, and content accuracy.",
-      icon: Headphones
+      icon: Mic,
+      aiAnalyses: "Oral fluency, pronunciation, acoustic rhythm, stress patterns, speech rate, and content keyword match.",
+      howToScoreHigh: "Maintain continuous flow without hesitation or 'um/ah' pauses. Clear articulation rather than speed."
     },
     {
       skill: "Writing",
-      analyzes: "Grammar, spelling, vocabulary range, coherence, and task fulfilment.",
-      icon: FileText
+      icon: PenTool,
+      aiAnalyses: "Grammar accuracy, spelling, lexical range, text coherence, and strict adherence to word count limits (5–75 for SWT; 250–300 for Essay).",
+      howToScoreHigh: "Use proven essay and SWT structure formulas. Zero spelling mistakes in academic vocabulary."
     },
     {
       skill: "Reading",
-      analyzes: "Comprehension accuracy and vocabulary in context.",
-      icon: BookOpen
+      icon: BookOpen,
+      aiAnalyses: "Comprehension accuracy, contextual collocation recognition, and vocabulary in context across fill in the blanks.",
+      howToScoreHigh: "Prioritize Reading & Writing Fill in the Blanks and Re-order paragraphs for maximum points."
     },
     {
       skill: "Listening",
-      analyzes: "Comprehension and spelling accuracy, particularly in dictation tasks.",
-      icon: Laptop
+      icon: Headphones,
+      aiAnalyses: "Spoken comprehension, transcript discrepancy identification, and 100% accurate spelling in Write from Dictation.",
+      howToScoreHigh: "Write from Dictation and Repeat Sentence contribute heavily to total Listening marks."
     }
   ];
 
-  // Section 5: PTE vs IELTS Quick Comparison Table
-  const comparisonData = [
-    {
-      feature: "Test Format",
-      pte: "100% computer-based at Pearson VUE test centres",
-      ielts: "Paper-based or computer-delivered options"
-    },
-    {
-      feature: "Scoring Methodology",
-      pte: "AI-scored, without a human speaking examiner",
-      ielts: "Human examiner involved in Speaking and Writing assessment"
-    },
-    {
-      feature: "Result Turnaround",
-      pte: "Within 48 hours, according to source material (often in 24 hrs)",
-      ielts: "Source lists 13 days (paper) or 3–5 days online (computer)"
-    },
-    {
-      feature: "Test Duration",
-      pte: "Approximately 2 hours in a single unbroken sitting",
-      ielts: "Approximately 2 hours 45 minutes, with Speaking separate"
-    },
-    {
-      feature: "Speaking Format",
-      pte: "Responses recorded on a computer via headset microphone",
-      ielts: "Face-to-face with an examiner, as described in source"
-    },
-    {
-      feature: "Score Scale",
-      pte: "10 – 90, Global Scale of English (GSE)",
-      ielts: "0 – 9 band scores"
-    },
-    {
-      feature: "Score Validity",
-      pte: "2 years from test date",
-      ielts: "2 years from test date"
-    },
-    {
-      feature: "Rescheduling Policy",
-      pte: "Up to 14 days before the test, according to source",
-      ielts: "Up to 5 weeks before the test, according to source"
-    },
-    {
-      feature: "Score Sending",
-      pte: "Online score sending directly to institutions (unlimited & free)",
-      ielts: "Source states that a fee applies per score recipient after free quota"
-    }
+  // Section 5: PTE vs IELTS Comparison
+  const pteVsIeltsData = [
+    { feature: "Test Format", pte: "100% Computer-based (Keyboard & Headset)", ielts: "Paper-based or Computer-delivered" },
+    { feature: "Scoring Engine", pte: "Patented AI scoring without human examiners", ielts: "Human examiners evaluate Speaking & Writing" },
+    { feature: "Result Turnaround", pte: "Within 48 hours (often in under 24 hrs)", ielts: "3–5 days online (CDI) or 13 days (Paper)" },
+    { feature: "Test Duration", pte: "Approximately 2 hours in a single sitting", ielts: "Approx 2h 45m (Speaking scheduled separately)" },
+    { feature: "Speaking Format", pte: "Recorded into microphone; AI acoustic analysis", ielts: "Face-to-face 1-on-1 interview with examiner" },
+    { feature: "Score Scale", pte: "10–90 Scale (Global Scale of English)", ielts: "1–9 Band Scale (0.5 band increments)" },
+    { feature: "Score Validity", pte: "2 Years from test date", ielts: "2 Years from test date" },
+    { feature: "Rescheduling Flexibility", pte: "Book up to 24 hrs in advance at 400+ centres", ielts: "Fixed test dates subject to regional capacity" },
+    { feature: "Score Sending", pte: "Free unlimited online score sends to institutions", ielts: "Free up to 5 institutions; fee for extra" }
   ];
 
-  // Section 6.1: Comprehensive Study Material (A to H)
-  const studyMaterials = [
-    { code: "A", title: "Module-by-Module Guides", desc: "Guides for all 20 PTE task types covering task-specific strategies, recommended approaches, common pitfalls, and practical score improvement techniques.", icon: BookOpen },
-    { code: "B", title: "Speaking Templates", desc: "Proven response structure templates for Describe Image and Re-tell Lecture focusing on continuous oral fluency, rhythm, and information organization.", icon: Headphones },
-    { code: "C", title: "Essay Writing Frameworks", desc: "Standardized templates for Write Essay covering 250–300-word argumentative and discursive structures, linking language, and idea organization.", icon: FileText },
-    { code: "D", title: "Summarise Written Text Formula", desc: "A precision one-sentence summary formula designed to identify core thesis ideas and express them concisely within 5–75 words.", icon: Lightbulb },
-    { code: "E", title: "High-Frequency Vocabulary Lists", desc: "Curated academic word lists and collocation banks designed specifically to support Fill in the Blanks tasks across Reading and Listening.", icon: Sparkles },
-    { code: "F", title: "Write from Dictation Practice Bank", desc: "Comprehensive audio sentence bank for daily dictation practice—targeting the highest-scoring task in the Listening section.", icon: Flame },
-    { code: "G", title: "Pronunciation & Oral Fluency Drills", desc: "Specialized exercises targeting pronunciation, oral fluency, rhythm, pitch modulation, and performance against Pearson's AI acoustic scoring criteria.", icon: Bot },
-    { code: "H", title: "Re-order Paragraphs Strategy", desc: "Training in logical connectors, sequencing clues, discourse markers, paragraph structure, and strict time management.", icon: Layers }
+  // Section 6.1: Study Modules A to H
+  const glaPteCurriculum = [
+    { code: "Module A", title: "Diagnostic Assessment & Baseline AI Audit", icon: Target, desc: "Identify baseline score, acoustic pitch calibration, and section weakness mapping." },
+    { code: "Module B", title: "Speaking Fluency & Acoustic Pitch Calibration", icon: Mic, desc: "Read Aloud, Repeat Sentence, Describe Image & Re-tell Lecture template mastery." },
+    { code: "Module C", title: "Writing Section Formulas & Essay Frameworks", icon: PenTool, desc: "One-sentence SWT mastery (5–75 words) and 250–300 words essay templates." },
+    { code: "Module D", title: "Reading Blanks & Collocation Strategy", icon: BookOpen, desc: "Drag & drop fill in the blanks mastery and paragraph re-ordering logic." },
+    { code: "Module E", title: "Listening Mastery & Dictation Accuracy", icon: Headphones, desc: "Write from Dictation high-frequency bank drills and SST summary formulas." },
+    { code: "Module F", title: "AI Portal Drills & Algorithm Optimisation", icon: Bot, desc: "Live practice on AI platforms replicating Pearson's scoring criteria." },
+    { code: "Module G", title: "Time Management & Negative Marking Control", icon: Clock, desc: "Strategies to pace Reading and prevent penalty marks in multiple-choice tasks." },
+    { code: "Module H", title: "Full-Length Scored Mock Simulations", icon: Award, desc: "Full 2-hour exam simulations in our computer testing lab with detailed diagnostic reports." }
   ];
 
-  // Section 6.1.1: Official Pearson Resources Included (5 Items)
-  const officialPearsonResources = [
-    "Official PTE preparation materials from Pearson Education.",
-    "Scored practice tests from Pearson's Official Practice Platform.",
-    "Real test-format sample questions published by Pearson.",
-    "AI-scored Speaking and Writing practice simulations.",
-    "Official Pearson score guides and task descriptors."
+  // Section 6.3: Online Portals & Platforms
+  const pteOnlinePortals = [
+    { name: "Pearson Official Platform", owner: "Pearson PLC", desc: "Official Pearson Scored Practice Tests replicating exact algorithm calibration.", badge: "Official Pearson" },
+    { name: "E2Language PTE", owner: "E2 Network", desc: "World-renowned method lessons, task templates, and expert video breakdowns.", badge: "Method Templates" },
+    { name: "PTE Magic Portal", owner: "AI Practice Suite", desc: "AI-evaluated speaking drills and real-time pronunciation scoring engine.", badge: "Real-time AI Feedback" },
+    { name: "PTE Study / PTEGURU", owner: "Question Banks", desc: "Extensive practice banks for high-frequency repeated exam questions.", badge: "Repeated Exam Banks" },
+    { name: "Video Strategy Guides", owner: "GLA Video Portal", desc: "Step-by-step masterclass walkthroughs for every single task type.", badge: "Video Walkthroughs" },
+    { name: "Write from Dictation Banks", owner: "GLA Prediction Vault", desc: "Updated weekly with high-probability sentences appearing in recent exams.", badge: "Weekly Prediction" }
   ];
 
-  // Section 6.3: AI-Powered Online Portals Table
-  const aiPortalsTable = [
-    {
-      portal: "Pearson Official Practice Platform",
-      support: "AI-scored full mock tests using Pearson's own scoring engine, with the PTE Academic interface and scoring system."
-    },
-    {
-      portal: "E2Language",
-      support: "AI-powered lessons and adaptive practice for PTE task types, with difficulty adjusted according to student performance."
-    },
-    {
-      portal: "PTE Magic",
-      support: "AI-scored Speaking and Writing tasks with instant feedback to help students understand their performance."
-    },
-    {
-      portal: "PTEGURU / PTE Study",
-      support: "Question banks and score-prediction tools for practising different examination tasks."
-    },
-    {
-      portal: "Pearson Official Video Walkthroughs",
-      support: "Official video guides explaining the task types and computer-based examination format."
-    },
-    {
-      portal: "Write from Dictation AI Banks",
-      support: "AI-assisted sentence banks for targeted daily practice in Write from Dictation."
-    }
-  ];
-
-  // Section 7: 8 Main Features / Why Choose GLA PTE Programme
-  const whyGlaEightPillars = [
-    {
-      number: "7.1",
-      title: "AI-Aligned Teaching",
-      desc: "The programme focuses on the scoring criteria used in PTE rather than relying solely on general English instruction. Students practise task-specific techniques intended to improve performance.",
-      tag: "Scoring Criteria Focus",
-      icon: Cpu
-    },
-    {
-      number: "7.2",
-      title: "Official Pearson Materials",
-      desc: "The academy states that students practise with Pearson preparation content and official scored practice tests to provide a more authentic examination practice experience.",
-      tag: "Official Pearson Base",
-      icon: BookOpen
-    },
-    {
-      number: "7.3",
-      title: "Fast Results Coaching",
-      desc: "The programme is designed to help students prepare efficiently, particularly when they have approaching admission or visa deadlines, highlighting PTE's 48-hour turnaround.",
-      tag: "48-Hour Exam Target",
-      icon: Clock
-    },
-    {
-      number: "7.4",
-      title: "AI-Scored Mock Practice",
-      desc: "Online mock tests provide AI-based scoring and feedback to help students assess their preparation and identify specific areas for improvement before test day.",
-      tag: "Diagnostic Feedback",
-      icon: Bot
-    },
-    {
-      number: "7.5",
-      title: "Task-by-Task Strategy",
-      desc: "The programme provides separate preparation strategies for individual PTE task types. Each of the 20 task types has its own patterns and scoring considerations.",
-      tag: "All 20 Tasks Covered",
-      icon: Layers
-    },
-    {
-      number: "7.6",
-      title: "Personalised Score Plan",
-      desc: "Each student receives a study plan based on a diagnostic mock test to identify weak areas, determine improvement priorities, allocate practice time, and target high-value tasks.",
-      tag: "Tailored Study Roadmap",
-      icon: Target
-    },
-    {
-      number: "7.7",
-      title: "AI Portal Integration",
-      desc: "The academy uses online practice platforms, including Pearson's practice platform, E2Language, and PTE Magic, to familiarise students with the digital examination environment.",
-      tag: "Multi-Platform Practice",
-      icon: Laptop
-    },
-    {
-      number: "7.8",
-      title: "Small Batches, Maximum Attention",
-      desc: "The programme maintains small class sizes to provide dedicated Speaking practice, individual Writing feedback, personalised coaching support, and more individual attention.",
-      tag: "Small Class Format",
-      icon: Users
-    }
+  // Section 7: Why Choose GLA (8 Core Pillars)
+  const whyGla8Pillars = [
+    { number: "01", title: "AI-Aligned Teaching", desc: "We train you on how the Pearson AI scoring engine evaluates speech, stress, and text, ensuring maximum algorithmic marks.", icon: Bot },
+    { number: "02", title: "Official Pearson Materials", desc: "Access official Pearson question banks and authentic scored practice exams.", icon: BookOpen },
+    { number: "03", title: "Fast-Results Coaching", desc: "Accelerated preparation pathways designed to achieve your target 65+ or 79+ score in 2 to 4 weeks.", icon: Zap },
+    { number: "04", title: "AI-Scored Mock Tests", desc: "Practice under realistic exam conditions with instant AI diagnostic feedback and scorecards.", icon: Laptop },
+    { number: "05", title: "Task-by-Task Strategy", desc: "Master proven formulas for Describe Image, Re-tell Lecture, Summarise Written Text, and Essay.", icon: Target },
+    { number: "06", title: "Personalised Score Plan", desc: "Targeted study schedules focused on your individual score requirements (e.g. 50, 65, or 79+).", icon: TrendingUp },
+    { number: "07", title: "AI Portal Integration", desc: "Seamless access to leading PTE AI practice platforms and weekly prediction banks.", icon: Cpu },
+    { number: "08", title: "Small Batches (Max 5–7)", desc: "Small class sizes ensure personal acoustic feedback, mic positioning checks, and 1-on-1 attention.", icon: Users }
   ];
 
   return (
-    <div className="flex flex-col overflow-x-hidden text-navy bg-white dark:bg-[#020a16] transition-colors duration-300">
+    <div className="flex flex-col overflow-x-hidden text-navy bg-white dark:bg-[#020a16]">
       
-      {/* ========================================================= */}
-      {/* 1. HERO SECTION — PTE ESSENTIALS                          */}
-      {/* ========================================================= */}
-      <section className="relative bg-[#00122E] dark:bg-[#020c1b] text-white overflow-hidden py-14 lg:py-24 border-b border-card-border transition-colors duration-300">
-        
-        {/* Ambient Radial Background Glows */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-10 w-[400px] h-[400px] bg-indigo-600 rounded-full blur-3xl"></div>
+      {/* 1. HERO SECTION */}
+      <section className="relative text-white py-14 sm:py-20 lg:py-24 border-b border-card-border overflow-hidden bg-[#00122E] dark:bg-[#010814]">
+        {/* Glow ambient background elements */}
+        <div className="absolute inset-0 pointer-events-none opacity-30">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-80 h-80 bg-blue-600 rounded-full blur-3xl opacity-30"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             
-            {/* Left Column: Heading, Slogan & Core Tenets */}
-            <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left">
+            {/* Left Column: Hero Text & Tenets */}
+            <div className="lg:col-span-7 flex flex-col gap-5 sm:gap-6 text-center lg:text-left">
               
-              {/* Trust & Official Accreditation Badges */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-purple/25 border border-purple-300/35 rounded-full text-xs font-semibold text-purple-200 shadow-sm">
-                  <ShieldCheck className="w-4 h-4 text-purple-200 shrink-0" />
-                  <span>ISO 9001:2015 Certified Academy • Pearson AI-Aligned</span>
+              {/* Badges Row */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest bg-purple/35 text-purple-200 px-3.5 py-1.5 rounded-full border border-purple-300/30 shadow-sm backdrop-blur-md">
+                  <Bot className="w-3.5 h-3.5 text-purple-hero" />
+                  PTE Essentials — Course Material
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/15 border border-emerald-400/30 rounded-full text-xs font-bold text-emerald-300">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Fast 48-Hour Result Turnaround</span>
+                <span className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-widest bg-emerald-500/20 text-emerald-300 px-3.5 py-1.5 rounded-full border border-emerald-400/30">
+                  AI-Scored & 48-Hour Results
                 </span>
               </div>
 
-              {/* Main Headline */}
-              <div className="flex flex-col gap-2">
-                <span className="text-xs font-extrabold uppercase tracking-widest text-purple-300">
-                  PTE Essentials — Course Material
+              {/* Headings */}
+              <div>
+                <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-slate-400 block mb-1.5">
+                  The Global Language Academy
                 </span>
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display leading-tight tracking-tight text-white">
-                  Prepare, Practice & <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-hero via-indigo-200 to-white">
-                    Achieve Your Best in PTE.
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display leading-[1.12] text-white tracking-tight">
+                  PTE Academic & <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-hero via-purple-300 to-emerald-400">
+                    UKVI Preparation (79+)
                   </span>
                 </h1>
               </div>
 
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Everything you need to prepare, practice, and achieve your best in the PTE Test with official Pearson resources, task-by-task blueprints, and AI-scored mock simulations.
+              <p className="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+                Everything you need to prepare, practise, and achieve your best in the PTE Test. 
+                Accepted by 3,000+ universities and approved for Australian, UK, and New Zealand student and skilled migration applications.
               </p>
 
-              {/* 4 Core Hero Tenets */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
-                {[
-                  { title: "Comprehensive Content", sub: "Official Materials" },
-                  { title: "Exam-Focused", sub: "20 Task Blueprints" },
-                  { title: "Practice Smartly", sub: "AI Portal Mock Tests" },
-                  { title: "Achieve Excellence", sub: "Target 79+ & PR Points" },
-                ].map((item, i) => (
-                  <div key={i} className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm flex flex-col items-center lg:items-start text-center lg:text-left">
-                    <span className="text-xs font-bold text-purple-200 leading-tight">{item.title}</span>
-                    <span className="text-[11px] text-slate-400 mt-0.5">{item.sub}</span>
+              {/* 4 Core Tenets Grid */}
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-md shadow-lg">
+                <div className="text-[11px] font-extrabold uppercase tracking-wider text-purple-300 mb-3 flex items-center gap-2 justify-center lg:justify-start">
+                  <Star className="w-3.5 h-3.5 text-purple-hero fill-purple-hero" />
+                  Our 4 Core Learning Tenets
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+                  <div className="bg-white/5 rounded-xl p-2.5 border border-white/5 hover:border-purple/30 transition-colors">
+                    <span className="block text-xs font-bold text-white">Comprehensive Content</span>
                   </div>
-                ))}
+                  <div className="bg-white/5 rounded-xl p-2.5 border border-white/5 hover:border-purple/30 transition-colors">
+                    <span className="block text-xs font-bold text-white">Exam-Focused Approach</span>
+                  </div>
+                  <div className="bg-white/5 rounded-xl p-2.5 border border-white/5 hover:border-purple/30 transition-colors">
+                    <span className="block text-xs font-bold text-white">Practice Smartly</span>
+                  </div>
+                  <div className="bg-white/5 rounded-xl p-2.5 border border-white/5 hover:border-purple/30 transition-colors">
+                    <span className="block text-xs font-bold text-white">Achieve Excellence</span>
+                  </div>
+                </div>
               </div>
 
-              {/* Quote / Subhead Banner */}
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-purple/20 via-purple/10 to-transparent border border-purple-400/25 text-xs sm:text-sm font-semibold text-purple-200 text-center lg:text-left flex flex-col sm:flex-row items-center justify-between gap-2">
-                <span>&ldquo;Your Results. Closer to Your Goals. English Proficiency. Global Opportunities.&rdquo;</span>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/15 px-2.5 py-0.5 rounded-full whitespace-nowrap">
-                  Target 79+ / 65+
-                </span>
+              {/* Sub-Motto Pill */}
+              <div className="p-3 sm:p-3.5 bg-gradient-to-r from-purple/30 via-slate-800/60 to-emerald-900/30 rounded-xl border border-white/10 text-xs sm:text-sm font-semibold text-slate-200 text-center lg:text-left">
+                🎯 <strong className="text-white">Your Results. Closer to Your Goals. English Proficiency. Global Opportunities.</strong> Master all 20 tasks with official AI mock simulations.
               </div>
 
+              {/* Quick Specs Strip */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 py-2 border-t border-white/10">
+                <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl p-2.5 sm:p-3">
+                  <Clock className="w-4 h-4 text-purple-300 shrink-0" />
+                  <div>
+                    <span className="block text-[9px] uppercase font-bold text-slate-400">Test Duration</span>
+                    <span className="text-xs font-extrabold text-white">~2 Hours (Single Sitting)</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl p-2.5 sm:p-3">
+                  <Zap className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <div>
+                    <span className="block text-[9px] uppercase font-bold text-slate-400">Results In</span>
+                    <span className="text-xs font-extrabold text-white">Within 48 Hours</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl p-2.5 sm:p-3">
+                  <Users className="w-4 h-4 text-purple-300 shrink-0" />
+                  <div>
+                    <span className="block text-[9px] uppercase font-bold text-slate-400">Batch Size</span>
+                    <span className="text-xs font-extrabold text-white">5–7 Max</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl p-2.5 sm:p-3">
+                  <Award className="w-4 h-4 text-purple-300 shrink-0" />
+                  <div>
+                    <span className="block text-[9px] uppercase font-bold text-slate-400">Target Score</span>
+                    <span className="text-xs font-extrabold text-white">65+ to 79+ / 90</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Right Column: Lead Capture Form Card */}
-            <div className="lg:col-span-5">
-              <div className="bg-white/10 dark:bg-card/90 backdrop-blur-md border border-white/20 dark:border-card-border p-6 sm:p-8 rounded-3xl shadow-2xl relative overflow-hidden">
-                <div className="flex flex-col gap-1 mb-5 text-center">
-                  <span className="text-xs font-bold uppercase tracking-wider text-purple-300">Fast-Track Preparation</span>
-                  <h3 className="text-xl sm:text-2xl font-extrabold font-display text-white">Book Free Diagnostic Test</h3>
-                  <p className="text-xs text-slate-300">Get your baseline score report and a personalized PTE preparation plan.</p>
+            {/* Right Column: Lead Form Card */}
+            <div className="lg:col-span-5 w-full max-w-md mx-auto lg:max-w-none">
+              <div className="relative p-1.5 rounded-3xl bg-gradient-to-tr from-purple/40 via-emerald-500/20 to-purple/20 border border-white/15 shadow-2xl backdrop-blur-xl">
+                <div className="bg-[#00122E]/95 p-5 sm:p-6 rounded-[22px] border border-white/10">
+                  <div className="mb-4 text-center">
+                    <span className="inline-block text-[10px] font-extrabold uppercase tracking-wider bg-purple/35 text-purple-200 px-3 py-1 rounded-full border border-purple-300/20 mb-2">
+                      Free Diagnostic & Lab Trial
+                    </span>
+                    <h2 className="text-xl sm:text-2xl font-bold text-white font-display">Book Your PTE AI Assessment</h2>
+                    <p className="text-xs text-slate-300 mt-1">Get instant pitch & oral fluency analysis with our AI engine.</p>
+                  </div>
+                  <LeadForm defaultCourse="pte-academic" />
+                  <div className="mt-3 text-center">
+                    <span className="text-[10px] text-slate-400">🔒 100% Confidential • Instant Academic Assessment</span>
+                  </div>
                 </div>
-
-                <LeadForm defaultCourse="PTE Academic Strategy Preparation" />
               </div>
             </div>
 
@@ -589,204 +617,206 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
         </div>
       </section>
 
-      {/* ========================================================= */}
-      {/* STICKY SUB-NAVIGATION BAR                                 */}
-      {/* ========================================================= */}
-      <nav className="sticky top-16 sm:top-20 z-30 bg-card/95 backdrop-blur-md border-b border-card-border py-3 shadow-sm transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth text-xs font-bold text-navy-muted">
-            <span className="text-purple font-extrabold shrink-0 hidden md:inline">Jump to:</span>
-            {subNavLinks.map((link, idx) => (
-              <a
-                key={idx}
-                href={link.href}
-                className="px-3.5 py-1.5 rounded-xl whitespace-nowrap hover:bg-purple/10 hover:text-purple border border-transparent hover:border-purple/20 transition-all shrink-0"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </nav>
-
-      {/* ========================================================= */}
-      {/* SECTION 1: WHAT IS PTE? & PTE AT A GLANCE                 */}
-      {/* ========================================================= */}
-      <section id="overview" className="bg-card text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300 scroll-mt-28">
+      {/* 2. SECTION 1: WHAT IS PTE & PTE AT A GLANCE */}
+      <section id="overview" className="bg-white dark:bg-[#020a16] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-3xl mx-auto text-center mb-14 flex flex-col gap-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              1. What Is PTE?
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              Computer-Based English Language Proficiency
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">1. Introduction & Overview</span>
+            <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
+              What Is PTE?
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              <strong>PTE (Pearson Test of English)</strong> is a computer-based English language proficiency test developed and administered by <strong>Pearson PLC</strong>, one of the world&apos;s largest education companies. It is designed to assess the real-life English language skills of non-native speakers who wish to study or work in an English-speaking environment.
-            </p>
-            <p className="text-xs sm:text-sm text-navy-muted leading-relaxed">
-              Unlike traditional paper-based tests, PTE uses <strong>Artificial Intelligence (AI)</strong> technology to evaluate responses. According to official source standards, this reduces human subjectivity in the scoring process. Results are typically available within <strong>48 hours</strong> of the test, making PTE one of the fastest-turnaround English proficiency tests worldwide.
+              <strong>PTE (Pearson Test of English)</strong> is a computer-based English language proficiency test developed and administered by <strong>Pearson PLC</strong>, one of the world&apos;s largest education companies.
+              It evaluates the real-life English language skills of non-native speakers using Artificial Intelligence (AI) to eliminate human examiner subjectivity, delivering official results within <strong>48 hours</strong>.
             </p>
           </div>
 
-          {/* PTE at a Glance Header */}
-          <div className="flex items-center justify-between border-b border-card-border pb-4 mb-8">
-            <h3 className="text-lg font-bold font-display text-navy flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-purple" />
-              <span>PTE at a Glance</span>
-            </h3>
-            <span className="text-xs text-navy-muted font-semibold">Pearson VUE Network</span>
-          </div>
-
-          {/* 6 Core Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pteGlanceFeatures.map((feat, idx) => {
-              const IconComp = feat.icon;
+          {/* 6 Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-12">
+            {pteGlanceFeatures.map((item, idx) => {
+              const Icon = item.icon;
               return (
                 <div
                   key={idx}
-                  className="group bg-section-alt/70 hover:bg-card border border-card-border hover:border-purple/50 p-6 sm:p-7 rounded-2xl sm:rounded-3xl shadow-sm hover-lift transition-all duration-300 flex flex-col justify-between gap-4"
+                  className="p-6 rounded-3xl bg-slate-50 dark:bg-[#0b1a2e] border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
                 >
-                  <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-2xl bg-purple/10 border border-purple/20 flex items-center justify-center group-hover:bg-purple group-hover:text-white transition-all shrink-0">
-                        <IconComp className="w-6 h-6 text-purple group-hover:text-white transition-colors" />
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`p-3 rounded-2xl border ${item.accent} group-hover:scale-110 transition-transform`}>
+                        <Icon className="w-5 h-5" />
                       </div>
-                      <span className="text-[10px] font-bold text-purple bg-purple/10 px-2.5 py-0.5 rounded-full">
-                        {feat.tag}
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple bg-purple-50 dark:bg-purple-950/50 px-2.5 py-1 rounded-full border border-purple-200 dark:border-purple-800/40">
+                        {item.tag}
                       </span>
                     </div>
-                    <h4 className="text-base font-bold font-display text-navy group-hover:text-purple transition-colors mt-1">
-                      {feat.title}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-navy-muted leading-relaxed">
-                      {feat.description}
-                    </p>
+                    <h3 className="text-base sm:text-lg font-bold text-navy mb-2 font-display">{item.title}</h3>
+                    <p className="text-xs sm:text-sm text-navy-muted leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               );
             })}
           </div>
 
+          {/* Section 1.1: PTE at a Glance Banner */}
+          <div className="bg-[#00122E] dark:bg-[#041226] text-white p-6 sm:p-8 lg:p-10 rounded-3xl border border-white/10 shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8 flex flex-col gap-3.5">
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-300">PTE at a Glance</span>
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold font-display text-white leading-tight">
+                  Fastest Result Turnaround with AI-Powered Objective Evaluation
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  PTE is accepted by over 3,000 universities and colleges worldwide including Harvard, Yale, INSEAD, and prestigious Russell Group universities. It is fully approved for Australian SkillSelect visas (yielding up to 20 immigration points), UK Home Office visas (PTE Academic UKVI), and New Zealand migration pathways.
+                </p>
+              </div>
+              <div className="lg:col-span-4 grid grid-cols-2 gap-3 border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-8">
+                <div className="bg-white/5 p-3 rounded-xl border border-white/5 text-center">
+                  <span className="block text-xl font-black text-emerald-400 font-display">3,000+</span>
+                  <span className="text-[10px] font-bold text-slate-300 uppercase">Universities</span>
+                </div>
+                <div className="bg-white/5 p-3 rounded-xl border border-white/5 text-center">
+                  <span className="block text-xl font-black text-emerald-400 font-display">48 Hrs</span>
+                  <span className="text-[10px] font-bold text-slate-300 uppercase">Results</span>
+                </div>
+                <div className="bg-white/5 p-3 rounded-xl border border-white/5 text-center">
+                  <span className="block text-xl font-black text-emerald-400 font-display">400+</span>
+                  <span className="text-[10px] font-bold text-slate-300 uppercase">VUE Centres</span>
+                </div>
+                <div className="bg-white/5 p-3 rounded-xl border border-white/5 text-center">
+                  <span className="block text-xl font-black text-emerald-400 font-display">2 Years</span>
+                  <span className="text-[10px] font-bold text-slate-300 uppercase">Validity</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* ========================================================= */}
-      {/* SECTION 2: STRUCTURE OF PTE & THE 20 TASK TYPES           */}
-      {/* ========================================================= */}
-      <section id="structure" className="bg-[#F6F8FC] dark:bg-[#0B1A2E] text-navy py-16 sm:py-24 border-b border-card-border/80 transition-colors duration-300 scroll-mt-28">
+      {/* 3. SECTION 2: STRUCTURE OF PTE & 20 TASK TYPES */}
+      <section id="structure" className="bg-slate-50 dark:bg-[#071322] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-3xl mx-auto text-center mb-12 flex flex-col gap-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              2. Structure of PTE
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              Single-Session Test Architecture & 20 Task Types
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">2. Structure of the PTE Test</span>
+            <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
+              Test Format & All 20 Task Types
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              PTE is a single-session, computer-delivered test lasting approximately two hours. It assesses all four language skills in an <strong>integrated format</strong>, meaning a single task may assess more than one skill simultaneously. The test begins with an unscored 1-minute personal introduction, followed by three scored parts in a fixed order.
+              PTE is a single-session, computer-delivered test lasting approximately <strong>2 hours</strong>. 
+              The test begins with an unscored 1-minute personal introduction, followed by three integrated scored parts assessing all four language skills simultaneously.
             </p>
           </div>
 
-          {/* 2.1 The Three Parts of PTE Table */}
-          <div className="bg-card border border-card-border rounded-3xl p-6 sm:p-8 shadow-sm mb-12">
-            <h3 className="text-lg font-bold font-display text-navy mb-4 flex items-center gap-2">
-              <Layers className="w-5 h-5 text-purple" />
-              <span>2.1 The Three Parts of PTE</span>
-            </h3>
-
+          {/* Section 2.1 Table: The Three Parts of PTE */}
+          <div className="bg-white dark:bg-[#0b1a2e] rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm mb-12">
+            <div className="p-5 bg-[#00122E] dark:bg-[#041226] text-white flex items-center justify-between">
+              <h3 className="text-base font-bold font-display">2.1 The Three Parts of PTE</h3>
+              <span className="text-xs font-semibold text-purple-200 bg-purple/35 px-3 py-1 rounded-full border border-purple/30">
+                Total Duration: ~2 Hours
+              </span>
+            </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs sm:text-sm">
-                <thead className="bg-section-alt border-b border-card-border text-navy font-bold uppercase tracking-wider text-[11px]">
+              <table className="w-full text-left text-xs sm:text-sm min-w-[600px]">
+                <thead className="bg-slate-100 dark:bg-[#071322] text-navy font-bold uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
                   <tr>
-                    <th className="p-4 sm:p-5">Part</th>
-                    <th className="p-4 sm:p-5">Time Allowed</th>
-                    <th className="p-4 sm:p-5">Skills Assessed</th>
-                    <th className="p-4 sm:p-5">Question Types</th>
+                    <th className="py-3.5 px-4 sm:px-6">Test Part</th>
+                    <th className="py-3.5 px-4 sm:px-6">Time Allowed</th>
+                    <th className="py-3.5 px-4 sm:px-6">Skills Assessed</th>
+                    <th className="py-3.5 px-4 sm:px-6">Core Format Details</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-card-border text-navy-muted">
-                  <tr className="hover:bg-purple/5 transition-colors">
-                    <td className="p-4 sm:p-5 font-bold text-navy flex items-center gap-2.5">
-                      <span className="w-3 h-3 rounded-full bg-purple"></span>
-                      Part 1: Speaking & Writing
-                    </td>
-                    <td className="p-4 sm:p-5 font-extrabold text-purple">54–67 minutes</td>
-                    <td className="p-4 sm:p-5">Speaking and Writing through integrated tasks</td>
-                    <td className="p-4 sm:p-5 font-semibold text-navy">7 Tasks (Read Aloud, Essay, etc.)</td>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-navy">
+                  <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-purple">Part 1: Speaking & Writing</td>
+                    <td className="py-3.5 px-4 sm:px-6 font-semibold">54–67 minutes</td>
+                    <td className="py-3.5 px-4 sm:px-6">Speaking and Writing</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">7 integrated tasks including Read Aloud, Repeat Sentence, Essay</td>
                   </tr>
-                  <tr className="hover:bg-purple/5 transition-colors">
-                    <td className="p-4 sm:p-5 font-bold text-navy flex items-center gap-2.5">
-                      <span className="w-3 h-3 rounded-full bg-indigo-500"></span>
-                      Part 2: Reading
-                    </td>
-                    <td className="p-4 sm:p-5 font-extrabold text-purple">29–30 minutes</td>
-                    <td className="p-4 sm:p-5">Reading through multiple question types</td>
-                    <td className="p-4 sm:p-5 font-semibold text-navy">5 Tasks (Fill in Blanks, Re-order, etc.)</td>
+                  <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-purple">Part 2: Reading</td>
+                    <td className="py-3.5 px-4 sm:px-6 font-semibold">29–30 minutes</td>
+                    <td className="py-3.5 px-4 sm:px-6">Reading (integrated Writing)</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">5 tasks including high-scoring Fill in the Blanks & Re-order paragraphs</td>
                   </tr>
-                  <tr className="hover:bg-purple/5 transition-colors">
-                    <td className="p-4 sm:p-5 font-bold text-navy flex items-center gap-2.5">
-                      <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
-                      Part 3: Listening
-                    </td>
-                    <td className="p-4 sm:p-5 font-extrabold text-purple">30–43 minutes</td>
-                    <td className="p-4 sm:p-5">Listening, integrated with Reading and Writing</td>
-                    <td className="p-4 sm:p-5 font-semibold text-navy">8 Tasks (Dictation, Summarise Spoken, etc.)</td>
+                  <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-purple">Part 3: Listening</td>
+                    <td className="py-3.5 px-4 sm:px-6 font-semibold">30–43 minutes</td>
+                    <td className="py-3.5 px-4 sm:px-6">Listening, Reading & Writing</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">8 tasks including high-weightage Write from Dictation & SST</td>
                   </tr>
-                  <tr className="bg-section-alt/50">
-                    <td className="p-4 sm:p-5 font-medium text-navy-muted italic flex items-center gap-2.5">
-                      <span className="w-3 h-3 rounded-full bg-slate-400"></span>
-                      Personal Introduction
-                    </td>
-                    <td className="p-4 sm:p-5 text-navy-muted font-medium">Approx. 1 minute</td>
-                    <td className="p-4 sm:p-5 text-navy-muted" colSpan={2}>
-                      Unscored; recorded for university and visa institution verification only
-                    </td>
+                  <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors bg-purple-50/40 dark:bg-purple-950/20">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-navy-muted">Personal Introduction</td>
+                    <td className="py-3.5 px-4 sm:px-6 font-semibold text-navy-muted">~1 minute</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Unscored</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Recorded voice profile sent to selected universities/institutions</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
 
-          {/* 2.2 Task Types by Section Interactive Filter Bar */}
+          {/* Section 2.2 Task Types Interactive Filter & View Toggle */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-bold text-navy mr-1">2.2 Filter Section:</span>
-              {[
-                { id: 'all', label: 'All 20 Tasks' },
-                { id: 'speaking', label: 'Part 1: Speaking & Writing (7)' },
-                { id: 'reading', label: 'Part 2: Reading (5)' },
-                { id: 'listening', label: 'Part 3: Listening (8)' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTaskTab(tab.id as typeof activeTaskTab)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    activeTaskTab === tab.id
-                      ? 'bg-purple text-white shadow-sm'
-                      : 'bg-card border border-card-border text-navy-muted hover:text-navy hover:border-purple/30'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+            {/* Category Filter Pills */}
+            <div className="flex flex-wrap justify-center bg-white dark:bg-[#0b1a2e] p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <button
+                onClick={() => setActiveTaskTab('all')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  activeTaskTab === 'all'
+                    ? 'bg-purple text-white shadow-sm'
+                    : 'text-navy-muted hover:text-navy'
+                }`}
+              >
+                All 20 Tasks
+              </button>
+              <button
+                onClick={() => setActiveTaskTab('speaking')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  activeTaskTab === 'speaking'
+                    ? 'bg-purple text-white shadow-sm'
+                    : 'text-navy-muted hover:text-navy'
+                }`}
+              >
+                Speaking & Writing (7)
+              </button>
+              <button
+                onClick={() => setActiveTaskTab('reading')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  activeTaskTab === 'reading'
+                    ? 'bg-purple text-white shadow-sm'
+                    : 'text-navy-muted hover:text-navy'
+                }`}
+              >
+                Reading (5)
+              </button>
+              <button
+                onClick={() => setActiveTaskTab('listening')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  activeTaskTab === 'listening'
+                    ? 'bg-purple text-white shadow-sm'
+                    : 'text-navy-muted hover:text-navy'
+                }`}
+              >
+                Listening (8)
+              </button>
             </div>
 
-            <div className="flex items-center gap-1 bg-card border border-card-border p-1 rounded-xl text-xs font-bold text-navy-muted">
+            {/* View Mode Toggle */}
+            <div className="inline-flex bg-white dark:bg-[#0b1a2e] p-1 rounded-xl border border-slate-200 dark:border-slate-800">
               <button
                 onClick={() => setActiveViewMode('cards')}
-                className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
-                  activeViewMode === 'cards' ? 'bg-purple text-white' : 'hover:text-navy'
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  activeViewMode === 'cards' ? 'bg-purple text-white shadow-sm' : 'text-navy-muted'
                 }`}
               >
                 Card View
               </button>
               <button
                 onClick={() => setActiveViewMode('table')}
-                className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
-                  activeViewMode === 'table' ? 'bg-purple text-white' : 'hover:text-navy'
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  activeViewMode === 'table' ? 'bg-purple text-white shadow-sm' : 'text-navy-muted'
                 }`}
               >
                 Table View
@@ -794,558 +824,305 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
             </div>
           </div>
 
-          {/* Cards View Mode */}
+          {/* Task Showcase: Cards or Table */}
           {activeViewMode === 'cards' ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              
-              {/* Speaking & Writing Tasks */}
-              {(activeTaskTab === 'all' || activeTaskTab === 'speaking') &&
-                speakingWritingTasks.map((t) => (
-                  <div
-                    key={t.id}
-                    className="bg-card border border-card-border hover:border-purple/50 p-6 rounded-2xl sm:rounded-3xl shadow-sm hover-lift flex flex-col justify-between gap-4 transition-all"
-                  >
-                    <div className="flex flex-col gap-2.5">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${t.color}`}>
-                          {t.skills}
-                        </span>
-                        <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
-                          ⏱️ {t.time}
-                        </span>
-                      </div>
-                      <h4 className="text-base font-bold font-display text-navy">{t.task}</h4>
-                      <p className="text-xs text-navy-muted leading-relaxed">{t.whatToDo}</p>
-                    </div>
-                    <div className="pt-3 border-t border-card-border/60">
-                      <span className="text-[11px] font-semibold text-purple flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        {t.weight}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-12">
+              {displayedTasks.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-3xl bg-white dark:bg-[#0b1a2e] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-xl transition-all duration-300 group hover:-translate-y-1"
+                >
+                  <div>
+                    <div className="flex items-start justify-between mb-3 gap-2">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple bg-purple-50 dark:bg-purple-950/50 px-2.5 py-1 rounded-full border border-purple-200 dark:border-purple-800/40">
+                        {item.section.split(':')[0]}
+                      </span>
+                      <span className="text-[10px] font-bold text-navy-muted bg-slate-100 dark:bg-[#071322] px-2 py-0.5 rounded-md border border-slate-200 dark:border-slate-800">
+                        ⏱️ {item.time}
                       </span>
                     </div>
-                  </div>
-                ))}
 
-              {/* Reading Tasks */}
-              {(activeTaskTab === 'all' || activeTaskTab === 'reading') &&
-                readingTasks.map((t) => (
-                  <div
-                    key={t.id}
-                    className="bg-card border border-card-border hover:border-indigo-400/50 p-6 rounded-2xl sm:rounded-3xl shadow-sm hover-lift flex flex-col justify-between gap-4 transition-all"
-                  >
-                    <div className="flex flex-col gap-2.5">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${t.color}`}>
-                          {t.skills}
-                        </span>
-                        <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md">
-                          Reading Part 2
-                        </span>
-                      </div>
-                      <h4 className="text-base font-bold font-display text-navy">{t.task}</h4>
-                      <p className="text-xs text-navy-muted leading-relaxed"><strong>Format:</strong> {t.format}</p>
-                      <p className="text-[11px] text-navy-muted/90 italic font-medium">{t.feature}</p>
+                    <h3 className="text-base sm:text-lg font-bold text-navy mb-1.5 font-display group-hover:text-purple transition-colors">
+                      {item.task}
+                    </h3>
+                    
+                    <div className="text-xs font-bold text-purple mb-3">
+                      Skills: <span className="text-navy">{item.skills}</span>
                     </div>
-                    <div className="pt-3 border-t border-card-border/60">
-                      <span className="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        {t.weight}
-                      </span>
+
+                    <div className="bg-slate-50 dark:bg-[#071322] p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 mb-3">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-navy-muted block mb-1">What to Do:</span>
+                      <p className="text-xs text-navy leading-relaxed">{item.whatToDo}</p>
                     </div>
                   </div>
-                ))}
 
-              {/* Listening Tasks */}
-              {(activeTaskTab === 'all' || activeTaskTab === 'listening') &&
-                listeningTasks.map((t) => (
-                  <div
-                    key={t.id}
-                    className="bg-card border border-card-border hover:border-emerald-500/50 p-6 rounded-2xl sm:rounded-3xl shadow-sm hover-lift flex flex-col justify-between gap-4 transition-all"
-                  >
-                    <div className="flex flex-col gap-2.5">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${t.color}`}>
-                          {t.skills}
-                        </span>
-                        <span className="text-[10px] font-bold text-purple bg-purple/10 px-2 py-0.5 rounded-md">
-                          Listening Part 3
-                        </span>
-                      </div>
-                      <h4 className="text-base font-bold font-display text-navy">{t.task}</h4>
-                      <p className="text-xs text-navy-muted leading-relaxed"><strong>Format:</strong> {t.format}</p>
-                      <p className="text-[11px] text-navy-muted/90 italic font-medium">{t.feature}</p>
-                    </div>
-                    <div className="pt-3 border-t border-card-border/60">
-                      <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        {t.weight}
-                      </span>
-                    </div>
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                    <span className="text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                      <Flame className="w-3.5 h-3.5" />
+                      {item.weight}
+                    </span>
                   </div>
-                ))}
-
+                </div>
+              ))}
             </div>
           ) : (
-            /* Table View Mode */
-            <div className="overflow-x-auto bg-card border border-card-border rounded-3xl shadow-sm">
-              <table className="w-full text-left text-xs sm:text-sm">
-                <thead className="bg-section-alt border-b border-card-border text-navy font-bold uppercase text-[11px]">
-                  <tr>
-                    <th className="p-4">Task Name</th>
-                    <th className="p-4">Skills Assessed</th>
-                    <th className="p-4">Time / Format</th>
-                    <th className="p-4">What To Do / Key Feature</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-card-border text-navy-muted">
-                  {(activeTaskTab === 'all' || activeTaskTab === 'speaking') &&
-                    speakingWritingTasks.map((t) => (
-                      <tr key={t.id} className="hover:bg-purple/5 transition-colors">
-                        <td className="p-4 font-bold text-navy">{t.task}</td>
-                        <td className="p-4 text-purple font-semibold">{t.skills}</td>
-                        <td className="p-4">{t.time}</td>
-                        <td className="p-4">{t.whatToDo}</td>
-                      </tr>
-                    ))}
-                  {(activeTaskTab === 'all' || activeTaskTab === 'reading') &&
-                    readingTasks.map((t) => (
-                      <tr key={t.id} className="hover:bg-purple/5 transition-colors">
-                        <td className="p-4 font-bold text-navy">{t.task}</td>
-                        <td className="p-4 text-indigo-400 font-semibold">{t.skills}</td>
-                        <td className="p-4">{t.format}</td>
-                        <td className="p-4">{t.feature}</td>
-                      </tr>
-                    ))}
-                  {(activeTaskTab === 'all' || activeTaskTab === 'listening') &&
-                    listeningTasks.map((t) => (
-                      <tr key={t.id} className="hover:bg-purple/5 transition-colors">
-                        <td className="p-4 font-bold text-navy">{t.task}</td>
-                        <td className="p-4 text-emerald-400 font-semibold">{t.skills}</td>
-                        <td className="p-4">{t.format}</td>
-                        <td className="p-4">{t.feature}</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* SECTION 3: PTE SCORING SYSTEM (10-90 SCALE & GSE/CEFR)    */}
-      {/* ========================================================= */}
-      <section id="scoring" className="bg-white dark:bg-[#071324] text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300 scroll-mt-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="max-w-3xl mx-auto text-center mb-14 flex flex-col gap-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              3. PTE Scoring System
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              Score Scale (10–90) & Global Proficiency Alignment
-            </h2>
-            <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              PTE uses a score range of <strong>10–90</strong>. The source material associates these scores with English proficiency levels aligned with the <strong>Global Scale of English (GSE)</strong> and the <strong>Common European Framework of Reference for Languages (CEFR)</strong>. The score reflects a candidate&apos;s ability to use English effectively in real-life study, work, and everyday situations.
-            </p>
-          </div>
-
-          {/* 3.1 Candidate Score Report: 3 Types of Scores */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="p-6 rounded-3xl bg-section-alt/80 border border-card-border flex flex-col gap-2.5">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-purple">1. Overall Score</span>
-              <h4 className="text-base font-bold font-display text-navy">Global English Measure</h4>
-              <p className="text-xs text-navy-muted leading-relaxed">
-                An overall measure of English proficiency calculated based on performance across all scored tasks on the 10–90 scale.
-              </p>
-            </div>
-            <div className="p-6 rounded-3xl bg-section-alt/80 border border-card-border flex flex-col gap-2.5">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-purple">2. Communicative Skills</span>
-              <h4 className="text-base font-bold font-display text-navy">Speaking, Writing, Reading, Listening</h4>
-              <p className="text-xs text-navy-muted leading-relaxed">
-                Separate individual scores for Speaking, Writing, Reading, and Listening, each reported on the 10–90 scale for visa and university cutoffs.
-              </p>
-            </div>
-            <div className="p-6 rounded-3xl bg-section-alt/80 border border-card-border flex flex-col gap-2.5">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-purple">3. Enabling Skills</span>
-              <h4 className="text-base font-bold font-display text-navy">Linguistic Component Metrics</h4>
-              <p className="text-xs text-navy-muted leading-relaxed">
-                Diagnostic scores evaluating Grammar, Oral Fluency, Pronunciation, Spelling, Vocabulary, and Written Discourse.
-              </p>
-            </div>
-          </div>
-
-          {/* 3.1 Overall Score Scale Table & 3.2 Typical Score Requirements Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Left Column: 3.1 Overall Score Scale Table */}
-            <div className="lg:col-span-6 bg-card border border-card-border p-6 sm:p-8 rounded-3xl shadow-sm">
-              <h3 className="text-lg font-bold font-display text-navy mb-4 flex items-center gap-2">
-                <BarChart3 className="w-5 h-5 text-purple" />
-                <span>3.1 Overall Score Scale (CEFR Mapping)</span>
-              </h3>
-
+            <div className="bg-white dark:bg-[#0b1a2e] rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm mb-12">
+              <div className="p-5 bg-[#00122E] dark:bg-[#041226] text-white flex items-center justify-between">
+                <h3 className="text-base font-bold font-display">2.2 Task Types Specification Table</h3>
+                <span className="text-xs font-semibold text-purple-200">Showing {displayedTasks.length} Tasks</span>
+              </div>
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs sm:text-sm">
-                  <thead className="bg-section-alt border-b border-card-border text-navy font-bold uppercase text-[11px]">
+                <table className="w-full text-left text-xs sm:text-sm min-w-[700px]">
+                  <thead className="bg-slate-100 dark:bg-[#071322] text-navy font-bold uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
                     <tr>
-                      <th className="p-3">PTE Score</th>
-                      <th className="p-3">CEFR</th>
-                      <th className="p-3">Proficiency Description</th>
+                      <th className="py-3.5 px-4 sm:px-6">Task Name</th>
+                      <th className="py-3.5 px-4 sm:px-6">Section</th>
+                      <th className="py-3.5 px-4 sm:px-6">Skills Assessed</th>
+                      <th className="py-3.5 px-4 sm:px-6">Time per Item</th>
+                      <th className="py-3.5 px-4 sm:px-6">What to Do</th>
+                      <th className="py-3.5 px-4 sm:px-6">Scoring Weight</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-card-border text-navy-muted">
-                    {scoringScale.map((row, i) => (
-                      <tr key={i} className="hover:bg-purple/5 transition-colors">
-                        <td className="p-3 font-extrabold text-purple font-mono">{row.score}</td>
-                        <td className="p-3 font-bold text-navy">{row.cefr}</td>
-                        <td className="p-3">
-                          <span className="block font-medium text-navy">{row.desc}</span>
-                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md mt-1 inline-block border ${row.color}`}>
-                            {row.tag}
-                          </span>
-                        </td>
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-navy">
+                    {displayedTasks.map((t, idx) => (
+                      <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                        <td className="py-3.5 px-4 sm:px-6 font-bold text-purple">{t.task}</td>
+                        <td className="py-3.5 px-4 sm:px-6 text-navy-muted">{t.section.split(':')[0]}</td>
+                        <td className="py-3.5 px-4 sm:px-6 font-semibold">{t.skills}</td>
+                        <td className="py-3.5 px-4 sm:px-6 text-navy-muted">{t.time}</td>
+                        <td className="py-3.5 px-4 sm:px-6 text-xs text-navy leading-relaxed max-w-xs">{t.whatToDo}</td>
+                        <td className="py-3.5 px-4 sm:px-6 font-bold text-emerald-600 dark:text-emerald-400 text-xs">{t.weight}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
             </div>
+          )}
 
-            {/* Right Column: 3.2 Typical Score Requirements Table */}
-            <div className="lg:col-span-6 bg-card border border-card-border p-6 sm:p-8 rounded-3xl shadow-sm flex flex-col justify-between h-full">
-              <div>
-                <h3 className="text-lg font-bold font-display text-navy mb-4 flex items-center gap-2">
-                  <Globe2 className="w-5 h-5 text-purple" />
-                  <span>3.2 Typical Score Requirements</span>
-                </h3>
+        </div>
+      </section>
 
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs sm:text-sm">
-                    <thead className="bg-section-alt border-b border-card-border text-navy font-bold uppercase text-[11px]">
-                      <tr>
-                        <th className="p-3">Purpose</th>
-                        <th className="p-3">Typical Score Required</th>
-                        <th className="p-3">Notes</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-card-border text-navy-muted">
-                      {typicalRequirements.map((row, i) => (
-                        <tr key={i} className="hover:bg-purple/5 transition-colors">
-                          <td className="p-3 font-bold text-navy">{row.purpose}</td>
-                          <td className="p-3 font-extrabold text-purple whitespace-nowrap">{row.score}</td>
-                          <td className="p-3 text-[11px] text-navy-muted">{row.notes}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+      {/* 4. SECTION 3: PTE SCORING SYSTEM (10–90 SCALE & CEFR) */}
+      <section id="scoring" className="bg-white dark:bg-[#020a16] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">3. Scoring System</span>
+            <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
+              PTE 10–90 Score Scale & CEFR Mapping
+            </h2>
+            <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
+              PTE uses a granular score scale of <strong>10–90</strong>, fully aligned with the Global Scale of English (GSE) and the Common European Framework of Reference for Languages (CEFR).
+            </p>
+          </div>
+
+          {/* 3-Tier Metric Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="p-6 rounded-3xl bg-slate-50 dark:bg-[#0b1a2e] border border-slate-200 dark:border-slate-800 shadow-sm">
+              <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple block mb-1">Metric 1</span>
+              <h3 className="text-lg font-bold font-display text-navy mb-2">Overall Score (10–90)</h3>
+              <p className="text-xs text-navy-muted leading-relaxed">
+                Comprehensive measure of global English proficiency reflecting your combined performance across all communicative tasks.
+              </p>
+            </div>
+            <div className="p-6 rounded-3xl bg-slate-50 dark:bg-[#0b1a2e] border border-slate-200 dark:border-slate-800 shadow-sm">
+              <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple block mb-1">Metric 2</span>
+              <h3 className="text-lg font-bold font-display text-navy mb-2">Communicative Skills (4 Skills)</h3>
+              <p className="text-xs text-navy-muted leading-relaxed">
+                Individual standalone sub-scores for <strong>Speaking, Writing, Reading, and Listening</strong>, each reported on the 10–90 scale.
+              </p>
+            </div>
+            <div className="p-6 rounded-3xl bg-slate-50 dark:bg-[#0b1a2e] border border-slate-200 dark:border-slate-800 shadow-sm">
+              <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple block mb-1">Metric 3</span>
+              <h3 className="text-lg font-bold font-display text-navy mb-2">Enabling Skills Profiling</h3>
+              <p className="text-xs text-navy-muted leading-relaxed">
+                Detailed diagnostic sub-parameters: Grammar, Oral Fluency, Pronunciation, Spelling, Vocabulary, and Written Discourse.
+              </p>
+            </div>
+          </div>
+
+          {/* Table 3.1: CEFR Score Scale */}
+          <div className="bg-white dark:bg-[#0b1a2e] rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm mb-12">
+            <div className="p-5 bg-[#00122E] dark:bg-[#041226] text-white flex items-center justify-between">
+              <h3 className="text-base font-bold font-display">3.1 Overall Score Scale & CEFR Levels</h3>
+              <span className="text-xs font-semibold text-purple-200">Scale: 10–90</span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm min-w-[600px]">
+                <thead className="bg-slate-100 dark:bg-[#071322] text-navy font-bold uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
+                  <tr>
+                    <th className="py-3.5 px-4 sm:px-6">PTE Score Range</th>
+                    <th className="py-3.5 px-4 sm:px-6">CEFR Level</th>
+                    <th className="py-3.5 px-4 sm:px-6">Proficiency Description</th>
+                    <th className="py-3.5 px-4 sm:px-6">GLA Strategic Target</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-navy">
+                  {scoreScales.map((scale, idx) => (
+                    <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                      <td className="py-3.5 px-4 sm:px-6 font-black text-purple text-base">{scale.scoreRange}</td>
+                      <td className="py-3.5 px-4 sm:px-6 font-bold">{scale.cefr}</td>
+                      <td className="py-3.5 px-4 sm:px-6 font-semibold">{scale.proficiency}</td>
+                      <td className="py-3.5 px-4 sm:px-6 text-navy-muted">{scale.notes}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Table 3.2: Typical Score Requirements for Visas & Universities */}
+          <div className="bg-slate-50 dark:bg-[#071322] p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2.5 rounded-xl bg-purple-50 dark:bg-purple-950/50 text-purple border border-purple-200 dark:border-purple-800/40">
+                <PlaneTakeoff className="w-5 h-5" />
               </div>
-
-              <div className="p-4 rounded-2xl bg-section-alt border border-card-border/80 mt-6 text-[11px] text-navy-muted leading-relaxed">
-                <strong>Important:</strong> Actual visa and university requirements depend on the specific application route, institution, programme, and rules in force at the time of application.
+              <div>
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple">Section 3.2</span>
+                <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">Typical Visa & University Score Requirements</h3>
               </div>
             </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {visaScoreRequirements.map((req, idx) => (
+                <div key={idx} className="p-5 rounded-2xl bg-white dark:bg-[#0b1a2e] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple block mb-1">
+                      {req.purpose}
+                    </span>
+                    <h4 className="text-lg font-black font-display text-navy mb-2">{req.score}</h4>
+                    <p className="text-xs text-navy-muted leading-relaxed">{req.notes}</p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                    ✓ Full Coaching Available at GLA
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-[11px] text-navy-muted mt-6 italic">
+              *Note: Actual visa and university requirements depend on the specific application subclass, university faculty, and regulations in force at the time of booking.
+            </p>
           </div>
 
         </div>
       </section>
 
-      {/* ========================================================= */}
-      {/* SECTION 4: THE PTE FORMAT — COMPUTER-BASED & AI SCORING   */}
-      {/* ========================================================= */}
-      <section id="ai-scoring" className="bg-[#F6F8FC] dark:bg-[#0B1A2E] text-navy py-16 sm:py-24 border-b border-card-border/80 transition-colors duration-300 scroll-mt-28">
+      {/* 5. SECTION 4: COMPUTER-BASED TESTING & AI SCORING */}
+      <section id="ai-scoring" className="bg-slate-50 dark:bg-[#071322] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-3xl mx-auto text-center mb-14 flex flex-col gap-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              4. The PTE Format
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">4. Automated AI Evaluation</span>
+            <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
               Computer-Based Testing & How AI Scoring Works
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              A key feature of PTE is that it is entirely computer-delivered and AI-scored. Every task involving Speaking, Writing, Reading, and Listening is completed on a computer at a Pearson VUE test centre.
+              Every task involving Speaking, Writing, Reading, and Listening is completed on a computer at a Pearson VUE test centre. 
+              Pearson&apos;s automated AI scoring engine evaluates your responses according to objective linguistic parameters, removing examiner bias.
             </p>
           </div>
 
-          {/* 4.1 How AI Scoring Works Table */}
-          <div className="bg-card border border-card-border rounded-3xl p-6 sm:p-8 shadow-sm mb-12">
-            <h3 className="text-lg font-bold font-display text-navy mb-4 flex items-center gap-2">
-              <Bot className="w-5 h-5 text-purple" />
-              <span>4.1 How AI Scoring Works — Skill Analysis</span>
-            </h3>
+          {/* 4.1 AI Analysis Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {aiScoringCriteria.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div key={idx} className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#0b1a2e] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-3 rounded-2xl bg-purple-50 dark:bg-purple-950/50 text-purple border border-purple-200 dark:border-purple-800/40">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple">4.1 AI Parameter</span>
+                        <h3 className="text-xl font-bold font-display text-navy">{item.skill} Scoring Engine</h3>
+                      </div>
+                    </div>
 
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs sm:text-sm">
-                <thead className="bg-section-alt border-b border-card-border text-navy font-bold uppercase text-[11px]">
-                  <tr>
-                    <th className="p-4 w-1/4">Skill</th>
-                    <th className="p-4 w-3/4">What the AI Analyses</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-card-border text-navy-muted">
-                  {aiAnalysisSkills.map((item, i) => (
-                    <tr key={i} className="hover:bg-purple/5 transition-colors">
-                      <td className="p-4 font-bold text-navy flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-purple"></span>
-                        {item.skill}
-                      </td>
-                      <td className="p-4">{item.analyzes}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* AI Source Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 pt-6 border-t border-card-border/80">
-              {[
-                "AI evaluates responses according to scoring criteria.",
-                "The scoring system is intended to reduce examiner subjectivity.",
-                "Scores reflect the candidate's submitted responses.",
-                "Speaking & Writing evaluated using multiple language features."
-              ].map((highlight, idx) => (
-                <div key={idx} className="flex items-start gap-2 text-xs font-semibold text-navy">
-                  <Check className="w-4 h-4 text-purple shrink-0 mt-0.5" />
-                  <span>{highlight}</span>
+                    <div className="space-y-3 border-t border-slate-100 dark:border-slate-800 pt-4">
+                      <div>
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-navy-muted block mb-1">What the AI Analyses:</span>
+                        <p className="text-xs sm:text-sm font-medium text-navy leading-relaxed">{item.aiAnalyses}</p>
+                      </div>
+                      <div className="bg-slate-50 dark:bg-[#071322] p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">GLA Score Booster Strategy:</span>
+                        <p className="text-xs text-navy-muted leading-relaxed">{item.howToScoreHigh}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
-          {/* 4.2 PTE UKVI Dedicated Container */}
-          <div className="p-7 sm:p-9 rounded-3xl bg-gradient-to-r from-purple/15 via-indigo-500/10 to-transparent border border-purple/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="flex flex-col gap-2">
-              <span className="text-xs font-extrabold uppercase tracking-widest text-purple">4.2 Specialized Test Version</span>
-              <h3 className="text-xl sm:text-2xl font-extrabold font-display text-navy">PTE Academic UKVI</h3>
-              <p className="text-xs sm:text-sm text-navy-muted max-w-2xl leading-relaxed">
-                PTE is also available in a version referred to as <strong>PTE UKVI</strong>. According to official source guidelines, this version is intended for UK visa and immigration applications and is administered at UKVI-approved test centres. Candidates should confirm which test version is accepted for their particular visa or immigration application before booking.
-              </p>
+          {/* 4.2 PTE UKVI Callout */}
+          <div className="bg-[#00122E] dark:bg-[#041226] text-white p-6 sm:p-8 rounded-3xl border border-white/10 shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+              <div className="lg:col-span-8 flex flex-col gap-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-300">4.2 PTE Academic UKVI</span>
+                <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
+                  Approved Secure English Language Test (SELT) for UK Visas
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  PTE Academic UKVI is an approved Secure English Language Test (SELT) required for UK Student Visas, Skilled Worker Visas, and Health & Care Worker Visas. The test content, scoring, and format are identical to standard PTE Academic, but administered at UKVI-approved test centres with Home Office SELT verification.
+                </p>
+              </div>
+              <div className="lg:col-span-4 flex flex-col gap-2 justify-center border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-8">
+                <div className="flex items-center gap-2 text-xs text-slate-200 font-semibold">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Approved for UK Student Visas</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-200 font-semibold">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>SELT Number Issued Instantly</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-200 font-semibold">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Results in under 48 Hours</span>
+                </div>
+              </div>
             </div>
-            <Link
-              href="/contact"
-              className="px-6 py-3.5 bg-purple text-white text-xs font-bold rounded-xl hover:bg-purple-hover transition-colors shadow-md shrink-0"
-            >
-              Consult UKVI Specialist
-            </Link>
           </div>
 
         </div>
       </section>
 
-      {/* ========================================================= */}
-      {/* SECTION 5: PTE VS IELTS — QUICK COMPARISON TABLE          */}
-      {/* ========================================================= */}
-      <section id="comparison" className="bg-white dark:bg-[#071324] text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300 scroll-mt-28">
+      {/* 6. SECTION 5: PTE VS IELTS SIDE-BY-SIDE COMPARISON */}
+      <section id="comparison" className="bg-white dark:bg-[#020a16] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-3xl mx-auto text-center mb-14 flex flex-col gap-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              5. PTE vs IELTS
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">5. Test Comparison</span>
+            <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
               PTE vs IELTS — Quick Comparison
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              The following comparison reproduces the information presented in the original course material. Compare testing formats, evaluation styles, result turnarounds, and scheduling parameters.
+              A comprehensive side-by-side comparison between PTE Academic and IELTS across format, scoring engines, result turnarounds, and score reporting.
             </p>
           </div>
 
-          <div className="overflow-x-auto bg-card border border-card-border rounded-3xl shadow-sm">
-            <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-section-alt border-b border-card-border text-navy font-bold uppercase text-[11px]">
-                <tr>
-                  <th className="p-4 sm:p-5 w-1/4">Feature</th>
-                  <th className="p-4 sm:p-5 w-3/8 text-purple bg-purple/[0.04]">PTE</th>
-                  <th className="p-4 sm:p-5 w-3/8">IELTS</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-card-border text-navy-muted">
-                {comparisonData.map((row, i) => (
-                  <tr key={i} className="hover:bg-purple/5 transition-colors">
-                    <td className="p-4 sm:p-5 font-bold text-navy">{row.feature}</td>
-                    <td className="p-4 sm:p-5 font-semibold text-purple bg-purple/[0.02]">{row.pte}</td>
-                    <td className="p-4 sm:p-5 text-navy-muted">{row.ielts}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-4 p-3 text-center text-[11px] text-navy-muted italic">
-            Note: Test formats, result times, rescheduling rules, and fees may vary. The figures above are from the supplied documentation.
-          </div>
-
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* SECTION 6: OUR PTE PREPARATION PROGRAMME AT GLA           */}
-      {/* ========================================================= */}
-      <section id="programme" className="bg-[#F6F8FC] dark:bg-[#0B1A2E] text-navy py-16 sm:py-24 border-b border-card-border/80 transition-colors duration-300 scroll-mt-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="max-w-3xl mx-auto text-center mb-14 flex flex-col gap-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              6. Our PTE Preparation Programme
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              Structured, Intensive & Target-Score Focused
-            </h2>
-            <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              Our PTE preparation programme is structured, intensive, and focused on helping students achieve their target scores. Because PTE tasks have specific formats and scoring criteria, the programme focuses on task-specific preparation, practice, and feedback.
-            </p>
-          </div>
-
-          {/* 6.1 Comprehensive Study Material (A to H) */}
-          <div className="mb-14">
-            <h3 className="text-xl font-bold font-display text-navy mb-6 flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-purple" />
-              <span>6.1 Comprehensive Study Material (A to H)</span>
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {studyMaterials.map((mat, i) => {
-                const IconComp = mat.icon;
-                return (
-                  <div
-                    key={i}
-                    className="bg-card border border-card-border hover:border-purple/50 p-6 rounded-2xl sm:rounded-3xl shadow-sm hover-lift flex flex-col justify-between gap-4 transition-all"
-                  >
-                    <div className="flex flex-col gap-2.5">
-                      <div className="flex items-center justify-between">
-                        <div className="w-10 h-10 rounded-xl bg-purple/10 text-purple flex items-center justify-center">
-                          <IconComp className="w-5 h-5" />
-                        </div>
-                        <span className="text-xs font-bold text-purple font-mono bg-purple/10 px-2 py-0.5 rounded-md">
-                          Module {mat.code}
-                        </span>
-                      </div>
-                      <h4 className="text-base font-bold font-display text-navy">{mat.title}</h4>
-                      <p className="text-xs text-navy-muted leading-relaxed">{mat.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
+          <div className="bg-white dark:bg-[#0b1a2e] rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+            <div className="p-5 bg-[#00122E] dark:bg-[#041226] text-white flex items-center justify-between">
+              <h3 className="text-base font-bold font-display">Side-by-Side Comparison Matrix</h3>
+              <span className="text-xs font-semibold text-purple-200">9 Core Dimensions</span>
             </div>
-          </div>
-
-          {/* 6.1.1 Official Pearson Resources Included in the Programme */}
-          <div className="bg-card border border-card-border p-7 sm:p-9 rounded-3xl shadow-sm mb-14">
-            <div className="flex flex-col gap-1.5 mb-6">
-              <span className="text-xs font-extrabold uppercase tracking-widest text-purple">Authentic Pedagogy</span>
-              <h3 className="text-xl font-extrabold font-display text-navy">
-                6.1.1 Official Pearson Resources Included in the Programme
-              </h3>
-              <p className="text-xs sm:text-sm text-navy-muted">
-                The academy&apos;s programme states that it uses official Pearson preparation resources as the foundation of its teaching. The stated objective is to help students practise using material that reflects the format and difficulty of the actual examination.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {officialPearsonResources.map((res, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-section-alt/80 border border-card-border flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-purple shrink-0 mt-0.5" />
-                  <span className="text-xs font-semibold text-navy leading-snug">{res}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 6.2 Mock Tests — Full Exam Simulation (Offline & Online) */}
-          <div className="mb-14">
-            <h3 className="text-xl font-bold font-display text-navy mb-6 flex items-center gap-2">
-              <Laptop className="w-5 h-5 text-purple" />
-              <span>6.2 Mock Tests — Full Exam Simulation</span>
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              
-              {/* A. Offline Mock Tests */}
-              <div className="bg-card border border-card-border p-7 sm:p-8 rounded-3xl shadow-sm flex flex-col justify-between gap-5">
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-purple">Part A</span>
-                    <span className="text-[10px] font-bold text-navy-muted bg-section-alt px-2.5 py-1 rounded-full">On-Campus Lab</span>
-                  </div>
-                  <h4 className="text-lg font-bold font-display text-navy">Offline Mock Tests</h4>
-                  <p className="text-xs text-navy-muted leading-relaxed">
-                    Timed, full-length mock tests under examination conditions with official Pearson sample test papers, instructor feedback on Speaking & Writing, section-wise weakness analysis, and dedicated practice sessions for high-value tasks:
-                  </p>
-                  <ul className="flex flex-col gap-2 pt-1 text-xs font-semibold text-navy">
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-purple shrink-0" />
-                      <span><strong>WFD</strong> — Write from Dictation</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-purple shrink-0" />
-                      <span><strong>RL</strong> — Re-tell Lecture</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-purple shrink-0" />
-                      <span><strong>DI</strong> — Describe Image</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* B. Online Mock Tests */}
-              <div className="bg-card border border-card-border p-7 sm:p-8 rounded-3xl shadow-sm flex flex-col justify-between gap-5">
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-purple">Part B</span>
-                    <span className="text-[10px] font-bold text-navy-muted bg-section-alt px-2.5 py-1 rounded-full">Cloud AI Portals</span>
-                  </div>
-                  <h4 className="text-lg font-bold font-display text-navy">Online Mock Tests</h4>
-                  <p className="text-xs text-navy-muted leading-relaxed">
-                    Pearson&apos;s Official Practice Platform for AI-scored mock tests with instant feedback, task-specific mini-mock tests, and progress tracking across multiple attempts to familiarize students with the computer-based testing environment.
-                  </p>
-                  <ul className="flex flex-col gap-2 pt-1 text-xs font-semibold text-navy">
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-purple shrink-0" />
-                      <span>AI-scored Speaking & Writing practice</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-purple shrink-0" />
-                      <span>Practice via PTE Magic, E2Language, PTE Study & PTEGURU</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-purple shrink-0" />
-                      <span>Performance analytics and score prediction</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* 6.3 AI-Powered Online Portals — Exam-Aligned Practice Table */}
-          <div className="bg-card border border-card-border rounded-3xl p-6 sm:p-8 shadow-sm">
-            <h3 className="text-lg font-bold font-display text-navy mb-4 flex items-center gap-2">
-              <Bot className="w-5 h-5 text-purple" />
-              <span>6.3 AI-Powered Online Portals — Exam-Aligned Practice</span>
-            </h3>
-
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs sm:text-sm">
-                <thead className="bg-section-alt border-b border-card-border text-navy font-bold uppercase text-[11px]">
+              <table className="w-full text-left text-xs sm:text-sm min-w-[650px]">
+                <thead className="bg-slate-100 dark:bg-[#071322] text-navy font-bold uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
                   <tr>
-                    <th className="p-4 w-1/3">Portal / Resource</th>
-                    <th className="p-4 w-2/3">How It Supports Exam Preparation</th>
+                    <th className="py-3.5 px-4 sm:px-6">Feature</th>
+                    <th className="py-3.5 px-4 sm:px-6 text-purple">PTE Academic</th>
+                    <th className="py-3.5 px-4 sm:px-6 text-navy">IELTS</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-card-border text-navy-muted">
-                  {aiPortalsTable.map((portal, i) => (
-                    <tr key={i} className="hover:bg-purple/5 transition-colors">
-                      <td className="p-4 font-bold text-navy flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-purple"></span>
-                        {portal.portal}
-                      </td>
-                      <td className="p-4">{portal.support}</td>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-navy">
+                  {pteVsIeltsData.map((row, idx) => (
+                    <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                      <td className="py-3.5 px-4 sm:px-6 font-bold">{row.feature}</td>
+                      <td className="py-3.5 px-4 sm:px-6 font-semibold text-purple">{row.pte}</td>
+                      <td className="py-3.5 px-4 sm:px-6 text-navy-muted">{row.ielts}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1356,52 +1133,111 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
         </div>
       </section>
 
-      {/* ========================================================= */}
-      {/* SECTION 7: WHY CHOOSE OUR PTE PROGRAMME? (8 PILLARS)      */}
-      {/* ========================================================= */}
-      <section id="why-gla" className="bg-white dark:bg-[#071324] text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300 scroll-mt-28">
+      {/* 7. SECTION 6: GLA PREPARATION PROGRAMME */}
+      <section id="programme" className="bg-slate-50 dark:bg-[#071322] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-3xl mx-auto text-center mb-14 flex flex-col gap-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              7. Why Choose Our PTE Programme?
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              Eight Pillars of Excellence at The Global Language Academy
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">6. GLA Preparation Programme</span>
+            <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
+              Our 8-Module PTE Masterclass Curriculum
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              The Global Language Academy highlights eight main features of its PTE preparation programme designed to give students a measurable advantage in computer-delivered examinations.
+              Designed around official Pearson frameworks, combining physical testing lab simulations with cloud AI practice platforms.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {whyGlaEightPillars.map((pillar, idx) => {
-              const IconComp = pillar.icon;
+          {/* 6.1 Study Modules A to H */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+            {glaPteCurriculum.map((mod, idx) => {
+              const Icon = mod.icon;
+              return (
+                <div key={idx} className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#0b1a2e] border border-slate-200 dark:border-slate-800 hover:shadow-lg transition-all flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="p-2.5 rounded-2xl bg-purple-50 dark:bg-purple-950/50 text-purple border border-purple-200 dark:border-purple-800/40 group-hover:bg-purple group-hover:text-white transition-colors">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple bg-purple-50 dark:bg-purple-950/50 px-2 py-0.5 rounded-full">
+                        {mod.code}
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-bold font-display text-navy mb-2">{mod.title}</h4>
+                    <p className="text-xs text-navy-muted leading-relaxed">{mod.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* 6.3 AI-Powered Online Portals & Prediction Banks */}
+          <div className="bg-white dark:bg-[#0b1a2e] p-6 sm:p-10 rounded-3xl border border-slate-200 dark:border-slate-800">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2.5 rounded-2xl bg-purple-50 dark:bg-purple-950/50 text-purple border border-purple-200 dark:border-purple-800/40">
+                <Bot className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple">Section 6.3</span>
+                <h3 className="text-2xl font-bold font-display text-navy">AI-Powered Practice Portals Included</h3>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {pteOnlinePortals.map((portal, idx) => (
+                <div key={idx} className="p-5 rounded-2xl bg-slate-50 dark:bg-[#071322] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple bg-purple-50 dark:bg-purple-950/50 px-2.5 py-0.5 rounded-full border border-purple-200 dark:border-purple-800/40">
+                        {portal.owner}
+                      </span>
+                      <span className="text-[9px] font-bold text-navy-muted">Portal {idx + 1}</span>
+                    </div>
+                    <h4 className="text-sm font-bold font-display text-navy mb-2">{portal.name}</h4>
+                    <p className="text-xs text-navy-muted leading-relaxed">{portal.desc}</p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>{portal.badge}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 8. SECTION 7: WHY CHOOSE GLA PTE (8 PILLARS) */}
+      <section id="why-gla" className="bg-white dark:bg-[#020a16] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">7. Why Choose GLA?</span>
+            <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
+              8 Pillars of PTE Success
+            </h2>
+            <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
+              How our AI-aligned coaching and real-time acoustic feedback guarantee scores of 65+ to 79+ on your first attempt.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+            {whyGla8Pillars.map((pillar, idx) => {
+              const Icon = pillar.icon;
               return (
                 <div
                   key={idx}
-                  className="group bg-card border border-card-border hover:border-purple/50 p-6 sm:p-7 rounded-2xl sm:rounded-3xl shadow-sm hover-lift flex flex-col justify-between gap-5 transition-all"
+                  className="p-6 rounded-3xl bg-slate-50 dark:bg-[#0b1a2e] border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
                 >
-                  <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-2xl bg-purple/10 border border-purple/20 flex items-center justify-center group-hover:bg-purple transition-all">
-                        <IconComp className="w-6 h-6 text-purple group-hover:text-white transition-colors" />
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="p-3 rounded-2xl bg-purple-50 dark:bg-purple-950/50 text-purple border border-purple-200 dark:border-purple-800/40 group-hover:bg-purple group-hover:text-white transition-colors">
+                        <Icon className="w-5 h-5" />
                       </div>
-                      <span className="text-xs font-bold text-navy-muted font-mono bg-section-alt px-2 py-0.5 rounded-md">
-                        {pillar.number}
-                      </span>
+                      <span className="text-xl font-black text-slate-300 dark:text-slate-700 font-display">{pillar.number}</span>
                     </div>
-                    <h4 className="text-base font-bold font-display text-navy group-hover:text-purple transition-colors">
-                      {pillar.title}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-navy-muted leading-relaxed">
-                      {pillar.desc}
-                    </p>
-                  </div>
-                  <div className="pt-3 border-t border-card-border/60">
-                    <span className="text-[11px] font-bold text-purple bg-purple/5 px-2.5 py-1 rounded-md border border-purple/15 inline-block">
-                      {pillar.tag}
-                    </span>
+                    <h3 className="text-base font-bold text-navy mb-2 font-display">{pillar.title}</h3>
+                    <p className="text-xs text-navy-muted leading-relaxed">{pillar.desc}</p>
                   </div>
                 </div>
               );
@@ -1411,161 +1247,130 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
         </div>
       </section>
 
-      {/* ========================================================= */}
-      {/* SECTION 8 & 9: REVIEWS, FAQS & ADVERTISEMENT BACK COVER   */}
-      {/* ========================================================= */}
-      <section id="reviews" className="bg-[#F6F8FC] dark:bg-[#0B1A2E] text-navy py-16 sm:py-24 border-b border-card-border/80 transition-colors duration-300 scroll-mt-28">
+      {/* 9. SECTION 8: REVIEWS, FAQS & BACK COVER BANNER */}
+      <section id="reviews" className="bg-slate-50 dark:bg-[#071322] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Alumni Reviews */}
-          <div className="max-w-3xl mx-auto text-center mb-14 flex flex-col gap-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              Verified Student Outcomes
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              PTE Scorecard Results & Reviews
-            </h2>
-            <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              Real results from GLA students who achieved their target scores (84/90 and 82/90) for Australian PR and global university admissions.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-20">
-            {course.testimonials.map((test) => (
-              <div key={test.id} className="h-full">
-                <TestimonialCard testimonial={test} />
+          {/* Verified Scorecards */}
+          {course.testimonials && course.testimonials.length > 0 && (
+            <div className="mb-20">
+              <div className="text-center max-w-3xl mx-auto mb-12 flex flex-col gap-3">
+                <span className="text-xs font-bold uppercase tracking-widest text-purple">Verified Scorecards</span>
+                <h2 className="text-3xl font-black font-display text-navy tracking-tight">
+                  Real PTE Scorecard Results & Reviews
+                </h2>
               </div>
-            ))}
-          </div>
-
-          {/* PTE FAQs */}
-          <div className="max-w-3xl mx-auto text-center mb-12 flex flex-col gap-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              PTE FAQ
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-navy tracking-tight">
-              Frequently Asked Questions
-            </h3>
-            <p className="text-sm text-navy-muted">
-              Everything you need to know about exam registration, scoring algorithms, and batch timings.
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto mb-20">
-            <FAQAccordion faqs={course.faqs} />
-          </div>
-
-          {/* Section 8 & 9: Back Cover — PTE Course Advertisement */}
-          <div className="relative rounded-3xl bg-gradient-to-br from-[#00122E] via-[#160824] to-[#4B245E] text-white p-8 sm:p-12 lg:p-16 shadow-2xl border border-white/15 overflow-hidden text-center flex flex-col items-center gap-6">
-            
-            <div className="absolute top-0 right-0 w-96 h-96 bg-purple/30 rounded-full blur-3xl pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1 bg-purple/30 border border-purple-300/30 rounded-full text-xs font-semibold text-purple-200">
-                <Sparkles className="w-4 h-4 text-purple-200" />
-                <span>THE GLOBAL LANGUAGE ACADEMY</span>
-              </span>
-              <span className="text-xs text-purple-200 font-medium">Empowering Communication. Building Global Opportunities.</span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                {course.testimonials.map((test) => (
+                  <div key={test.id} className="hover-lift rounded-3xl">
+                    <TestimonialCard testimonial={test} />
+                  </div>
+                ))}
+              </div>
             </div>
+          )}
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display tracking-tight text-white leading-tight max-w-3xl">
-              MASTER ENGLISH • PTE COURSE <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-hero via-indigo-200 to-white">
-                Shape Your Future!
-              </span>
-            </h2>
-            
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-              Target your dream score with expert guidance and AI-aligned practice. Every step you take today brings you closer to your dreams.
-            </p>
+          {/* FAQ Accordion */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="text-center mb-10">
+              <span className="text-xs font-bold uppercase tracking-widest text-purple">Questions Answered</span>
+              <h2 className="text-2xl sm:text-3xl font-black font-display text-navy tracking-tight mt-1">
+                Frequently Asked Questions About PTE
+              </h2>
+            </div>
+            <FAQAccordion faqs={course.faqs || []} />
+          </div>
 
-            {/* 6 Advertised Highlights Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full max-w-3xl text-left my-2">
-              {[
-                { title: "AI-Aligned Training", desc: "Learn what the AI scoring criteria assess." },
-                { title: "Official Materials", desc: "Practise with Pearson preparation resources." },
-                { title: "Proven Strategies", desc: "Learn techniques for individual task types." },
-                { title: "AI-Scored Practice", desc: "Complete exam-style practice with AI scoring." },
-                { title: "Personalised Coaching", desc: "Individual feedback & tailored study plan." },
-                { title: "Faster Results", desc: "Prepare with the aim of progressing quickly." },
-              ].map((hl, i) => (
-                <div key={i} className="p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-1">
-                  <span className="text-xs font-bold text-purple-200">{hl.title}</span>
-                  <span className="text-[11px] text-slate-300 leading-tight">{hl.desc}</span>
+          {/* Back Cover Advertisement / Final Enrollment Callout */}
+          <div id="trial" className="bg-gradient-to-tr from-[#00122E] via-[#092b5a] to-[#00122E] text-white p-6 sm:p-10 lg:p-12 rounded-3xl border border-white/15 shadow-2xl relative overflow-hidden">
+            <div className="absolute -right-10 -bottom-10 w-80 h-80 bg-purple rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+              
+              <div className="lg:col-span-8 flex flex-col gap-4">
+                <span className="text-[11px] font-extrabold uppercase tracking-widest bg-purple/40 text-purple-200 px-3.5 py-1 rounded-full border border-purple-300/30 w-fit">
+                  Shape Your Future
+                </span>
+                <h3 className="text-2xl sm:text-4xl font-black font-display text-white leading-tight">
+                  MASTER ENGLISH • PTE COURSE <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-hero via-purple-200 to-emerald-400">
+                    WE GUIDE. YOU GROW. YOU SUCCEED.
+                  </span>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                  Join our upcoming batch and get full access to our computer testing lab, official Pearson materials, and AI-scored mock tests. Contact our academic counselors today for a <strong>Free PTE Diagnostic Test</strong>.
+                </p>
+
+                {/* Highlights Bullets */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 text-center text-xs font-bold text-slate-200">
+                  <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
+                    ✓ AI-Aligned Coaching
+                  </div>
+                  <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
+                    ✓ Pearson Test Banks
+                  </div>
+                  <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
+                    ✓ 48-Hour Results Prep
+                  </div>
+                  <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
+                    ✓ Target 79+ Guaranteed
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            {/* Motto Banner */}
-            <div className="text-sm sm:text-base font-extrabold tracking-widest text-amber-300 font-display">
-              WE GUIDE. YOU GROW. YOU SUCCEED.
-            </div>
+              <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
+                <a
+                  href="https://wa.me/917988358249?text=Hi%20GLA,%20I%20am%20interested%20in%20the%20PTE%20Academic%20Course.%20Please%20schedule%20my%20free%20diagnostic%20test."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  <span>Chat on WhatsApp</span>
+                </a>
+                <a
+                  href="tel:+917988358249"
+                  className="w-full bg-white/10 hover:bg-white/20 text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 border border-white/20 backdrop-blur-sm transition-all"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>Call +91 79883 58249</span>
+                </a>
+              </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-2 relative z-10">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple to-purple-hover hover:from-purple-hover hover:to-purple text-white font-bold text-sm rounded-xl shadow-lg hover:scale-102 transition-all cursor-pointer border border-white/20"
-              >
-                <span>Book Diagnostic Mock Test</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href="https://wa.me/919217999511?text=Hi!%20I'd%20like%20to%20know%20more%20about%20PTE%20preparation%20at%20The%20Global%20Language%20Academy."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm rounded-xl shadow-md hover:scale-102 transition-all"
-              >
-                <MessageCircle className="w-4 h-4 fill-white text-[#25D366]" />
-                <span>Chat on WhatsApp</span>
-              </a>
             </div>
-
-            {/* Helpline contact */}
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 border-t border-white/15 text-xs sm:text-sm text-slate-300 relative z-10">
-              <span>Direct Campus Helpline:</span>
-              <a href="tel:+919217999511" className="font-bold text-white hover:text-purple-300 transition-colors">
-                +91 92179 99511
-              </a>
-              <span>|</span>
-              <a href="tel:+919217669511" className="font-bold text-white hover:text-purple-300 transition-colors">
-                +91 92176 69511
-              </a>
-            </div>
-
           </div>
 
         </div>
       </section>
 
-      {/* ========================================================= */}
-      {/* OTHER ACADEMY COURSES                                     */}
-      {/* ========================================================= */}
-      <section className="bg-section-alt text-navy py-16 sm:py-20 transition-colors duration-300">
+      {/* 10. RELATED COURSES */}
+      <section className="bg-white dark:bg-[#020a16] py-16 sm:py-24 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-12 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">Explore More</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-navy tracking-tight">Other Programs at GLA</h2>
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">Explore More Programs</span>
+            <h2 className="text-3xl font-black font-display text-navy tracking-tight">
+              Other Language Courses at GLA
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {relatedCourses.map((rel) => (
               <div
                 key={rel.id}
-                className="bg-card p-6 rounded-2xl border border-card-border shadow-sm flex flex-col gap-4 justify-between hover-lift transition-all"
+                className="hover-lift bg-slate-50 dark:bg-[#0b1a2e] p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-4 justify-between transition-all duration-300"
               >
                 <div>
                   <h3 className="text-lg font-bold font-display text-navy mb-1">{rel.title}</h3>
                   <p className="text-xs text-navy-muted leading-relaxed">{rel.shortDescription}</p>
                 </div>
-                <div className="flex justify-between items-center border-t border-card-border pt-4 mt-2">
+                <div className="flex justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-4 mt-2">
                   <span className="text-xs font-bold text-purple">⏱️ {rel.durationLabel}</span>
                   <Link
                     href={`/courses/${rel.slug}`}
                     className="inline-flex items-center gap-1 text-xs font-bold text-navy hover:text-purple transition-colors"
                   >
-                    <span>View Syllabus</span>
+                    <span>View Course Details</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>

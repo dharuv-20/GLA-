@@ -468,60 +468,101 @@ export const coursesList: Course[] = [
   {
     id: "crs-ielts",
     slug: "ielts-preparation",
-    title: "IELTS Exam Masterclass (Academic & General)",
-    metaTitle: "IELTS Coaching Classes | Achieve 7.5+ Band Score | British Council & IDP",
-    metaDescription: "Score 7.5+ overall bands with British Council and IDP certified trainers. Timed assessment simulations, essay grading, and speaking interview drills.",
-    shortDescription: "Unlock migration visa points and global university admissions with a high band score.",
-    longDescription: "Prepare for your IELTS Academic or General Training exam with confidence. Our strategic masterclass focuses on diagnostic assessments, timed speaking simulations, and step-by-step essay blueprints, teaching you the exact methodology examiners use to assign band scores.",
+    title: "IELTS Preparation Masterclass (Academic & General)",
+    metaTitle: "IELTS Coaching Classes (Band 7.5+) | British Council, IDP & Cambridge Prep",
+    metaDescription: "Master IELTS Academic & General Training with Cambridge Books 1-18, unlimited mock tests, 1-on-1 speaking evaluation, and examiner essay corrections.",
+    shortDescription: "Everything you need to prepare, practise, and achieve your target band score in IELTS Academic & General Training.",
+    longDescription: "IELTS (International English Language Testing System) is jointly owned and managed by the British Council, IDP: IELTS Australia, and Cambridge Assessment English. Accepted by 11,000+ organisations worldwide across 140+ countries. Our comprehensive coaching program provides Cambridge-affiliated materials (Books 1–18), task-specific strategy guides, unlimited offline & CDI computer mock tests, and personalised band score roadmaps targeting Band 7.5+ and 8.0+.",
     durationLabel: "2 - 3 Months",
-    nextBatchStartDate: "2026-08-20",
+    nextBatchStartDate: "2026-09-01",
     maxClassSize: "5-7",
     levels: [
       {
-        levelCode: "Diagnostic & Strategy",
-        durationWeeks: 2,
-        weeklyHours: 6,
-        description: "Assess your baseline band score and learn core scoring metrics across all modules.",
-        modules: ["Diagnostic Mock Test", "Examiner Evaluation Criteria", "Time Management Techniques", "Understanding Question Traps"]
+        levelCode: "Phase 1: Diagnostic & Core Skill Foundation",
+        durationWeeks: 3,
+        weeklyHours: 8,
+        description: "Assess baseline band score and master the fundamental question types across Listening, Reading, Writing, and Speaking.",
+        modules: [
+          "Diagnostic Mock Test & Baseline Band Analysis",
+          "Cambridge IELTS Test Format & Timing Rules",
+          "Listening: Monologue & Conversation Note-taking",
+          "Reading: Skimming, Scanning & Keywords Traps"
+        ]
       },
       {
-        levelCode: "Skill Development",
+        levelCode: "Phase 2: Writing & Speaking Strategy Mastery",
         durationWeeks: 4,
         weeklyHours: 8,
-        description: "Master reading speed techniques, essay drafting structures, and speaking confidence.",
-        modules: ["Writing Task 1 & 2 Blueprints", "Active Listening & Skimming Speed", "Cohesion, Coherence & Lexical Resources", "Cue Card Structuring & Flow"]
+        description: "Master Task 1 visual data interpretation/letters, Task 2 discursive essay structures, and Part 2 Cue Card speech flow.",
+        modules: [
+          "Academic Task 1 Graphs, Charts & Maps Formulas",
+          "General Task 1 Formal, Semi-formal & Informal Letters",
+          "Task 2 4-Paragraph Band 8+ Essay Blueprint",
+          "Speaking Cue Card Bank & 1-Minute Note-taking Strategy"
+        ]
       },
       {
-        levelCode: "Mock Exam Intensive",
-        durationWeeks: 2,
+        levelCode: "Phase 3: Full-Length Exam Simulation & Score Maximisation",
+        durationWeeks: 3,
         weeklyHours: 10,
-        description: "Take timed, full-length mock examinations under strict testing conditions with trainer reviews.",
-        modules: ["4 Timed Mock Assessments", "Individual Speaking Feedback Sessions", "Writing Grading & Reconstruction Workshops", "Final Test Day Strategy Session"]
+        description: "Unlimited offline and online CDI timed mock tests with 1-on-1 examiner feedback and band score optimization.",
+        modules: [
+          "Cambridge Books 1–18 Timed Exam Papers",
+          "Computer-Delivered IELTS (CDI) Online Portal Drills",
+          "1-on-1 Face-to-Face Speaking Mock Interviews",
+          "Individual Writing Correction & Examiner Rubric Analysis"
+        ]
       }
     ],
     faculty: [],
     testimonials: [testimonialsList[1], testimonialsList[9]],
-    faqs: [faqsList[1], faqsList[3]],
+    faqs: [
+      {
+        id: "faq-ielts-1",
+        question: "What is the difference between IELTS Academic and IELTS General Training?",
+        answer: "IELTS Academic is intended for university degree admissions (undergraduate/postgraduate) and professional council registration (medical, nursing, legal). IELTS General Training is intended for immigration/permanent residency (e.g. Canada Express Entry, Australia skilled migration) and secondary education or vocational work."
+      },
+      {
+        id: "faq-ielts-2",
+        question: "How long is the IELTS test and how is it scored?",
+        answer: "The total test duration is approximately 2 hours and 45 minutes (Listening: 30m, Reading: 60m, Writing: 60m, Speaking: 11–14m). IELTS is scored on a 9-band scale. Your Overall Band Score is the arithmetic average of the four module scores rounded to the nearest 0.5 band."
+      },
+      {
+        id: "faq-ielts-3",
+        question: "Are Cambridge IELTS past papers provided in the course?",
+        answer: "Yes. Our curriculum is built around Cambridge Assessment English past papers, including the Cambridge IELTS Books 1–18 series, complete with authentic past examination questions, band conversion tables, and examiner sample answers."
+      },
+      {
+        id: "faq-ielts-4",
+        question: "How many mock tests are included in the programme?",
+        answer: "GLA provides unlimited full-length offline mock tests in our testing lab and online computer-delivered IELTS (CDI) portal simulations at no additional cost throughout your course enrolment."
+      },
+      {
+        id: "faq-ielts-5",
+        question: "How quickly are IELTS results delivered?",
+        answer: "For Computer-Delivered IELTS (CDI), results are typically available online in 3–5 days. For paper-based testing, official Test Report Forms (TRF) are issued within 13 days of the test date."
+      }
+    ],
     studentResults: [studentResultsList[1]],
     benefits: [
-      "British Council and IDP certified exam experts",
-      "12 full-length, examiner-graded mock exams with diagnostic scorecards",
-      "Daily individual essay evaluation and correction sessions",
-      "Timed mock interview bootcamps replicating real test conditions"
+      "Official Cambridge Assessment English past papers (Books 1–18)",
+      "Unlimited offline and CDI computer-delivered mock exam simulations",
+      "Daily 1-on-1 Speaking mock interviews and immediate pronunciation feedback",
+      "Personalised Band Score Roadmap targeting Band 7.5+ and Band 8.0+"
     ],
     whoShouldJoin: [
-      "Students preparing to enter English-speaking universities abroad",
-      "Professionals migrating to Canada (PR via Express Entry) or Australia",
-      "Healthcare professionals seeking work credentials in the UK or US",
-      "Candidates looking to boost their overall visa application points"
+      "Students targeting undergraduate or master's degrees at universities abroad",
+      "Immigration applicants targeting Canada PR Express Entry (CLB 9/10 / 8777 score)",
+      "Healthcare, nursing, legal, and engineering professionals seeking global registration",
+      "Candidates looking to improve overall band score from 6.0/6.5 to 7.5+"
     ],
     learningOutcomes: [
-      "Confidently score a minimum overall Band 7.5+ in the official exam",
-      "Draft highly coherent, structured Academic and General essays",
-      "Efficiently read and scan long academic paragraphs in under 18 minutes",
-      "Achieve high speech fluency without hesitation under exam conditions"
+      "Confidently score a minimum overall Band 7.5+ to 8.5 in the official test",
+      "Draft high-scoring Task 1 and Task 2 essays adhering to examiner band descriptors",
+      "Read complex academic passages and answer all 40 questions within 60 minutes",
+      "Speak fluently and coherently with native examiners on any Cue Card topic"
     ],
-    classFormats: ["Intensive Weekday Batch (Mon - Fri)", "Weekend Only Prep (Sat & Sun)", "Custom One-on-One Assessment Package"]
+    classFormats: ["On-Campus Testing Lab", "Live Synchronous Online Batches", "Flexible Weekend Intensive"]
   },
   {
     id: "crs-pte",
