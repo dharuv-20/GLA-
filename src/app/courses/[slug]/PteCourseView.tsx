@@ -28,6 +28,7 @@ import {
   Target,
   FileText,
   Flame,
+  ChevronLeft,
   ChevronRight,
   Building,
   PlaneTakeoff,
@@ -54,6 +55,15 @@ interface PteCourseViewProps {
 export default function PteCourseView({ course, relatedCourses }: PteCourseViewProps) {
   const [activeTaskTab, setActiveTaskTab] = useState<'all' | 'speaking' | 'reading' | 'listening'>('all');
   const [activeViewMode, setActiveViewMode] = useState<'cards' | 'table'>('cards');
+  const [activeReviewIdx, setActiveReviewIdx] = useState(0);
+
+  const prevReview = () => {
+    setActiveReviewIdx((prev) => (prev === 0 ? course.testimonials.length - 1 : prev - 1));
+  };
+
+  const nextReview = () => {
+    setActiveReviewIdx((prev) => (prev === course.testimonials.length - 1 ? 0 : prev + 1));
+  };
 
   // Section 1: PTE at a Glance (6 Core Cards)
   const pteGlanceFeatures = [
@@ -1260,11 +1270,57 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
                   Real PTE Scorecard Results & Reviews
                 </h2>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                {course.testimonials.map((test) => (
-                  <div key={test.id} className="hover-lift rounded-3xl">
-                    <TestimonialCard testimonial={test} />
+
+              <div className="relative max-w-3xl mx-auto flex items-center gap-2 sm:gap-6">
+                {/* Prev button */}
+                <button
+                  onClick={prevReview}
+                  type="button"
+                  className="p-2 sm:p-3.5 rounded-full bg-card border border-card-border text-navy hover:text-purple hover:border-purple/35 transition-all duration-200 cursor-pointer shadow-sm shrink-0 active:scale-95"
+                  aria-label="Previous Review"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+
+                {/* Reviews display container */}
+                <div className="flex-1 overflow-hidden py-4">
+                  <div 
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ 
+                      transform: `translateX(-${activeReviewIdx * 100}%)` 
+                    }}
+                  >
+                    {course.testimonials.map((test) => (
+                      <div key={test.id} className="w-full shrink-0 px-2 sm:px-4">
+                        <TestimonialCard testimonial={test} />
+                      </div>
+                    ))}
                   </div>
+                </div>
+
+                {/* Next button */}
+                <button
+                  onClick={nextReview}
+                  type="button"
+                  className="p-2 sm:p-3.5 rounded-full bg-card border border-card-border text-navy hover:text-purple hover:border-purple/35 transition-all duration-200 cursor-pointer shadow-sm shrink-0 active:scale-95"
+                  aria-label="Next Review"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="flex justify-center gap-2 mt-6">
+                {course.testimonials.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveReviewIdx(idx)}
+                    type="button"
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      activeReviewIdx === idx ? 'bg-purple w-8' : 'bg-navy-muted/30 w-2 hover:bg-navy-muted/50'
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
                 ))}
               </div>
             </div>
