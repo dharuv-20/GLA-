@@ -526,59 +526,111 @@ export const coursesList: Course[] = [
   {
     id: "crs-pte",
     slug: "pte-academic",
-    title: "PTE Academic Strategy Preparation",
-    metaTitle: "PTE Academic Prep Classes | AI-Score Evaluation & Strategy Drills",
-    metaDescription: "Master the Pearson Test of English (PTE) with AI-simulated scoring engines. Interactive practice modules, strategy templates, and live correction.",
-    shortDescription: "AI-optimized training tailored for high scores in computer-delivered exams.",
-    longDescription: "Achieve your target score in the computer-delivered Pearson Test of English (PTE) Academic exam. Our program combines expert trainer strategies with simulated software assessments, training you on specific microphone techniques and oral scoring patterns.",
-    durationLabel: "2 - 3 Months",
-    nextBatchStartDate: "2026-08-25",
+    title: "PTE Academic & UKVI Preparation Masterclass",
+    metaTitle: "PTE Academic Coaching (AI-Scored) | Score 79+ | Pearson Test of English",
+    metaDescription: "Master all 20 PTE task types with AI-scored mock tests, official Pearson study material, and personalized diagnostic score roadmaps. Results in 48 hours.",
+    shortDescription: "Everything you need to prepare, practice, and achieve your target score (65+ to 79+) in PTE Academic & PTE UKVI.",
+    longDescription: "PTE (Pearson Test of English) is a 100% computer-based, AI-scored English language proficiency test developed by Pearson PLC and accepted by 3,000+ universities (Harvard, Yale, INSEAD, UK/Australia) and immigration departments for Australia, UK, and New Zealand. Our comprehensive preparation program focuses on task-specific strategies across all 20 question types, official Pearson practice platforms, speaking templates, essay frameworks, and AI-graded mock simulations delivering results within 48 hours.",
+    durationLabel: "1 - 3 Months",
+    nextBatchStartDate: "2026-09-01",
     maxClassSize: "5-7",
     levels: [
       {
-        levelCode: "Introduction & Strategy Templates",
+        levelCode: "Part 1: Speaking & Writing Mastery",
+        durationWeeks: 3,
+        weeklyHours: 8,
+        description: "Master all 7 integrated speaking & writing tasks with proven templates and oral fluency tuning.",
+        modules: [
+          "Read Aloud (Speaking + Reading, 30-40s)",
+          "Repeat Sentence (Speaking + Listening, 15s)",
+          "Describe Image & Re-tell Lecture Templates (40s)",
+          "Answer Short Question (10s)",
+          "Summarise Written Text Formula (10 mins, 1 sentence)",
+          "Write Essay 250-300 Words Framework (20 mins)"
+        ]
+      },
+      {
+        levelCode: "Part 2: Reading Section Strategies",
         durationWeeks: 2,
         weeklyHours: 8,
-        description: "Understand the AI grading parameters and learn template structures for speaking/writing tasks.",
-        modules: ["AI Scoring Parameters", "Read Aloud & Repeat Sentence Drill", "Describe Image & Re-tell Lecture Templates", "Write Essay Standardized Structure"]
+        description: "Master high-weightage fill in the blanks, paragraph re-ordering, and reading speed management.",
+        modules: [
+          "Reading & Writing: Fill in the Blanks (Drag & Drop High Weightage)",
+          "Multiple Choice (Multiple & Single Answers)",
+          "Re-order Paragraphs (Logical Connectors & Sequencing Clues)",
+          "Fill in the Blanks (Reading Dropdown Vocabulary Bank)",
+          "Academic Context & Collocation Recognition"
+        ]
       },
       {
-        levelCode: "Interactive Lab Bootcamps",
+        levelCode: "Part 3: Listening & Dictation Intensive",
         durationWeeks: 3,
         weeklyHours: 10,
-        description: "Practice exam question types in our simulated testing lab, refining microphone delivery.",
-        modules: ["Summarize Written Text & Dictation", "Fill in the Blanks & Re-order Paragraphs", "Microphone Placement & Voice Pitch Tuning", "High-frequency Repeat Question Bank"]
+        description: "High-scoring listening techniques, audio note-taking, spelling accuracy, and dictation banks.",
+        modules: [
+          "Summarise Spoken Text (50-70 Words, 10 mins)",
+          "Listening Fill in the Blanks (Spelling Accuracy)",
+          "Highlight Correct Summary & Select Missing Word",
+          "Highlight Incorrect Words (Transcript Error Detection)",
+          "Write from Dictation High-Frequency AI Sentence Bank"
+        ]
       },
       {
-        levelCode: "Full AI Mock Drills",
-        durationWeeks: 1,
+        levelCode: "Part 4: AI Mock Drills & Score Optimization",
+        durationWeeks: 2,
         weeklyHours: 12,
-        description: "Complete full mock exams evaluated by software that simulates the official PTE algorithm.",
-        modules: ["3 AI-graded Mock Examinations", "Diagnostic Performance Analysis Reports", "Trainer Consultation to fix weak sections", "Final Test Strategies"]
+        description: "Timed computer-lab simulations on Pearson Official Platform with diagnostic performance scorecards.",
+        modules: [
+          "Full-Length AI-Scored Mock Examinations (Pearson Scoring Engine)",
+          "Microphone Placement & Voice Pitch Acoustics",
+          "Personalized Score Diagnostic Analysis (Identifying Weak Tasks)",
+          "PTE UKVI Visa Requirements & Rapid 48-Hour Exam Strategy"
+        ]
       }
     ],
     faculty: [],
     testimonials: [testimonialsList[4], testimonialsList[11]],
-    faqs: [faqsList[1], faqsList[2]],
+    faqs: [
+      {
+        id: "faq-pte-1",
+        question: "What is PTE and how does its AI scoring work?",
+        answer: "PTE (Pearson Test of English) is a computer-based test administered by Pearson PLC. It uses Artificial Intelligence to evaluate speaking, writing, reading, and listening responses against strict linguistic parameters—evaluating oral fluency, pronunciation, grammar, vocabulary, and spelling without human examiner bias."
+      },
+      {
+        id: "faq-pte-2",
+        question: "How quickly are PTE results delivered?",
+        answer: "PTE results are delivered within 48 hours of completing the test at a Pearson VUE center, and often in as little as 24 hours, making it one of the fastest English proficiency tests worldwide."
+      },
+      {
+        id: "faq-pte-3",
+        question: "What is the difference between PTE Academic and PTE UKVI?",
+        answer: "PTE Academic is accepted by over 3,000 universities and for Australian/New Zealand visas. PTE UKVI is the UK government-approved Secure English Language Test (SELT) required for specific UK work and student visas, taken at UKVI-licensed Pearson VUE centers."
+      },
+      {
+        id: "faq-pte-4",
+        question: "What score do I need for Australian immigration or UK universities?",
+        answer: "Typically, Australian Skilled Migration requires a minimum of 65 in each communicative skill (Competent/Proficient English), while UK/Australian top universities require an overall score between 65 and 79. Our diagnostic mock test helps identify your baseline and map out the exact path to your target."
+      }
+    ],
     studentResults: [studentResultsList[2]],
     benefits: [
-      "AI scoring engine mimicking the official Pearson algorithm",
-      "Proven speaking strategy templates to secure max grammar and fluency points",
-      "Daily practice in our computer testing lab environment",
-      "Curriculum targeting high-frequency exam questions"
+      "Official Pearson preparation materials and scored practice platform access",
+      "Full coverage of all 20 PTE task types with task-specific templates",
+      "AI-scored mock tests providing real-time section and enabling skill analytics",
+      "Small batches (max 5-7 students) ensuring dedicated 1-on-1 speaking correction"
     ],
     whoShouldJoin: [
-      "Working professionals migrating to Australia (Subclass 189/190/491)",
-      "Students targeting universities accepting PTE Academic worldwide",
-      "Candidates seeking a faster computer-graded alternative to IELTS",
-      "Applicants needing fast results within 48 hours"
+      "Applicants for Australian Skilled Migration (Subclass 189, 190, 491) targeting 65+ to 79+ points",
+      "Students applying to 3,000+ global universities across the UK, Australia, New Zealand, USA, and Canada",
+      "UK visa applicants requiring PTE Academic UKVI certification",
+      "Candidates seeking a faster, 100% computer-delivered, objective alternative to IELTS"
     ],
     learningOutcomes: [
-      "Secure a target score of 79+ (equivalent to IELTS Band 8) in all bands",
-      "Understand computer grading triggers for fluency, pronunciation, and spelling",
-      "Read aloud and repeat complex sentences with correct intonation and speed",
-      "Successfully write summarized texts and dictate sentences under tight limits"
+      "Master all 20 integrated task types across Speaking, Writing, Reading, and Listening",
+      "Confidently score 79+ (equivalent to IELTS Band 8.0) or 65+ (IELTS 7.0) on official exam day",
+      "Apply tested speaking templates for Describe Image and Re-tell Lecture without pauses",
+      "Type high-scoring dictation sentences and academic summaries within exact time limits"
     ],
-    classFormats: ["Computer Lab In-Person Batches", "Live Interactive Remote Classes", "Weekend Strategy Crash Course"]
+    classFormats: ["Computer Lab In-Person Batches (Dwarka)", "Live Interactive Online Zoom Batches", "1-on-1 Fast-Track Score Accelerator"]
   }
 ];

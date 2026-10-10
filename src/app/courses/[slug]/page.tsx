@@ -8,6 +8,7 @@ import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
 import GermanCourseView from './GermanCourseView';
+import PteCourseView from './PteCourseView';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -131,6 +132,24 @@ export default async function CourseLandingPage({ params }: PageProps) {
           }}
         />
         <GermanCourseView course={course} relatedCourses={relatedCourses} />
+      </>
+    );
+  }
+
+  // If this is the PTE course page, load the specialized comprehensive curriculum view
+  if (course.slug === 'pte-academic') {
+    return (
+      <>
+        {/* Dynamic SEO JSON-LD injection */}
+        <script
+          id="pte-course-schema"
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(pageSchema).replace(/</g, '\\u003c'),
+          }}
+        />
+        <PteCourseView course={course} relatedCourses={relatedCourses} />
       </>
     );
   }
