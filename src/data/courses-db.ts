@@ -177,6 +177,16 @@ export const faqsList: FAQItem[] = [
     id: "faq-4",
     question: "Do you offer physical in-person classes?",
     answer: "Yes, we operate a premium physical academy. We run hybrid batches allowing students to attend either offline sessions at our center or join synchronously online."
+  },
+  {
+    id: "faq-jp-1",
+    question: "What textbooks and learning resources are provided in the Japanese programme?",
+    answer: "The course follows the Minna no Nihongo and Genki series for N5–N3, and Tobira for N2. Students also receive workbooks, audio and video listening resources, character writing sheets, and supplementary JLPT exam practice material."
+  },
+  {
+    id: "faq-jp-2",
+    question: "How is the 25-lesson syllabus structured across scripts and Kanji?",
+    answer: "Hiragana lines and practice are completed in Lessons 1–5. Katakana practice is completed in Lessons 6–10. Dedicated Kanji instruction begins in Lesson 12 and continues through Lesson 21, followed by revision drills in Lessons 22–25 and a comprehensive final test including a daily-life conversation check."
   }
 ];
 
@@ -301,46 +311,62 @@ export const coursesList: Course[] = [
   {
     id: "crs-french",
     slug: "french-language",
-    title: "French Language Program (DELF / DALF A1 - C2)",
-    metaTitle: "French Language Classes (A1 - C2) | DELF DALF & TEF Canada Prep",
-    metaDescription: "Learn French from certified instructors. Level-wise courses (A1 to C2) with DELF/DALF and TEF Canada exam preparation.",
-    shortDescription: "Master French for international careers, higher education in France/Europe, and Canada PR points.",
-    longDescription: "Master French grammar, pronunciation, and practical communication. From beginners to advanced speakers, our certified curriculum prepares you for DELF/DALF and TEF Canada examinations with interactive speaking drills and exam mock tests.",
-    durationLabel: "3 - 12 Months",
+    title: "French Language Courses — Learn, Grow, Go Global",
+    metaTitle: "French Language Classes (A1 - C2) | DELF DALF Preparation | GLA",
+    metaDescription: "Learn French with confidence at The Global Language Academy. Structured Inspire syllabus from A1 to B2 plus DALF C1 & C2 exam preparation.",
+    shortDescription: "Learn French with confidence through structured learning, practical communication, and examination-focused preparation at The Global Language Academy.",
+    longDescription: "Our French language courses are designed to help learners develop strong speaking, listening, reading, writing, pronunciation, grammar, and vocabulary skills for real-world communication and global opportunities. Follow the Inspire French series from A1 to B2, with specialized preparation for DALF C1 and C2.",
+    durationLabel: "2 - 12 Months",
     nextBatchStartDate: "2026-09-10",
     maxClassSize: "5-7",
     levels: [
       {
         levelCode: "A1 (Beginner)",
-        durationWeeks: 6,
+        durationWeeks: 8,
         weeklyHours: 8,
-        description: "Master basic pronunciation, introductions, everyday vocabulary, and present tense conjugations.",
-        modules: ["Phonetics & Accents", "Essential Greetings & Numbers", "Present Tense & Articles", "Everyday Dialogues"]
+        description: "Essential French vocabulary, basic grammar, everyday expressions, and simple communication (Inspire 1).",
+        modules: ["Greetings & Alphabet", "Avoir & Être Conjugations", "Present Tense & Articles", "DELF A1 Training"]
       },
       {
         levelCode: "A2 (Elementary)",
-        durationWeeks: 6,
+        durationWeeks: 8,
         weeklyHours: 8,
-        description: "Express past events, talk about hobbies, shopping, and understand basic instructions.",
-        modules: ["Passé Composé vs Imparfait", "Direct & Indirect Object Pronouns", "Describing Past Experiences", "DELF A2 Mock Practice"]
+        description: "Communicate in familiar situations, describe experiences, discuss plans, and handle practical interactions (Inspire 2).",
+        modules: ["Passé Composé vs Imparfait", "Travel & Hotel Reservations", "Object Pronouns Y/En", "DELF A2 Mock Practice"]
       },
       {
-        levelCode: "B1/B2 (Intermediate/Advanced)",
-        durationWeeks: 10,
+        levelCode: "B1/B2 (Intermediate/Upper)",
+        durationWeeks: 12,
         weeklyHours: 10,
-        description: "Participate in debates, express nuanced opinions, and draft academic essays.",
-        modules: ["Subjunctive & Conditional Moods", "Complex Connectors & Argumentation", "DELF B2 Exam Drill", "TEF Canada Preparation"]
+        description: "Express opinions, debate current issues, handle formal communication, and prepare for DELF B1/B2 (Inspire 3 & 4).",
+        modules: ["Subjunctive & Conditionnel", "Argumentative Essays & Debates", "DELF B1/B2 Tasks", "TEF / TCF Canada Prep"]
       }
     ],
     faculty: [],
     testimonials: [testimonialsList[2], testimonialsList[8]],
-    faqs: [faqsList[0], faqsList[1]],
+    faqs: [
+      {
+        id: "faq-fr-1",
+        question: "Which textbooks are used in the GLA French course?",
+        answer: "Our French language curriculum is structured around the renowned Inspire French series: Inspire 1 for A1, Inspire 2 for A2, Inspire 3 for B1, and Inspire 4 for B2, supplemented with official cahier activities and DALF dossiers."
+      },
+      {
+        id: "faq-fr-2",
+        question: "Do you prepare students for official DELF and DALF exams?",
+        answer: "Yes, our programmes provide targeted preparation for DELF A1, A2, B1, B2 and DALF C1, C2, including authentic examination mock tests aligned with CIEP / France Éducation international (FEI) specifications."
+      },
+      {
+        id: "faq-fr-3",
+        question: "Can learning French help boost my Canada PR CRS score?",
+        answer: "Yes! Achieving NCLC 7 (CLB 7) or higher in French via the TEF Canada or TCF Canada exam can award up to 50 additional Comprehensive Ranking System (CRS) points for Canada Express Entry."
+      }
+    ],
     studentResults: [studentResultsList[0]],
     benefits: [
-      "Certified language instructors with CEFR-aligned curriculum",
-      "Interactive speaking-first pedagogy with small batches (max 5-7)",
-      "Dedicated DELF / DALF & TEF Canada mock tests",
-      "Comprehensive digital study material and recorded lectures included"
+      "Structured Learning: Progressive syllabus designed to build French systematically",
+      "Practical Communication: Develop confident communication in everyday & professional situations",
+      "Exam Preparation: Language skills and examination tasks for DELF A1-B2 & DALF C1-C2",
+      "Global Opportunities: Build French proficiency for education, careers, and international mobility"
     ],
     whoShouldJoin: [
       "Students planning to study in France, Switzerland, or Belgium",
@@ -359,40 +385,59 @@ export const coursesList: Course[] = [
   {
     id: "crs-japanese",
     slug: "japanese-language",
-    title: "Japanese Language Program (JLPT N5 - N1)",
-    metaTitle: "Japanese Language Classes (JLPT N5 - N1) | Certified Faculty",
-    metaDescription: "Master Japanese script (Hiragana, Katakana, Kanji) and pass JLPT N5 to N1 exams. Tailored for tech careers and higher studies in Japan.",
-    shortDescription: "Open high-paying IT, engineering, and study opportunities in Japan with JLPT preparation.",
-    longDescription: "Learn Japanese through our step-by-step framework covering Hiragana, Katakana, Kanji characters, and natural spoken conversation. Specially structured to guarantee success in official JLPT N5, N4, and N3 examinations.",
-    durationLabel: "4 - 14 Months",
+    title: "Japanese Language Courses — Learn, Grow, Go Global",
+    metaTitle: "Japanese Language Courses (25 Lessons & JLPT N5–N1) | The Global Language Academy",
+    metaDescription: "Learn Japanese with confidence through structured learning, practical communication, cultural understanding, and JLPT N5–N1 preparation at The Global Language Academy.",
+    shortDescription: "Learn Japanese with confidence through structured learning, practical communication, cultural understanding, and real-world skills at The Global Language Academy.",
+    longDescription: "The Japanese Language Course at The Global Language Academy is a structured 25-lesson programme developing speaking, listening, reading, and writing, including hiragana, katakana, and kanji, along with practical grammar, useful vocabulary, and JLPT preparation from N5 to N1.",
+    durationLabel: "25 Lessons + Final Test",
     nextBatchStartDate: "2026-09-08",
     maxClassSize: "5-7",
     levels: [
       {
-        levelCode: "N5 (Basic Beginner)",
-        durationWeeks: 8,
+        levelCode: "Stage 1 (L1–L5)",
+        durationWeeks: 4,
         weeklyHours: 8,
-        description: "Master Hiragana, Katakana, 100+ Kanji characters, and basic conversational patterns.",
-        modules: ["Hiragana & Katakana Mastery", "100 Essential Kanji", "Basic Grammar Particles (wa, ga, o, ni)", "JLPT N5 Mock Tests"]
+        description: "Hiragana lines, counting, time, greetings, and basic daily pattern practice.",
+        modules: ["Hiragana Lines & Word Practice", "Counting, Numbers, Time & Days", "Completion of L1–L5", "Review Quizzes & Listening"]
       },
       {
-        levelCode: "N4 (Elementary)",
-        durationWeeks: 8,
+        levelCode: "Stage 2 (L6–L10)",
+        durationWeeks: 4,
         weeklyHours: 8,
-        description: "Learn 300+ Kanji, daily situational dialogues, and complex sentence conjunctions.",
-        modules: ["Te-form & Ta-form Verb Conjugations", "300 Kanji & Vocabulary Bank", "Listening Comprehension Drills", "JLPT N4 Mock Tests"]
+        description: "Katakana completion, situational dialogues, reading and listening practice.",
+        modules: ["Katakana Lines & Completion", "Adjectives & Preferences", "Existence & Spatial Prepositions", "Reading & Review Quizzes"]
       },
       {
-        levelCode: "N3 (Intermediate)",
-        durationWeeks: 12,
-        weeklyHours: 10,
-        description: "Understand everyday newspaper articles, business conversations, and 650+ Kanji.",
-        modules: ["Intermediate Grammar Patterns", "Business Keigo (Polite Japanese)", "650+ Kanji Character Drills", "JLPT N3 Exam Intensive"]
+        levelCode: "Stage 3 (L11–L15)",
+        durationWeeks: 5,
+        weeklyHours: 8,
+        description: "Kanji Lessons 2–5, Te-form conjugations, requests, and permissions.",
+        modules: ["Kanji Lessons 2 to 5", "Quantities & Family Hierarchy", "Te-Form Conjugation Rules", "Listening & Reading Drills"]
+      },
+      {
+        levelCode: "Stage 4 (L16–L21)",
+        durationWeeks: 6,
+        weeklyHours: 8,
+        description: "Kanji Lessons 6–11, Nai-form obligations, plain forms, and opinions.",
+        modules: ["Kanji Lessons 6 to 11", "Dictionary Form & Hobbies", "Casual Plain Speech", "Quotations & Opinions"]
+      },
+      {
+        levelCode: "Stage 5 (L22–L25)",
+        durationWeeks: 4,
+        weeklyHours: 8,
+        description: "Comprehensive revision, drill exercises, and pre-assessment synthesis.",
+        modules: ["Noun Modification & Relative Clauses", "Giving & Receiving Benefactive Verbs", "Conditionals & Logic", "Final Assessment & Conversational Check"]
       }
     ],
     faculty: [],
-    testimonials: [testimonialsList[3], testimonialsList[10]],
-    faqs: [faqsList[0], faqsList[1]],
+    testimonials: [testimonialsList[3], testimonialsList[10], testimonialsList[1]],
+    faqs: [
+      faqsList[4], // faq-jp-1
+      faqsList[5], // faq-jp-2
+      faqsList[0], // faq-1
+      faqsList[2]  // faq-3
+    ],
     studentResults: [studentResultsList[0]],
     benefits: [
       "Step-by-step Kanji memorization mnemonics and stroke order drills",
