@@ -31,18 +31,22 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "The Global Language Academy (GLA) | IELTS, PTE & German Coaching",
+    default: "The Global Language Academy (GLA) | German, French, Japanese, IELTS & PTE Coaching",
     template: "%s | The Global Language Academy (GLA)",
   },
-  description: "Join GLA for certified German language classes (A1-C2), IELTS (7.5+ band prep), and PTE Academic coaching in Delhi NCR & online. Small batches with guaranteed exam success.",
+  description: "Join GLA for certified German (A1-C2), French (A1-B2 & DALF C1/C2), Japanese (JLPT N5-N1), Spoken English, IELTS (7.5+ Band), and PTE Academic coaching in Delhi NCR & online. Small interactive batches with guaranteed exam success.",
   keywords: [
     "German Language Classes",
-    "IELTS Coaching",
+    "French Language Courses",
+    "Japanese Language Courses",
+    "Spoken English Classes",
+    "IELTS Coaching Delhi",
     "PTE Academic Preparation",
     "German A1 A2 B1 B2 C1 C2",
-    "Goethe Exam Preparation",
-    "Study in Germany",
-    "Personality Development Course",
+    "Goethe Zertifikat Preparation",
+    "DELF DALF French Preparation",
+    "JLPT N5 N4 N3 N2 N1 Japanese",
+    "Study Abroad Language Institute",
     "The Global Language Academy",
     "GLA Learning"
   ],
@@ -54,8 +58,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "The Global Language Academy (GLA) | IELTS, PTE & German Coaching",
-    description: "Premium coaching for IELTS (7.5+ Band), PTE Academic, German levels A1-C2, and Personality Development. Certified Goethe & IDP trainers.",
+    title: "The Global Language Academy (GLA) | German, French, Japanese, IELTS & PTE Coaching",
+    description: "Premier foreign language & test prep academy in Delhi NCR. Certified German (A1-C2), French (A1-B2/DALF), Japanese (JLPT N5-N1), Spoken English, IELTS & PTE coaching.",
     url: "https://tglalearning.com",
     siteName: "The Global Language Academy",
     locale: "en_US",
@@ -64,7 +68,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The Global Language Academy (GLA)",
-    description: "Premium exam preparation for IELTS, PTE, and German Language (A1-C2). Small 5-7 student batches with certified trainers.",
+    description: "Certified German, French, Japanese, Spoken English, IELTS, and PTE coaching in Delhi NCR & online. Small batches with native-level trainers.",
   },
   robots: {
     index: true,

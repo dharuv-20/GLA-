@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -36,6 +37,19 @@ import TestimonialsSlider from '@/components/home/TestimonialsSlider';
 import FAQAccordion from '@/components/FAQAccordion';
 import GallerySection from '@/components/layout/GallerySection';
 import HeroBackgroundVideo from '@/components/home/HeroBackgroundVideo';
+
+export const metadata: Metadata = {
+  title: "The Global Language Academy (GLA) | German, French, Japanese, IELTS & PTE",
+  description: "Empowering communication and global opportunities. GLA offers certified German (A1-C2), French (A1-B2 & DALF C1/C2), Japanese (JLPT N5-N1), Spoken English, IELTS, and PTE Academic courses in Delhi NCR & online.",
+  alternates: {
+    canonical: "https://tglalearning.com",
+  },
+  openGraph: {
+    title: "The Global Language Academy (GLA) | Learn, Grow, Go Global",
+    description: "Certified German, French, Japanese, Spoken English, IELTS & PTE coaching with certified trainers, small batches, and 98% first-attempt success rate.",
+    url: "https://tglalearning.com",
+  },
+};
 
 export default function HomePage() {
   // Section 2: Quick Trust / Statistics with 3D Graphic Assets

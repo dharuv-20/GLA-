@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
-import { Check, ArrowRight, BookOpen, Award, CheckCircle, Clock, BookOpenCheck, MapPin, Calendar, HelpCircle, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Users, Laptop } from 'lucide-react';
+import { Check, ArrowRight, BookOpen, Award, CheckCircle, Clock, BookOpenCheck, MapPin, Calendar, HelpCircle, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Users, Laptop, MessageCircle, Phone } from 'lucide-react';
 import { Course, FacultyMember, Testimonial, FAQItem, StudentResult } from '@/types';
 import FacultyCard from '@/components/FacultyCard';
 import TestimonialCard from '@/components/TestimonialCard';
@@ -1425,6 +1425,78 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
 
           <div className="max-w-3xl mx-auto">
             <FAQAccordion faqs={course.faqs} />
+          </div>
+        </div>
+      </section>
+
+      {/* ADMISSIONS & ENROLMENT CTA */}
+      <section className="bg-gradient-to-br from-[#00122E] via-[#051A3C] to-[#2E1065] text-white py-14 sm:py-20 relative overflow-hidden border-t border-b border-card-border">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-12 backdrop-blur-md shadow-2xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              
+              <div className="lg:col-span-8 flex flex-col gap-4">
+                <span className="text-xs font-bold uppercase tracking-widest text-purple-hero">
+                  Admissions Open • Limited Seats Per Batch
+                </span>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-white tracking-tight leading-tight">
+                  Enrol in GLA German Language Programmes
+                </h2>
+                <p className="text-sm text-slate-200 leading-relaxed max-w-2xl">
+                  Take the first step towards Goethe-Zertifikat certification, Ausbildung, university admissions, and international career pathways in Germany. Small batches (max 5–7 learners) with certified faculty.
+                </p>
+
+                {/* 4 Pillars Mini-Badges */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 text-xs font-semibold text-slate-200">
+                  <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
+                    ✓ Goethe Exam Focus
+                  </div>
+                  <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
+                    ✓ Small Batches (5-7)
+                  </div>
+                  <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
+                    ✓ Proven Pedagogy
+                  </div>
+                  <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
+                    ✓ 98% Success Rate
+                  </div>
+                </div>
+
+                {/* Physical Address */}
+                <div className="pt-2 flex items-start gap-2 text-xs text-slate-300">
+                  <MapPin className="w-4 h-4 text-purple-hero shrink-0 mt-0.5" />
+                  <span>
+                    <strong>Academy Campus:</strong> 3rd Floor, Plot No. 94, PKT-10, Dwarka Sector 13, Opposite Metro Station, Near Radisson Blu Hotel, Delhi – 110078, India.
+                  </span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
+                <a
+                  href="https://wa.me/919217999511?text=Hi%20GLA,%20I%20am%20interested%20in%20the%20German%20Language%20Course.%20Please%20share%20batch%20timings%20and%20fee%20structure."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  <span>Chat on WhatsApp (9217999511)</span>
+                </a>
+                <a
+                  href="tel:+919217999511"
+                  className="w-full bg-white/10 hover:bg-white/20 text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 border border-white/20 backdrop-blur-sm transition-all"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>Call 9217999511 / 92176 69511</span>
+                </a>
+                <div className="text-center">
+                  <span className="text-[10px] text-slate-400">Learn German, Build Tomorrow, Succeed Globally.</span>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>

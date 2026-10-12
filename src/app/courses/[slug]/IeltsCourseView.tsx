@@ -1540,7 +1540,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
 
               <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
                 <a
-                  href="https://wa.me/917988358249?text=Hi%20GLA,%20I%20am%20interested%20in%20the%20IELTS%20Preparation%20Course.%20Please%20schedule%20my%20free%20diagnostic%20test."
+                  href="https://wa.me/919217999511?text=Hi%20GLA,%20I%20am%20interested%20in%20the%20IELTS%20Preparation%20Course.%20Please%20schedule%20my%20free%20diagnostic%20test."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5"
@@ -1549,11 +1549,11 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
                   <span>Chat on WhatsApp</span>
                 </a>
                 <a
-                  href="tel:+917988358249"
+                  href="tel:+919217999511"
                   className="w-full bg-white/10 hover:bg-white/20 text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 border border-white/20 backdrop-blur-sm transition-all"
                 >
                   <Phone className="w-4 h-4" />
-                  <span>Call +91 79883 58249</span>
+                  <span>Call +91 92179 99511</span>
                 </a>
               </div>
 

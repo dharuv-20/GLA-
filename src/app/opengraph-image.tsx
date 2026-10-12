@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'The Global Language Academy (GLA) | IELTS, PTE & German Language Coaching';
+export const alt = 'The Global Language Academy (GLA) | German, French, Japanese, IELTS & PTE Coaching';
 export const size = {
   width: 1200,
   height: 630,
@@ -63,21 +63,21 @@ export default async function Image() {
               color: '#C084FC',
             }}
           >
-            Certified Language & Skill Coaching
+            Learn • Grow • Go Global
           </span>
           <div
             style={{
-              fontSize: '52px',
+              fontSize: '48px',
               fontWeight: 800,
               lineHeight: 1.15,
-              maxWidth: '1000px',
+              maxWidth: '1040px',
               letterSpacing: '-1px',
             }}
           >
-            Master IELTS, PTE & German Language (A1 – C2)
+            Master German, French, Japanese, IELTS & PTE
           </div>
-          <div style={{ fontSize: '22px', color: '#CBD5E1', marginTop: '6px' }}>
-            5-7 Students Batch Cap • Certified Goethe & IDP Trainers • Guaranteed Exam Success
+          <div style={{ fontSize: '21px', color: '#CBD5E1', marginTop: '6px' }}>
+            Small Batches • Certified Goethe, DELF, JLPT & IDP Trainers • Guaranteed Exam Prep
           </div>
         </div>
 
@@ -92,10 +92,11 @@ export default async function Image() {
             paddingTop: '24px',
           }}
         >
-          <div style={{ display: 'flex', gap: '24px', fontSize: '18px', color: '#94A3B8' }}>
-            <span>Goethe A1 - C2</span>
-            <span>IELTS Band 7.5+</span>
-            <span>PTE Academic 79+</span>
+          <div style={{ display: 'flex', gap: '20px', fontSize: '16px', color: '#94A3B8' }}>
+            <span>German (A1-C2)</span>
+            <span>French (DELF/DALF)</span>
+            <span>Japanese (JLPT)</span>
+            <span>IELTS & PTE</span>
           </div>
           <div
             style={{
