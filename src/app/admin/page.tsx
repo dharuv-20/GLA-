@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import Script from 'next/script';
 import AdminDashboard from './AdminDashboard';
 import { BlogPost } from '@/types';
 
@@ -32,5 +33,10 @@ export default function AdminPage() {
     console.error("Error reading blogs directory for admin panel:", error);
   }
 
-  return <AdminDashboard initialPosts={posts} />;
+  return (
+    <>
+      <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" strategy="lazyOnload" />
+      <AdminDashboard initialPosts={posts} />
+    </>
+  );
 }

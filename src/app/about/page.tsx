@@ -34,14 +34,14 @@ import FacultyCard from '@/components/FacultyCard';
 import CountUp from '@/components/CountUp';
 
 export const metadata: Metadata = {
-  title: "About Us | The Global Language Academy (GLA) - ISO 9001:2015 Certified",
-  description: "Learn about The Global Language Academy (GLA). Empowering communication and building global opportunities with ISO 9001:2015 certified training in German, IELTS, French, Spanish & Japanese.",
+  title: "About GLA | Premier Language Institute in Delhi NCR",
+  description: "Discover The Global Language Academy. ISO 9001:2015 certified training in German, French, Japanese, Spoken English, IELTS & PTE with native-level mentors.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Us | The Global Language Academy (GLA)",
-    description: "Empowering communication and building global opportunities with certified instructors, small batches, and ISO 9001:2015 quality standards.",
+    title: "About GLA | Premier Language Institute in Delhi NCR",
+    description: "Discover The Global Language Academy. ISO 9001:2015 certified training in German, French, Japanese, Spoken English, IELTS & PTE with native-level mentors.",
     url: "https://tglalearning.com/about",
     type: "website",
   },

@@ -62,19 +62,19 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
   const getCourseImage = (slug: string) => {
     switch (slug) {
       case 'german-language':
-        return '/images/berlin-skyline.jpg';
+        return '/images/berlin-skyline.webp';
       case 'french-language':
-        return '/images/classroom.jpg';
+        return '/images/classroom.webp';
       case 'japanese-language':
-        return '/images/computer-lab.jpg';
+        return '/images/computer-lab.webp';
       case 'spoken-english':
-        return '/images/lobby.jpg';
+        return '/images/lobby.webp';
       case 'ielts-preparation':
-        return '/images/classroom.jpg';
+        return '/images/classroom.webp';
       case 'pte-academic':
-        return '/images/computer-lab.jpg';
+        return '/images/computer-lab.webp';
       default:
-        return '/images/classroom.jpg';
+        return '/images/classroom.webp';
     }
   };
 
@@ -146,12 +146,13 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
                       {categoryLabel}
                     </span>
 
-                    <img
+                    <Image
                       src={imageUrl}
                       alt={`${course.title} - The Global Language Academy`}
                       loading="lazy"
                       width={600}
                       height={350}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#00122E]/70 via-[#00122E]/20 to-transparent pointer-events-none"></div>

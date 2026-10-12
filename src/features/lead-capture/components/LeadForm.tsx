@@ -7,6 +7,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { leadFormSchema, LeadFormInput } from '../types';
 import { submitLead } from '../actions/submitLead';
+import { trackLeadSubmission } from '@/lib/analytics';
 
 function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: string; onSuccess?: () => void }) {
   const router = useRouter();
@@ -52,6 +53,7 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
       setIsSubmitting(false);
 
       if (result.success) {
+        trackLeadSubmission('general_lead_form', data.course);
         if (onSuccess) {
           onSuccess();
         }

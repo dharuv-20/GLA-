@@ -1,16 +1,17 @@
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 
 const galleryImages = [
-  '/images/classroom.jpg',
-  '/images/computer-lab.jpg',
-  '/images/lobby.jpg',
-  '/images/classroom.jpg',
-  '/images/computer-lab.jpg',
-  '/images/lobby.jpg',
-  '/images/classroom.jpg',
-  '/images/computer-lab.jpg',
+  '/images/classroom.webp',
+  '/images/computer-lab.webp',
+  '/images/lobby.webp',
+  '/images/classroom.webp',
+  '/images/computer-lab.webp',
+  '/images/lobby.webp',
+  '/images/classroom.webp',
+  '/images/computer-lab.webp',
 ];
 
 export default function GallerySection() {
@@ -71,9 +72,13 @@ export default function GallerySection() {
               key={idx}
               className="w-72 h-44 sm:w-96 sm:h-60 shrink-0 rounded-2xl overflow-hidden shadow-sm border border-card-border/50 hover:border-purple/35 group hover-lift snap-start relative transition-all duration-300"
             >
-              <img
+              <Image
                 src={imgSrc}
-                alt={`Campus Gallery ${idx + 1}`}
+                alt={`The Global Language Academy Campus Facility ${idx + 1}`}
+                width={384}
+                height={240}
+                sizes="(max-width: 640px) 288px, 384px"
+                loading="lazy"
                 className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-500 ease-out"
               />
             </div>

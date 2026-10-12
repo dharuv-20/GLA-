@@ -37,16 +37,17 @@ import TestimonialsSlider from '@/components/home/TestimonialsSlider';
 import FAQAccordion from '@/components/FAQAccordion';
 import GallerySection from '@/components/layout/GallerySection';
 import HeroBackgroundVideo from '@/components/home/HeroBackgroundVideo';
+import DeferredGoogleMap from '@/components/layout/DeferredGoogleMap';
 
 export const metadata: Metadata = {
-  title: "The Global Language Academy (GLA) | German, French, Japanese, IELTS & PTE",
-  description: "Empowering communication and global opportunities. GLA offers certified German (A1-C2), French (A1-B2 & DALF C1/C2), Japanese (JLPT N5-N1), Spoken English, IELTS, and PTE Academic courses in Delhi NCR & online.",
+  title: "German, French & IELTS Coaching in Delhi NCR | GLA",
+  description: "Learn German, French, Japanese, Spoken English, IELTS and PTE with GLA. Explore structured courses, exam preparation and online or Delhi NCR classes.",
   alternates: {
     canonical: "https://tglalearning.com",
   },
   openGraph: {
-    title: "The Global Language Academy (GLA) | Learn, Grow, Go Global",
-    description: "Certified German, French, Japanese, Spoken English, IELTS & PTE coaching with certified trainers, small batches, and 98% first-attempt success rate.",
+    title: "German, French & IELTS Coaching in Delhi NCR | GLA",
+    description: "Learn German, French, Japanese, Spoken English, IELTS and PTE with GLA. Explore structured courses, exam preparation and online or Delhi NCR classes.",
     url: "https://tglalearning.com",
   },
 };
@@ -815,28 +816,18 @@ export default function HomePage() {
                         Campus Location & Advisory Hub
                       </h4>
                       <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2 py-0.5 rounded-full font-bold">
-                        Opp. Metro Sector 12
+                        Opp. Metro Sector 13
                       </span>
                     </div>
                     <p className="text-xs text-slate-300 leading-relaxed">
-                      3rd Floor, Plot no 94, PKT-10, Dwarka Sector 12, Opposite Metro Station (Near Radisson Blu Hotel), New Delhi 110078
+                      3rd Floor, Plot no 94, PKT-10, Dwarka Sector 13, Opposite Metro Station (Near Radisson Blu Hotel), New Delhi 110078
                     </p>
                   </div>
                 </div>
 
                 {/* Map frame */}
                 <div className="w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-lg border border-white/15 bg-slate-900">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d35068.13912469187!2d77.030589!3d28.594833!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b3c8edb5021%3A0xa58f068e97394567!2sThe%20Global%20Language%20Academy!5e1!3m2!1sen!2sin!4v1786024730032!5m2!1sen!2sin"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen={true}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="The Global Language Academy Location Map"
-                    className="w-full h-full"
-                  ></iframe>
+                  <DeferredGoogleMap />
                 </div>
 
               </div>

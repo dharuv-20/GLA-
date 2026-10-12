@@ -31,14 +31,14 @@ import FAQAccordion from '@/components/FAQAccordion';
 import CountUp from '@/components/CountUp';
 
 export const metadata: Metadata = {
-  title: "Global Services | Ausbildung in Germany & Visa Assistance | GLA",
-  description: "Beyond language learning, The Global Language Academy provides dedicated guidance for Ausbildung in Germany, study abroad visa assistance, and documentation support.",
+  title: "Study Abroad & Ausbildung in Germany Services | GLA",
+  description: "Explore study abroad visa assistance, Ausbildung Germany pathways, and embassy interview guidance provided by The Global Language Academy in Delhi NCR.",
   alternates: {
     canonical: "/services",
   },
   openGraph: {
-    title: "Global Services | Ausbildung in Germany & Visa Assistance | GLA",
-    description: "Prepare for international opportunities with GLA: German language mastery, Ausbildung pathway guidance, and structured visa documentation assistance.",
+    title: "Study Abroad & Ausbildung in Germany Services | GLA",
+    description: "Explore study abroad visa assistance, Ausbildung Germany pathways, and embassy interview guidance provided by The Global Language Academy in Delhi NCR.",
     url: "https://tglalearning.com/services",
     type: "website",
   },

@@ -1,16 +1,20 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Clock, Users } from 'lucide-react';
 import { Course } from '@/types';
 
 const courseImages: Record<string, string> = {
-  'german-language': '/images/classroom.jpg',
-  'ielts-preparation': '/images/computer-lab.jpg',
-  'pte-academic': '/images/lobby.jpg',
-  'personality-development': '/images/classroom.jpg',
+  'german-language': '/images/classroom.webp',
+  'ielts-preparation': '/images/computer-lab.webp',
+  'pte-academic': '/images/lobby.webp',
+  'french-language': '/images/classroom.webp',
+  'japanese-language': '/images/computer-lab.webp',
+  'spoken-english': '/images/lobby.webp',
+  'personality-development': '/images/classroom.webp',
 };
 
 export default function CourseCard({ course }: { course: Course }) {
-  const imageUrl = courseImages[course.slug] || '/images/classroom.jpg';
+  const imageUrl = courseImages[course.slug] || '/images/classroom.webp';
 
   return (
     <div className="group flex flex-col bg-card border border-card-border/60 hover:border-purple-300/35 rounded-2xl overflow-hidden shadow-sm hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_40px_rgba(147,51,234,0.06)] hover:-translate-y-1.5 transition-all duration-300 h-full">
@@ -22,12 +26,13 @@ export default function CourseCard({ course }: { course: Course }) {
         </span>
         
         {/* Image with hover zoom and saturation tweak */}
-        <img
+        <Image
           src={imageUrl}
           alt={`${course.title} - The Global Language Academy`}
           loading="lazy"
           width={600}
           height={350}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out filter group-hover:brightness-105"
         />
         {/* Gradient shadow overlay for better card depth */}

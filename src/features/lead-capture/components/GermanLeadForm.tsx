@@ -7,6 +7,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { germanLeadFormSchema, GermanLeadFormInput } from '../types';
 import { submitGermanLead } from '../actions/submitGermanLead';
+import { trackLeadSubmission } from '@/lib/analytics';
 
 function GermanLeadFormInner() {
   const router = useRouter();
@@ -55,6 +56,7 @@ function GermanLeadFormInner() {
       setIsSubmitting(false);
 
       if (result.success) {
+        trackLeadSubmission('german_lead_form', data.germanLevel);
         if (typeof window !== 'undefined') {
           sessionStorage.setItem('gla_form_submitted', Date.now().toString());
           window.dispatchEvent(new Event('gla_form_submitted'));

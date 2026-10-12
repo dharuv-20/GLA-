@@ -621,7 +621,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
         {/* Background image overlay with linear gradient masking */}
         <div className="absolute inset-0 opacity-45 dark:opacity-25 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-[#00122E] via-[#00122E]/70 to-[#00122E]/10 dark:from-[#010814] dark:via-[#010814]/70 dark:to-[#010814]/10 z-10"></div>
-          <img src="/images/bg.svg" alt="German Program Background" className="w-full h-full object-cover object-center" />
+          <img src="/images/bg-hero.webp" alt="German Program Background" width={1280} height={720} loading="lazy" className="w-full h-full object-cover object-center" />
         </div>
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-purple rounded-full blur-3xl"></div>
@@ -1326,6 +1326,74 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
 
             </div>
 
+          </div>
+
+        </div>
+      </section>
+
+      {/* 5c. Examination Comparison: Goethe vs TELC */}
+      <section className="bg-section-alt py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-14 flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">Certification Guide</span>
+            <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">
+              Goethe-Zertifikat vs. TELC Deutsch: Which Exam Should You Take?
+            </h2>
+            <p className="text-sm text-navy-muted leading-relaxed">
+              Both Goethe-Institut and TELC (The European Language Certificates) diplomas are fully recognized by the German Embassy, German universities, and employers worldwide under the CEFR framework.
+            </p>
+          </div>
+
+          <div className="bg-card border border-card-border rounded-2xl overflow-hidden shadow-sm max-w-5xl mx-auto">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                <thead>
+                  <tr className="bg-purple text-white border-b border-purple-hover">
+                    <th className="py-3.5 px-4 sm:px-6 font-bold uppercase text-[11px] tracking-wider">Feature</th>
+                    <th className="py-3.5 px-4 sm:px-6 font-bold uppercase text-[11px] tracking-wider">Goethe-Zertifikat</th>
+                    <th className="py-3.5 px-4 sm:px-6 font-bold uppercase text-[11px] tracking-wider">TELC Deutsch</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-card-border text-navy">
+                  <tr className="hover:bg-section-alt/50 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold">Conducting Authority</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Goethe-Institut (Max Mueller Bhavan in India)</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">telc gGmbH (Headquartered in Frankfurt, Germany)</td>
+                  </tr>
+                  <tr className="hover:bg-section-alt/50 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold">Embassy & Visa Recognition</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">100% accepted for Spouse, Student, Job & Opportunity Card (Chancenkarte)</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">100% accepted for all German visa categories, Ausbildung & Citizenship</td>
+                  </tr>
+                  <tr className="hover:bg-section-alt/50 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold">University & Ausbildung Suitability</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Widely preferred for public universities (B2/C1 levels)</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Highly popular for Ausbildung, nursing adaptations, and TELC C1 Hochschule</td>
+                  </tr>
+                  <tr className="hover:bg-section-alt/50 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold">Modular Retake Flexibility</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">All modules (Lesen, Hören, Schreiben, Sprechen) can be taken or repeated individually at B1, B2 & C2</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Split into Written (Lesen+Hören+Schreiben) and Oral (Sprechen) sections for retakes</td>
+                  </tr>
+                  <tr className="hover:bg-section-alt/50 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold">Slot Availability & Booking</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">High demand; exam seats often book out within minutes of release in India</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Frequently available test dates across authorized test centers in Delhi NCR</td>
+                  </tr>
+                  <tr className="hover:bg-section-alt/50 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold">GLA Coaching Support</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Authentic Goethe model papers, timer simulations & speaking pairs</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Dedicated TELC test formats, letter writing templates & mock series</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="p-4 bg-section-alt border-t border-card-border text-center">
+              <p className="text-xs text-navy-muted leading-relaxed">
+                <strong>GLA Academic Recommendation:</strong> If you are planning an Ausbildung or medical pathway and need immediate exam dates, TELC Deutsch is often faster to schedule. If you are targeting premier academic universities, both Goethe and TELC C1 Hochschule fulfill German proficiency requirements.
+              </p>
+            </div>
           </div>
 
         </div>

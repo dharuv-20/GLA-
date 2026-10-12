@@ -707,7 +707,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
         {/* Background image overlay */}
         <div className="absolute inset-0 opacity-40 dark:opacity-25 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-[#00122E] via-[#00122E]/80 to-[#00122E]/20 dark:from-[#010814] dark:via-[#010814]/80 dark:to-[#010814]/20 z-10"></div>
-          <img src="/images/bg.svg" alt="Japanese Program Background" className="w-full h-full object-cover object-center" />
+          <img src="/images/bg-hero.webp" alt="Japanese Program Background" width={1280} height={720} loading="lazy" className="w-full h-full object-cover object-center" />
         </div>
         <div className="absolute inset-0 opacity-15 pointer-events-none">
           <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-purple rounded-full blur-3xl"></div>

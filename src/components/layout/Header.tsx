@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Phone, Sun, Moon, ChevronDown, BookOpen, MessageCircle } from 'lucide-react';
 
@@ -66,13 +67,21 @@ export default function Header() {
           
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={isDark ? "/images/logo-dark.png" : "/images/logo-light.png"}
+            <Image
+              src="/images/logo-light.png"
               alt="The Global Language Academy Logo"
               width={180}
               height={52}
-              className="h-[45px] sm:h-[48px] md:h-[52px] w-auto object-contain transition-all duration-300"
+              priority
+              className="h-[45px] sm:h-[48px] md:h-[52px] w-auto object-contain dark:hidden"
+            />
+            <Image
+              src="/images/logo-dark.png"
+              alt="The Global Language Academy Logo"
+              width={180}
+              height={52}
+              priority
+              className="h-[45px] sm:h-[48px] md:h-[52px] w-auto object-contain hidden dark:block"
             />
           </Link>
 

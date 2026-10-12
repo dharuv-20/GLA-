@@ -239,7 +239,7 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
         {/* Background image overlay */}
         <div className="absolute inset-0 opacity-45 dark:opacity-25 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-[#00122E] via-[#00122E]/70 to-[#00122E]/10 dark:from-[#010814] dark:via-[#010814]/70 dark:to-[#010814]/10 z-10"></div>
-          <img src="/images/bg.svg" alt="Spoken English Background" className="w-full h-full object-cover object-center" />
+          <img src="/images/bg-hero.webp" alt="Spoken English Background" width={1280} height={720} loading="lazy" className="w-full h-full object-cover object-center" />
         </div>
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-purple rounded-full blur-3xl"></div>

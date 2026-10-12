@@ -14,6 +14,7 @@ import SplashScreen from "@/components/layout/SplashScreen";
 import AppLayoutWrapper from "@/components/layout/AppLayoutWrapper";
 
 import OrganizationSchema from "@/components/seo/OrganizationSchema";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -109,10 +110,9 @@ export default function RootLayout({
             `
           }}
         />
-        {/* Netlify Identity widget for admin authentication */}
-        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async />
       </head>
       <body className="min-h-screen flex flex-col font-sans" suppressHydrationWarning>
+        <GoogleAnalytics />
         {/* Site-wide Structured Data Schema (Organization, LocalBusiness, WebSite) */}
         <OrganizationSchema />
         <SplashScreen />

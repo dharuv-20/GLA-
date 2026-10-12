@@ -451,7 +451,18 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
     }
   ];
 
-  // Section 5: PTE vs IELTS Comparison
+  // Section 5: PTE vs IELTS Comparison & Official Concordance
+  const pteIeltsConcordance = [
+    { pteScore: "84 – 90", ieltsBand: "9.0", cefr: "C2", targetProfile: "Expert User • Elite Doctorate / Faculty & High Academic Research" },
+    { pteScore: "79 – 83", ieltsBand: "8.0", cefr: "C1+", targetProfile: "Superior English • 20 Australia PR Points / Oxford, Cambridge, Ivy League" },
+    { pteScore: "65 – 78", ieltsBand: "7.0 – 7.5", cefr: "C1", targetProfile: "Proficient English • 10 Australia PR Points / Top UK & Australian Master's" },
+    { pteScore: "58 – 64", ieltsBand: "6.5", cefr: "B2+", targetProfile: "Competitive Undergraduate & Most Master's Programs (UK, Canada, Australia)" },
+    { pteScore: "50 – 57", ieltsBand: "6.0", cefr: "B2", targetProfile: "Competent English • Australia Subclass 500 Student Visa Benchmark" },
+    { pteScore: "42 – 49", ieltsBand: "5.5", cefr: "B1+", targetProfile: "Foundation / Diploma / Vocational Pathways & Trade Certificates" },
+    { pteScore: "36 – 41", ieltsBand: "5.0", cefr: "B1", targetProfile: "Baselines for Specific Skilled Work & Regional Visas" },
+    { pteScore: "29 – 35", ieltsBand: "4.5", cefr: "A2+", targetProfile: "Elementary English / Preparatory ELICOS English Packages" }
+  ];
+
   const pteVsIeltsData = [
     { feature: "Test Format", pte: "100% Computer-based (Keyboard & Headset)", ielts: "Paper-based or Computer-delivered" },
     { feature: "Scoring Engine", pte: "Patented AI scoring without human examiners", ielts: "Human examiners evaluate Speaking & Writing" },
@@ -1099,23 +1110,114 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
         </div>
       </section>
 
-      {/* 6. SECTION 5: PTE VS IELTS SIDE-BY-SIDE COMPARISON */}
+      {/* 6. SECTION 5: PTE VS IELTS SIDE-BY-SIDE COMPARISON & SCORE CONCORDANCE */}
       <section id="comparison" className="bg-white dark:bg-[#020a16] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
-          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">5. Test Comparison</span>
+          <div className="text-center max-w-3xl mx-auto flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">5. Test Comparison & Concordance</span>
             <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
-              PTE vs IELTS — Quick Comparison
+              PTE Academic vs IELTS: Which Exam Is Right for You?
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              A comprehensive side-by-side comparison between PTE Academic and IELTS across format, scoring engines, result turnarounds, and score reporting.
+              Understand the official score concordance, testing formats, AI vs human scoring models, and immigration point allocations to choose the optimal English credential.
             </p>
           </div>
 
+          {/* Answer-First Decision Guidance */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-6 rounded-3xl bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200/60 dark:border-purple-800/40">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-8 h-8 rounded-xl bg-purple text-white font-bold flex items-center justify-center text-sm shadow-md shadow-purple/20">
+                  PTE
+                </span>
+                <h3 className="text-lg font-bold font-display text-navy">Choose PTE Academic If You:</h3>
+              </div>
+              <ul className="space-y-2.5 text-xs sm:text-sm text-navy-muted">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                  <span><strong>Prefer AI evaluation:</strong> Feel nervous talking to a face-to-face human examiner or want 100% objective algorithm scoring.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                  <span><strong>Need fast results:</strong> Urgent university or visa deadline needing official scorecards within 24 to 48 hours.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                  <span><strong>Target Australia / New Zealand PR:</strong> High-frequency template techniques make targeting 79+ (20 PR points) predictable with rigorous coaching.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                  <span><strong>Single 2-hour sitting:</strong> Complete all 4 communicative skills in one continuous morning or afternoon session.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-6 rounded-3xl bg-slate-50 dark:bg-[#071322] border border-slate-200 dark:border-slate-800">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-8 h-8 rounded-xl bg-navy text-white font-bold flex items-center justify-center text-sm shadow-md">
+                  IELTS
+                </span>
+                <h3 className="text-lg font-bold font-display text-navy">Choose IELTS If You:</h3>
+              </div>
+              <ul className="space-y-2.5 text-xs sm:text-sm text-navy-muted">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                  <span><strong>Prefer conversational human interview:</strong> Excel at natural human interaction and conversational body language.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                  <span><strong>Handwriting preference:</strong> Choose the paper-based test if typing speed on a QWERTY keyboard is an obstacle.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                  <span><strong>Canada Express Entry (General Training):</strong> General Training IELTS remains the premier benchmark for Canada Express Entry / CLB.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                  <span><strong>Specific university mandates:</strong> A few specialised Ivy League institutions specifically request IELTS or TOEFL.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Official Concordance Scale Table */}
+          <div className="bg-white dark:bg-[#0b1a2e] rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+            <div className="p-5 bg-gradient-to-r from-purple/90 to-[#00122E] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 className="text-base font-bold font-display">Official PTE Academic vs. IELTS Band Concordance</h3>
+                <p className="text-xs text-purple-100">Standardised Pearson & CEFR Score Conversion Chart</p>
+              </div>
+              <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/20 text-white w-fit">Updated Standards</span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm min-w-[700px]">
+                <thead className="bg-slate-100 dark:bg-[#071322] text-navy font-bold uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
+                  <tr>
+                    <th className="py-3.5 px-4 sm:px-6 text-purple">PTE Score (10–90)</th>
+                    <th className="py-3.5 px-4 sm:px-6">IELTS Band (1–9)</th>
+                    <th className="py-3.5 px-4 sm:px-6">CEFR Level</th>
+                    <th className="py-3.5 px-4 sm:px-6">Target Profile & Visa Benchmark</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-navy">
+                  {pteIeltsConcordance.map((row, idx) => (
+                    <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                      <td className="py-3.5 px-4 sm:px-6 font-bold text-purple">{row.pteScore}</td>
+                      <td className="py-3.5 px-4 sm:px-6 font-bold text-navy">{row.ieltsBand}</td>
+                      <td className="py-3.5 px-4 sm:px-6 font-medium text-navy-muted">{row.cefr}</td>
+                      <td className="py-3.5 px-4 sm:px-6 text-navy-muted text-xs">{row.targetProfile}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Operational Side-by-Side Comparison Matrix */}
           <div className="bg-white dark:bg-[#0b1a2e] rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
             <div className="p-5 bg-[#00122E] dark:bg-[#041226] text-white flex items-center justify-between">
-              <h3 className="text-base font-bold font-display">Side-by-Side Comparison Matrix</h3>
+              <h3 className="text-base font-bold font-display">Operational Comparison Matrix</h3>
               <span className="text-xs font-semibold text-purple-200">9 Core Dimensions</span>
             </div>
             <div className="overflow-x-auto">

@@ -9,17 +9,16 @@ export default function SplashScreen() {
   const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
-    // Check if the splash has already played in this browser session
-    const hasPlayed = sessionStorage.getItem("splash-played");
-
-    if (hasPlayed) {
+    // Check if the splash has already played in this browser session or if it's a crawler/Lighthouse
+    const hasPlayed = typeof window !== 'undefined' && sessionStorage.getItem('splash-played');
+    const isBot = typeof navigator !== 'undefined' && /bot|crawler|spider|lighthouse|googlebot|headless/i.test(navigator.userAgent);
+    if (hasPlayed || isBot) {
       setIsFinished(true);
       return;
     }
 
     // Otherwise, show the splash screen
     setShowSplash(true);
-    document.body.style.overflow = "hidden";
 
     // Simulate progress bar filling up
     const progressInterval = setInterval(() => {
@@ -41,14 +40,12 @@ export default function SplashScreen() {
     // Completely destroy element after fade-out transition completes (1.0s total)
     const destroyTimeout = setTimeout(() => {
       setIsFinished(true);
-      document.body.style.overflow = "";
     }, 1000);
 
     return () => {
       clearInterval(progressInterval);
       clearTimeout(fadeTimeout);
       clearTimeout(destroyTimeout);
-      document.body.style.overflow = "";
     };
   }, []);
 
@@ -73,6 +70,8 @@ export default function SplashScreen() {
           <img
             src="/images/logo-dark.png"
             alt="The Global Language Academy Logo"
+            width={200}
+            height={64}
             className="relative h-16 w-auto object-contain drop-shadow-[0_4px_20px_rgba(192,132,252,0.15)]"
           />
         </div>

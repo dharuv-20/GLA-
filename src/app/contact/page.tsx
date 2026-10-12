@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { MapPin, Phone, Mail, Clock, Sparkles } from 'lucide-react';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
+import DeferredGoogleMap from '@/components/layout/DeferredGoogleMap';
 
 export const metadata: Metadata = {
   title: "Contact Us & Center Directions | Schedule Free Demo",
@@ -140,17 +141,7 @@ export default function ContactPage() {
             className="reveal w-full h-80 sm:h-96 border border-card-border rounded-xl overflow-hidden relative shadow-sm transition-colors duration-300"
             style={{ transitionDelay: '150ms' }}
           >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d35068.13912469187!2d77.030589!3d28.594833!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b3c8edb5021%3A0xa58f068e97394567!2sThe%20Global%20Language%20Academy!5e1!3m2!1sen!2sin!4v1786024730032!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen={true}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="The Global Language Academy Location Map"
-              className="w-full h-full"
-            ></iframe>
+            <DeferredGoogleMap />
           </div>
         </div>
       </section>
