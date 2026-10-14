@@ -168,7 +168,9 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
           <option value="german-language" className="bg-card text-navy">German Language (A1 - C2)</option>
           <option value="french-language" className="bg-card text-navy">French Language (DELF / DALF)</option>
           <option value="japanese-language" className="bg-card text-navy">Japanese Language (JLPT N5-N1)</option>
-          <option value="spoken-english" className="bg-card text-navy">Spoken English Language</option>
+          <option value="spoken-english" className="bg-card text-navy">Spoken English Course (3 Levels)</option>
+          <option value="spoken-english-personality-bundle" className="bg-card text-navy">Spoken English + Personality Development (Bundle)</option>
+          <option value="personality-development" className="bg-card text-navy">Personality Development (Working Professionals)</option>
           <option value="ielts-preparation" className="bg-card text-navy">IELTS Exam Masterclass</option>
           <option value="pte-academic" className="bg-card text-navy">PTE Academic Strategy</option>
           <option value="visa-admission-guidance" className="bg-card text-navy">Germany Study & Visa Counselling</option>

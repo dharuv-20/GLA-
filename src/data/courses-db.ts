@@ -187,6 +187,26 @@ export const faqsList: FAQItem[] = [
     id: "faq-jp-2",
     question: "How is the 25-lesson syllabus structured across scripts and Kanji?",
     answer: "Hiragana lines and practice are completed in Lessons 1–5. Katakana practice is completed in Lessons 6–10. Dedicated Kanji instruction begins in Lesson 12 and continues through Lesson 21, followed by revision drills in Lessons 22–25 and a comprehensive final test including a daily-life conversation check."
+  },
+  {
+    id: "faq-spk-1",
+    question: "How is the 3-level Spoken English course structured?",
+    answer: "The course spans 3 months across three progressive levels: Level 1 Beginner (A1→A2, core grammar & basic usage), Level 2 Intermediate (B1→B2, speaking activities & writing skills), and Level 3 Advanced (C1→C2, reading, listening, advanced speaking/writing, and a Capstone Interview Preparation module). Batches run 3–4 sessions per week with assessments at the end of each level."
+  },
+  {
+    id: "faq-spk-2",
+    question: "How does the Personality Development Add-On work with Spoken English?",
+    answer: "Personality Development is offered as an optional 2-month professional add-on designed for working professionals. You can enroll in Spoken English on its own, bundle it with Personality Development for complete personal and executive transformation, or take Personality Development as a standalone program."
+  },
+  {
+    id: "faq-spk-3",
+    question: "What is covered in the Capstone Interview Preparation module?",
+    answer: "The Capstone module in Month 3 covers HR essentials ('Tell me about yourself', strengths/weaknesses), behavioral questions using the STAR method, body language, mock interviews with recorded feedback, salary negotiation, GD simulations, and video interview etiquette."
+  },
+  {
+    id: "faq-spk-4",
+    question: "What is the batch size and daily speaking practice model?",
+    answer: "All batches are capped at 5–7 students to guarantee daily 1-on-1 speaking time and personalized feedback. Learners actively participate in extempore speaking, roleplays, debates, and accent neutralization drills."
   }
 ];
 
@@ -462,51 +482,93 @@ export const coursesList: Course[] = [
   {
     id: "crs-spoken-english",
     slug: "spoken-english",
-    title: "Spoken English & Fluency Mastery",
+    title: "Spoken English Course — Communicate Confidently in Every Situation",
     metaTitle: "Spoken English & Fluency Coaching in Delhi NCR | GLA",
-    metaDescription: "Overcome hesitation and speak fluent English. Small batches, voice diagnostics, accent neutralization, and corporate interview prep at GLA in Delhi NCR.",
-    shortDescription: "Speak English fluently, confidently, and naturally in social and professional settings.",
-    longDescription: "Our Spoken English & Fluency program is designed to eliminate fear, build vocabulary, and improve pronunciation. Through daily conversational practice, group discussions, and accent neutralization drills, you'll speak English naturally without translating in your head.",
-    durationLabel: "2 - 3 Months",
+    metaDescription: "Boost English speaking fluency, grammar, pronunciation, and corporate presentation skills at GLA. Interactive group discussions and 1-on-1 personalized labs.",
+    shortDescription: "Improve your fluency, build confidence and master real-life communication with our Spoken English Course. Your Voice. A Brighter Tomorrow.",
+    longDescription: "The Spoken English Course at The Global Language Academy is a structured 3-month programme (A1 to C2) covering grammar, speaking, writing, reading, listening, and an advanced Capstone Interview Preparation module, with an optional 2-month executive Personality Development add-on for working professionals.",
+    durationLabel: "3 Months (Core) + 2 Months (Add-On)",
     nextBatchStartDate: "2026-09-01",
     maxClassSize: "5-7",
     levels: [
       {
-        levelCode: "Foundation Fluency",
-        durationWeeks: 4,
-        weeklyHours: 6,
-        description: "Build correct grammar foundations, eliminate translation hesitation, and expand active vocabulary.",
-        modules: ["Everyday Conversational Phrases", "Tense Usage & Sentence Structuring", "Overcoming Stage Fear", "Daily Speaking Activities"]
-      },
-      {
-        levelCode: "Advanced Communication",
+        levelCode: "Level 1 — Beginner (A1 → A2)",
         durationWeeks: 4,
         weeklyHours: 8,
-        description: "Master accent neutralization, public speaking, debates, and professional presentation delivery.",
-        modules: ["Pronunciation & Intonation Tuning", "Extempore & Group Discussions", "Workplace Meetings & Email Etiquette", "Final Speech Presentation"]
+        description: "Month 1: Core Grammar Foundations, Question Formation, Sentence Structure, and Everyday Vocabulary.",
+        modules: [
+          "Parts of Speech & Articles (a, an, the)",
+          "Tenses (Present, Past, Future) & Subject-Verb Agreement",
+          "Question Formation & Negation Rules",
+          "Basic Vocabulary, Family, Food, Time & Daily Expressions"
+        ]
+      },
+      {
+        levelCode: "Level 2 — Intermediate (B1 → B2)",
+        durationWeeks: 4,
+        weeklyHours: 8,
+        description: "Month 2: Active Speaking Skills, Role Plays, Group Discussions, Debates & Cohesive Writing Skills.",
+        modules: [
+          "Picture Description, Storytelling & Extempore Speaking",
+          "Role Plays (Restaurant, Hotel, Doctor, Job Enquiry)",
+          "Group Discussions, Debates & Connected Speech Intonation",
+          "Paragraph Structuring, Informal Letters & Opinion Essays"
+        ]
+      },
+      {
+        levelCode: "Level 3 — Advanced (C1 → C2)",
+        durationWeeks: 4,
+        weeklyHours: 8,
+        description: "Month 3: Critical Reading, Authentic Audio Listening, Advanced Business Writing & Capstone Interview Prep.",
+        modules: [
+          "Speed Reading (Skimming/Scanning) & Authentic Podcast Listening",
+          "Formal Reports, Proposals, Business Emails & Advanced Grammar",
+          "Formal Presentations, Panel Discussions & Persuasive Speaking",
+          "Capstone: Comprehensive HR, Behavioral (STAR) & Video Interview Prep"
+        ]
+      },
+      {
+        levelCode: "Optional Add-On — Personality Development",
+        durationWeeks: 8,
+        weeklyHours: 8,
+        description: "2 Months: Executive Presence, Public Speaking, Stress Management & Interpersonal Leadership for Working Professionals.",
+        modules: [
+          "Month 1 Foundation: Professional Communication, Workplace Etiquette & Grooming",
+          "Month 1 Foundation: Confidence Building & Overcoming Stage Anxiety",
+          "Month 2 Advanced: Public Speaking, Presentations & Authority Pitching",
+          "Month 2 Advanced: Stress Management, Team Dynamics & Capstone PDP"
+        ]
       }
     ],
     faculty: [],
     testimonials: [testimonialsList[6], testimonialsList[12]],
-    faqs: [faqsList[0], faqsList[3]],
+    faqs: [
+      faqsList[6], // faq-spk-1
+      faqsList[7], // faq-spk-2
+      faqsList[8], // faq-spk-3
+      faqsList[9], // faq-spk-4
+      faqsList[0], // faq-1
+      faqsList[3]  // faq-4
+    ],
     studentResults: [studentResultsList[1]],
     benefits: [
-      "Daily 1-on-1 speaking time in small batches (max 5-7 students)",
-      "Accent neutralization and voice modulation training",
-      "Extensive real-life simulations: meetings, interviews, debates",
-      "Comprehensive digital workbook and vocabulary guides"
+      "Better Communication — Speak with clarity, precision, and confidence in every situation",
+      "Career Growth — Crack job interviews, lead corporate meetings, and negotiate promotions",
+      "Global Opportunities — Build international fluency for study abroad and global careers",
+      "Optional Personality Development Add-On — 2 months executive leadership for working professionals",
+      "Micro-Batches (5–7 Learners) — Daily guaranteed 1-on-1 speaking practice with certified mentors"
     ],
     whoShouldJoin: [
-      "Job seekers preparing for corporate interviews and group discussions",
-      "Working professionals seeking to lead meetings and give confident presentations",
-      "Students and homemakers wanting to speak English comfortably in public",
-      "Anyone who understands English but struggles to speak fluently"
+      "Job seekers preparing for corporate interviews, STAR rounds, and group discussions",
+      "Working professionals seeking to lead meetings, negotiate, and deliver presentations",
+      "College students preparing for campus placements and competitive examinations",
+      "Anyone who understands English but hesitates or translates in their head before speaking"
     ],
     learningOutcomes: [
-      "Speak fluent English without hesitation or mental translation",
-      "Pronounce words clearly with standard, neutral intonation",
-      "Participate actively in workplace meetings, debates, and presentations",
-      "Write professional emails and communicate with executive presence"
+      "Communicate fluently and naturally in social, academic, and professional situations",
+      "Master English grammar, sentence structure, pronunciation, and active vocabulary",
+      "Deliver persuasive presentations, extempore speeches, and participate in active debates",
+      "Ace HR and technical job interviews using the STAR method with executive presence"
     ],
     classFormats: ["On-Campus Practice Batches", "Live Interactive Online Batches"]
   },
