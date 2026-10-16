@@ -6,6 +6,8 @@ export const leadFormSchema = z.object({
     .max(50, { message: "Name must not exceed 50 characters." }),
   phone: z.string()
     .regex(/^[6-9]\d{9}$/, { message: "Please enter a valid 10-digit Indian phone number." }),
+  email: z.string()
+    .email({ message: "Please enter a valid email address." }),
   course: z.string().min(1, { message: "Please select a course to continue." }),
   utmSource: z.string().optional(),
   utmMedium: z.string().optional(),

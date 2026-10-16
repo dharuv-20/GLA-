@@ -30,29 +30,35 @@ export async function submitLead(data: LeadFormInput): Promise<LeadSubmissionRes
       const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdRfJ5gC2TbW-sc17PI6TKzr1NZikDeW1a8Z6djLZc-DjzqaA/formResponse";
       const courseMap: Record<string, string> = {
         "german-language": "German Language Program (A1 - C2)",
+        "french-language": "French Language Program (A1 - C2)",
+        "japanese-language": "Japanese Language Program",
+        "spoken-english": "Spoken English Course",
+        "spoken-english-personality": "Spoken English + Personality Development",
+        "personality-development": "Personality Development (Working Professionals)",
         "ielts-preparation": "IELTS Exam Preparation",
         "pte-academic": "PTE Academic Preparation",
-        "personality-development": "Personality & Corporate Skills"
+        "visa-admission-guidance": "Germany Study & Visa Counselling"
       };
       const courseName = courseMap[lead.course] || lead.course;
 
       const formData = new URLSearchParams();
       formData.append("entry.1743382299", lead.name);
       formData.append("entry.961976256", lead.phone);
+      formData.append("entry.5771", lead.email);
       formData.append("entry.1090317556", courseName);
       formData.append("fvv", "1");
       formData.append("pageHistory", "0");
 
-      console.log(`📡 Sending background POST lead submission to Google Form for ${lead.name} (${courseName})...`);
+      console.log(`📡 Sending background POST lead submission to Google Form for ${lead.name} (${lead.email}, ${courseName})...`);
 
-      await fetch(googleFormUrl, {
+      const formRes = await fetch(googleFormUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         },
         body: formData.toString()
       });
-      console.log("✅ Programmatic Google Form submission sent successfully.");
+      console.log(`✅ Programmatic Google Form submission sent successfully. Status: ${formRes.status}`);
     } catch (formError) {
       console.error("⚠️ Failed programmatically sending lead to Google Form:", formError);
     }
@@ -63,6 +69,7 @@ export async function submitLead(data: LeadFormInput): Promise<LeadSubmissionRes
       console.table({
         Name: lead.name,
         Phone: lead.phone,
+        Email: lead.email,
         Course: lead.course,
         utmSource: lead.utmSource || 'direct',
         utmMedium: lead.utmMedium || 'none',

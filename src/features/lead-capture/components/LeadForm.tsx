@@ -27,12 +27,19 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
     defaultValues: {
       name: "",
       phone: "",
+      email: "",
       course: defaultCourse,
       utmSource: "",
       utmMedium: "",
       utmCampaign: "",
     }
   });
+
+  useEffect(() => {
+    if (defaultCourse) {
+      setValue('course', defaultCourse);
+    }
+  }, [defaultCourse, setValue]);
 
   // Capture UTM parameters from URL parameters
   useEffect(() => {
@@ -151,6 +158,26 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
         )}
       </div>
 
+      {/* Email Input */}
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="lead-email" className="text-xs font-bold uppercase tracking-wider text-navy">Email Address</label>
+        <input
+          id="lead-email"
+          type="email"
+          placeholder="e.g. rohit.sen@example.com"
+          {...register('email')}
+          disabled={isSubmitting}
+          className={`w-full px-4 py-3 bg-card text-navy border rounded-md text-sm transition-colors focus:outline-none ${
+            errors.email ? 'border-red-500 focus:border-red-500' : 'border-card-border focus:border-purple'
+          }`}
+          aria-invalid={errors.email ? 'true' : 'false'}
+          aria-describedby={errors.email ? 'email-error' : undefined}
+        />
+        {errors.email && (
+          <span id="email-error" className="text-xs text-red-500 font-semibold">{errors.email.message}</span>
+        )}
+      </div>
+
       {/* Course Selector */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="lead-course" className="text-xs font-bold uppercase tracking-wider text-navy">Target Course</label>
@@ -167,7 +194,7 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
           <option value="" className="bg-card text-navy">Select a Program...</option>
           <option value="german-language" className="bg-card text-navy">German Language (A1 - C2)</option>
           <option value="french-language" className="bg-card text-navy">French Language (A1 - C2)</option>
-          <option value="japanese-language" className="bg-card text-navy">Japanese Language (N5 - N1)</option>
+          <option value="japanese-language" className="bg-card text-navy">Japanese Language (JLPT Preparation)</option>
           <option value="spoken-english" className="bg-card text-navy">Spoken English Course (3 Levels)</option>
           <option value="spoken-english-personality" className="bg-card text-navy">Spoken English + Personality Development</option>
           <option value="personality-development" className="bg-card text-navy">Personality Development (Working Professionals)</option>
