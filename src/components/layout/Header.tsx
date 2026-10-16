@@ -52,11 +52,11 @@ export default function Header() {
 
   const courses = [
     { label: "German Language (A1 - C2)", href: "/courses/german-language" },
-    { label: "French Language (DELF / DALF)", href: "/courses/french-language" },
-    { label: "Japanese Language (JLPT N5-N1)", href: "/courses/japanese-language" },
+    { label: "French Language (A1 - C2)", href: "/courses/french-language" },
+    { label: "Japanese Language (N5 - N1)", href: "/courses/japanese-language" },
     { label: "Spoken English Language", href: "/courses/spoken-english" },
     { label: "IELTS Exam Masterclass", href: "/courses/ielts-preparation" },
-    { label: "PTE Academic Strategy", href: "/courses/pte-academic" },
+    { label: "PTE Strategy", href: "/courses/pte-academic" },
     { label: "All Courses Directory", href: "/courses", isDivider: true }
   ];
 
@@ -191,7 +191,7 @@ export default function Header() {
               href="/contact"
               className="inline-flex items-center justify-center px-5 py-2.5 bg-purple text-white text-sm font-semibold rounded-md shadow-sm hover:bg-purple-hover hover:scale-102 active:scale-98 transition-all"
             >
-              Book Free Demo
+              Book Your Consultation
             </Link>
           </div>
 
@@ -311,7 +311,7 @@ export default function Header() {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center justify-center px-6 py-3 bg-purple text-white text-base font-semibold rounded-md shadow-md hover:bg-purple-hover"
               >
-                Book Free Demo
+                Book Your Consultation
               </Link>
             </div>
           </nav>

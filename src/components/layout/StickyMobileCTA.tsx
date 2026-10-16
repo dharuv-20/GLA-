@@ -39,7 +39,7 @@ export default function StickyMobileCTA() {
     >
       {/* WhatsApp Action Button */}
       <a
-        href="https://wa.me/919217999511?text=Hi!%20I'm%20interested%20in%20booking%20a%20free%20demo%20class%20at%20The%20Global%20Language%20Academy."
+        href="https://wa.me/919217999511?text=Hi!%20I'm%20interested%20in%20booking%20a%20consultation%20at%20The%20Global%20Language%20Academy."
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackWhatsAppClick('mobile_sticky_bar')}

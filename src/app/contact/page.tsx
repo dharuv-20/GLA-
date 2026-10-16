@@ -4,14 +4,14 @@ import LeadForm from '@/features/lead-capture/components/LeadForm';
 import DeferredGoogleMap from '@/components/layout/DeferredGoogleMap';
 
 export const metadata: Metadata = {
-  title: "Contact Us & Center Directions | Schedule Free Demo",
-  description: "Contact The Global Language Academy (GLA) in Delhi NCR. Call +91 92179 99511 or visit our center. Schedule your free 45-minute live trial class today.",
+  title: "Contact Us & Center Directions | Schedule Consultation",
+  description: "Contact The Global Language Academy (TGLA) in Delhi NCR. Call +91 92179 99511 or visit our center. Schedule your 1-on-1 language consultation today.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
     title: "Contact Us & Center Directions | The Global Language Academy",
-    description: "Get in touch with GLA advisors. Find phone numbers, center addresses, maps, and book a free demo session.",
+    description: "Get in touch with TGLA advisors. Find phone numbers, center addresses, maps, and book a free consultation session.",
     url: "https://tglalearning.com/contact",
     type: "website",
   },
@@ -25,11 +25,11 @@ export default function ContactPage() {
     },
     {
       title: "2. Sample Assessment",
-      desc: "Receive a free, 15-minute diagnostic grammar evaluation sheet on your email before your scheduled demo class."
+      desc: "Receive a free, 15-minute diagnostic grammar evaluation sheet on your email before your scheduled consultation session."
     },
     {
-      title: "3. Interactive Demo",
-      desc: "Join a synchronous 45-minute live trial class with our certified trainer and get immediate feedback."
+      title: "3. Interactive Consultation",
+      desc: "Join a synchronous 45-minute consultation with our certified trainer and get immediate feedback."
     }
   ];
 
@@ -40,10 +40,10 @@ export default function ContactPage() {
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-4">
            <span className="text-xs font-extrabold uppercase tracking-widest text-purple-hero animate-fade-in-up [animation-delay:100ms] fill-mode-forwards">Get In Touch</span>
            <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-white animate-fade-in-up [animation-delay:250ms] fill-mode-forwards">
-             Connect with GLA Advisors
+             Connect with TGLA Advisors
            </h1>
            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed animate-fade-in-up [animation-delay:400ms] fill-mode-forwards">
-             Have questions about levels, fees, or class schedules? Drop us a line, chat on WhatsApp, or book a free trial demo directly.
+             Have questions about levels, fees, or class schedules? Drop us a line, chat on WhatsApp, or book a free consultation directly.
            </p>
          </div>
        </section>
@@ -61,7 +61,7 @@ export default function ContactPage() {
                 className="reveal hover-lift bg-section-alt p-6 rounded-xl border border-card-border flex flex-col gap-4 transition-colors duration-300"
                 style={{ transitionDelay: '0ms' }}
               >
-                <h3 className="text-base font-bold font-display text-navy border-b border-card-border/40 pb-2">GLA Physical Branch</h3>
+                <h3 className="text-base font-bold font-display text-navy border-b border-card-border/40 pb-2">TGLA Physical Branch</h3>
                 
                 <div className="flex items-start gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">
                   <MapPin className="w-5 h-5 text-purple shrink-0 mt-0.5" />

@@ -31,7 +31,7 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
           Scorecard Results & Alumni Reviews
         </h2>
         <p className="text-xs sm:text-sm text-navy-muted leading-relaxed">
-          Real results achieved by students preparing for university admissions, PR visas, and global careers with GLA.
+          Real results achieved by students preparing for university admissions, PR visas, and global careers with TGLA.
         </p>
       </div>
 

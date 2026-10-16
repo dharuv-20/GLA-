@@ -34,13 +34,13 @@ import FacultyCard from '@/components/FacultyCard';
 import CountUp from '@/components/CountUp';
 
 export const metadata: Metadata = {
-  title: "About GLA | Premier Language Institute in Delhi NCR",
+  title: "About TGLA | Premier Language Institute in Delhi NCR",
   description: "Discover The Global Language Academy. ISO 9001:2015 certified training in German, French, Japanese, Spoken English, IELTS & PTE with native-level mentors.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About GLA | Premier Language Institute in Delhi NCR",
+    title: "About TGLA | Premier Language Institute in Delhi NCR",
     description: "Discover The Global Language Academy. ISO 9001:2015 certified training in German, French, Japanese, Spoken English, IELTS & PTE with native-level mentors.",
     url: "https://tglalearning.com/about",
     type: "website",
@@ -54,7 +54,7 @@ export default function AboutPage() {
       end: 7000,
       suffix: "+",
       label: "Students Trained",
-      subtext: "Across 15+ Global Batches",
+      subtext: "Across 1500+ Global Batches",
       decimals: 0,
       image: "/images/assets/stat-graduation-cap.webp",
       alt: "7,000+ Students Trained 3D Cap"
@@ -88,7 +88,7 @@ export default function AboutPage() {
     }
   ];
 
-  // Why GLA? (8 Cards)
+  // Why TGLA? (8 Cards)
   const whyGlaCards = [
     {
       icon: Award,
@@ -172,7 +172,7 @@ export default function AboutPage() {
     }
   ];
 
-  // 4 Core Focus Areas of GLA
+  // 4 Core Focus Areas of TGLA
   const coreFocusAreas = [
     {
       icon: BookOpen,
@@ -240,7 +240,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed animate-fade-in-up [animation-delay:300ms] fill-mode-forwards">
-            The Global Language Academy (GLA) is New Delhi&apos;s premier institute for outcome-focused language education, international examination success, and global career pathways.
+            The Global Language Academy (TGLA) is New Delhi&apos;s premier institute for outcome-focused language education, international examination success, and global career pathways.
           </p>
 
           {/* Action CTAs */}
@@ -257,7 +257,7 @@ export default function AboutPage() {
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white hover:bg-slate-100 text-slate-950 font-bold text-sm rounded-xl shadow-md hover:scale-102 transition-all cursor-pointer border border-transparent"
             >
               <Phone className="w-4 h-4 text-purple" />
-              <span className="text-slate-950 font-bold">Book Free Demo Session</span>
+              <span className="text-slate-950 font-bold">Book Your Consultation</span>
             </Link>
           </div>
 
@@ -265,7 +265,7 @@ export default function AboutPage() {
       </section>
 
       {/* ========================================================= */}
-      {/* 2. ABOUT GLA: WHO WE ARE, ESTABLISHMENT & LEADERSHIP      */}
+      {/* 2. ABOUT TGLA: WHO WE ARE, ESTABLISHMENT & LEADERSHIP      */}
       {/* ========================================================= */}
       <section className="bg-card text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -277,13 +277,13 @@ export default function AboutPage() {
                 About The Academy
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight leading-tight">
-                Who We Are & Why GLA Was Established
+                Who We Are & Why TGLA Was Established
               </h2>
               <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-                <strong className="text-navy">The Global Language Academy (GLA)</strong> was established over 6 years ago to address a fundamental flaw in standard language tutoring: the prevalence of generic, lecture-heavy coaching without practical fluency or score-driven outcomes.
+                <strong className="text-navy">The Global Language Academy (TGLA)</strong> was established over 6 years ago to address a fundamental flaw in standard language tutoring: the prevalence of generic, lecture-heavy coaching without practical fluency or score-driven outcomes.
               </p>
               <p className="text-sm text-navy-muted leading-relaxed">
-                Backed by over two decades of leadership in education and international consulting, GLA was created as a bridge between linguistic capability and real-world opportunity. We provide structured, interactive language training designed to help learners clear certified exams on their first attempt and build lifelong communication confidence.
+                Backed by over two decades of leadership in education and international consulting, TGLA was created as a bridge between linguistic capability and real-world opportunity. We provide structured, interactive language training designed to help learners clear certified exams on their first attempt and build lifelong communication confidence.
               </p>
 
               {/* 4 Core Focus Pillars */}
@@ -319,7 +319,7 @@ export default function AboutPage() {
                 </span>
                 
                 <p className="text-base sm:text-lg font-medium italic text-navy leading-relaxed relative z-10">
-                  &ldquo;Education is the definitive pathway to unlocking youth potential worldwide. At GLA, our purpose is not just to teach grammar rules, but to give each student the self-assurance, practical fluency, and accredited credentials needed to succeed globally.&rdquo;
+                  &ldquo;Education is the definitive pathway to unlocking youth potential worldwide. At TGLA, our purpose is not just to teach grammar rules, but to give each student the self-assurance, practical fluency, and accredited credentials needed to succeed globally.&rdquo;
                 </p>
 
                 <div className="border-t border-card-border/80 pt-4 flex items-center gap-4 relative z-10">
@@ -352,7 +352,7 @@ export default function AboutPage() {
               Our Vision & Mission
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              Every curriculum, mentoring session, and diagnostic exam at GLA is directed toward these foundational commitments.
+              Every curriculum, mentoring session, and diagnostic exam at TGLA is directed toward these foundational commitments.
             </p>
           </div>
 
@@ -418,14 +418,14 @@ export default function AboutPage() {
       </section>
 
       {/* ========================================================= */}
-      {/* 4. WHY GLA? (8 CARDS)                                     */}
+      {/* 4. WHY TGLA? (8 CARDS)                                    */}
       {/* ========================================================= */}
       <section className="bg-white dark:bg-[#071324] text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 flex flex-col gap-3">
             <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              The GLA Advantage
+              The TGLA Advantage
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
               Why Choose The Global Language Academy?
@@ -688,11 +688,13 @@ export default function AboutPage() {
                 <div className="w-full pt-4 border-t border-card-border/80 flex flex-wrap items-center justify-center gap-4 text-xs font-bold text-navy-muted">
                   <span>BRITISH COUNCIL</span>
                   <span>•</span>
-                  <span>IDP</span>
+                  <span>IDP EDUCATION</span>
                   <span>•</span>
                   <span>GOETHE-INSTITUT</span>
                   <span>•</span>
-                  <span>PEARSON</span>
+                  <span>PTE</span>
+                  <span>•</span>
+                  <span>CEFR BASED SYLLABUS</span>
                 </div>
               </div>
             </div>
@@ -753,7 +755,7 @@ export default function AboutPage() {
             </h2>
             
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
-              Attend a free 45-minute demo class with our lead trainers and get personalized score roadmap guidance for your target language exam.
+              Attend a personalized 45-minute consultation with our lead trainers and get customized score roadmap guidance for your target language exam.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-2 relative z-10">
@@ -761,7 +763,7 @@ export default function AboutPage() {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-purple-700 to-indigo-800 hover:from-purple-600 hover:to-indigo-700 text-white font-bold text-sm rounded-xl shadow-lg hover:scale-102 transition-all cursor-pointer border border-white/20"
               >
-                <span>Book Free Demo Session</span>
+                <span>Book Your Consultation</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a

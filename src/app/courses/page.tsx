@@ -4,13 +4,13 @@ import { coursesList } from '@/data/courses-db';
 import CourseCard from '@/components/CourseCard';
 
 export const metadata: Metadata = {
-  title: "Certified Language Courses in Delhi NCR & Online | GLA",
+  title: "Certified Language Courses in Delhi NCR & Online | TGLA",
   description: "Explore accredited language courses at The Global Language Academy: German (A1-C2), French, Japanese (JLPT), Spoken English, IELTS, and PTE in Delhi NCR.",
   alternates: {
     canonical: "/courses",
   },
   openGraph: {
-    title: "Certified Language Courses in Delhi NCR & Online | GLA",
+    title: "Certified Language Courses in Delhi NCR & Online | TGLA",
     description: "Explore accredited language courses at The Global Language Academy: German (A1-C2), French, Japanese (JLPT), Spoken English, IELTS, and PTE in Delhi NCR.",
     url: "https://tglalearning.com/courses",
     type: "website",

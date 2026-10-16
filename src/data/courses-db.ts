@@ -15,119 +15,423 @@ export const facultyList: FacultyMember[] = [
   }
 ];
 
-export const testimonialsList: Testimonial[] = [
+export const germanTestimonials: Testimonial[] = [
   {
-    id: "test-1",
+    id: "test-de-1",
     authorName: "Rohit Sen",
     authorAvatar: { src: "", alt: "Rohit Sen", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "GLA made German language study simple and intuitive. I cleared my Goethe B2 exam on my first attempt and secured admission for my Master's at the Technical University of Munich!",
-    outcomeTag: "Passed Goethe B2 (Munich Admits)"
+    quote: "TGLA made German language study simple and intuitive. I cleared my Goethe B2 exam on my first attempt and secured admission for my Master's at the Technical University of Munich!",
+    outcomeTag: "Verified Student"
   },
   {
-    id: "test-2",
-    authorName: "Dr. Ananya Mehta",
-    authorAvatar: { src: "", alt: "Dr. Ananya Mehta", width: 80, height: 80 },
+    id: "test-de-2",
+    authorName: "Sneha Mukherjee",
+    authorAvatar: { src: "", alt: "Sneha Mukherjee", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "Balancing a demanding hospital schedule with IELTS prep was tough. GLA's flexible timings and targeted writing diagnostic feedback helped me achieve an overall 8.0 Band for my UK GMC registration.",
-    outcomeTag: "IELTS Band 8.0 (UK Medical)"
+    quote: "From zero German knowledge (A1) to clearing B1 in 5 months. TGLA's trainers prepared me thoroughly for the Frankfurt hospital interview and guided my complete Ausbildung visa documentation.",
+    outcomeTag: "Verified Student"
   },
   {
-    id: "test-3",
+    id: "test-de-3",
+    authorName: "Rohan Verma",
+    authorAvatar: { src: "", alt: "Rohan Verma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The small batch size (5 to 7 students) meant the trainer corrected my pronunciation every single day. I cleared Goethe A1 and A2 with 94+ marks on first attempts. Highly recommend TGLA for German!",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-de-4",
+    authorName: "Siddharth Joshi",
+    authorAvatar: { src: "", alt: "Siddharth Joshi", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Cleared Goethe B2 exam and got my German Employment Visa stamped! TGLA's specialized technical vocabulary coaching and Goethe mock simulations were invaluable for my automotive engineering role in Stuttgart.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-de-5",
+    authorName: "Priya Sharma",
+    authorAvatar: { src: "", alt: "Priya Sharma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The interactive grammar sessions and daily speaking drills helped me clear Goethe B1 in just 4 months. The faculty gave personal attention to every error in my writing tasks.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-de-6",
+    authorName: "Ankit Verma",
+    authorAvatar: { src: "", alt: "Ankit Verma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Needed A2 and B1 for the German Opportunity Card (Chancenkarte). TGLA's weekend batch fits perfectly around full-time job hours. Cleared both levels with great scores!",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-de-7",
+    authorName: "Neha Gupta",
+    authorAvatar: { src: "", alt: "Neha Gupta", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I scored 96% in Goethe A1! Harshita Ma'am makes German fun and understandable from the very first lesson. The mock tests were identical to the real Goethe exam format.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-de-8",
+    authorName: "Varun Kapoor",
+    authorAvatar: { src: "", alt: "Varun Kapoor", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I prepared for TELC C1 Hochschule at TGLA. The academic presentation drills and complex grammar breakdowns gave me the edge I needed for my mechanical engineering degree admission in Aachen.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-de-9",
+    authorName: "Simran Kaur",
+    authorAvatar: { src: "", alt: "Simran Kaur", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "As a registered nurse heading to Hamburg, medical German was crucial. TGLA's patient dialogue simulations and B2 medical vocabulary training were top tier.",
+    outcomeTag: "Verified Student"
+  }
+];
+
+export const frenchTestimonials: Testimonial[] = [
+  {
+    id: "test-fr-1",
     authorName: "Pooja Deshmukh",
     authorAvatar: { src: "", alt: "Pooja Deshmukh", width: 80, height: 80 },
     ratingStars: 5,
     quote: "The French DELF B2 training was structured and intensive. The daily conversational sessions and TEF Canada exam strategies gave me the extra 50 CRS points I needed for my Canada PR nomination.",
-    outcomeTag: "DELF B2 & Canada PR Points"
+    outcomeTag: "Verified Student"
   },
   {
-    id: "test-4",
-    authorName: "Kunal Sharma",
-    authorAvatar: { src: "", alt: "Kunal Sharma", width: 80, height: 80 },
-    ratingStars: 5,
-    quote: "Passed JLPT N3 with 92% accuracy! The Kanji memory techniques, vocabulary mnemonics, and listening audio drills at GLA helped me clear my technical interview with a Tokyo software firm.",
-    outcomeTag: "JLPT N3 (Tokyo IT Placement)"
-  },
-  {
-    id: "test-5",
-    authorName: "Devansh Dixit",
-    authorAvatar: { src: "", alt: "Devansh Dixit", width: 80, height: 80 },
-    ratingStars: 5,
-    quote: "Scored 84/90 in my PTE Academic exam! The AI mock assessments and voice pitch coaching were identical to the real Pearson software. Got my Australian Skilled Migration PR invite within weeks.",
-    outcomeTag: "Scored 84/90 PTE (Australia PR)"
-  },
-  {
-    id: "test-6",
-    authorName: "Sneha Mukherjee",
-    authorAvatar: { src: "", alt: "Sneha Mukherjee", width: 80, height: 80 },
-    ratingStars: 5,
-    quote: "From zero German knowledge (A1) to clearing B1 in 5 months. GLA's trainers prepared me thoroughly for the Frankfurt hospital interview and guided my complete Ausbildung visa documentation.",
-    outcomeTag: "German B1 & Nursing Ausbildung"
-  },
-  {
-    id: "test-7",
-    authorName: "Vikram Malhotra",
-    authorAvatar: { src: "", alt: "Vikram Malhotra", width: 80, height: 80 },
-    ratingStars: 5,
-    quote: "The Spoken English and Corporate Communication sessions completely eliminated my hesitation. The mock debates, presentations, and email etiquette coaching helped me get promoted to Team Lead at an MNC.",
-    outcomeTag: "Promoted to Team Lead (MNC)"
-  },
-  {
-    id: "test-8",
-    authorName: "Rohan Verma",
-    authorAvatar: { src: "", alt: "Rohan Verma", width: 80, height: 80 },
-    ratingStars: 5,
-    quote: "The small batch size (6 students) meant the trainer corrected my pronunciation every single day. I cleared Goethe A1 and A2 with 94+ marks on first attempts. Highly recommend GLA for German!",
-    outcomeTag: "Goethe A2 (94% Score)"
-  },
-  {
-    id: "test-9",
+    id: "test-fr-2",
     authorName: "Meera Iyer",
     authorAvatar: { src: "", alt: "Meera Iyer", width: 80, height: 80 },
     ratingStars: 5,
     quote: "I started French from scratch. The trainer's patience and active speaking exercises helped me clear DELF A2 within 3 months and now I am comfortably preparing for B1.",
-    outcomeTag: "DELF A2 First Attempt"
+    outcomeTag: "Verified Student"
   },
   {
-    id: "test-10",
-    authorName: "Amanpreet Singh",
-    authorAvatar: { src: "", alt: "Amanpreet Singh", width: 80, height: 80 },
+    id: "test-fr-3",
+    authorName: "Rahul Varma",
+    authorAvatar: { src: "", alt: "Rahul Varma", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "I was stuck at 6.5 in IELTS Writing for months. GLA's essay blueprints and 1-on-1 feedback broke my plateau, pushing my score to Band 8.0 in Speaking and 7.5 in Writing (CLB 9 achieved!).",
-    outcomeTag: "CLB 9 Achieved (IELTS 7.5+)"
+    quote: "The Inspire series textbook curriculum and audio exercises at TGLA made DELF B1 preparation effortless. Got 88/100 on my first attempt and secured admission in France!",
+    outcomeTag: "Verified Student"
   },
   {
-    id: "test-11",
+    id: "test-fr-4",
+    authorName: "Ananya Roy",
+    authorAvatar: { src: "", alt: "Ananya Roy", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Targeted NCLC 7 in TEF Canada. The specialized speaking workshops and listening drills at TGLA were instrumental in achieving CLB 7 across all sections.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-fr-5",
+    authorName: "Karan Singhania",
+    authorAvatar: { src: "", alt: "Karan Singhania", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Scored 92% in DELF A1 after just 8 weeks. Small batch size ensured I had ample speaking practice every single day without feeling shy.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-fr-6",
+    authorName: "Shreya Nair",
+    authorAvatar: { src: "", alt: "Shreya Nair", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Learning French opened up international hospitality opportunities in Geneva. The instructors focus on authentic accent, natural pronunciation, and practical speaking.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-fr-7",
+    authorName: "Aditya Saxena",
+    authorAvatar: { src: "", alt: "Aditya Saxena", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "TCF Canada preparation was thoroughly covered. The essay correction rubrics and speaking simulation sessions gave me total exam-day confidence.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-fr-8",
+    authorName: "Ritu Menon",
+    authorAvatar: { src: "", alt: "Ritu Menon", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Needed professional French for my job at a European multinational. TGLA's corporate email writing and formal conversation modules were game-changers for my career.",
+    outcomeTag: "Verified Student"
+  }
+];
+
+export const japaneseTestimonials: Testimonial[] = [
+  {
+    id: "test-jp-1",
+    authorName: "Kunal Sharma",
+    authorAvatar: { src: "", alt: "Kunal Sharma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Passed JLPT N3 with 92% accuracy! The Kanji memory techniques, vocabulary mnemonics, and listening audio drills at TGLA helped me clear my technical interview with a Tokyo software firm.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-jp-2",
     authorName: "Tanvi Patil",
     authorAvatar: { src: "", alt: "Tanvi Patil", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "Learning Japanese script felt overwhelming at first, but GLA's Hiragana and Katakana charts with interactive drills made it enjoyable. Cleared JLPT N5 with top marks in the Delhi center.",
-    outcomeTag: "JLPT N5 Cleared (Top Marks)"
+    quote: "Learning Japanese script felt overwhelming at first, but TGLA's Hiragana and Katakana charts with interactive drills made it enjoyable. Cleared JLPT N5 with top marks in Delhi.",
+    outcomeTag: "Verified Student"
   },
   {
-    id: "test-12",
-    authorName: "Rahul Nair",
-    authorAvatar: { src: "", alt: "Rahul Nair", width: 80, height: 80 },
+    id: "test-jp-3",
+    authorName: "Deepak Chawla",
+    authorAvatar: { src: "", alt: "Deepak Chawla", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "Scored 82/90 overall in PTE Academic! The computer testing lab at GLA and real-time AI scoring gave me immense confidence on test day. Cleared my target in just 25 days of preparation.",
-    outcomeTag: "PTE 82/90 (25-Day Prep)"
+    quote: "Cleared JLPT N4 in 4 months. The 25-lesson roadmap from Minna no Nihongo paired with weekly vocabulary quizzes made every milestone crystal clear.",
+    outcomeTag: "Verified Student"
   },
   {
-    id: "test-13",
+    id: "test-jp-4",
+    authorName: "Rashi Jain",
+    authorAvatar: { src: "", alt: "Rashi Jain", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Passed JLPT N2 with flying colors! The advanced reading comprehension drills and Keigo business Japanese role plays directly helped me land a bilingual project manager role.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-jp-5",
+    authorName: "Mohit Gupta",
+    authorAvatar: { src: "", alt: "Mohit Gupta", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Mastered Hiragana and Katakana within the first 3 weeks. The trainers are patient and ensure each stroke order and pronunciation nuance is perfected.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-jp-6",
+    authorName: "Shweta Kulkarni",
+    authorAvatar: { src: "", alt: "Shweta Kulkarni", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I pursued Japanese for translation and subtitling work. The Kanji radicals breakdown and listening audio dialogues at TGLA gave me genuine practical fluency.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-jp-7",
+    authorName: "Vikramaditya Rao",
+    authorAvatar: { src: "", alt: "Vikramaditya Rao", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Secured a university student exchange program in Tokyo after completing N4. TGLA's conversational focus helped me adjust smoothly to life in Japan.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-jp-8",
+    authorName: "Arushi Bansal",
+    authorAvatar: { src: "", alt: "Arushi Bansal", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Cleared JLPT N5 on my first attempt with full marks in listening! The listening lab drills and teacher's accent clarity made the actual JLPT audio feel easy.",
+    outcomeTag: "Verified Student"
+  }
+];
+
+export const spokenEnglishTestimonials: Testimonial[] = [
+  {
+    id: "test-spk-1",
+    authorName: "Vikram Malhotra",
+    authorAvatar: { src: "", alt: "Vikram Malhotra", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Spoken English and Corporate Communication sessions completely eliminated my hesitation. The mock debates, presentations, and email etiquette coaching helped me get promoted to Team Lead at an MNC.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-spk-2",
     authorName: "Priya Raghavan",
     authorAvatar: { src: "", alt: "Priya Raghavan", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "I used to feel self-conscious speaking English in public and during client calls. The voice modulation exercises and friendly environment at GLA gave me lifelong conversational confidence.",
-    outcomeTag: "Public Speaking Fluency"
+    quote: "I used to feel self-conscious speaking English in public and during client calls. The voice modulation exercises and friendly environment at TGLA gave me lifelong conversational confidence.",
+    outcomeTag: "Verified Student"
   },
   {
-    id: "test-14",
-    authorName: "Siddharth Joshi",
-    authorAvatar: { src: "", alt: "Siddharth Joshi", width: 80, height: 80 },
+    id: "test-spk-3",
+    authorName: "Amit Choudhary",
+    authorAvatar: { src: "", alt: "Amit Choudhary", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "Cleared Goethe B2 exam and got my German Employment Visa stamped! GLA's specialized technical vocabulary coaching and Goethe mock simulations were invaluable for my automotive engineering role in Stuttgart.",
-    outcomeTag: "Goethe B2 & Stuttgart Job Visa"
+    quote: "The Capstone Interview Module prepared me for tough behavioral rounds. Using the STAR framework taught by our trainer, I cleared my Senior Operations Manager interview with a 40% hike!",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-spk-4",
+    authorName: "Sunita Mishra",
+    authorAvatar: { src: "", alt: "Sunita Mishra", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I always understood English but struggled to speak without translating in my mind first. Within 2 months at TGLA, my hesitation completely vanished. I can now speak confidently in meetings and social gatherings.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-spk-5",
+    authorName: "Rajesh Khanna",
+    authorAvatar: { src: "", alt: "Rajesh Khanna", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "As a finance professional, clear client communication is vital. TGLA's executive presence coaching and impromptu speech practice sharpened my delivery significantly.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-spk-6",
+    authorName: "Divya Swaminathan",
+    authorAvatar: { src: "", alt: "Divya Swaminathan", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Joined before my final year campus placement drives. The group discussion sessions, resume reviews, and personal mock interviews helped me secure two Day-1 job offers!",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-spk-7",
+    authorName: "Tarun Bhardwaj",
+    authorAvatar: { src: "", alt: "Tarun Bhardwaj", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The 5 to 7 student micro-batch size meant I spoke for at least 20 minutes every single class. My vocabulary expanded dramatically and my stage fear is completely gone.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-spk-8",
+    authorName: "Mansi Agarwal",
+    authorAvatar: { src: "", alt: "Mansi Agarwal", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The combination of Spoken English and Personality Development transformed my communication. I now lead client onboarding calls and presentations effortlessly.",
+    outcomeTag: "Verified Student"
   }
+];
+
+export const ieltsTestimonials: Testimonial[] = [
+  {
+    id: "test-ielts-1",
+    authorName: "Dr. Ananya Mehta",
+    authorAvatar: { src: "", alt: "Dr. Ananya Mehta", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Balancing a demanding hospital schedule with IELTS prep was tough. TGLA's flexible timings and targeted writing diagnostic feedback helped me achieve an overall 8.0 Band for my UK GMC registration.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-ielts-2",
+    authorName: "Amanpreet Singh",
+    authorAvatar: { src: "", alt: "Amanpreet Singh", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I was stuck at 6.5 in IELTS Writing for months. TGLA's essay blueprints and 1-on-1 feedback broke my plateau, pushing my score to Band 8.0 in Speaking and 7.5 in Writing (CLB 9 achieved!).",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-ielts-3",
+    authorName: "Harpreet Gill",
+    authorAvatar: { src: "", alt: "Harpreet Gill", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Scored 8.5 in Listening and 8.0 in Speaking! The Cambridge past papers practice and daily speaking cue card drills at TGLA gave me complete command over the exam format.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-ielts-4",
+    authorName: "Gaurav Taneja",
+    authorAvatar: { src: "", alt: "Gaurav Taneja", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Raised my overall score from 6.0 to 7.5 in just 6 weeks. The reading skimming and scanning techniques saved me at least 15 minutes during the actual test.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-ielts-5",
+    authorName: "Shruti Deshpande",
+    authorAvatar: { src: "", alt: "Shruti Deshpande", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Secured Band 8.0 for my Master's at the University of Manchester. The essay structure templates and vocabulary boosters eliminated all my Task 2 anxiety.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-ielts-6",
+    authorName: "Nikhil Oberoi",
+    authorAvatar: { src: "", alt: "Nikhil Oberoi", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I needed 8777 in IELTS General Training for Canada PR Express Entry. TGLA's mock test evaluations matched the official British Council examiner standards perfectly.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-ielts-7",
+    authorName: "Jasleen Kaur",
+    authorAvatar: { src: "", alt: "Jasleen Kaur", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Achieved Band 7.5 in Academic IELTS. The 1-on-1 speaking mock sessions with recorded feedback pinpointed my exact grammatical slips before test day.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-ielts-8",
+    authorName: "Abhishek Sen",
+    authorAvatar: { src: "", alt: "Abhishek Sen", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Unlimited computer-delivered IELTS (CDI) portal simulations at TGLA made the digital test feel second nature. Scored an overall 8.0 band on my very first try!",
+    outcomeTag: "Verified Student"
+  }
+];
+
+export const pteTestimonials: Testimonial[] = [
+  {
+    id: "test-pte-1",
+    authorName: "Devansh Dixit",
+    authorAvatar: { src: "", alt: "Devansh Dixit", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Scored 84/90 in my PTE Academic exam! The AI mock assessments and voice pitch coaching were identical to the real Pearson software. Got my Australian Skilled Migration PR invite within weeks.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-pte-2",
+    authorName: "Rahul Nair",
+    authorAvatar: { src: "", alt: "Rahul Nair", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Scored 82/90 overall in PTE Academic! The computer testing lab at TGLA and real-time AI scoring gave me immense confidence on test day. Cleared my target in just 25 days of preparation.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-pte-3",
+    authorName: "Kartik Sundaram",
+    authorAvatar: { src: "", alt: "Kartik Sundaram", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Scored 90/90 in Speaking and 86 in Listening! The Describe Image and Re-tell Lecture templates at TGLA work like magic without pausing or hesitating.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-pte-4",
+    authorName: "Shalini Pillai",
+    authorAvatar: { src: "", alt: "Shalini Pillai", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Needed 79+ in each section for Australia 20 migration points. TGLA's Write From Dictation and Repeat Sentence daily banks made the difference. Cleared with 81 overall!",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-pte-5",
+    authorName: "Manpreet Bhatia",
+    authorAvatar: { src: "", alt: "Manpreet Bhatia", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Passed PTE UKVI with a 76/90 for my UK healthcare work visa. The AI microphone calibration in the lab ensured my voice clarity was scored accurately.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-pte-6",
+    authorName: "Rohit Agnihotri",
+    authorAvatar: { src: "", alt: "Rohit Agnihotri", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Jumped from 58 to 81/90 in just 3 weeks! The personalized score diagnostics pinpointed that my oral fluency was dropping during Summarize Spoken Text. Fixed it fast!",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-pte-7",
+    authorName: "Jaspreet Singh",
+    authorAvatar: { src: "", alt: "Jaspreet Singh", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The full-length Pearson AI mock exams at TGLA gave me results in 2 hours with task-level analysis. I knew exactly where I stood before walking into Pearson VUE.",
+    outcomeTag: "Verified Student"
+  },
+  {
+    id: "test-pte-8",
+    authorName: "Megha Rastogi",
+    authorAvatar: { src: "", alt: "Megha Rastogi", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Scored 86/90 overall and received my unconditional offer letter from Melbourne University. Fast-track 48-hour strategy and daily dictation practice did wonders!",
+    outcomeTag: "Verified Student"
+  }
+];
+
+export const testimonialsList: Testimonial[] = [
+  ...germanTestimonials,
+  ...frenchTestimonials,
+  ...japaneseTestimonials,
+  ...spokenEnglishTestimonials,
+  ...ieltsTestimonials,
+  ...pteTestimonials
 ];
 
 export const studentResultsList: StudentResult[] = [
@@ -157,30 +461,76 @@ export const studentResultsList: StudentResult[] = [
   }
 ];
 
-export const faqsList: FAQItem[] = [
+export const germanFaqs: FAQItem[] = [
   {
-    id: "faq-1",
-    question: "Do you offer free trial demo sessions?",
-    answer: "Yes. Every student can register for a complimentary, 45-minute live trial demo session. This session helps you assess the teaching methodology and interact with the designated trainer before committing."
+    id: "faq-de-1",
+    question: "What CEFR levels do you teach and what is the total duration?",
+    answer: "TGLA covers all CEFR levels from Beginner (A1) to Mastery (C2). Total duration ranges from 2 to 18 months depending on your target level and whether you choose regular or intensive batches."
   },
   {
-    id: "faq-2",
-    question: "Are mock exam fees included in the course structure?",
-    answer: "Absolutely. Full-length, timed mock assessments under realistic exam environments are included at no additional cost for all our language courses (IELTS, PTE, and German)."
+    id: "faq-de-2",
+    question: "Are your certifications accepted for German university admissions and Ausbildung?",
+    answer: "Yes. Our curriculum strictly follows the CEFR framework and prepares students for official Goethe-Institut, telc, and ÖSD examinations, which are 100% recognized by the German Embassy, German universities, and employers."
   },
   {
-    id: "faq-3",
-    question: "What happens if I miss a scheduled class?",
-    answer: "All classes are recorded, and students receive access to a dedicated learning management portal containing class videos, handouts, study guides, and vocabulary templates."
+    id: "faq-de-3",
+    question: "What textbooks and learning resources are provided in the German course?",
+    answer: "We use standard German courseware including Netzwerk neu for A1–A2, Aspekte neu for B1–C1, and authentic past Goethe/telc examination papers alongside our digital LMS portal."
   },
   {
-    id: "faq-4",
-    question: "Do you offer physical in-person classes?",
-    answer: "Yes, we operate a premium physical academy. We run hybrid batches allowing students to attend either offline sessions at our center or join synchronously online."
+    id: "faq-de-4",
+    question: "What is the batch size for German language batches?",
+    answer: "Batches are strictly capped at 5 to 7 students. This micro-batch format ensures daily individual speaking time, prompt error correction, and personalized attention from certified faculty."
   },
+  {
+    id: "faq-de-5",
+    question: "Do you offer interview preparation for German visas and Ausbildung?",
+    answer: "Yes. In addition to language coaching, TGLA provides specialized German visa interview simulations, CV (Lebenslauf) structuring, motivation letter drafting, and employer interview coaching."
+  },
+  {
+    id: "faq-de-6",
+    question: "Can I attend German classes online or in person?",
+    answer: "Both options are available. You can attend in-person classes at our campus in Dwarka, New Delhi, or join live synchronous interactive classes via our online portal."
+  }
+];
+
+export const frenchFaqs: FAQItem[] = [
+  {
+    id: "faq-fr-1",
+    question: "Which textbooks are used in the TGLA French course?",
+    answer: "Our French language curriculum is structured around the renowned Inspire French series: Inspire 1 for A1, Inspire 2 for A2, Inspire 3 for B1, and Inspire 4 for B2, supplemented with official cahier activities and DALF dossiers."
+  },
+  {
+    id: "faq-fr-2",
+    question: "Do you prepare students for official DELF and DALF exams?",
+    answer: "Yes, our programs provide targeted preparation for DELF A1, A2, B1, B2 and DALF C1, C2, including authentic examination mock tests aligned with CIEP / France Éducation international (FEI) specifications."
+  },
+  {
+    id: "faq-fr-3",
+    question: "Can learning French help boost my Canada PR CRS score?",
+    answer: "Yes! Achieving NCLC 7 (CLB 7) or higher in French via the TEF Canada or TCF Canada exam can award up to 50 additional Comprehensive Ranking System (CRS) points for Canada Express Entry."
+  },
+  {
+    id: "faq-fr-4",
+    question: "What is the batch size for French classes?",
+    answer: "All French batches are kept small with 5 to 7 students, guaranteeing daily conversational practice, accent guidance, and individual writing correction."
+  },
+  {
+    id: "faq-fr-5",
+    question: "Are both weekday and weekend batches available?",
+    answer: "Yes, we run flexible morning, evening, and weekend batches for working professionals, college students, and immigration applicants."
+  },
+  {
+    id: "faq-fr-6",
+    question: "How soon can a beginner achieve conversational fluency in French?",
+    answer: "A dedicated beginner can achieve functional conversational fluency (A2 level) in 3 to 4 months, and intermediate workplace proficiency (B1/B2) in 6 to 9 months."
+  }
+];
+
+export const japaneseFaqs: FAQItem[] = [
   {
     id: "faq-jp-1",
-    question: "What textbooks and learning resources are provided in the Japanese programme?",
+    question: "What textbooks and learning resources are provided in the Japanese program?",
     answer: "The course follows the Minna no Nihongo and Genki series for N5–N3, and Tobira for N2. Students also receive workbooks, audio and video listening resources, character writing sheets, and supplementary JLPT exam practice material."
   },
   {
@@ -188,6 +538,29 @@ export const faqsList: FAQItem[] = [
     question: "How is the 25-lesson syllabus structured across scripts and Kanji?",
     answer: "Hiragana lines and practice are completed in Lessons 1–5. Katakana practice is completed in Lessons 6–10. Dedicated Kanji instruction begins in Lesson 12 and continues through Lesson 21, followed by revision drills in Lessons 22–25 and a comprehensive final test including a daily-life conversation check."
   },
+  {
+    id: "faq-jp-3",
+    question: "Which JLPT levels do you prepare students for?",
+    answer: "We prepare learners for all levels of the Japanese Language Proficiency Test: JLPT N5 (Beginner), N4 (Elementary), N3 (Intermediate), N2 (Business Level), and N1 (Advanced/Native)."
+  },
+  {
+    id: "faq-jp-4",
+    question: "What is the batch size for Japanese classes?",
+    answer: "Classes are limited to 5 to 7 students per batch, allowing our Japanese instructors to personally review Kanji stroke order, verify pronunciation, and conduct dialogue drills."
+  },
+  {
+    id: "faq-jp-5",
+    question: "Does TGLA assist with Japanese corporate interview preparation?",
+    answer: "Yes. We offer business Japanese (Keigo) workshops, Japanese corporate culture briefings, and mock interview practice for candidates targeting IT and engineering roles in Japan."
+  },
+  {
+    id: "faq-jp-6",
+    question: "Do you offer consultation sessions before enrollment?",
+    answer: "Yes! Prospective learners can attend a complimentary 1-on-1 language consultation session to experience our interactive teaching pedagogy firsthand."
+  }
+];
+
+export const spokenEnglishFaqs: FAQItem[] = [
   {
     id: "faq-spk-1",
     question: "How is the 3-level Spoken English course structured?",
@@ -206,8 +579,93 @@ export const faqsList: FAQItem[] = [
   {
     id: "faq-spk-4",
     question: "What is the batch size and daily speaking practice model?",
-    answer: "All batches are capped at 5–7 students to guarantee daily 1-on-1 speaking time and personalized feedback. Learners actively participate in extempore speaking, roleplays, debates, and accent neutralization drills."
+    answer: "All batches are capped at 5 to 7 students to guarantee daily 1-on-1 speaking time and personalized feedback. Learners actively participate in extempore speaking, roleplays, debates, and accent neutralization drills."
+  },
+  {
+    id: "faq-spk-5",
+    question: "Will this course help me eliminate regional accent / MTI?",
+    answer: "Yes, our voice and speech modules include specialized phonetics drills, mouth-movement exercises, and Mother Tongue Influence (MTI) removal techniques guided by certified accent trainers."
+  },
+  {
+    id: "faq-spk-6",
+    question: "Do you offer weekday and weekend batches?",
+    answer: "Yes, we offer morning, evening, and weekend batches to suit college students, job seekers, and working executives."
   }
+];
+
+export const ieltsFaqs: FAQItem[] = [
+  {
+    id: "faq-ielts-1",
+    question: "What is the difference between IELTS Academic and IELTS General Training?",
+    answer: "IELTS Academic is intended for university degree admissions (undergraduate/postgraduate) and professional council registration (medical, nursing, legal). IELTS General Training is intended for immigration/permanent residency (e.g. Canada Express Entry, Australia skilled migration) and secondary education or vocational work."
+  },
+  {
+    id: "faq-ielts-2",
+    question: "How long is the IELTS test and how is it scored?",
+    answer: "The total test duration is approximately 2 hours and 45 minutes (Listening: 30m, Reading: 60m, Writing: 60m, Speaking: 11–14m). IELTS is scored on a 9-band scale. Your Overall Band Score is the arithmetic average of the four module scores rounded to the nearest 0.5 band."
+  },
+  {
+    id: "faq-ielts-3",
+    question: "Are Cambridge IELTS past papers provided in the course?",
+    answer: "Yes. Our curriculum is built around Cambridge Assessment English past papers, including the Cambridge IELTS Books 1–18 series, complete with authentic past examination questions, band conversion tables, and examiner sample answers."
+  },
+  {
+    id: "faq-ielts-4",
+    question: "How many mock tests are included in the program?",
+    answer: "TGLA provides unlimited full-length offline mock tests in our testing lab and online computer-delivered IELTS (CDI) portal simulations at no additional cost throughout your course enrolment."
+  },
+  {
+    id: "faq-ielts-5",
+    question: "How quickly are IELTS results delivered?",
+    answer: "For Computer-Delivered IELTS (CDI), results are typically available online in 3–5 days. For paper-based testing, official Test Report Forms (TRF) are issued within 13 days of the test date."
+  },
+  {
+    id: "faq-ielts-6",
+    question: "What is the batch size and speaking evaluation model?",
+    answer: "Batches have strictly 5 to 7 students. Every learner receives daily 1-on-1 speaking interview evaluations with recorded feedback and examiner band scoring rubrics."
+  }
+];
+
+export const pteFaqs: FAQItem[] = [
+  {
+    id: "faq-pte-1",
+    question: "What is PTE and how does its AI scoring work?",
+    answer: "PTE (Pearson Test of English) is a computer-based test administered by Pearson PLC. It uses Artificial Intelligence to evaluate speaking, writing, reading, and listening responses against strict linguistic parameters—evaluating oral fluency, pronunciation, grammar, vocabulary, and spelling without human examiner bias."
+  },
+  {
+    id: "faq-pte-2",
+    question: "How quickly are PTE results delivered?",
+    answer: "PTE results are delivered within 48 hours of completing the test at a Pearson VUE center, and often in as little as 24 hours, making it one of the fastest English proficiency tests worldwide."
+  },
+  {
+    id: "faq-pte-3",
+    question: "What is the difference between PTE Academic and PTE UKVI?",
+    answer: "PTE Academic is accepted by over 3,000 universities and for Australian/New Zealand visas. PTE UKVI is the UK government-approved Secure English Language Test (SELT) required for specific UK work and student visas, taken at UKVI-licensed Pearson VUE centers."
+  },
+  {
+    id: "faq-pte-4",
+    question: "What score do I need for Australian immigration or UK universities?",
+    answer: "Typically, Australian Skilled Migration requires a minimum of 65 in each communicative skill (Competent/Proficient English), while UK/Australian top universities require an overall score between 65 and 79. Our diagnostic mock test helps identify your baseline and map out the exact path to your target."
+  },
+  {
+    id: "faq-pte-5",
+    question: "Do you have a dedicated computer lab for mock practice?",
+    answer: "Yes, our Dwarka center features a dedicated computer lab equipped with high-fidelity headsets identical to Pearson VUE testing centers, running real-time AI-scored mock simulations."
+  },
+  {
+    id: "faq-pte-6",
+    question: "What is the batch size for PTE Strategy classes?",
+    answer: "PTE batches are strictly limited to 5 to 7 learners. This ensures personalized microphone pitch calibration, template mastery, and daily dictation error tracking."
+  }
+];
+
+export const faqsList: FAQItem[] = [
+  ...germanFaqs,
+  ...frenchFaqs,
+  ...japaneseFaqs,
+  ...spokenEnglishFaqs,
+  ...ieltsFaqs,
+  ...pteFaqs
 ];
 
 export const servicesList: ServiceItem[] = [
@@ -260,11 +718,11 @@ export const coursesList: Course[] = [
     id: "crs-german",
     slug: "german-language",
     title: "German Language Program (A1 - C2)",
-    metaTitle: "German Language Classes (A1 - C2) | Goethe & TELC Exam Prep",
-    metaDescription: "Learn German from certified instructors. Level-wise courses (A1 to C2) tailored for Goethe/TELC certification, Ausbildung, and German university admissions.",
+    metaTitle: "German Language Classes (A1 - C2) | Goethe & TELC Exam Prep | TGLA",
+    metaDescription: "Learn German from certified instructors at TGLA. Level-wise courses (A1 to C2) tailored for Goethe/TELC certification, Ausbildung, and German university admissions.",
     shortDescription: "Your gateway to tuition-free education, Ausbildung vocational training, and careers in Germany.",
     longDescription: "Master German grammar, listening, and speaking through our specialized immersion methodology. Designed to take candidates from absolute beginners (A1) to advanced proficiency (C2), this program focuses on building functional communication skills alongside rigorous Goethe-Institut and TELC exam preparation.",
-    durationLabel: "3 - 12 Months",
+    durationLabel: "2 to 18 Months",
     nextBatchStartDate: "2026-09-01",
     maxClassSize: "5-7",
     levels: [
@@ -305,11 +763,11 @@ export const coursesList: Course[] = [
       }
     ],
     faculty: [facultyList[0]],
-    testimonials: [testimonialsList[0], testimonialsList[5], testimonialsList[7], testimonialsList[13]],
-    faqs: [faqsList[0], faqsList[2]],
+    testimonials: germanTestimonials,
+    faqs: germanFaqs,
     studentResults: [studentResultsList[0]],
     benefits: [
-      "Certified trainers leading every small batch (max 5-7 students)",
+      "Certified trainers leading every small batch (5 to 7 students)",
       "Interactive, speaking-first curriculum ensuring functional fluency",
       "Complete mock exam series grading reading, writing, listening, speaking",
       "Dedicated visa interview preparation and mock sessions included"
@@ -331,8 +789,8 @@ export const coursesList: Course[] = [
   {
     id: "crs-french",
     slug: "french-language",
-    title: "French Language Courses — Learn, Grow, Go Global",
-    metaTitle: "French Language Classes (A1-C2) | DELF DALF Prep | GLA",
+    title: "French Language Program (A1 - C2)",
+    metaTitle: "French Language Classes (A1-C2) | DELF DALF Prep | TGLA",
     metaDescription: "Learn French with confidence at The Global Language Academy. Structured Inspire syllabus from A1 to B2 plus DALF C1 & C2 exam preparation in Delhi NCR.",
     shortDescription: "Learn French with confidence through structured learning, practical communication, and examination-focused preparation at The Global Language Academy.",
     longDescription: "Our French language courses are designed to help learners develop strong speaking, listening, reading, writing, pronunciation, grammar, and vocabulary skills for real-world communication and global opportunities. Follow the Inspire French series from A1 to B2, with specialized preparation for DALF C1 and C2.",
@@ -363,24 +821,8 @@ export const coursesList: Course[] = [
       }
     ],
     faculty: [],
-    testimonials: [testimonialsList[2], testimonialsList[8]],
-    faqs: [
-      {
-        id: "faq-fr-1",
-        question: "Which textbooks are used in the GLA French course?",
-        answer: "Our French language curriculum is structured around the renowned Inspire French series: Inspire 1 for A1, Inspire 2 for A2, Inspire 3 for B1, and Inspire 4 for B2, supplemented with official cahier activities and DALF dossiers."
-      },
-      {
-        id: "faq-fr-2",
-        question: "Do you prepare students for official DELF and DALF exams?",
-        answer: "Yes, our programmes provide targeted preparation for DELF A1, A2, B1, B2 and DALF C1, C2, including authentic examination mock tests aligned with CIEP / France Éducation international (FEI) specifications."
-      },
-      {
-        id: "faq-fr-3",
-        question: "Can learning French help boost my Canada PR CRS score?",
-        answer: "Yes! Achieving NCLC 7 (CLB 7) or higher in French via the TEF Canada or TCF Canada exam can award up to 50 additional Comprehensive Ranking System (CRS) points for Canada Express Entry."
-      }
-    ],
+    testimonials: frenchTestimonials,
+    faqs: frenchFaqs,
     studentResults: [studentResultsList[0]],
     benefits: [
       "Structured Learning: Progressive syllabus designed to build French systematically",
@@ -405,11 +847,11 @@ export const coursesList: Course[] = [
   {
     id: "crs-japanese",
     slug: "japanese-language",
-    title: "Japanese Language Courses — Learn, Grow, Go Global",
-    metaTitle: "Japanese Language Classes (JLPT N5-N1) in Delhi | GLA",
-    metaDescription: "Master Japanese with confidence. Structured 25-lesson curriculum and JLPT N5 to N1 exam preparation with certified trainers at GLA in Delhi NCR.",
+    title: "Japanese Language Program (N5 - N1)",
+    metaTitle: "Japanese Language Classes (JLPT N5-N1) in Delhi | TGLA",
+    metaDescription: "Master Japanese with confidence. Structured 25-lesson curriculum and JLPT N5 to N1 exam preparation with certified trainers at TGLA in Delhi NCR.",
     shortDescription: "Learn Japanese with confidence through structured learning, practical communication, cultural understanding, and real-world skills at The Global Language Academy.",
-    longDescription: "The Japanese Language Course at The Global Language Academy is a structured 25-lesson programme developing speaking, listening, reading, and writing, including hiragana, katakana, and kanji, along with practical grammar, useful vocabulary, and JLPT preparation from N5 to N1.",
+    longDescription: "The Japanese Language Course at The Global Language Academy is a structured 25-lesson program developing speaking, listening, reading, and writing, including hiragana, katakana, and kanji, along with practical grammar, useful vocabulary, and JLPT preparation from N5 to N1.",
     durationLabel: "25 Lessons + Final Test",
     nextBatchStartDate: "2026-09-08",
     maxClassSize: "5-7",
@@ -451,13 +893,8 @@ export const coursesList: Course[] = [
       }
     ],
     faculty: [],
-    testimonials: [testimonialsList[3], testimonialsList[10], testimonialsList[1]],
-    faqs: [
-      faqsList[4], // faq-jp-1
-      faqsList[5], // faq-jp-2
-      faqsList[0], // faq-1
-      faqsList[2]  // faq-3
-    ],
+    testimonials: japaneseTestimonials,
+    faqs: japaneseFaqs,
     studentResults: [studentResultsList[0]],
     benefits: [
       "Step-by-step Kanji memorization mnemonics and stroke order drills",
@@ -482,11 +919,11 @@ export const coursesList: Course[] = [
   {
     id: "crs-spoken-english",
     slug: "spoken-english",
-    title: "Spoken English Course — Communicate Confidently in Every Situation",
-    metaTitle: "Spoken English & Fluency Coaching in Delhi NCR | GLA",
-    metaDescription: "Boost English speaking fluency, grammar, pronunciation, and corporate presentation skills at GLA. Interactive group discussions and 1-on-1 personalized labs.",
+    title: "Spoken English Program (A1 - C2)",
+    metaTitle: "Spoken English & Fluency Coaching in Delhi NCR | TGLA",
+    metaDescription: "Boost English speaking fluency, grammar, pronunciation, and corporate presentation skills at TGLA. Interactive group discussions and 1-on-1 personalized labs.",
     shortDescription: "Improve your fluency, build confidence and master real-life communication with our Spoken English Course. Your Voice. A Brighter Tomorrow.",
-    longDescription: "The Spoken English Course at The Global Language Academy is a structured 3-month programme (A1 to C2) covering grammar, speaking, writing, reading, listening, and an advanced Capstone Interview Preparation module, with an optional 2-month executive Personality Development add-on for working professionals.",
+    longDescription: "The Spoken English Course at The Global Language Academy is a structured 3-month program (A1 to C2) covering grammar, speaking, writing, reading, listening, and an advanced Capstone Interview Preparation module, with an optional 2-month executive Personality Development add-on for working professionals.",
     durationLabel: "3 Months (Core) + 2 Months (Add-On)",
     nextBatchStartDate: "2026-09-01",
     maxClassSize: "5-7",
@@ -541,15 +978,8 @@ export const coursesList: Course[] = [
       }
     ],
     faculty: [],
-    testimonials: [testimonialsList[6], testimonialsList[12]],
-    faqs: [
-      faqsList[6], // faq-spk-1
-      faqsList[7], // faq-spk-2
-      faqsList[8], // faq-spk-3
-      faqsList[9], // faq-spk-4
-      faqsList[0], // faq-1
-      faqsList[3]  // faq-4
-    ],
+    testimonials: spokenEnglishTestimonials,
+    faqs: spokenEnglishFaqs,
     studentResults: [studentResultsList[1]],
     benefits: [
       "Better Communication — Speak with clarity, precision, and confidence in every situation",
@@ -575,8 +1005,8 @@ export const coursesList: Course[] = [
   {
     id: "crs-ielts",
     slug: "ielts-preparation",
-    title: "IELTS Preparation Masterclass (Academic & General)",
-    metaTitle: "IELTS Coaching in Delhi NCR (Band 7.5+) | GLA Masterclass",
+    title: "IELTS Preparation Program (Band 7.5+)",
+    metaTitle: "IELTS Coaching in Delhi NCR (Band 7.5+) | TGLA Masterclass",
     metaDescription: "Master IELTS Academic & General Training with Cambridge Books 1-18, unlimited mock tests, 1-on-1 speaking evaluation, and examiner essay corrections.",
     shortDescription: "Everything you need to prepare, practise, and achieve your target band score in IELTS Academic & General Training.",
     longDescription: "IELTS (International English Language Testing System) is jointly owned and managed by the British Council, IDP: IELTS Australia, and Cambridge Assessment English. Accepted by 11,000+ organisations worldwide across 140+ countries. Our comprehensive coaching program provides Cambridge-affiliated materials (Books 1–18), task-specific strategy guides, unlimited offline & CDI computer mock tests, and personalised band score roadmaps targeting Band 7.5+ and 8.0+.",
@@ -622,34 +1052,8 @@ export const coursesList: Course[] = [
       }
     ],
     faculty: [],
-    testimonials: [testimonialsList[1], testimonialsList[9]],
-    faqs: [
-      {
-        id: "faq-ielts-1",
-        question: "What is the difference between IELTS Academic and IELTS General Training?",
-        answer: "IELTS Academic is intended for university degree admissions (undergraduate/postgraduate) and professional council registration (medical, nursing, legal). IELTS General Training is intended for immigration/permanent residency (e.g. Canada Express Entry, Australia skilled migration) and secondary education or vocational work."
-      },
-      {
-        id: "faq-ielts-2",
-        question: "How long is the IELTS test and how is it scored?",
-        answer: "The total test duration is approximately 2 hours and 45 minutes (Listening: 30m, Reading: 60m, Writing: 60m, Speaking: 11–14m). IELTS is scored on a 9-band scale. Your Overall Band Score is the arithmetic average of the four module scores rounded to the nearest 0.5 band."
-      },
-      {
-        id: "faq-ielts-3",
-        question: "Are Cambridge IELTS past papers provided in the course?",
-        answer: "Yes. Our curriculum is built around Cambridge Assessment English past papers, including the Cambridge IELTS Books 1–18 series, complete with authentic past examination questions, band conversion tables, and examiner sample answers."
-      },
-      {
-        id: "faq-ielts-4",
-        question: "How many mock tests are included in the programme?",
-        answer: "GLA provides unlimited full-length offline mock tests in our testing lab and online computer-delivered IELTS (CDI) portal simulations at no additional cost throughout your course enrolment."
-      },
-      {
-        id: "faq-ielts-5",
-        question: "How quickly are IELTS results delivered?",
-        answer: "For Computer-Delivered IELTS (CDI), results are typically available online in 3–5 days. For paper-based testing, official Test Report Forms (TRF) are issued within 13 days of the test date."
-      }
-    ],
+    testimonials: ieltsTestimonials,
+    faqs: ieltsFaqs,
     studentResults: [studentResultsList[1]],
     benefits: [
       "Official Cambridge Assessment English past papers (Books 1–18)",
@@ -674,8 +1078,8 @@ export const coursesList: Course[] = [
   {
     id: "crs-pte",
     slug: "pte-academic",
-    title: "PTE Academic & UKVI Preparation Masterclass",
-    metaTitle: "PTE Academic Coaching in Delhi NCR (Target 79+) | GLA",
+    title: "PTE Strategy Program (Score 79+)",
+    metaTitle: "PTE Strategy Coaching in Delhi NCR (Target 79+) | TGLA",
     metaDescription: "Master all 20 PTE task types with AI-scored mock tests, official Pearson study material, and personalized diagnostic score roadmaps. Results in 48 hours.",
     shortDescription: "Everything you need to prepare, practice, and achieve your target score (65+ to 79+) in PTE Academic & PTE UKVI.",
     longDescription: "PTE (Pearson Test of English) is a 100% computer-based, AI-scored English language proficiency test developed by Pearson PLC and accepted by 3,000+ universities (Harvard, Yale, INSEAD, UK/Australia) and immigration departments for Australia, UK, and New Zealand. Our comprehensive preparation program focuses on task-specific strategies across all 20 question types, official Pearson practice platforms, speaking templates, essay frameworks, and AI-graded mock simulations delivering results within 48 hours.",
@@ -737,35 +1141,14 @@ export const coursesList: Course[] = [
       }
     ],
     faculty: [],
-    testimonials: [testimonialsList[4], testimonialsList[11]],
-    faqs: [
-      {
-        id: "faq-pte-1",
-        question: "What is PTE and how does its AI scoring work?",
-        answer: "PTE (Pearson Test of English) is a computer-based test administered by Pearson PLC. It uses Artificial Intelligence to evaluate speaking, writing, reading, and listening responses against strict linguistic parameters—evaluating oral fluency, pronunciation, grammar, vocabulary, and spelling without human examiner bias."
-      },
-      {
-        id: "faq-pte-2",
-        question: "How quickly are PTE results delivered?",
-        answer: "PTE results are delivered within 48 hours of completing the test at a Pearson VUE center, and often in as little as 24 hours, making it one of the fastest English proficiency tests worldwide."
-      },
-      {
-        id: "faq-pte-3",
-        question: "What is the difference between PTE Academic and PTE UKVI?",
-        answer: "PTE Academic is accepted by over 3,000 universities and for Australian/New Zealand visas. PTE UKVI is the UK government-approved Secure English Language Test (SELT) required for specific UK work and student visas, taken at UKVI-licensed Pearson VUE centers."
-      },
-      {
-        id: "faq-pte-4",
-        question: "What score do I need for Australian immigration or UK universities?",
-        answer: "Typically, Australian Skilled Migration requires a minimum of 65 in each communicative skill (Competent/Proficient English), while UK/Australian top universities require an overall score between 65 and 79. Our diagnostic mock test helps identify your baseline and map out the exact path to your target."
-      }
-    ],
+    testimonials: pteTestimonials,
+    faqs: pteFaqs,
     studentResults: [studentResultsList[2]],
     benefits: [
       "Official Pearson preparation materials and scored practice platform access",
       "Full coverage of all 20 PTE task types with task-specific templates",
       "AI-scored mock tests providing real-time section and enabling skill analytics",
-      "Small batches (max 5-7 students) ensuring dedicated 1-on-1 speaking correction"
+      "Small batches (5 to 7 students) ensuring dedicated 1-on-1 speaking correction"
     ],
     whoShouldJoin: [
       "Applicants for Australian Skilled Migration (Subclass 189, 190, 491) targeting 65+ to 79+ points",

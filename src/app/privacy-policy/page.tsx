@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "Privacy Policy | The Global Language Academy",
-  description: "Read the Privacy Policy of The Global Language Academy (GLA) detailing how we collect, use, and protect your personal information.",
+  description: "Read the Privacy Policy of The Global Language Academy (TGLA) detailing how we collect, use, and protect your personal information.",
   alternates: {
     canonical: "/privacy-policy",
   },
@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">1. Information We Collect</h2>
             <p>
-              When you submit a demo class slot or inquiry form on The Global Language Academy (a brand of TGLA Learning Pvt. Ltd.), we collect personal contact credentials including your full name, email address, phone number, and targeted language goals (such as German levels, IELTS, or PTE prep requirements).
+              When you submit a consultation request or inquiry form on The Global Language Academy (a brand of TGLA Learning Pvt. Ltd.), we collect personal contact credentials including your full name, email address, phone number, and targeted language goals (such as German levels, IELTS, or PTE prep requirements).
             </p>
           </div>
 
@@ -41,7 +41,7 @@ export default function PrivacyPolicyPage() {
               All captured lead parameters are stored securely inside our administrative spreadsheets and email automation servers to:
             </p>
             <ul className="list-disc pl-5 flex flex-col gap-1.5">
-              <li>Confirm and schedule your free trial demo classes.</li>
+              <li>Confirm and schedule your personalized consultation sessions.</li>
               <li>Share relevant mock exam scores and personalized study roadmaps.</li>
               <li>Send weekly batch timings or curriculum updates via SMS, email, or WhatsApp.</li>
             </ul>
@@ -50,21 +50,21 @@ export default function PrivacyPolicyPage() {
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">3. Cookies & Tracking Metrics</h2>
             <p>
-              We utilize analytics tracking integrations (such as Google Analytics or Meta tracking pixels) to monitor user behavior patterns on the GLA website. This helps us optimize lead registration workflows, correct rendering bugs, and measure digital campaign performance metrics.
+              We utilize analytics tracking integrations (such as Google Analytics or Meta tracking pixels) to monitor user behavior patterns on the TGLA website. This helps us optimize lead registration workflows, correct rendering bugs, and measure digital campaign performance metrics.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">4. Security Credentials</h2>
             <p>
-              We implement industry-standard SSL certificates to encrypt all data transfers. We do not sell, trade, or distribute your email database parameters to third-party advertisers. Access to your contact coordinates is strictly restricted to certified academic advisors at GLA.
+              We implement industry-standard SSL certificates to encrypt all data transfers. We do not sell, trade, or distribute your email database parameters to third-party advertisers. Access to your contact coordinates is strictly restricted to certified academic advisors at TGLA.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">5. Consent & Data Opt-Out</h2>
             <p>
-              By filling out our demo forms or scheduling consultations, you consent to receive direct telephone advisories from GLA. If you wish to delete your database records or unsubscribe from updates, contact us directly at <a href="mailto:care@glaind.com" className="text-purple hover:underline font-bold">care@glaind.com</a>.
+              By filling out our consultation forms or scheduling inquiries, you consent to receive direct telephone advisories from TGLA. If you wish to delete your database records or unsubscribe from updates, contact us directly at <a href="mailto:care@glaind.com" className="text-purple hover:underline font-bold">care@glaind.com</a>.
             </p>
           </div>
 

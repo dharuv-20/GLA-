@@ -103,9 +103,9 @@ function GermanLeadFormInner() {
             Free Consultation
           </span>
         </div>
-        <h3 className="text-xl font-extrabold font-display text-navy tracking-tight">Book Your German Demo Class</h3>
+        <h3 className="text-xl font-extrabold font-display text-navy tracking-tight">Book Your German Consultation</h3>
         <p className="text-xs text-navy-muted leading-relaxed mt-0.5">
-          Reserve your 45-minute live trial & level assessment session with certified faculty.
+          Reserve your 1-on-1 language assessment & consultation session with certified faculty.
         </p>
       </div>
 
@@ -274,10 +274,10 @@ function GermanLeadFormInner() {
         {isSubmitting ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" />
-            <span>Reserving German Demo...</span>
+            <span>Reserving Consultation...</span>
           </>
         ) : (
-          <span>Book Free German Demo Class &rarr;</span>
+          <span>Book Your Consultation &rarr;</span>
         )}
       </button>
 
@@ -293,7 +293,7 @@ export default function GermanLeadForm() {
     <Suspense fallback={
       <div className="bg-card border border-card-border p-6 md:p-8 rounded-2xl shadow-xl flex flex-col gap-5 text-navy animate-pulse min-h-[460px] justify-center items-center">
         <Loader2 className="w-8 h-8 text-purple animate-spin" />
-        <span className="text-xs text-navy-muted mt-2">Loading German demo form...</span>
+        <span className="text-xs text-navy-muted mt-2">Loading German consultation form...</span>
       </div>
     }>
       <GermanLeadFormInner />

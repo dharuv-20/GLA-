@@ -667,7 +667,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
   const whyGlaPoints = [
     {
       title: "Structured Learning",
-      desc: "Follow a lesson-based programme that combines vocabulary, grammar, language patterns, and progressive practice."
+      desc: "Follow a lesson-based program that combines vocabulary, grammar, language patterns, and progressive practice."
     },
     {
       title: "Practical Communication",
@@ -731,7 +731,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-tight text-white tracking-tight">
-                Japanese Language Courses — Learn, Grow, Go Global
+                {course.title}
               </h1>
 
               <div className="p-3.5 bg-gradient-to-r from-purple/30 via-slate-800/60 to-red-950/30 rounded-xl border border-white/10 text-xs sm:text-sm font-semibold text-slate-200">
@@ -739,7 +739,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
               </div>
               
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-sans">
-                Learn Japanese with confidence and open doors to new opportunities through language and culture. The Global Language Academy offers a structured Japanese language learning programme designed to help learners develop practical communication skills, understand Japanese culture, and build a strong foundation in the Japanese language.
+                Learn Japanese with confidence and open doors to new opportunities through language and culture. The Global Language Academy offers a structured Japanese language learning program designed to help learners develop practical communication skills, understand Japanese culture, and build a strong foundation in the Japanese language.
               </p>
 
               {/* 4 Pillars Highlight */}
@@ -800,7 +800,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
                   </div>
                   <div>
                     <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Batch Size</span>
-                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block">5-7 Students Max</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block">5 to 7 Students</span>
                   </div>
                 </div>
                 
@@ -854,13 +854,13 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
           
           <div className="text-center max-w-3xl mx-auto flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">Programme Description</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">Program Description</span>
             <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">
               Japanese Language Course Curriculum & Goals
             </h2>
             <p className="text-sm text-navy-muted leading-relaxed">
-              The Japanese Language Course at The Global Language Academy is a structured and engaging programme designed for beginner to advanced learners.
-              The programme develops essential skills in speaking, listening, reading, and writing, including <strong>hiragana</strong>, <strong>katakana</strong>, and <strong>kanji</strong>, along with practical grammar, useful vocabulary, and everyday communication. The syllabus follows the progression of the <strong>Minna no Nihongo</strong> and <strong>Genki</strong> series while maintaining a practical, week-by-week learning structure.
+              The Japanese Language Course at The Global Language Academy is a structured and engaging program designed for beginner to advanced learners.
+              The program develops essential skills in speaking, listening, reading, and writing, including <strong>hiragana</strong>, <strong>katakana</strong>, and <strong>kanji</strong>, along with practical grammar, useful vocabulary, and everyday communication. The syllabus follows the progression of the <strong>Minna no Nihongo</strong> and <strong>Genki</strong> series while maintaining a practical, week-by-week learning structure.
             </p>
           </div>
 
@@ -875,7 +875,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
                 </h3>
               </div>
               <p className="text-xs text-navy-muted leading-relaxed">
-                The programme aims to help learners achieve the following key developmental objectives:
+                The program aims to help learners achieve the following key developmental objectives:
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -929,7 +929,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
               </div>
 
               <div className="border-t border-card-border pt-4 flex flex-col gap-2.5">
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-navy">Included in the Programme:</span>
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-navy">Included in the Program:</span>
                 <ul className="grid grid-cols-2 gap-2 text-xs text-navy font-semibold">
                   <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-purple" /> Supplementary practice sets</li>
                   <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-purple" /> Review quizzes & drills</li>
@@ -1083,7 +1083,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
               Final Test and Assessment Framework
             </h2>
             <p className="text-sm text-navy-muted leading-relaxed">
-              The programme concludes with a comprehensive final test designed to review the learning activities covered throughout the 25 lessons.
+              The program concludes with a comprehensive final test designed to review the learning activities covered throughout the 25 lessons.
               The final assessment includes a <strong>daily-life conversation component</strong> to provide an opportunity for learners to demonstrate practical communication skills.
             </p>
           </div>
@@ -1155,7 +1155,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
               Structured Learning Methodology
             </h2>
             <p className="text-sm text-navy-muted leading-relaxed">
-              The Japanese language programme follows a structured learning approach that combines language fundamentals with practical exercises across 7 pedagogical pillars.
+              The Japanese language program follows a structured learning approach that combines language fundamentals with practical exercises across 7 pedagogical pillars.
             </p>
           </div>
 
@@ -1239,7 +1239,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
           
           <div className="text-center max-w-3xl mx-auto flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">Why Learn Japanese at GLA</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">Why Learn Japanese at TGLA</span>
             <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">
               Why Choose The Global Language Academy?
             </h2>
@@ -1383,7 +1383,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
               {/* Action Buttons */}
               <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
                 <a
-                  href="https://wa.me/919217999511?text=Hi%20GLA,%20I%20am%20interested%20in%20the%20Japanese%20Language%20Course.%20Please%20share%20batch%20timings%20and%20fee%20structure."
+                  href="https://wa.me/919217999511?text=Hi%20TGLA,%20I%20am%20interested%20in%20the%20Japanese%20Language%20Course.%20Please%20share%20batch%20timings%20and%20fee%20structure."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5"
@@ -1409,11 +1409,11 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
         </div>
       </section>
 
-      {/* WEBSITE CONTENT AND PROGRAMME DISCLAIMER */}
+      {/* WEBSITE CONTENT AND PROGRAM DISCLAIMER */}
       <section className="bg-white dark:bg-[#00122E] py-8 border-b border-card-border transition-colors duration-300">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-[11px] text-navy-muted leading-relaxed font-sans">
-            <strong>Website Content and Programme Disclaimer:</strong> The Japanese Language Course information presented here is based on the course material supplied by The Global Language Academy. The supplied brochure describes a 25-lesson Japanese language syllabus followed by a final test. It references JLPT preparation from N5 to N1 but does not specify the exact duration of the programme, the JLPT level corresponding to each lesson, or a separate examination-preparation schedule for each level. Course availability, fees, batch timings, instructional arrangements, and JLPT preparation details should be confirmed directly with The Global Language Academy before enrolment. The course is a language-learning programme. Completion of the course should not be presented as an official JLPT qualification or as a guarantee of passing a JLPT examination.
+            <strong>Website Content and Program Disclaimer:</strong> The Japanese Language Course information presented here is based on the course material supplied by The Global Language Academy. The supplied brochure describes a 25-lesson Japanese language syllabus followed by a final test. It references JLPT preparation from N5 to N1 but does not specify the exact duration of the program, the JLPT level corresponding to each lesson, or a separate examination-preparation schedule for each level. Course availability, fees, batch timings, instructional arrangements, and JLPT preparation details should be confirmed directly with The Global Language Academy before enrolment. The course is a language-learning program. Completion of the course should not be presented as an official JLPT qualification or as a guarantee of passing a JLPT examination.
           </p>
         </div>
       </section>
@@ -1440,7 +1440,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-widest text-purple">Explore More Programs</span>
             <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">
-              Other Language Courses at GLA
+              Other Language Courses at TGLA
             </h2>
           </div>
 

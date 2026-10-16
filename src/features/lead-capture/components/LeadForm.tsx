@@ -97,8 +97,8 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-card border border-card-border p-6 md:p-8 rounded-xl shadow-md flex flex-col gap-5 text-navy">
       <div>
-        <h3 className="text-lg font-bold font-display text-navy mb-1">Book Your Free Demo Class</h3>
-        <p className="text-xs text-navy-muted">Fill in your details to reserve a complimentary 45-minute live trial session.</p>
+        <h3 className="text-lg font-bold font-display text-navy mb-1">Book Your Free Consultation</h3>
+        <p className="text-xs text-navy-muted">Fill in your details to reserve a complimentary 1-on-1 counseling session.</p>
       </div>
 
       {submitResult && !submitResult.success && (
@@ -166,13 +166,13 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
         >
           <option value="" className="bg-card text-navy">Select a Program...</option>
           <option value="german-language" className="bg-card text-navy">German Language (A1 - C2)</option>
-          <option value="french-language" className="bg-card text-navy">French Language (DELF / DALF)</option>
-          <option value="japanese-language" className="bg-card text-navy">Japanese Language (JLPT N5-N1)</option>
+          <option value="french-language" className="bg-card text-navy">French Language (A1 - C2)</option>
+          <option value="japanese-language" className="bg-card text-navy">Japanese Language (N5 - N1)</option>
           <option value="spoken-english" className="bg-card text-navy">Spoken English Course (3 Levels)</option>
-          <option value="spoken-english-personality-bundle" className="bg-card text-navy">Spoken English + Personality Development (Bundle)</option>
+          <option value="spoken-english-personality-bundle" className="bg-card text-navy">Spoken English + Personality Development</option>
           <option value="personality-development" className="bg-card text-navy">Personality Development (Working Professionals)</option>
           <option value="ielts-preparation" className="bg-card text-navy">IELTS Exam Masterclass</option>
-          <option value="pte-academic" className="bg-card text-navy">PTE Academic Strategy</option>
+          <option value="pte-academic" className="bg-card text-navy">PTE Strategy</option>
           <option value="visa-admission-guidance" className="bg-card text-navy">Germany Study & Visa Counselling</option>
         </select>
         {errors.course && (
@@ -194,10 +194,10 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
         {isSubmitting ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" />
-            <span>Scheduling Demo...</span>
+            <span>Scheduling Consultation...</span>
           </>
         ) : (
-          <span>Book Free Demo Session &rarr;</span>
+          <span>Book Your Consultation &rarr;</span>
         )}
       </button>
 

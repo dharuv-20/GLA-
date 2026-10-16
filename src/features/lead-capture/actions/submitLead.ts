@@ -72,7 +72,7 @@ export async function submitLead(data: LeadFormInput): Promise<LeadSubmissionRes
 
       return {
         success: true,
-        message: "Congratulations! Your free demo class has been scheduled. Our advisor will call you within 2 hours.",
+        message: "Congratulations! Your consultation has been scheduled. Our advisor will call you within 2 hours.",
         debugInfo: "Mock database append successful + Google Form sent"
       };
     }
@@ -83,7 +83,7 @@ export async function submitLead(data: LeadFormInput): Promise<LeadSubmissionRes
     // Return final success state
     return {
       success: true,
-      message: "Congratulations! Your free demo class has been scheduled. Our advisor will call you within 2 hours."
+      message: "Congratulations! Your consultation has been scheduled. Our advisor will call you within 2 hours."
     };
 
   } catch (error: any) {

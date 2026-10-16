@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "Terms of Service | The Global Language Academy",
-  description: "Review the Terms and Conditions governing enrollment, fee policies, batch schedules, and class guidelines at The Global Language Academy (GLA).",
+  description: "Review the Terms and Conditions governing enrollment, fee policies, batch schedules, and class guidelines at The Global Language Academy (TGLA).",
   alternates: {
     canonical: "/terms",
   },
@@ -38,7 +38,7 @@ export default function TermsPage() {
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">2. Batch Transfers & Attendance</h2>
             <p>
-              To maintain academic progress metrics, students are expected to attend scheduled sessions regularly. Batches are kept at a small maximum size (5-7 students). If you need to request a batch transfer due to work conflicts, you must notify the academy coordinators 7 days in advance.
+              To maintain academic progress metrics, students are expected to attend scheduled sessions regularly. Batches are kept at a small size (5 to 7 students). If you need to request a batch transfer due to work conflicts, you must notify the academy coordinators 7 days in advance.
             </p>
           </div>
 
@@ -52,14 +52,14 @@ export default function TermsPage() {
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">4. Intellectual Property</h2>
             <p>
-              All curriculum courseware, essay blueprints, Goethe level vocabulary sheets, audio listening samples, and digital slides provided during training remain the intellectual property of GLA. Sharing materials online or duplicating course frameworks for commercial tutoring is strictly prohibited.
+              All curriculum courseware, essay blueprints, Goethe level vocabulary sheets, audio listening samples, and digital slides provided during training remain the intellectual property of TGLA. Sharing materials online or duplicating course frameworks for commercial tutoring is strictly prohibited.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">5. Disclaimer on Scores</h2>
             <p>
-              While our batch curriculum tracks Goethe-Institut, IDP, and British Council criteria using certified educators, final test bands depend heavily on independent review hours. GLA provides diagnostic mock metrics and support systems but does not issue visa approvals or guarantee test board score parameters.
+              While our batch curriculum tracks Goethe-Institut, IDP, and British Council criteria using certified educators, final test bands depend heavily on independent review hours. TGLA provides diagnostic mock metrics and support systems but does not issue visa approvals or guarantee test board score parameters.
             </p>
           </div>
 

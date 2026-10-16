@@ -83,7 +83,7 @@ export default function ServicesClientView() {
       end: 7000,
       suffix: "+",
       label: "Students Trained",
-      subtext: "Across Global & Domestic Batches",
+      subtext: "Across 1500+ Global Batches",
       image: "/images/assets/stat-graduation-cap.webp",
       alt: "7000+ Students Trained"
     },
@@ -416,11 +416,6 @@ export default function ServicesClientView() {
       title: "International Study Visas (UK, Canada, Europe, Aus)",
       badge: "Global Study Permits",
       desc: "Documentation guidance, Statement of Purpose (SOP) drafting review, and preparation for student visa appointments across leading global education destinations."
-    },
-    {
-      title: "Spouse & Family Reunion Visas",
-      badge: "Ehegattennachzug",
-      desc: "Mandatory Goethe A1 German language coaching alongside document checklist organization for family reunion applications to Germany."
     }
   ];
 
@@ -452,7 +447,7 @@ export default function ServicesClientView() {
     },
     {
       id: "srv-faq-4",
-      question: "How does GLA assist with study abroad and embassy visa applications?",
+      question: "How does TGLA assist with study abroad and embassy visa applications?",
       answer: "Our visa guidance team provides meticulous checklist verification, assists with Statement of Purpose (SOP) and Motivation Letter drafting, guides you through Blocked Account and health insurance setup, and conducts realistic mock interview drills simulating embassy question patterns so you feel completely confident."
     },
     {
@@ -703,7 +698,7 @@ export default function ServicesClientView() {
                     Visa Assistance & Documentation Advisory
                   </h3>
                   <p className="text-xs sm:text-sm text-navy-muted mt-2 leading-relaxed">
-                    End-to-end procedural support for German Student Visas (APS/Blocked Account), Ausbildung Visas (Section 16a), Opportunity Card (Chancenkarte), Spouse Reunions, and international study permits.
+                    End-to-end procedural support for German Student Visas (APS/Blocked Account), Ausbildung Visas (Section 16a), Opportunity Card (Chancenkarte), and international study permits.
                   </p>
                 </div>
 
@@ -814,7 +809,7 @@ export default function ServicesClientView() {
                         <span className="text-xs font-bold uppercase tracking-wider text-purple">Program Overview</span>
                         <h3 className="text-2xl font-bold font-display text-navy">What Is Ausbildung in Germany?</h3>
                         <p className="text-xs sm:text-sm text-navy-muted leading-relaxed">
-                          Ausbildung is a German vocational training or apprenticeship programme that combines practical, on-the-job training with theoretical education at a vocational school (Berufsschule). It provides candidates with occupation-specific skills and practical experience directly relevant to the German job market.
+                          Ausbildung is a German vocational training or apprenticeship program that combines practical, on-the-job training with theoretical education at a vocational school (Berufsschule). It provides candidates with occupation-specific skills and practical experience directly relevant to the German job market.
                         </p>
                       </div>
 
@@ -1085,7 +1080,7 @@ export default function ServicesClientView() {
                                     </p>
 
                                     <a
-                                      href={`https://wa.me/919217999511?text=Hi%20GLA,%20I%20am%20interested%20in%20Ausbildung%20in%20Germany%20for%20${encodeURIComponent(trade.title)}%20(${encodeURIComponent(trade.germanTitle)}).`}
+                                      href={`https://wa.me/919217999511?text=Hi%20TGLA,%20I%20am%20interested%20in%20Ausbildung%20in%20Germany%20for%20${encodeURIComponent(trade.title)}%20(${encodeURIComponent(trade.germanTitle)}).`}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       className="text-[11px] font-bold text-purple hover:text-purple-hover flex items-center gap-1.5 mt-1 pt-2 border-t border-card-border/40"
@@ -1172,7 +1167,7 @@ export default function ServicesClientView() {
                         <div className="p-4 rounded-2xl bg-section-alt/70 border border-card-border flex flex-col gap-2">
                           <span className="font-bold text-navy">Progressive Milestone Preparation:</span>
                           <p className="text-navy-muted leading-relaxed">
-                            GLA structures language training through progressive levels (A1 → A2 → B1 → B2) to build communicative confidence alongside grammar foundations.
+                            TGLA structures language training through progressive levels (A1 → A2 → B1 → B2) to build communicative confidence alongside grammar foundations.
                           </p>
                         </div>
 
@@ -1186,7 +1181,7 @@ export default function ServicesClientView() {
                         href="/courses/german-language"
                         className="mt-auto py-3 px-5 rounded-xl bg-purple text-white text-xs font-bold text-center hover:bg-purple-hover transition-colors"
                       >
-                        Explore GLA German Batches
+                        Explore TGLA German Batches
                       </Link>
                     </div>
 
@@ -1341,14 +1336,14 @@ export default function ServicesClientView() {
 
                   </div>
 
-                  {/* Module 6: GLA 4-Phase Support & PR Pathway */}
+                  {/* Module 6: TGLA 4-Phase Support & PR Pathway */}
                   <div className="flex flex-col gap-8">
                     
                     {/* Candidate Support Services (4 Phases) */}
                     <div className="bg-card border border-card-border p-6 sm:p-10 rounded-3xl shadow-sm flex flex-col gap-6">
                       <div className="flex flex-col gap-1">
-                        <span className="text-xs font-bold uppercase tracking-wider text-purple">GLA Roadmap</span>
-                        <h3 className="text-2xl font-bold font-display text-navy">GLA 4-Phase Candidate Support Services</h3>
+                        <span className="text-xs font-bold uppercase tracking-wider text-purple">TGLA Roadmap</span>
+                        <h3 className="text-2xl font-bold font-display text-navy">TGLA 4-Phase Candidate Support Services</h3>
                         <p className="text-xs sm:text-sm text-navy-muted">
                           Comprehensive end-to-end support throughout your entire vocational journey.
                         </p>
@@ -1401,7 +1396,7 @@ export default function ServicesClientView() {
                       </div>
 
                       <div className="p-3 bg-section-alt rounded-xl border border-card-border text-center text-xs text-navy-muted">
-                        Transparent communication is maintained throughout the process. GLA acts as an educational and advisory partner.
+                        Transparent communication is maintained throughout the process. TGLA acts as an educational and advisory partner.
                       </div>
                     </div>
 
@@ -1570,7 +1565,7 @@ export default function ServicesClientView() {
                     <div className="p-6 rounded-3xl bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 flex flex-col justify-between gap-4">
                       <div className="flex flex-col gap-2">
                         <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400">Core Advisory Quality</span>
-                        <h4 className="text-base font-bold font-display text-navy">Why GLA Visa Guidance?</h4>
+                        <h4 className="text-base font-bold font-display text-navy">Why TGLA Visa Guidance?</h4>
                         <ul className="flex flex-col gap-2 text-xs text-navy font-semibold mt-1">
                           <li className="flex items-center gap-2">
                             <Check className="w-3.5 h-3.5 text-blue-600 shrink-0" />
@@ -1708,7 +1703,7 @@ export default function ServicesClientView() {
 
             <span className="inline-flex items-center gap-2 px-3.5 py-1 bg-purple/30 border border-purple-300/30 rounded-full text-xs font-semibold text-purple-200">
               <Sparkles className="w-4 h-4 text-purple-200" />
-              <span>Start Your Global Journey With GLA</span>
+              <span>Start Your Global Journey With TGLA</span>
             </span>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display tracking-tight text-white leading-tight max-w-2xl">

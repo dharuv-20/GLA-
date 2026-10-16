@@ -71,7 +71,7 @@ export default function CourseCard({ course }: { course: Course }) {
             </div>
             <div className="flex flex-col">
               <span className="text-[9px] uppercase font-extrabold tracking-wider text-navy-muted">Batch Size</span>
-              <span className="text-xs font-extrabold text-navy mt-0.5 leading-none">{course.maxClassSize} Max</span>
+              <span className="text-xs font-extrabold text-navy mt-0.5 leading-none">{course.maxClassSize} Students</span>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@ export default function CourseCard({ course }: { course: Course }) {
           href={`/contact?course=${course.slug}`}
           className="inline-flex justify-center items-center py-2.5 px-3 bg-gradient-to-r from-purple to-purple-hover text-white text-xs font-bold rounded-xl hover:opacity-95 hover:scale-[1.01] active:scale-95 transition-all duration-200 shadow-sm"
         >
-          Book Trial
+          Book Consultation
         </Link>
       </div>
     </div>

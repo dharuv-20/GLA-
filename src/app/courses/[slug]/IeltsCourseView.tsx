@@ -186,7 +186,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
       cefr: "C1 / C2 Advanced",
       scorePercentage: 88,
       description: "Has fully operational command with only occasional unsystematic inaccuracies. Handles complex detailed argumentation well.",
-      badge: "GLA Target (Band 8.0+)",
+      badge: "TGLA Target (Band 8.0+)",
       color: "from-blue-600 to-cyan-600"
     },
     {
@@ -341,7 +341,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
     }
   ];
 
-  // Section 6: Why Choose GLA IELTS (6 Pillars)
+  // Section 6: Why Choose TGLA IELTS (6 Pillars)
   const whyGlaPillars = [
     {
       icon: ShieldCheck,
@@ -376,7 +376,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
     {
       icon: Users,
       number: "06",
-      title: "Small Batch Sizes (Max 5–7)",
+      title: "Small Batch Sizes (5 to 7 Students)",
       desc: "We strictly cap class sizes to ensure daily individual speaking practice, personal writing corrections, and immediate doubt clearance for every student."
     }
   ];
@@ -402,7 +402,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                 <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest bg-purple/35 text-purple-200 px-3.5 py-1.5 rounded-full border border-purple-300/30 shadow-sm backdrop-blur-md">
                   <Sparkles className="w-3.5 h-3.5 text-purple-hero" />
-                  Official Programme Guide
+                  Official Program Guide
                 </span>
                 <span className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-widest bg-blue-500/20 text-blue-300 px-3.5 py-1.5 rounded-full border border-blue-400/30">
                   Academic & General Training
@@ -414,11 +414,8 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
                 <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-slate-400 block mb-1.5">
                   The Global Language Academy
                 </span>
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display leading-[1.12] text-white tracking-tight">
-                  IELTS Preparation <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-hero via-purple-300 to-blue-400">
-                    Masterclass (Band 7.5+)
-                  </span>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-tight text-white tracking-tight">
+                  {course.title}
                 </h1>
               </div>
 
@@ -467,7 +464,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
                   <Users className="w-4 h-4 text-purple-300 shrink-0" />
                   <div>
                     <span className="block text-[9px] uppercase font-bold text-slate-400">Batch Size</span>
-                    <span className="text-xs font-extrabold text-white">5–7 Max</span>
+                    <span className="text-xs font-extrabold text-white">5 to 7 Students</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl p-2.5 sm:p-3">
@@ -725,7 +722,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
                           </div>
                           <div className="p-3 rounded-xl bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200/60 dark:border-purple-800/30 text-xs text-navy font-semibold flex items-start gap-2">
                             <Lightbulb className="w-4 h-4 text-purple shrink-0 mt-0.5" />
-                            <span><strong>GLA Strategy Tip:</strong> {mod.tips}</span>
+                            <span><strong>TGLA Strategy Tip:</strong> {mod.tips}</span>
                           </div>
                         </div>
                       </div>
@@ -1003,7 +1000,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
                   <div className="space-y-2.5">
                     <div className="flex items-start gap-2.5 text-xs sm:text-sm text-navy-muted">
                       <Check className="w-4 h-4 text-purple shrink-0 mt-0.5" />
-                      <span>Students applying for undergraduate or postgraduate degree programmes abroad.</span>
+                      <span>Students applying for undergraduate or postgraduate degree programs abroad.</span>
                     </div>
                     <div className="flex items-start gap-2.5 text-xs sm:text-sm text-navy-muted">
                       <Check className="w-4 h-4 text-purple shrink-0 mt-0.5" />
@@ -1151,7 +1148,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
           <div className="bg-white dark:bg-[#0b1a2e] rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
             <div className="p-5 bg-[#00122E] dark:bg-[#041226] text-white flex items-center justify-between">
               <h3 className="text-base font-bold font-display">4.3 Side-by-Side Comparison: Academic vs General Training</h3>
-              <span className="text-xs font-semibold text-purple-200">Both Pathways Supported at GLA</span>
+              <span className="text-xs font-semibold text-purple-200">Both Pathways Supported at TGLA</span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs sm:text-sm min-w-[650px]">
@@ -1206,14 +1203,14 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
         </div>
       </section>
 
-      {/* 6. SECTION 5: OUR IELTS PREPARATION PROGRAMME AT GLA */}
-      <section id="programme" className="bg-white dark:bg-[#020a16] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+      {/* 6. SECTION 5: OUR IELTS PREPARATION PROGRAM AT TGLA */}
+      <section id="program" className="bg-white dark:bg-[#020a16] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-widest text-purple">5. Curriculum & Methodology</span>
             <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
-              Our IELTS Preparation Programme
+              Our IELTS Preparation Program
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
               The Global Language Academy offers a comprehensive, structured IELTS coaching framework built around the official Cambridge and British Council testing benchmarks to guarantee measurable band score progression.
@@ -1350,7 +1347,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
             </div>
 
             <p className="text-xs sm:text-sm text-navy-muted mb-8 leading-relaxed max-w-3xl">
-              In addition to physical class hours and Cambridge textbooks, GLA provides students with guided access to official online portals to accelerate practice at home at zero extra cost.
+              In addition to physical class hours and Cambridge textbooks, TGLA provides students with guided access to official online portals to accelerate practice at home at zero extra cost.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
@@ -1381,12 +1378,12 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
         </div>
       </section>
 
-      {/* 7. SECTION 6: WHY CHOOSE OUR IELTS PROGRAMME (6 PILLARS) */}
+      {/* 7. SECTION 6: WHY CHOOSE OUR IELTS PROGRAM (6 PILLARS) */}
       <section id="why-gla" className="bg-slate-50 dark:bg-[#071322] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">6. Why Choose GLA?</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">Why Choose TGLA?</span>
             <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
               6 Pillars of IELTS Success
             </h2>
@@ -1540,7 +1537,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
 
               <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
                 <a
-                  href="https://wa.me/919217999511?text=Hi%20GLA,%20I%20am%20interested%20in%20the%20IELTS%20Preparation%20Course.%20Please%20schedule%20my%20free%20diagnostic%20test."
+                  href="https://wa.me/919217999511?text=Hi%20TGLA,%20I%20am%20interested%20in%20the%20IELTS%20Preparation%20Course.%20Please%20schedule%20my%20free%20diagnostic%20test."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5"
@@ -1570,7 +1567,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-widest text-purple">Explore More Programs</span>
             <h2 className="text-3xl font-black font-display text-navy tracking-tight">
-              Other Language Courses at GLA
+              Other Language Courses at TGLA
             </h2>
           </div>
 

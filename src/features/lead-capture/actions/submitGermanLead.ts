@@ -71,7 +71,7 @@ export async function submitGermanLead(data: GermanLeadFormInput): Promise<Germa
 
     return {
       success: true,
-      message: "Vielen Dank! Your German consultation & demo class has been booked. Our academic counselor will call you shortly."
+      message: "Vielen Dank! Your German consultation session has been booked. Our academic counselor will call you shortly."
     };
 
   } catch (error: any) {

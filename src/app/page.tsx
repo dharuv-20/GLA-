@@ -40,14 +40,14 @@ import HeroBackgroundVideo from '@/components/home/HeroBackgroundVideo';
 import DeferredGoogleMap from '@/components/layout/DeferredGoogleMap';
 
 export const metadata: Metadata = {
-  title: "German, French & IELTS Coaching in Delhi NCR | GLA",
-  description: "Learn German, French, Japanese, Spoken English, IELTS and PTE with GLA. Explore structured courses, exam preparation and online or Delhi NCR classes.",
+  title: "German, French & IELTS Coaching in Delhi NCR | TGLA",
+  description: "Learn German, French, Japanese, Spoken English, IELTS and PTE with TGLA. Explore structured courses, exam preparation and online or Delhi NCR classes.",
   alternates: {
     canonical: "https://tglalearning.com",
   },
   openGraph: {
-    title: "German, French & IELTS Coaching in Delhi NCR | GLA",
-    description: "Learn German, French, Japanese, Spoken English, IELTS and PTE with GLA. Explore structured courses, exam preparation and online or Delhi NCR classes.",
+    title: "German, French & IELTS Coaching in Delhi NCR | TGLA",
+    description: "Learn German, French, Japanese, Spoken English, IELTS and PTE with TGLA. Explore structured courses, exam preparation and online or Delhi NCR classes.",
     url: "https://tglalearning.com",
   },
 };
@@ -59,7 +59,7 @@ export default function HomePage() {
       end: 7000,
       suffix: "+",
       label: "Students Trained",
-      subtext: "Across 15+ Global Batches",
+      subtext: "Across 1500+ Global Batches",
       decimals: 0,
       image: "/images/assets/stat-graduation-cap.webp",
       alt: "Graduation Cap 3D Icon - 7,000+ Students Trained"
@@ -243,7 +243,7 @@ export default function HomePage() {
                   <span className="p-0.5 rounded-full bg-purple/35 text-purple-200 border border-purple-300/25 shrink-0">
                     <Check className="w-3.5 h-3.5" />
                   </span>
-                  <span>Max 5-7 students <span className="hidden sm:inline">per batch</span></span>
+                  <span>5 to 7 students <span className="hidden sm:inline">per batch</span></span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-200">
                   <span className="p-0.5 rounded-full bg-purple/35 text-purple-200 border border-purple-300/25 shrink-0">
@@ -278,10 +278,10 @@ export default function HomePage() {
                   href="#hero-lead-form"
                   className="inline-flex lg:hidden items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-slate-100 text-slate-950 font-bold text-sm rounded-xl shadow-md transition-all cursor-pointer border border-transparent"
                 >
-                  <span className="text-slate-950 font-bold">Book Free Demo Class</span>
+                  <span className="text-slate-950 font-bold">Book Your Consultation</span>
                 </a>
                 <a
-                  href="https://wa.me/919217999511?text=Hi!%20I'm%20interested%20in%20a%20free%20demo%20at%20The%20Global%20Language%20Academy."
+                  href="https://wa.me/919217999511?text=Hi!%20I'm%20interested%20in%20booking%20a%20consultation%20at%20The%20Global%20Language%20Academy."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm rounded-xl shadow-md hover:opacity-95 hover:scale-102 transition-all"
@@ -315,11 +315,12 @@ export default function HomePage() {
                 <span className="text-[10px] uppercase font-extrabold tracking-widest text-slate-400 block mb-3">
                   Official Preparation Standards
                 </span>
-                <div className="flex flex-wrap justify-center lg:justify-start items-center gap-7 text-xs font-bold text-slate-400">
+                <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 sm:gap-7 text-xs font-bold text-slate-400">
                   <span className="hover:text-white transition-colors duration-200">BRITISH COUNCIL</span>
                   <span className="hover:text-white transition-colors duration-200">IDP EDUCATION</span>
                   <span className="hover:text-white transition-colors duration-200">GOETHE-INSTITUT</span>
-                  <span className="hover:text-white transition-colors duration-200">PEARSON PTE</span>
+                  <span className="hover:text-white transition-colors duration-200">PTE</span>
+                  <span className="hover:text-white transition-colors duration-200">CEFR BASED SYLLABUS</span>
                 </div>
               </div>
 
@@ -415,7 +416,7 @@ export default function HomePage() {
                 How We Guarantee Exam & Career Success
               </h2>
               <p className="text-sm text-navy-muted leading-relaxed">
-                Traditional classrooms rely on generic lectures. GLA pioneers an interactive, score-driven methodology tracking your weekly diagnostic milestones.
+                Traditional classrooms rely on generic lectures. TGLA pioneers an interactive, score-driven methodology tracking your weekly diagnostic milestones.
               </p>
               
               <ul className="flex flex-col gap-4">
@@ -424,7 +425,7 @@ export default function HomePage() {
                     <CheckCircle className="w-4 h-4" />
                   </span>
                   <div>
-                    <h4 className="text-sm font-bold text-navy">Small Batches (Max 5-7 Students)</h4>
+                    <h4 className="text-sm font-bold text-navy">Small Batches (5 to 7 Students)</h4>
                     <p className="text-xs text-navy-muted">Guarantees individualized written essay reviews and daily speaking time.</p>
                   </div>
                 </li>
@@ -529,7 +530,7 @@ export default function HomePage() {
           
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 flex flex-col gap-3">
             <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              Why Choose GLA
+              Why Choose TGLA
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
               Why Learn With TGLA?

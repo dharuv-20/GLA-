@@ -256,7 +256,7 @@ export default function BlogsClient({ initialPosts }: BlogsClientProps) {
                     </div>
 
                     <div className="border-t border-card-border pt-4">
-                      <h4 className="text-[10px] font-extrabold uppercase tracking-wider text-navy mb-3">Book Free Demo Class</h4>
+                      <h4 className="text-[10px] font-extrabold uppercase tracking-wider text-navy mb-3">Book Free Consultation</h4>
                       <LeadForm />
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'The Global Language Academy (GLA) | German, French, Japanese, IELTS & PTE Coaching';
+export const alt = 'The Global Language Academy (TGLA) | German, French, Japanese, IELTS & PTE Coaching';
 export const size = {
   width: 1200,
   height: 630,
@@ -34,13 +34,13 @@ export default async function Image() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '26px',
+              fontSize: '22px',
               fontWeight: 800,
               color: '#FFFFFF',
               boxShadow: '0 8px 24px rgba(147, 51, 234, 0.4)',
             }}
           >
-            GLA
+            TGLA
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: '26px', fontWeight: 800, letterSpacing: '-0.5px' }}>
@@ -108,7 +108,7 @@ export default async function Image() {
               color: '#FFFFFF',
             }}
           >
-            Book Free Demo Class
+            Book Your Consultation
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { Home, Compass, GraduationCap, Info, MessageSquare, Shield, HelpCircle }
 
 export const metadata: Metadata = {
   title: "Website Sitemap Directory | The Global Language Academy",
-  description: "Navigate all pages, language prep courses, student support services, and legal terms on The Global Language Academy (GLA) site directory.",
+  description: "Navigate all pages, language prep courses, student support services, and legal terms on The Global Language Academy (TGLA) site directory.",
   alternates: {
     canonical: "/sitemap",
   },

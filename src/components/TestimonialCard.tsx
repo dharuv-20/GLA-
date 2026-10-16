@@ -4,16 +4,11 @@ import { Testimonial } from '@/types';
 export default function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <div className="bg-card border border-card-border p-6 sm:p-8 rounded-2xl shadow-sm hover-lift flex flex-col gap-4.5 transition-all duration-300 h-full">
-      {/* Stars and Target Outcome Tag */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4">
-        <div className="flex gap-0.5 text-amber-500">
-          {Array.from({ length: testimonial.ratingStars }).map((_, i) => (
-            <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
-          ))}
-        </div>
-        <span className="text-[10px] font-extrabold uppercase tracking-wider bg-purple/10 text-purple px-2.5 py-1 rounded-md border border-purple/20 shadow-sm shrink-0 whitespace-nowrap">
-          {testimonial.outcomeTag}
-        </span>
+      {/* 5 Stars Rating */}
+      <div className="flex items-center gap-1 text-amber-500">
+        {Array.from({ length: testimonial.ratingStars || 5 }).map((_, i) => (
+          <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
+        ))}
       </div>
 
       {/* Quote */}
@@ -28,7 +23,7 @@ export default function TestimonialCard({ testimonial }: { testimonial: Testimon
         </div>
         <div>
           <h4 className="text-xs sm:text-sm font-extrabold text-navy leading-none mb-1">{testimonial.authorName}</h4>
-          <span className="text-[10px] sm:text-xs text-navy-muted font-bold">Verified Alumnus</span>
+          <span className="text-[10px] sm:text-xs text-navy-muted font-bold">Verified Student</span>
         </div>
       </div>
     </div>

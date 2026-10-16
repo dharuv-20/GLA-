@@ -164,7 +164,7 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
                       </div>
                       <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/10">
                         <Users className="w-3.5 h-3.5 text-purple-light" />
-                        <span>Max 5-7 Batch</span>
+                        <span>5-7 Students</span>
                       </div>
                     </div>
                   </div>
@@ -207,7 +207,7 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
                         href={`/contact?course=${course.slug}`}
                         className="inline-flex justify-center items-center py-2.5 px-2.5 sm:px-3 bg-gradient-to-r from-purple to-purple-hover text-white text-xs font-bold rounded-xl hover:opacity-95 shadow-sm active:scale-95 transition-all text-center"
                       >
-                        Book Trial
+                        Book Consultation
                       </Link>
                     </div>
                   </div>

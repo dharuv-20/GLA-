@@ -493,11 +493,11 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
     { name: "E2Language PTE", owner: "E2 Network", desc: "World-renowned method lessons, task templates, and expert video breakdowns.", badge: "Method Templates" },
     { name: "PTE Magic Portal", owner: "AI Practice Suite", desc: "AI-evaluated speaking drills and real-time pronunciation scoring engine.", badge: "Real-time AI Feedback" },
     { name: "PTE Study / PTEGURU", owner: "Question Banks", desc: "Extensive practice banks for high-frequency repeated exam questions.", badge: "Repeated Exam Banks" },
-    { name: "Video Strategy Guides", owner: "GLA Video Portal", desc: "Step-by-step masterclass walkthroughs for every single task type.", badge: "Video Walkthroughs" },
-    { name: "Write from Dictation Banks", owner: "GLA Prediction Vault", desc: "Updated weekly with high-probability sentences appearing in recent exams.", badge: "Weekly Prediction" }
+    { name: "Video Strategy Guides", owner: "TGLA Video Portal", desc: "Step-by-step masterclass walkthroughs for every single task type.", badge: "Video Walkthroughs" },
+    { name: "Write from Dictation Banks", owner: "TGLA Prediction Vault", desc: "Updated weekly with high-probability sentences appearing in recent exams.", badge: "Weekly Prediction" }
   ];
 
-  // Section 7: Why Choose GLA (8 Core Pillars)
+  // Section 7: Why Choose TGLA (8 Core Pillars)
   const whyGla8Pillars = [
     { number: "01", title: "AI-Aligned Teaching", desc: "We train you on how the Pearson AI scoring engine evaluates speech, stress, and text, ensuring maximum algorithmic marks.", icon: Bot },
     { number: "02", title: "Official Pearson Materials", desc: "Access official Pearson question banks and authentic scored practice exams.", icon: BookOpen },
@@ -506,7 +506,7 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
     { number: "05", title: "Task-by-Task Strategy", desc: "Master proven formulas for Describe Image, Re-tell Lecture, Summarise Written Text, and Essay.", icon: Target },
     { number: "06", title: "Personalised Score Plan", desc: "Targeted study schedules focused on your individual score requirements (e.g. 50, 65, or 79+).", icon: TrendingUp },
     { number: "07", title: "AI Portal Integration", desc: "Seamless access to leading PTE AI practice platforms and weekly prediction banks.", icon: Cpu },
-    { number: "08", title: "Small Batches (Max 5–7)", desc: "Small class sizes ensure personal acoustic feedback, mic positioning checks, and 1-on-1 attention.", icon: Users }
+    { number: "08", title: "Small Batches (5 to 7 Students)", desc: "Small class sizes ensure personal acoustic feedback, mic positioning checks, and 1-on-1 attention.", icon: Users }
   ];
 
   return (
@@ -542,11 +542,8 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
                 <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-slate-400 block mb-1.5">
                   The Global Language Academy
                 </span>
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display leading-[1.12] text-white tracking-tight">
-                  PTE Academic & <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-hero via-purple-300 to-emerald-400">
-                    UKVI Preparation (79+)
-                  </span>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-tight text-white tracking-tight">
+                  {course.title}
                 </h1>
               </div>
 
@@ -602,7 +599,7 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
                   <Users className="w-4 h-4 text-purple-300 shrink-0" />
                   <div>
                     <span className="block text-[9px] uppercase font-bold text-slate-400">Batch Size</span>
-                    <span className="text-xs font-extrabold text-white">5–7 Max</span>
+                    <span className="text-xs font-extrabold text-white">5 to 7 Students</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl p-2.5 sm:p-3">
@@ -976,7 +973,7 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
                     <th className="py-3.5 px-4 sm:px-6">PTE Score Range</th>
                     <th className="py-3.5 px-4 sm:px-6">CEFR Level</th>
                     <th className="py-3.5 px-4 sm:px-6">Proficiency Description</th>
-                    <th className="py-3.5 px-4 sm:px-6">GLA Strategic Target</th>
+                    <th className="py-3.5 px-4 sm:px-6">TGLA Strategic Target</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-navy">
@@ -1016,7 +1013,7 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
                     <p className="text-xs text-navy-muted leading-relaxed">{req.notes}</p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
-                    ✓ Full Coaching Available at GLA
+                    ✓ Full Coaching Available at TGLA
                   </div>
                 </div>
               ))}
@@ -1068,7 +1065,7 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
                         <p className="text-xs sm:text-sm font-medium text-navy leading-relaxed">{item.aiAnalyses}</p>
                       </div>
                       <div className="bg-slate-50 dark:bg-[#071322] p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800">
-                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">GLA Score Booster Strategy:</span>
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">TGLA Score Booster Strategy:</span>
                         <p className="text-xs text-navy-muted leading-relaxed">{item.howToScoreHigh}</p>
                       </div>
                     </div>
@@ -1245,12 +1242,12 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
         </div>
       </section>
 
-      {/* 7. SECTION 6: GLA PREPARATION PROGRAMME */}
-      <section id="programme" className="bg-slate-50 dark:bg-[#071322] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+      {/* 7. SECTION 6: TGLA PREPARATION PROGRAM */}
+      <section id="program" className="bg-slate-50 dark:bg-[#071322] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">6. GLA Preparation Programme</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">TGLA Preparation Program</span>
             <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
               Our 8-Module PTE Masterclass Curriculum
             </h2>
@@ -1319,12 +1316,12 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
         </div>
       </section>
 
-      {/* 8. SECTION 7: WHY CHOOSE GLA PTE (8 PILLARS) */}
+      {/* 8. SECTION 7: WHY CHOOSE TGLA PTE (8 PILLARS) */}
       <section id="why-gla" className="bg-white dark:bg-[#020a16] py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">7. Why Choose GLA?</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">Why Choose TGLA?</span>
             <h2 className="text-3xl sm:text-4xl font-black font-display text-navy tracking-tight">
               8 Pillars of PTE Success
             </h2>
@@ -1478,7 +1475,7 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
 
               <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
                 <a
-                  href="https://wa.me/919217999511?text=Hi%20GLA,%20I%20am%20interested%20in%20the%20PTE%20Academic%20Course.%20Please%20schedule%20my%20free%20diagnostic%20test."
+                  href="https://wa.me/919217999511?text=Hi%20TGLA,%20I%20am%20interested%20in%20the%20PTE%20Strategy%20Course.%20Please%20schedule%20my%20free%20diagnostic%20test."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5"
@@ -1508,7 +1505,7 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-widest text-purple">Explore More Programs</span>
             <h2 className="text-3xl font-black font-display text-navy tracking-tight">
-              Other Language Courses at GLA
+              Other Language Courses at TGLA
             </h2>
           </div>
 

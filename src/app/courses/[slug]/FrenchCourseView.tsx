@@ -286,7 +286,7 @@ const frenchSyllabus: SyllabusLevel[] = [
   },
   {
     code: "B1 Plus",
-    name: "B1 Plus — Upper-Intermediate Bridge Programme",
+    name: "B1 Plus — Upper-Intermediate Bridge Program",
     duration: "2 Months / 8 Weeks",
     books: ["Inspire 3 + B2 Bridge Dossier"],
     badge: "CEFR B1+",
@@ -663,7 +663,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-tight text-white tracking-tight">
-                French Language Courses — Learn, Grow, Go Global
+                {course.title}
               </h1>
 
               <div className="p-3.5 bg-gradient-to-r from-purple/30 via-slate-800/60 to-blue-900/30 rounded-xl border border-white/10 text-xs sm:text-sm font-semibold text-slate-200">
@@ -732,7 +732,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
                   </div>
                   <div>
                     <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Batch Size</span>
-                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block">5-7 Students Max</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block">5 to 7 Students</span>
                   </div>
                 </div>
                 
@@ -786,12 +786,12 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
           
           <div className="text-center max-w-3xl mx-auto flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">Programme Description</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">Program Description</span>
             <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">
               French Language Course Curriculum & Goals
             </h2>
             <p className="text-sm text-navy-muted leading-relaxed">
-              The French Language Course at The Global Language Academy is a structured and engaging programme designed for beginner to advanced learners.
+              The French Language Course at The Global Language Academy is a structured and engaging program designed for beginner to advanced learners.
               The syllabus follows the progression of the <strong>Inspire French series</strong> while retaining the practical, week-by-week structure of modern European language standards. French content is organised around practical French grammar and communication.
             </p>
           </div>
@@ -807,7 +807,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
                 </h3>
               </div>
               <p className="text-xs text-navy-muted leading-relaxed">
-                By completing the relevant stages of the programme, learners work towards the following core objectives:
+                By completing the relevant stages of the program, learners work towards the following core objectives:
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -885,7 +885,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
               French Language Course Levels & Week-by-Week Curriculum
             </h2>
             <p className="text-sm text-navy-muted leading-relaxed">
-              Explore the week-by-week curriculum from A1 to B2, plus DALF C1 and C2 advanced programmes. Click on the level selector tabs below to inspect the weekly topics.
+              Explore the week-by-week curriculum from A1 to B2, plus DALF C1 and C2 advanced programs. Click on the level selector tabs below to inspect the weekly topics.
             </p>
           </div>
 
@@ -1062,7 +1062,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
           {/* 9-Step Learning Cycle Visual Roadmap */}
           <div className="bg-slate-50 dark:bg-[#010814]/60 p-6 sm:p-8 rounded-3xl border border-card-border shadow-sm">
             <div className="text-center mb-8">
-              <span className="text-[11px] font-extrabold uppercase tracking-widest text-purple">The GLA Weekly Learning Cycle</span>
+              <span className="text-[11px] font-extrabold uppercase tracking-widest text-purple">The TGLA Weekly Learning Cycle</span>
               <h3 className="text-lg sm:text-xl font-bold font-display text-navy mt-1">
                 9-Phase Integrated Skill Progression
               </h3>
@@ -1116,7 +1116,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
               DELF Examination Preparation (A1 — B2)
             </h2>
             <p className="text-sm text-navy-muted leading-relaxed">
-              The programme embeds targeted preparation for DELF A1, A2, B1, and B2 examination tasks as integral phases of the corresponding course levels.
+              The program embeds targeted preparation for DELF A1, A2, B1, and B2 examination tasks as integral phases of the corresponding course levels.
             </p>
           </div>
 
@@ -1163,7 +1163,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
               DALF C1 & C2 Assessment Structure & Teaching Cycle
             </h2>
             <p className="text-sm text-navy-muted leading-relaxed">
-              Designed for high-level academic, professional, and diplomatic fluency, our DALF preparation programmes focus on rigorous synthesis, debate, and advanced stylistic control.
+              Designed for high-level academic, professional, and diplomatic fluency, our DALF preparation programs focus on rigorous synthesis, debate, and advanced stylistic control.
             </p>
           </div>
 
@@ -1304,7 +1304,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
               </h4>
             </div>
             <p className="text-xs text-navy-muted leading-relaxed">
-              The French syllabus preserves the reference syllabus&apos;s overall progression and durations: <strong>A1 (8 weeks)</strong>, <strong>A2 (8 weeks)</strong>, <strong>B1 (12 weeks)</strong>, <strong>B1 Plus (8 weeks)</strong>, <strong>B2 (8 weeks)</strong>. The DALF C1 and C2 programmes are presented separately as advanced examination-preparation courses, each with a recommended duration of <strong>12 weeks</strong>.
+              The French syllabus preserves the reference syllabus&apos;s overall progression and durations: <strong>A1 (8 weeks)</strong>, <strong>A2 (8 weeks)</strong>, <strong>B1 (12 weeks)</strong>, <strong>B1 Plus (8 weeks)</strong>, <strong>B2 (8 weeks)</strong>. The DALF C1 and C2 programs are presented separately as advanced examination-preparation courses, each with a recommended duration of <strong>12 weeks</strong>.
             </p>
             <span className="text-[11px] text-slate-500 font-semibold italic">
               *The stated durations are planning recommendations. Actual learning progress may depend on learners&apos; starting proficiency, attendance, practice, and individual learning needs.
@@ -1400,7 +1400,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
                   </span>
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-                  Enrol at The Global Language Academy and take the first step towards expanding your communication skills and global opportunities with French. Our programmes combine structured learning, focused examination preparation, practical communication, and expert guidance.
+                  Enrol at The Global Language Academy and take the first step towards expanding your communication skills and global opportunities with French. Our programs combine structured learning, focused examination preparation, practical communication, and expert guidance.
                 </p>
 
                 {/* 4 Commitments */}
@@ -1431,7 +1431,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
               {/* Action Buttons */}
               <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
                 <a
-                  href="https://wa.me/919217999511?text=Hi%20GLA,%20I%20am%20interested%20in%20the%20French%20Language%20Course.%20Please%20share%20batch%20timings%20and%20fee%20structure."
+                  href="https://wa.me/919217999511?text=Hi%20TGLA,%20I%20am%20interested%20in%20the%20French%20Language%20Course.%20Please%20share%20batch%20timings%20and%20fee%20structure."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5"
@@ -1457,11 +1457,11 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
         </div>
       </section>
 
-      {/* WEBSITE CONTENT AND PROGRAMME DISCLAIMER */}
+      {/* WEBSITE CONTENT AND PROGRAM DISCLAIMER */}
       <section className="bg-slate-50 dark:bg-[#020c1b] py-8 border-b border-card-border transition-colors duration-300">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-[11px] text-navy-muted leading-relaxed font-sans">
-            <strong>Website Content and Programme Disclaimer:</strong> The French course syllabus and durations presented here are based on the course material supplied by The Global Language Academy. The DELF A1–B2 and DALF C1–C2 sections describe preparation programmes and recommended course plans. They should not be interpreted as a guarantee of examination results or as a claim that the academy issues official DELF or DALF diplomas. The course brochure states that the syllabus is deliberately DALF-led for the advanced C1 and C2 preparation programmes and is not an official FEI curriculum. Official DALF C1 and C2 diplomas are independent certifications aligned with the Common European Framework of Reference for Languages (CEFR). Course availability, batch timings, fees, and other enrolment details should be confirmed directly with The Global Language Academy.
+            <strong>Website Content and Program Disclaimer:</strong> The French course syllabus and durations presented here are based on the course material supplied by The Global Language Academy. The DELF A1–B2 and DALF C1–C2 sections describe preparation programs and recommended course plans. They should not be interpreted as a guarantee of examination results or as a claim that the academy issues official DELF or DALF diplomas. The course brochure states that the syllabus is deliberately DALF-led for the advanced C1 and C2 preparation programs and is not an official FEI curriculum. Official DALF C1 and C2 diplomas are independent certifications aligned with the Common European Framework of Reference for Languages (CEFR). Course availability, batch timings, fees, and other enrolment details should be confirmed directly with The Global Language Academy.
           </p>
         </div>
       </section>
@@ -1488,7 +1488,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-widest text-purple">Explore More Programs</span>
             <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">
-              Other Language Courses at GLA
+              Other Language Courses at TGLA
             </h2>
           </div>
 

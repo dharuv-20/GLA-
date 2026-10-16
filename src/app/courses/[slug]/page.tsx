@@ -287,7 +287,7 @@ export default async function CourseLandingPage({ params }: PageProps) {
                   </div>
                   <div>
                     <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Batch Size</span>
-                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">{course.maxClassSize} Students Max</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">{course.maxClassSize} Students</span>
                   </div>
                 </div>
                 
@@ -332,7 +332,7 @@ export default async function CourseLandingPage({ params }: PageProps) {
           
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
             <span className="reveal text-xs font-bold uppercase tracking-widest text-purple" style={{ transitionDelay: '0ms' }}>Benefits</span>
-            <h2 className="reveal text-3xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '100ms' }}>Why Prepare with GLA?</h2>
+            <h2 className="reveal text-3xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '100ms' }}>Why Prepare with TGLA?</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -451,7 +451,7 @@ export default async function CourseLandingPage({ params }: PageProps) {
               {course.faculty.map((trainer, idx) => (
                 <div
                   key={trainer.id}
-                  className="reveal hover-lift rounded-3xl overflow-hidden"
+                  className="reveal w-full"
                   style={{ transitionDelay: `${(idx * 150) + 150}ms` }}
                 >
                   <FacultyCard faculty={trainer} />
@@ -508,7 +508,7 @@ export default async function CourseLandingPage({ params }: PageProps) {
           
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
             <span className="reveal text-xs font-bold uppercase tracking-widest text-purple" style={{ transitionDelay: '0ms' }}>Explore More</span>
-            <h2 className="reveal text-3xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '100ms' }}>Other Programs at GLA</h2>
+            <h2 className="reveal text-3xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '100ms' }}>Other Programs at TGLA</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">

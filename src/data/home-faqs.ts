@@ -4,7 +4,7 @@ export const homeFaqsList: FAQItem[] = [
   {
     id: "hfaq-1",
     question: "Which language courses do you offer?",
-    answer: "We offer certified, comprehensive programs in German Language (A1 to C2 levels), IELTS Exam Masterclass (Academic & General), PTE Academic Strategy Preparation, and Personality Development & Spoken English. We also provide specialized preparation modules for DELF/DALF (French) and JLPT (Japanese) examinations."
+    answer: "We offer certified, comprehensive programs in German Language (A1 to C2 levels), IELTS Exam Masterclass (Academic & General), PTE Strategy Preparation, and Personality Development & Spoken English. We also provide specialized preparation modules for DELF/DALF (French) and JLPT (Japanese) examinations."
   },
   {
     id: "hfaq-2",
@@ -39,7 +39,7 @@ export const homeFaqsList: FAQItem[] = [
   {
     id: "hfaq-8",
     question: "Do you provide IELTS and PTE preparation?",
-    answer: "Yes, our IELTS and PTE Academic masterclasses are led by British Council and IDP certified trainers. We provide AI-powered scoring simulations, daily individual essay corrections, and one-on-one speaking interview drills to help you target Band 7.5+ and PTE 79+."
+    answer: "Yes, our IELTS and PTE masterclasses are led by British Council and IDP certified trainers. We provide AI-powered scoring simulations, daily individual essay corrections, and one-on-one speaking interview drills to help you target Band 7.5+ and PTE 79+."
   },
   {
     id: "hfaq-9",
@@ -49,11 +49,11 @@ export const homeFaqsList: FAQItem[] = [
   {
     id: "hfaq-10",
     question: "How can I book a counselling session?",
-    answer: "You can book a free diagnostic counselling and demo session by submitting the contact form on our website, calling our admissions desk directly at +91 92179 99511, or messaging us on WhatsApp."
+    answer: "You can book a free diagnostic counselling and consultation session by submitting the contact form on our website, calling our admissions desk directly at +91 92179 99511, or messaging us on WhatsApp."
   },
   {
     id: "hfaq-11",
-    question: "Where is GLA located?",
-    answer: "The Global Language Academy (GLA) is located at: 3rd Floor, Plot no 94, PKT-10, Dwarka Sector 12, Opposite Metro Station (Near Radisson Blu Hotel), New Delhi, Delhi 110078."
+    question: "Where is TGLA located?",
+    answer: "The Global Language Academy (TGLA) is located at: 3rd Floor, Plot no 94, PKT-10, Dwarka Sector 12, Opposite Metro Station (Near Radisson Blu Hotel), New Delhi, Delhi 110078."
   }
 ];

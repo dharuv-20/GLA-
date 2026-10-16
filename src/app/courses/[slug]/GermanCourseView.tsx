@@ -43,7 +43,7 @@ const germanSyllabus: SyllabusLevel[] = [
         weekNum: "Week 1",
         title: "Introduction to German Sounds & Greetings",
         vokabel: ["Greetings", "Alphabets", "Numbers"],
-        grammatik: ["Leprosy (retained from source content)", "Verbs", "Personal pronouns"]
+        grammatik: ["Basic Sentence Structure & Articles", "Verbs", "Personal pronouns"]
       },
       {
         weekNum: "Week 2",
@@ -644,7 +644,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
               </h1>
               
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-sans">
-                A comprehensive, fully structured program designed to build German language proficiency progressively from A1 to C2. Integrating vocabulary, grammar (Grammatik), speaking, listening, reading, writing, and targeted mock preparation for international exams.
+                A comprehensive, fully structured program designed to build German language proficiency progressively from A1 to C2. Integrating vocabulary, grammar, speaking, listening, reading, writing, and targeted mock preparation for international exams.
               </p>
 
               {/* Core Details Grid */}
@@ -656,7 +656,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                   </div>
                   <div>
                     <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Total Duration</span>
-                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">3 to 18 Months</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">2 to 18 Months</span>
                   </div>
                 </div>
                 
@@ -667,7 +667,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                   </div>
                   <div>
                     <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Batch Size</span>
-                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">5-7 Students Max</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block leading-tight">5 to 7 Students</span>
                   </div>
                 </div>
                 
@@ -731,7 +731,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Speaking */}
             <div className="p-6 rounded-2xl bg-section-alt border border-card-border hover-lift flex flex-col gap-3">
-              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Sprechen</span>
+              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Speaking</span>
               <h3 className="text-sm font-bold text-navy">Speaking & Communication</h3>
               <p className="text-xs text-navy-muted leading-relaxed">
                 Develop the ability to communicate naturally in everyday conversations, discussions, professional meetings, and real-life situations.
@@ -740,7 +740,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
             
             {/* Listening */}
             <div className="p-6 rounded-2xl bg-section-alt border border-card-border hover-lift flex flex-col gap-3">
-              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Hören</span>
+              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Listening</span>
               <h3 className="text-sm font-bold text-navy">Listening & Comprehension</h3>
               <p className="text-xs text-navy-muted leading-relaxed">
                 Build understanding of spoken German through structured listening tasks and increasingly complex audio-visual training scenarios.
@@ -749,25 +749,25 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
 
             {/* Reading */}
             <div className="p-6 rounded-2xl bg-section-alt border border-card-border hover-lift flex flex-col gap-3">
-              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Lesen</span>
+              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Reading</span>
               <h3 className="text-sm font-bold text-navy">Reading & Analysis</h3>
               <p className="text-xs text-navy-muted leading-relaxed">
-                Understand diverse German texts, extract critical information, identify key grammatical cues, and analyze multiple texts at once.
+                Understand diverse texts, extract critical information, identify key grammatical cues, and analyze multiple texts at once.
               </p>
             </div>
 
             {/* Writing */}
             <div className="p-6 rounded-2xl bg-section-alt border border-card-border hover-lift flex flex-col gap-3">
-              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Schreiben</span>
+              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Writing</span>
               <h3 className="text-sm font-bold text-navy">Written Communication</h3>
               <p className="text-xs text-navy-muted leading-relaxed">
-                Progress from drafting simple greetings and emails to composing summaries, CVs (Lebenslauf), letters of complaint, and academic arguments.
+                Progress from drafting simple greetings and emails to composing summaries, CVs (resume), letters of complaint, and academic arguments.
               </p>
             </div>
 
             {/* Grammar */}
             <div className="p-6 rounded-2xl bg-section-alt border border-card-border hover-lift flex flex-col gap-3">
-              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Grammatik</span>
+              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Grammar</span>
               <h3 className="text-sm font-bold text-navy">Practical Grammar</h3>
               <p className="text-xs text-navy-muted leading-relaxed">
                 Master grammar progressively, spanning basic sentence structures, dative/accusative cases, Wechsel prepositions, relative clauses, and Konjunktiv II.
@@ -776,7 +776,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
 
             {/* Vocabulary */}
             <div className="p-6 rounded-2xl bg-section-alt border border-card-border hover-lift flex flex-col gap-3">
-              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Vokabeln</span>
+              <span className="text-purple bg-purple-light p-2.5 rounded-xl border border-card-border w-fit font-bold text-xs">Vocabulary</span>
               <h3 className="text-sm font-bold text-navy">Everyday Vocabulary</h3>
               <p className="text-xs text-navy-muted leading-relaxed">
                 Build a rich lexical database needed for travel, professional duties, appointments, food, shopping, and natural conversation.
@@ -1075,7 +1075,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                                 <BookOpen className="w-3.5 h-3.5" />
                               </span>
                               <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">
-                                Vokabel (Vocabulary / Communication Focus)
+                                Vocabulary & Communication Focus
                               </span>
                             </div>
                             <ul className="flex flex-col gap-2.5 text-xs text-navy font-semibold">
@@ -1088,14 +1088,14 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                             </ul>
                           </div>
 
-                          {/* Grammar / Grammatik */}
+                          {/* Grammar & Syntax Focus */}
                           <div className="p-5 rounded-2xl bg-gradient-to-br from-blue-50/20 to-card dark:from-blue-950/10 dark:to-card border border-blue-200/20 shadow-sm flex flex-col gap-3.5 hover-lift transition-all duration-200">
                             <div className="flex items-center gap-2 pb-2.5 border-b border-card-border">
                               <span className="p-1.5 rounded-lg bg-blue-500/10 text-blue-500">
                                 <CheckCircle className="w-3.5 h-3.5" />
                               </span>
                               <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-500">
-                                Grammatik (Grammar / Syntax Focus)
+                                Grammar & Syntax Focus
                               </span>
                             </div>
                             <ul className="flex flex-col gap-2.5 text-xs text-navy font-semibold">
@@ -1382,7 +1382,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                     <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Frequently available test dates across authorized test centers in Delhi NCR</td>
                   </tr>
                   <tr className="hover:bg-section-alt/50 transition-colors">
-                    <td className="py-3.5 px-4 sm:px-6 font-bold">GLA Coaching Support</td>
+                    <td className="py-3.5 px-4 sm:px-6 font-bold">TGLA Coaching Support</td>
                     <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Authentic Goethe model papers, timer simulations & speaking pairs</td>
                     <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Dedicated TELC test formats, letter writing templates & mock series</td>
                   </tr>
@@ -1391,7 +1391,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
             </div>
             <div className="p-4 bg-section-alt border-t border-card-border text-center">
               <p className="text-xs text-navy-muted leading-relaxed">
-                <strong>GLA Academic Recommendation:</strong> If you are planning an Ausbildung or medical pathway and need immediate exam dates, TELC Deutsch is often faster to schedule. If you are targeting premier academic universities, both Goethe and TELC C1 Hochschule fulfill German proficiency requirements.
+                <strong>TGLA Academic Recommendation:</strong> If you are planning an Ausbildung or medical pathway and need immediate exam dates, TELC Deutsch is often faster to schedule. If you are targeting premier academic universities, both Goethe and TELC C1 Hochschule fulfill German proficiency requirements.
               </p>
             </div>
           </div>
@@ -1410,7 +1410,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
 
           <div className="max-w-4xl mx-auto">
             {course.faculty.map((trainer) => (
-              <div key={trainer.id} className="hover-lift rounded-3xl overflow-hidden">
+              <div key={trainer.id} className="w-full">
                 <FacultyCard faculty={trainer} />
               </div>
             ))}
@@ -1510,10 +1510,10 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                   Admissions Open • Limited Seats Per Batch
                 </span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-white tracking-tight leading-tight">
-                  Enrol in GLA German Language Programmes
+                  Enrol in TGLA German Language Programs
                 </h2>
                 <p className="text-sm text-slate-200 leading-relaxed max-w-2xl">
-                  Take the first step towards Goethe-Zertifikat certification, Ausbildung, university admissions, and international career pathways in Germany. Small batches (max 5–7 learners) with certified faculty.
+                  Take the first step towards Goethe-Zertifikat certification, Ausbildung, university admissions, and international career pathways in Germany. Small batches (5 to 7 learners) with certified faculty.
                 </p>
 
                 {/* 4 Pillars Mini-Badges */}
@@ -1544,7 +1544,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
               {/* Action Buttons */}
               <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
                 <a
-                  href="https://wa.me/919217999511?text=Hi%20GLA,%20I%20am%20interested%20in%20the%20German%20Language%20Course.%20Please%20share%20batch%20timings%20and%20fee%20structure."
+                  href="https://wa.me/919217999511?text=Hi%20TGLA,%20I%20am%20interested%20in%20the%20German%20Language%20Course.%20Please%20share%20batch%20timings%20and%20fee%20structure."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5"
@@ -1575,7 +1575,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
           
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-widest text-purple">Explore More</span>
-            <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">Other Programs at GLA</h2>
+            <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">Other Programs at TGLA</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">

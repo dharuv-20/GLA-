@@ -337,12 +337,12 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
   // Helper for bundle WhatsApp message
   const getBundleWhatsAppMessage = () => {
     if (selectedBundle === 'bundle') {
-      return "Hi GLA, I am interested in the Spoken English + Personality Development (Add-On Bundle). Please share batch timings and fees structure.";
+      return "Hi TGLA, I am interested in the Spoken English + Personality Development (Add-On Bundle). Please share batch timings and fees structure.";
     }
     if (selectedBundle === 'personality') {
-      return "Hi GLA, I am interested in the Personality Development Course (Standalone for Working Professionals). Please share batch timings and fees structure.";
+      return "Hi TGLA, I am interested in the Personality Development Course (Standalone for Working Professionals). Please share batch timings and fees structure.";
     }
-    return "Hi GLA, I am interested in the 3-Month Spoken English Course. Please share batch timings and fees structure.";
+    return "Hi TGLA, I am interested in the 3-Month Spoken English Course. Please share batch timings and fees structure.";
   };
 
   return (
@@ -388,7 +388,7 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
               
               <div className="flex flex-col gap-2">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-tight text-white tracking-tight">
-                  Spoken English Course — Communicate Confidently in Every Situation
+                  {course.title}
                 </h1>
                 <p className="text-base sm:text-xl font-bold font-display text-purple-hero">
                   Empowering Communication. Building Global Opportunities.
@@ -1152,7 +1152,7 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
       </section>
 
       {/* ========================================================= */}
-      {/* 6. THE 6 PILLARS OF GLA SPOKEN ENGLISH EXCELLENCE        */}
+      {/* 6. THE 6 PILLARS OF TGLA SPOKEN ENGLISH EXCELLENCE       */}
       {/* ========================================================= */}
       <section className="bg-slate-50 dark:bg-[#020c1b] py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1160,7 +1160,7 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-widest text-purple">Teaching Methodology</span>
             <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">
-              The 6 Pillars of GLA Spoken English Excellence
+              The 6 Pillars of TGLA Spoken English Excellence
             </h2>
             <p className="text-sm text-navy-muted leading-relaxed">
               Our unique speaking-first methodology transforms hesitant speakers into articulate, confident communicators.
@@ -1170,7 +1170,7 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="p-6 rounded-2xl bg-white dark:bg-[#00122E] border border-card-border hover-lift flex flex-col gap-3 shadow-sm">
               <span className="w-10 h-10 rounded-xl bg-purple/10 text-purple flex items-center justify-center font-bold text-base">01</span>
-              <h3 className="text-sm font-bold text-navy">Micro Batches (Max 5–7 Students)</h3>
+              <h3 className="text-sm font-bold text-navy">Micro Batches (5 to 7 Students)</h3>
               <p className="text-xs text-navy-muted leading-relaxed">
                 Guaranteed individual speaking time every single session. You will never sit silently in a crowded classroom of 30+ students.
               </p>
@@ -1434,7 +1434,7 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
           
           <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-widest text-purple">Explore More</span>
-            <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">Other Programs at GLA</h2>
+            <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">Other Programs at TGLA</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">

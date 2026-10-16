@@ -124,7 +124,7 @@ export default function ThankYouContent() {
             Thank You for Submitting!
           </h1>
           <p className="text-sm text-navy-muted leading-relaxed max-w-md mx-auto mt-1">
-            Our academic counselor will contact you shortly on WhatsApp or phone to confirm your demo class session and batch timing.
+            Our academic counselor will contact you shortly on WhatsApp or phone to confirm your consultation session and batch timing.
           </p>
         </div>
 
