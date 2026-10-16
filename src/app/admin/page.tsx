@@ -11,7 +11,28 @@ export const metadata = {
 
 export default function AdminPage() {
   const blogsDirectory = path.join(process.cwd(), 'src/content/blogs');
+  const categoriesFile = path.join(process.cwd(), 'src/content/categories.json');
   let posts: BlogPost[] = [];
+  let categories: string[] = [
+    'IELTS',
+    'PTE',
+    'German',
+    'French',
+    'Japanese',
+    'Spoken English',
+    'Study Abroad',
+    'Career Guidance',
+    'Grammar & Vocabulary'
+  ];
+
+  try {
+    if (fs.existsSync(categoriesFile)) {
+      const catContent = fs.readFileSync(categoriesFile, 'utf8');
+      categories = JSON.parse(catContent);
+    }
+  } catch (error) {
+    console.error("Error reading categories for admin:", error);
+  }
 
   try {
     if (fs.existsSync(blogsDirectory)) {
@@ -36,7 +57,7 @@ export default function AdminPage() {
   return (
     <>
       <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" strategy="lazyOnload" />
-      <AdminDashboard initialPosts={posts} />
+      <AdminDashboard initialPosts={posts} initialCategories={categories} />
     </>
   );
 }

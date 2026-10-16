@@ -20,7 +20,28 @@ export const metadata: Metadata = {
 
 export default function BlogsPage() {
   const blogsDirectory = path.join(process.cwd(), 'src/content/blogs');
+  const categoriesFile = path.join(process.cwd(), 'src/content/categories.json');
   let posts: BlogPost[] = [];
+  let categories: string[] = [
+    'IELTS',
+    'PTE',
+    'German',
+    'French',
+    'Japanese',
+    'Spoken English',
+    'Study Abroad',
+    'Career Guidance',
+    'Grammar & Vocabulary'
+  ];
+
+  try {
+    if (fs.existsSync(categoriesFile)) {
+      const catContent = fs.readFileSync(categoriesFile, 'utf8');
+      categories = JSON.parse(catContent);
+    }
+  } catch (error) {
+    console.error("Error reading categories:", error);
+  }
 
   try {
     if (fs.existsSync(blogsDirectory)) {
@@ -42,5 +63,5 @@ export default function BlogsPage() {
     console.error("Error reading blogs directory:", error);
   }
 
-  return <BlogsClient initialPosts={posts} />;
+  return <BlogsClient initialPosts={posts} initialCategories={categories} />;
 }

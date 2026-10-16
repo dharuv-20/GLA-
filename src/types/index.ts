@@ -88,7 +88,7 @@ export interface BlogPost {
   id: number;
   slug: string;
   title: string;
-  category: 'IELTS' | 'PTE' | 'German' | 'Career';
+  category: string;
   author: string;
   readTime: string;
   excerpt: string;

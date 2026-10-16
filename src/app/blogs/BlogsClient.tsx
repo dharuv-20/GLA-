@@ -5,12 +5,14 @@ import { createPortal } from 'react-dom';
 import { User, Search, BookOpen, Clock, X, CheckCircle } from 'lucide-react';
 import { BlogPost } from '@/types';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
+import BlogContentRenderer from '@/components/BlogContentRenderer';
 
 interface BlogsClientProps {
   initialPosts: BlogPost[];
+  initialCategories?: string[];
 }
 
-export default function BlogsClient({ initialPosts }: BlogsClientProps) {
+export default function BlogsClient({ initialPosts, initialCategories }: BlogsClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
@@ -41,7 +43,12 @@ export default function BlogsClient({ initialPosts }: BlogsClientProps) {
     return matchesSearch && matchesCategory;
   });
 
-  const categories = ['all', 'IELTS', 'PTE', 'German', 'Career'];
+  const categories = [
+    'all',
+    ...(initialCategories && initialCategories.length > 0
+      ? initialCategories
+      : ['IELTS', 'PTE', 'German', 'French', 'Japanese', 'Spoken English', 'Study Abroad', 'Career Guidance'])
+  ];
 
   return (
     <div className="flex flex-col text-navy relative">
@@ -197,25 +204,9 @@ export default function BlogsClient({ initialPosts }: BlogsClientProps) {
                     </span>
                   </div>
 
-                  {/* Content Paragraphs */}
-                  <div className="flex flex-col gap-5 text-sm sm:text-base text-navy-muted leading-relaxed">
-                    {activePost.body.split('\n').filter((p: string) => p.trim() !== '').map((paragraph: string, index: number) => {
-                      const isNumberedItem = /^[1-9]\./.test(paragraph);
-                      if (isNumberedItem) {
-                        const [numAndTitle, ...rest] = paragraph.split(':');
-                        return (
-                          <div key={index} className="p-4 bg-section-alt border-l-4 border-purple rounded-r-xl flex flex-col gap-1.5 shadow-sm my-1">
-                            <h4 className="text-sm font-bold text-navy">{numAndTitle}</h4>
-                            {rest.length > 0 && <p className="text-xs text-navy-muted leading-relaxed">{rest.join(':').trim()}</p>}
-                          </div>
-                        );
-                      }
-                      return (
-                        <p key={index} className="text-navy-muted">
-                          {paragraph}
-                        </p>
-                      );
-                    })}
+                  {/* Content Paragraphs & Rich Formatting */}
+                  <div className="py-2">
+                    <BlogContentRenderer content={activePost.body} />
                   </div>
 
                   {/* Close button at bottom of reading area */}
