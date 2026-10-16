@@ -848,7 +848,7 @@ export const coursesList: Course[] = [
     id: "crs-japanese",
     slug: "japanese-language",
     title: "Japanese Language Program (N5 - N1)",
-    metaTitle: "Japanese Language Classes (JLPT N5-N1) in Delhi | TGLA",
+    metaTitle: "Japanese Language Classes (JLPT) in Delhi | TGLA",
     metaDescription: "Master Japanese with confidence. Structured 25-lesson curriculum and JLPT N5 to N1 exam preparation with certified trainers at TGLA in Delhi NCR.",
     shortDescription: "Learn Japanese with confidence through structured learning, practical communication, cultural understanding, and real-world skills at The Global Language Academy.",
     longDescription: "The Japanese Language Course at The Global Language Academy is a structured 25-lesson program developing speaking, listening, reading, and writing, including hiragana, katakana, and kanji, along with practical grammar, useful vocabulary, and JLPT preparation from N5 to N1.",

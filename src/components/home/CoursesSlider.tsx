@@ -47,13 +47,13 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
       case 'french-language':
         return 'French (DELF / TEF)';
       case 'japanese-language':
-        return 'Japanese (JLPT N5-N1)';
+        return 'Japanese (JLPT)';
       case 'spoken-english':
         return 'English Fluency & Accent';
       case 'ielts-preparation':
         return 'IELTS (IDP / British Council)';
       case 'pte-academic':
-        return 'PTE Academic (Pearson)';
+        return 'PTE Academic';
       default:
         return 'Certified Course';
     }

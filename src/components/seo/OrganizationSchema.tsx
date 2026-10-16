@@ -10,7 +10,7 @@ export default function OrganizationSchema() {
         "url": "https://tglalearning.com",
         "logo": "https://tglalearning.com/icon.png",
         "image": "https://tglalearning.com/images/logo-dark.png",
-        "description": "Premier foreign language and test preparation academy in Delhi NCR providing certified German (A1-C2), French (A1-B2 & DALF C1/C2), Japanese (JLPT N5-N1), Spoken English, IELTS Academic/General, and PTE Strategy coaching with high success rates.",
+        "description": "Premier foreign language and test preparation academy in Delhi NCR providing certified German (A1-C2), French (A1-B2 & DALF C1/C2), Japanese (JLPT), Spoken English, IELTS Academic/General, and PTE Strategy coaching with high success rates.",
         "telephone": "+91-9217999511",
         "email": "care@glaind.com",
         "priceRange": "$$",
