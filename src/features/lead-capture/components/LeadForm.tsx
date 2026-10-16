@@ -180,7 +180,7 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
 
       {/* Course Selector */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="lead-course" className="text-xs font-bold uppercase tracking-wider text-navy">Target Course</label>
+        <label htmlFor="lead-course" className="text-xs font-bold uppercase tracking-wider text-navy">Course Applied</label>
         <select
           id="lead-course"
           {...register('course')}
@@ -191,7 +191,7 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
           aria-invalid={errors.course ? 'true' : 'false'}
           aria-describedby={errors.course ? 'course-error' : undefined}
         >
-          <option value="" className="bg-card text-navy">Select a Program...</option>
+          <option value="" className="bg-card text-navy">Select Course Applied...</option>
           <option value="german-language" className="bg-card text-navy">German Language (A1 - C2)</option>
           <option value="french-language" className="bg-card text-navy">French Language (A1 - C2)</option>
           <option value="japanese-language" className="bg-card text-navy">Japanese Language (JLPT Preparation)</option>
