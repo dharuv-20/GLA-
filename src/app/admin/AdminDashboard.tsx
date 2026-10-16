@@ -34,7 +34,8 @@ import {
   Eraser,
   Code,
   Clock,
-  BookOpen
+  BookOpen,
+  Key
 } from 'lucide-react';
 import { BlogPost } from '@/types';
 import BlogContentRenderer, { legacyMarkdownToHtml } from '@/components/BlogContentRenderer';
@@ -78,17 +79,28 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
   const [categoryModalError, setCategoryModalError] = useState('');
   const [categoryModalSuccess, setCategoryModalSuccess] = useState('');
 
+  // Git Connection / GitHub Token state
+  const [githubToken, setGithubToken] = useState<string>('');
+  const [isGithubModalOpen, setIsGithubModalOpen] = useState(false);
+  const [tokenInput, setTokenInput] = useState('');
+  const [tokenSuccess, setTokenSuccess] = useState('');
+
   // Editor reference
   const editorRef = useRef<HTMLDivElement>(null);
 
-  // Check if running on localhost
+  // Check if running in a local development environment
   const isLocalhost = typeof window !== 'undefined' && 
-    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    (window.location.hostname === 'localhost' || 
+     window.location.hostname === '127.0.0.1' ||
+     window.location.hostname.startsWith('192.168.') ||
+     window.location.hostname.startsWith('10.') ||
+     window.location.hostname.endsWith('.local') ||
+     Boolean(window.location.port) ||
+     Boolean(user?.isLocalAdmin));
 
   // Sync theme with localStorage and root HTML document class
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialDark = savedTheme !== null ? savedTheme === 'dark' : true;
     
     setIsDark(initialDark);
@@ -96,6 +108,13 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
+    }
+
+    // Load saved GitHub token if available
+    const savedGh = localStorage.getItem('gla_github_token');
+    if (savedGh) {
+      setGithubToken(savedGh);
+      setTokenInput(savedGh);
     }
   }, []);
 
@@ -164,8 +183,23 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
   const handleLocalAdminLogin = () => {
     setUser({
       email: 'admin@tglalearning.com',
-      user_metadata: { full_name: 'Academy Administrator' }
+      user_metadata: { full_name: 'Academy Administrator' },
+      isLocalAdmin: true
     });
+  };
+
+  // Retrieve fresh Netlify Identity JWT token (with auto-refresh)
+  const getFreshToken = async (u: any): Promise<string> => {
+    if (!u) return '';
+    if (typeof u.jwt === 'function') {
+      try {
+        const refreshed = await u.jwt(true);
+        if (refreshed) return refreshed;
+      } catch (err) {
+        console.warn('Could not refresh JWT via u.jwt(true):', err);
+      }
+    }
+    return u.token?.access_token || '';
   };
 
   const getSlug = (t: string) => {
@@ -253,7 +287,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     handleEditorInput();
   };
 
-  // Visual Editor Command Actions (e.preventDefault on mousedown ensures zero jumping / loss of selection)
+  // Visual Editor Command Actions
   const formatHeading1 = (e: React.MouseEvent) => {
     e.preventDefault();
     document.execCommand('formatBlock', false, '<h2>');
@@ -434,6 +468,24 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     }
   };
 
+  // Save GitHub Token Handler
+  const handleSaveToken = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = tokenInput.trim();
+    setGithubToken(trimmed);
+    if (trimmed) {
+      localStorage.setItem('gla_github_token', trimmed);
+      setTokenSuccess('GitHub Access Token saved successfully! Future publishes will sync directly to GitHub.');
+    } else {
+      localStorage.removeItem('gla_github_token');
+      setTokenSuccess('Token cleared. Using Netlify Git Gateway.');
+    }
+    setTimeout(() => {
+      setIsGithubModalOpen(false);
+      setTokenSuccess('');
+    }, 1500);
+  };
+
   // Publish / Save pipeline
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -458,6 +510,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
       body
     };
 
+    // 1. LOCAL WORKSPACE DEVELOPMENT MODE
     if (isLocalhost) {
       try {
         const response = await fetch('/api/save-blog', {
@@ -476,23 +529,25 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
       } catch (err: any) {
         setSaveStatus({ type: 'error', message: `Local save failed: ${err.message}` });
       }
-    } else {
-      if (!user) {
-        setSaveStatus({ type: 'error', message: 'Authentication required. Please re-login.' });
-        return;
-      }
+      return;
+    }
 
+    // 2. DIRECT GITHUB API COMMIT (Alternative when configured)
+    if (githubToken) {
       try {
-        const token = user.token?.access_token || '';
-        const gatewayUrl = `/.netlify/git/github/contents/src/content/blogs/${slug}.json`;
+        setSaveStatus({ type: 'loading', message: 'Committing directly to GitHub repository...' });
+        const ghRepo = 'dharuv-20/GLA-';
+        const fileUrl = `https://api.github.com/repos/${ghRepo}/contents/src/content/blogs/${slug}.json`;
 
         let sha: string | null = null;
-        const checkResponse = await fetch(gatewayUrl, {
-          headers: { Authorization: `Bearer ${token}` }
+        const checkRes = await fetch(fileUrl, {
+          headers: {
+            Authorization: `Bearer ${githubToken}`,
+            Accept: 'application/vnd.github.v3+json'
+          }
         });
-
-        if (checkResponse.ok) {
-          const fileData = await checkResponse.json();
+        if (checkRes.ok) {
+          const fileData = await checkRes.json();
           sha = fileData.sha;
         }
 
@@ -501,7 +556,6 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
           : `cms: create blog post "${title}"`;
 
         const encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(postPayload, null, 2))));
-
         const payload: any = {
           message: commitMessage,
           content: encodedContent,
@@ -509,25 +563,93 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
         };
         if (sha) payload.sha = sha;
 
-        const publishResponse = await fetch(gatewayUrl, {
+        const publishRes = await fetch(fileUrl, {
           method: 'PUT',
           headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
+            Authorization: `Bearer ${githubToken}`,
+            'Content-Type': 'application/json',
+            Accept: 'application/vnd.github.v3+json'
           },
           body: JSON.stringify(payload)
         });
 
-        if (publishResponse.ok) {
+        if (publishRes.ok) {
           updateLocalPostsState(postPayload);
-          setSaveStatus({ type: 'success', message: 'Published successfully! Changes will be live shortly.' });
+          setSaveStatus({ type: 'success', message: 'Published directly to GitHub! Netlify build will trigger shortly.' });
         } else {
-          const errText = await publishResponse.text();
-          throw new Error(`Git Gateway rejected commit: ${errText}`);
+          const errData = await publishRes.json().catch(() => ({}));
+          throw new Error(errData.message || 'GitHub API rejected commit');
         }
       } catch (err: any) {
-        setSaveStatus({ type: 'error', message: `Publish failed: ${err.message}` });
+        setSaveStatus({ type: 'error', message: `GitHub publish failed: ${err.message}` });
       }
+      return;
+    }
+
+    // 3. NETLIFY GIT GATEWAY
+    if (!user) {
+      setSaveStatus({ type: 'error', message: 'Authentication required. Please sign in.' });
+      return;
+    }
+
+    try {
+      const token = await getFreshToken(user);
+      if (!token) {
+        throw new Error('Your session token has expired. Please click "Sign Out" and log back in.');
+      }
+
+      const gatewayUrl = `/.netlify/git/github/contents/src/content/blogs/${slug}.json`;
+
+      let sha: string | null = null;
+      const checkResponse = await fetch(gatewayUrl, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (checkResponse.ok) {
+        const fileData = await checkResponse.json();
+        sha = fileData.sha;
+      }
+
+      const commitMessage = selectedPost 
+        ? `cms: update blog post "${title}"`
+        : `cms: create blog post "${title}"`;
+
+      const encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(postPayload, null, 2))));
+
+      const payload: any = {
+        message: commitMessage,
+        content: encodedContent,
+        branch: "main"
+      };
+      if (sha) payload.sha = sha;
+
+      const publishResponse = await fetch(gatewayUrl, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (publishResponse.ok) {
+        updateLocalPostsState(postPayload);
+        setSaveStatus({ type: 'success', message: 'Published successfully! Changes will be live shortly.' });
+      } else {
+        const errText = await publishResponse.text();
+        let parsedMsg = errText;
+        try {
+          const errObj = JSON.parse(errText);
+          if (errObj.msg?.includes('Operator microservice headers missing') || errObj.code === 400) {
+            parsedMsg = 'Netlify Git Gateway is not enabled in your Netlify site settings or session expired. Click "Git Connection" above to connect your GitHub token or re-enable Git Gateway in Netlify.';
+          } else if (errObj.msg) {
+            parsedMsg = errObj.msg;
+          }
+        } catch {}
+        throw new Error(parsedMsg);
+      }
+    } catch (err: any) {
+      setSaveStatus({ type: 'error', message: `Publish error: ${err.message}` });
     }
   };
 
@@ -541,6 +663,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     setSaveStatus({ type: 'loading', message: 'Deleting article...' });
     const slug = selectedPost.slug;
 
+    // 1. LOCAL WORKSPACE
     if (isLocalhost) {
       try {
         const response = await fetch('/api/delete-blog', {
@@ -559,23 +682,24 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
       } catch (err: any) {
         setSaveStatus({ type: 'error', message: `Local deletion failed: ${err.message}` });
       }
-    } else {
-      if (!user) {
-        setSaveStatus({ type: 'error', message: 'Authentication required.' });
-        return;
-      }
+      return;
+    }
 
+    // 2. DIRECT GITHUB API DELETE
+    if (githubToken) {
       try {
-        const token = user.token?.access_token || '';
-        const gatewayUrl = `/.netlify/git/github/contents/src/content/blogs/${slug}.json`;
+        const ghRepo = 'dharuv-20/GLA-';
+        const fileUrl = `https://api.github.com/repos/${ghRepo}/contents/src/content/blogs/${slug}.json`;
 
         let sha: string | null = null;
-        const checkResponse = await fetch(gatewayUrl, {
-          headers: { Authorization: `Bearer ${token}` }
+        const checkRes = await fetch(fileUrl, {
+          headers: {
+            Authorization: `Bearer ${githubToken}`,
+            Accept: 'application/vnd.github.v3+json'
+          }
         });
-
-        if (checkResponse.ok) {
-          const fileData = await checkResponse.json();
+        if (checkRes.ok) {
+          const fileData = await checkRes.json();
           sha = fileData.sha;
         }
 
@@ -589,11 +713,12 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
           branch: "main"
         };
 
-        const deleteResponse = await fetch(gatewayUrl, {
+        const deleteResponse = await fetch(fileUrl, {
           method: 'DELETE',
           headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
+            Authorization: `Bearer ${githubToken}`,
+            'Content-Type': 'application/json',
+            Accept: 'application/vnd.github.v3+json'
           },
           body: JSON.stringify(deletePayload)
         });
@@ -602,12 +727,63 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
           removeLocalPostState(selectedPost.id);
           setSaveStatus({ type: 'success', message: 'Article successfully removed from GitHub repository!' });
         } else {
-          const errText = await deleteResponse.text();
-          throw new Error(`Git Gateway error: ${errText}`);
+          const errData = await deleteResponse.json().catch(() => ({}));
+          throw new Error(errData.message || 'GitHub API rejected deletion');
         }
       } catch (err: any) {
         setSaveStatus({ type: 'error', message: `Delete failed: ${err.message}` });
       }
+      return;
+    }
+
+    // 3. NETLIFY GIT GATEWAY DELETE
+    if (!user) {
+      setSaveStatus({ type: 'error', message: 'Authentication required.' });
+      return;
+    }
+
+    try {
+      const token = await getFreshToken(user);
+      const gatewayUrl = `/.netlify/git/github/contents/src/content/blogs/${slug}.json`;
+
+      let sha: string | null = null;
+      const checkResponse = await fetch(gatewayUrl, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (checkResponse.ok) {
+        const fileData = await checkResponse.json();
+        sha = fileData.sha;
+      }
+
+      if (!sha) {
+        throw new Error("Could not find article file on GitHub to delete.");
+      }
+
+      const deletePayload = {
+        message: `cms: delete blog post "${selectedPost.title}"`,
+        sha: sha,
+        branch: "main"
+      };
+
+      const deleteResponse = await fetch(gatewayUrl, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(deletePayload)
+      });
+
+      if (deleteResponse.ok) {
+        removeLocalPostState(selectedPost.id);
+        setSaveStatus({ type: 'success', message: 'Article successfully removed from repository!' });
+      } else {
+        const errText = await deleteResponse.text();
+        throw new Error(`Git Gateway error: ${errText}`);
+      }
+    } catch (err: any) {
+      setSaveStatus({ type: 'error', message: `Delete failed: ${err.message}` });
     }
   };
 
@@ -735,6 +911,23 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
         </div>
 
         <div className="flex items-center gap-3 text-xs">
+          {/* Git Publishing Connection Button */}
+          <button
+            type="button"
+            onClick={() => setIsGithubModalOpen(true)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-semibold transition-colors cursor-pointer text-xs ${
+              githubToken
+                ? 'border-emerald-500/50 bg-emerald-500/15 text-emerald-300'
+                : isDark
+                  ? 'bg-[#142647] border-slate-700 text-slate-200 hover:bg-[#1a335e]'
+                  : 'bg-slate-100 border-slate-300 text-slate-700 hover:bg-slate-200'
+            }`}
+            title="Configure Git Publishing Connection"
+          >
+            <Key className="w-3.5 h-3.5 text-purple-400" />
+            <span className="hidden sm:inline">{githubToken ? 'GitHub Token Active' : 'Git Connection'}</span>
+          </button>
+
           {/* Category Manager Trigger */}
           <button
             type="button"
@@ -1003,10 +1196,19 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                   saveStatus.type === 'loading' ? 'bg-indigo-950/80 text-indigo-200 border-indigo-700' :
                   'bg-rose-950/80 text-rose-200 border-rose-700'
                 }`}>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     {saveStatus.type === 'success' && <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />}
                     {saveStatus.type === 'error' && <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />}
                     <span className="font-semibold">{saveStatus.message}</span>
+                    {saveStatus.type === 'error' && saveStatus.message.includes('Git Gateway') && (
+                      <button
+                        type="button"
+                        onClick={() => setIsGithubModalOpen(true)}
+                        className="underline font-bold text-amber-300 hover:text-white cursor-pointer ml-1"
+                      >
+                        [Open Connection Settings]
+                      </button>
+                    )}
                   </div>
                   <button
                     type="button"
@@ -1505,6 +1707,100 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                 }`}
               >
                 Done
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* Git Connection / GitHub Token Settings Modal */}
+      {isGithubModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
+          <div className={`${isDark ? 'bg-[#0d182e] border-slate-700 text-white' : 'bg-white border-slate-200 text-slate-900'} border rounded-2xl w-full max-w-lg p-6 flex flex-col gap-5 shadow-2xl relative animate-scale-up`}>
+            
+            <div className="flex justify-between items-center border-b border-slate-700/60 pb-3">
+              <div className="flex items-center gap-2">
+                <Key className="w-5 h-5 text-purple-400" />
+                <h3 className="text-base font-bold">Publishing Connection Settings</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsGithubModalOpen(false)}
+                className="p-1 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {tokenSuccess && (
+              <div className="p-3 bg-emerald-950/80 text-emerald-200 border border-emerald-700 rounded-xl text-xs flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>{tokenSuccess}</span>
+              </div>
+            )}
+
+            <div className="flex flex-col gap-4 text-xs text-slate-300">
+              <div className={`p-3.5 rounded-xl border ${isDark ? 'bg-[#142647] border-slate-700' : 'bg-slate-50 border-slate-200 text-slate-800'}`}>
+                <h4 className="font-bold text-sm text-purple-300 mb-1">Option 1: Direct GitHub Sync (Recommended)</h4>
+                <p className="text-[11px] text-slate-400 mb-3 leading-relaxed">
+                  Provide a GitHub Personal Access Token (PAT with <code className="text-purple-400 font-mono">repo</code> permissions). This commits new and edited articles directly to your GitHub repository without relying on Netlify microservices.
+                </p>
+
+                <form onSubmit={handleSaveToken} className="flex flex-col gap-2.5">
+                  <input
+                    type="password"
+                    placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                    value={tokenInput}
+                    onChange={(e) => setTokenInput(e.target.value)}
+                    className={`w-full px-3.5 py-2 text-xs rounded-xl border font-mono focus:outline-none ${theme.input}`}
+                  />
+                  <div className="flex gap-2 justify-end">
+                    {githubToken && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setTokenInput('');
+                          handleSaveToken({ preventDefault: () => {} } as any);
+                        }}
+                        className="px-3 py-1.5 border border-rose-500/40 text-rose-400 hover:bg-rose-500/10 rounded-lg font-bold text-xs cursor-pointer"
+                      >
+                        Disconnect Token
+                      </button>
+                    )}
+                    <button
+                      type="submit"
+                      className="px-4 py-1.5 bg-purple hover:bg-purple-hover text-white rounded-lg font-bold text-xs cursor-pointer shadow-sm"
+                    >
+                      Save GitHub Token
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div className={`p-3.5 rounded-xl border ${isDark ? 'bg-[#091224] border-slate-800' : 'bg-slate-100 border-slate-200 text-slate-800'}`}>
+                <h4 className="font-bold text-sm text-slate-200 mb-1">Option 2: Netlify Git Gateway</h4>
+                <p className="text-[11px] text-slate-400 leading-relaxed mb-2">
+                  If you prefer using Netlify Identity without a GitHub Token, ensure Git Gateway is enabled:
+                </p>
+                <ol className="list-decimal pl-4 space-y-1 text-[11px] text-slate-400">
+                  <li>Go to your <strong>Netlify Dashboard</strong> &rarr; <strong>Site Configuration</strong>.</li>
+                  <li>Click <strong>Identity</strong> &rarr; scroll to <strong>Services</strong> &rarr; <strong>Git Gateway</strong>.</li>
+                  <li>Click <strong>Enable Git Gateway</strong> (or re-link GitHub).</li>
+                  <li>In this admin panel, click <strong>Sign Out</strong> and sign back in to refresh your token.</li>
+                </ol>
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-slate-700/60 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setIsGithubModalOpen(false)}
+                className={`px-4 py-2 rounded-xl text-xs font-bold border transition-colors cursor-pointer ${
+                  isDark ? 'bg-[#142647] border-slate-700 text-slate-200 hover:bg-[#1a335e]' : 'bg-slate-100 border-slate-300 text-slate-800 hover:bg-slate-200'
+                }`}
+              >
+                Close
               </button>
             </div>
 
