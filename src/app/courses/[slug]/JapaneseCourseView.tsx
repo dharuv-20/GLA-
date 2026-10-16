@@ -40,7 +40,7 @@ import {
 import { Course } from '@/types';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
-import LeadForm from '@/features/lead-capture/components/LeadForm';
+import { JapaneseLeadForm } from '@/features/lead-capture/components/CourseEnrollmentForm';
 import FormattedTitle from '@/components/FormattedTitle';
 
 interface JapaneseCourseViewProps {
@@ -830,7 +830,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
             {/* Right Form Column */}
             <div className="lg:col-span-5 w-full max-w-md mx-auto lg:max-w-none">
               <div className="relative p-1.5 rounded-2xl bg-gradient-to-tr from-purple/30 via-white/5 to-red-500/20 border border-white/10 shadow-[0_0_50px_rgba(75,36,94,0.3)]">
-                <LeadForm defaultCourse="japanese-language" />
+                <JapaneseLeadForm />
               </div>
             </div>
 

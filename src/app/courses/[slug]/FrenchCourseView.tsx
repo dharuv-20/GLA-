@@ -40,7 +40,7 @@ import {
 import { Course } from '@/types';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
-import LeadForm from '@/features/lead-capture/components/LeadForm';
+import { FrenchLeadForm } from '@/features/lead-capture/components/CourseEnrollmentForm';
 import FormattedTitle from '@/components/FormattedTitle';
 
 interface FrenchCourseViewProps {
@@ -762,7 +762,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
             {/* Right Form Column */}
             <div className="lg:col-span-5 w-full max-w-md mx-auto lg:max-w-none">
               <div className="relative p-1.5 rounded-2xl bg-gradient-to-tr from-purple/30 via-white/5 to-purple/10 border border-white/10 shadow-[0_0_50px_rgba(75,36,94,0.3)]">
-                <LeadForm defaultCourse="french-language" />
+                <FrenchLeadForm />
               </div>
             </div>
 

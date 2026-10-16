@@ -45,7 +45,7 @@ import {
 import { Course, Testimonial, FAQItem, StudentResult } from '@/types';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
-import LeadForm from '@/features/lead-capture/components/LeadForm';
+import { PteLeadForm } from '@/features/lead-capture/components/CourseEnrollmentForm';
 import FormattedTitle from '@/components/FormattedTitle';
 
 interface PteCourseViewProps {
@@ -615,20 +615,8 @@ export default function PteCourseView({ course, relatedCourses }: PteCourseViewP
 
             {/* Right Column: Lead Form Card */}
             <div className="lg:col-span-5 w-full max-w-md mx-auto lg:max-w-none">
-              <div className="relative p-1.5 rounded-3xl bg-gradient-to-tr from-purple/40 via-emerald-500/20 to-purple/20 border border-white/15 shadow-2xl backdrop-blur-xl">
-                <div className="bg-[#00122E]/95 p-5 sm:p-6 rounded-[22px] border border-white/10">
-                  <div className="mb-4 text-center">
-                    <span className="inline-block text-[10px] font-extrabold uppercase tracking-wider bg-purple/35 text-purple-200 px-3 py-1 rounded-full border border-purple-300/20 mb-2">
-                      Free Diagnostic & Lab Trial
-                    </span>
-                    <h2 className="text-xl sm:text-2xl font-bold text-white font-display">Book Your PTE AI Assessment</h2>
-                    <p className="text-xs text-slate-300 mt-1">Get instant pitch & oral fluency analysis with our AI engine.</p>
-                  </div>
-                  <LeadForm defaultCourse="pte-academic" />
-                  <div className="mt-3 text-center">
-                    <span className="text-[10px] text-slate-400">🔒 100% Confidential • Instant Academic Assessment</span>
-                  </div>
-                </div>
+              <div className="relative p-1.5 rounded-2xl bg-gradient-to-tr from-purple/30 via-white/5 to-purple/10 border border-white/10 shadow-[0_0_50px_rgba(75,36,94,0.3)]">
+                <PteLeadForm />
               </div>
             </div>
 
