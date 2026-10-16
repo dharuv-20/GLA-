@@ -691,17 +691,6 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                <div className="w-full pt-4 border-t border-card-border/80 flex flex-wrap items-center justify-center gap-4 text-xs font-bold text-navy-muted">
-                  <span>BRITISH COUNCIL</span>
-                  <span>•</span>
-                  <span>IDP EDUCATION</span>
-                  <span>•</span>
-                  <span>GOETHE-INSTITUT</span>
-                  <span>•</span>
-                  <span>PTE</span>
-                  <span>•</span>
-                  <span>CEFR BASED SYLLABUS</span>
-                </div>
               </div>
             </div>
 
