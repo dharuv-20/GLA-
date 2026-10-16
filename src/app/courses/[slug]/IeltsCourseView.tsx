@@ -46,6 +46,7 @@ import { Course, Testimonial, FAQItem, StudentResult } from '@/types';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
+import FormattedTitle from '@/components/FormattedTitle';
 
 interface IeltsCourseViewProps {
   course: Course;
@@ -415,7 +416,7 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
                   The Global Language Academy
                 </span>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-tight text-white tracking-tight">
-                  {course.title}
+                  <FormattedTitle title={course.title} bracketClassName="text-2xl sm:text-3xl lg:text-4xl text-white font-bold mt-1 sm:mt-2" />
                 </h1>
               </div>
 
@@ -1578,7 +1579,9 @@ export default function IeltsCourseView({ course, relatedCourses }: IeltsCourseV
                 className="hover-lift bg-white dark:bg-[#0b1a2e] p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-4 justify-between transition-all duration-300"
               >
                 <div>
-                  <h3 className="text-lg font-bold font-display text-navy mb-1">{rel.title}</h3>
+                  <h3 className="text-lg font-bold font-display text-navy mb-1">
+                    <FormattedTitle title={rel.title} bracketClassName="text-sm font-semibold text-purple mt-0.5" />
+                  </h3>
                   <p className="text-xs text-navy-muted leading-relaxed">{rel.shortDescription}</p>
                 </div>
                 <div className="flex justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-4 mt-2">

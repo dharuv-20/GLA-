@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Clock, Users } from 'lucide-react';
 import { Course } from '@/types';
+import FormattedTitle from '@/components/FormattedTitle';
 
 const courseImages: Record<string, string> = {
   'german-language': '/images/classroom.webp',
@@ -43,8 +44,8 @@ export default function CourseCard({ course }: { course: Course }) {
       <div className="p-6 flex-grow flex flex-col gap-5">
         {/* Title & Desc */}
         <div className="flex flex-col gap-2.5">
-          <h3 className="text-xl font-extrabold font-display text-navy tracking-tight group-hover:text-purple transition-colors duration-200 line-clamp-1">
-            {course.title}
+          <h3 className="text-xl font-extrabold font-display text-navy tracking-tight group-hover:text-purple transition-colors duration-200 leading-snug">
+            <FormattedTitle title={course.title} bracketClassName="text-base font-bold text-navy group-hover:text-purple mt-0.5" />
           </h3>
           <p className="text-xs text-navy-muted leading-relaxed line-clamp-2 font-medium">
             {course.shortDescription}

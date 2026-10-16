@@ -13,6 +13,7 @@ import JapaneseCourseView from './JapaneseCourseView';
 import SpokenEnglishCourseView from './SpokenEnglishCourseView';
 import PteCourseView from './PteCourseView';
 import IeltsCourseView from './IeltsCourseView';
+import FormattedTitle from '@/components/FormattedTitle';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -260,7 +261,7 @@ export default async function CourseLandingPage({ params }: PageProps) {
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-tight text-white tracking-tight animate-fade-in-up [animation-delay:200ms] fill-mode-forwards">
-                {course.title}
+                <FormattedTitle title={course.title} bracketClassName="text-2xl sm:text-3xl lg:text-4xl text-white font-bold mt-1 sm:mt-2" />
               </h1>
               
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 animate-fade-in-up [animation-delay:300ms] fill-mode-forwards">
@@ -519,7 +520,9 @@ export default async function CourseLandingPage({ params }: PageProps) {
                 style={{ transitionDelay: `${(idx * 150) + 150}ms` }}
               >
                 <div>
-                  <h3 className="text-lg font-bold font-display text-navy mb-1">{rel.title}</h3>
+                  <h3 className="text-lg font-bold font-display text-navy mb-1">
+                    <FormattedTitle title={rel.title} bracketClassName="text-sm font-semibold text-purple mt-0.5" />
+                  </h3>
                   <p className="text-xs text-navy-muted leading-relaxed">{rel.shortDescription}</p>
                 </div>
                 <div className="flex justify-between items-center border-t border-card-border pt-4 mt-2">

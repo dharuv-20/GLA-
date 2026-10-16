@@ -9,6 +9,7 @@ import FacultyCard from '@/components/FacultyCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
 import GermanLeadForm from '@/features/lead-capture/components/GermanLeadForm';
+import FormattedTitle from '@/components/FormattedTitle';
 
 interface GermanCourseViewProps {
   course: Course;
@@ -653,7 +654,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-tight text-white tracking-tight">
-                {course.title}
+                <FormattedTitle title={course.title} bracketClassName="text-2xl sm:text-3xl lg:text-4xl text-white font-bold mt-1 sm:mt-2" />
               </h1>
               
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-sans">
@@ -1755,7 +1756,9 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                 className="hover-lift bg-card p-6 rounded-xl border border-card-border shadow-sm flex flex-col gap-4 justify-between transition-all duration-300"
               >
                 <div>
-                  <h3 className="text-lg font-bold font-display text-navy mb-1">{rel.title}</h3>
+                  <h3 className="text-lg font-bold font-display text-navy mb-1">
+                    <FormattedTitle title={rel.title} bracketClassName="text-sm font-semibold text-purple mt-0.5" />
+                  </h3>
                   <p className="text-xs text-navy-muted leading-relaxed">{rel.shortDescription}</p>
                 </div>
                 <div className="flex justify-between items-center border-t border-card-border pt-4 mt-2">

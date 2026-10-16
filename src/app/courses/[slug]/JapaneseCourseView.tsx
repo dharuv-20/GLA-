@@ -41,6 +41,7 @@ import { Course } from '@/types';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
+import FormattedTitle from '@/components/FormattedTitle';
 
 interface JapaneseCourseViewProps {
   course: Course;
@@ -731,7 +732,7 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-tight text-white tracking-tight">
-                {course.title}
+                <FormattedTitle title={course.title} bracketClassName="text-2xl sm:text-3xl lg:text-4xl text-white font-bold mt-1 sm:mt-2" />
               </h1>
 
               <div className="p-3.5 bg-gradient-to-r from-purple/30 via-slate-800/60 to-red-950/30 rounded-xl border border-white/10 text-xs sm:text-sm font-semibold text-slate-200">
@@ -1451,7 +1452,9 @@ export default function JapaneseCourseView({ course, relatedCourses }: JapaneseC
                 className="hover-lift bg-slate-50 dark:bg-[#010814] p-6 rounded-xl border border-card-border shadow-sm flex flex-col gap-4 justify-between transition-all duration-300"
               >
                 <div>
-                  <h3 className="text-lg font-bold font-display text-navy mb-1">{rel.title}</h3>
+                  <h3 className="text-lg font-bold font-display text-navy mb-1">
+                    <FormattedTitle title={rel.title} bracketClassName="text-sm font-semibold text-purple mt-0.5" />
+                  </h3>
                   <p className="text-xs text-navy-muted leading-relaxed">{rel.shortDescription}</p>
                 </div>
                 <div className="flex justify-between items-center border-t border-card-border pt-4 mt-2">

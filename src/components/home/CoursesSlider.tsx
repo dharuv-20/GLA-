@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight, Clock, Users, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
 import { Course } from '@/types';
+import FormattedTitle from '@/components/FormattedTitle';
 
 interface CoursesSliderProps {
   courses: Course[];
@@ -173,7 +174,7 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
                   <div className="p-5 sm:p-6 flex-grow flex flex-col justify-between gap-4 sm:gap-5">
                     <div className="flex flex-col gap-2">
                       <h3 className="text-lg sm:text-xl font-extrabold font-display text-navy tracking-tight group-hover:text-purple transition-colors leading-snug">
-                        {course.title}
+                        <FormattedTitle title={course.title} bracketClassName="text-base sm:text-lg font-bold text-navy group-hover:text-purple mt-0.5" />
                       </h3>
                       <p className="text-xs sm:text-sm text-navy-muted leading-relaxed line-clamp-3">
                         {course.shortDescription}
