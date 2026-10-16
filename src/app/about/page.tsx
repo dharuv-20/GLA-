@@ -282,7 +282,7 @@ export default function AboutPage() {
               <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
                 <strong className="text-navy">The Global Language Academy (TGLA)</strong> was established over 6 years ago to address a fundamental flaw in standard language tutoring: the prevalence of generic, lecture-heavy coaching without practical fluency or score-driven outcomes.
               </p>
-              <p className="text-sm text-navy-muted leading-relaxed">
+              <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
                 Backed by over two decades of leadership in education and international consulting, TGLA was created as a bridge between linguistic capability and real-world opportunity. We provide structured, interactive language training designed to help learners clear certified exams on their first attempt and build lifelong communication confidence.
               </p>
 
@@ -322,23 +322,19 @@ export default function AboutPage() {
                   &ldquo;Education is the definitive pathway to unlocking youth potential worldwide. At TGLA, our purpose is not just to teach grammar rules, but to give each student the self-assurance, practical fluency, and accredited credentials needed to succeed globally.&rdquo;
                 </p>
 
-                <div className="border-t border-card-border/80 pt-4 flex items-start sm:items-center gap-4 relative z-10">
-                  <div className="w-12 h-12 rounded-2xl bg-purple text-white flex items-center justify-center font-bold font-display text-lg shadow-sm shrink-0">
+                <div className="border-t border-card-border/80 pt-5 flex items-center gap-4 relative z-10">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple to-purple-hover text-white flex items-center justify-center font-bold font-display text-lg shadow-md shrink-0">
                     AR
                   </div>
-                  <div className="flex flex-col gap-1 text-xs sm:text-sm">
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-extrabold text-purple tracking-wider text-[11px] sm:text-xs uppercase shrink-0">Name -</span>
-                      <span className="font-bold text-navy text-sm sm:text-base">Ms. Anuradhika Rana</span>
-                    </div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-extrabold text-purple tracking-wider text-[11px] sm:text-xs uppercase shrink-0">Des. -</span>
-                      <span className="font-medium text-navy-muted">Founder & Director</span>
-                    </div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-extrabold text-purple tracking-wider text-[11px] sm:text-xs uppercase shrink-0">Institute -</span>
-                      <span className="font-semibold text-navy">The Global Language Academy</span>
-                    </div>
+                  <div className="grid grid-cols-[76px_1fr] sm:grid-cols-[84px_1fr] items-baseline gap-x-2.5 gap-y-1.5 text-sm sm:text-base">
+                    <span className="text-xs sm:text-sm font-bold text-purple uppercase tracking-wide">Name -</span>
+                    <span className="text-sm sm:text-base font-bold text-navy">Ms. Anuradhika Rana</span>
+
+                    <span className="text-xs sm:text-sm font-bold text-purple uppercase tracking-wide">Des. -</span>
+                    <span className="text-sm sm:text-base font-medium text-navy">Founder & Director</span>
+
+                    <span className="text-xs sm:text-sm font-bold text-purple uppercase tracking-wide">Institute -</span>
+                    <span className="text-sm sm:text-base font-medium text-navy">The Global Language Academy</span>
                   </div>
                 </div>
               </div>
@@ -558,7 +554,7 @@ export default function AboutPage() {
             <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
               Our Proven Track Record
             </h2>
-            <p className="text-sm text-navy-muted leading-relaxed">
+            <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
               Real results backed by rigorous pedagogical standards and dedicated mentorship.
             </p>
           </div>
