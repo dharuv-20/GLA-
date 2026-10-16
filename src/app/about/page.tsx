@@ -643,7 +643,7 @@ export default function AboutPage() {
                   <FileCheck2 className="w-5 h-5 text-purple shrink-0 mt-0.5" />
                   <div>
                     <h4 className="text-xs font-bold text-navy">Verified Examiner Faculty</h4>
-                    <p className="text-[11px] text-navy-muted">Credentialed educators from Goethe-Institut, British Council & IDP.</p>
+                    <p className="text-[11px] text-navy-muted">Credentialed educators from Goethe, British Council & IDP.</p>
                   </div>
                 </div>
 

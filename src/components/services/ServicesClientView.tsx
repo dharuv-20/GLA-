@@ -438,7 +438,7 @@ export default function ServicesClientView() {
     {
       id: "srv-faq-2",
       question: "Which German language level is strictly required for an Ausbildung?",
-      answer: "A certified B1 or B2 German certificate from Goethe-Institut, telc, or ÖSD is required. While some technical and logistics roles consider strong B1 candidates, healthcare, nursing, and customer-facing hospitality roles typically demand B2 proficiency to understand technical vocational school lectures and ensure workplace safety."
+      answer: "A certified B1 or B2 German certificate from Goethe, telc, or ÖSD is required. While some technical and logistics roles consider strong B1 candidates, healthcare, nursing, and customer-facing hospitality roles typically demand B2 proficiency to understand technical vocational school lectures and ensure workplace safety."
     },
     {
       id: "srv-faq-3",
@@ -1173,7 +1173,7 @@ export default function ServicesClientView() {
 
                         <div className="p-4 rounded-2xl bg-section-alt/70 border border-card-border flex flex-col gap-1">
                           <span className="font-bold text-navy">Recognised Certification Bodies:</span>
-                          <span className="text-navy-muted">Goethe-Institut, telc, and ÖSD certificates are officially recognized by German consulates.</span>
+                          <span className="text-navy-muted">Goethe, telc, and ÖSD certificates are officially recognized by German consulates.</span>
                         </div>
                       </div>
 

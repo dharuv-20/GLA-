@@ -59,7 +59,7 @@ export default function TermsPage() {
           <div>
             <h2 className="text-lg font-bold font-display text-navy mb-3">5. Disclaimer on Scores</h2>
             <p>
-              While our batch curriculum tracks Goethe-Institut, IDP, and British Council criteria using certified educators, final test bands depend heavily on independent review hours. TGLA provides diagnostic mock metrics and support systems but does not issue visa approvals or guarantee test board score parameters.
+              While our batch curriculum tracks Goethe, IDP, and British Council criteria using certified educators, final test bands depend heavily on independent review hours. TGLA provides diagnostic mock metrics and support systems but does not issue visa approvals or guarantee test board score parameters.
             </p>
           </div>
 

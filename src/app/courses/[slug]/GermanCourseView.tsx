@@ -894,10 +894,10 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-4 p-3 bg-section-alt rounded-xl border border-card-border hover-lift transition-all duration-200">
                   <div className="w-16 h-10 bg-white rounded-lg border border-card-border p-1 flex items-center justify-center shrink-0">
-                    <img src="/images/goethe-logo.png" alt="Goethe-Institut" className="max-w-full max-h-full object-contain" />
+                    <img src="/images/goethe-logo.png" alt="Goethe" className="max-w-full max-h-full object-contain" />
                   </div>
                   <div>
-                    <span className="block text-xs font-extrabold text-navy">Goethe-Institut Examinations</span>
+                    <span className="block text-xs font-extrabold text-navy">Goethe Examinations</span>
                     <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Certifying levels from A1 bis C2</span>
                   </div>
                 </div>
@@ -1512,7 +1512,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
               Goethe-Zertifikat vs. TELC Deutsch: Which Exam Should You Take?
             </h2>
             <p className="text-sm text-navy-muted leading-relaxed">
-              Both Goethe-Institut and TELC (The European Language Certificates) diplomas are fully recognized by the German Embassy, German universities, and employers worldwide under the CEFR framework.
+              Both Goethe and TELC (The European Language Certificates) diplomas are fully recognized by the German Embassy, German universities, and employers worldwide under the CEFR framework.
             </p>
           </div>
 
@@ -1529,7 +1529,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                 <tbody className="divide-y divide-card-border text-navy">
                   <tr className="hover:bg-section-alt/50 transition-colors">
                     <td className="py-3.5 px-4 sm:px-6 font-bold">Conducting Authority</td>
-                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Goethe-Institut (Max Mueller Bhavan in India)</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-navy-muted">Goethe (Max Mueller Bhavan in India)</td>
                     <td className="py-3.5 px-4 sm:px-6 text-navy-muted">telc gGmbH (Headquartered in Frankfurt, Germany)</td>
                   </tr>
                   <tr className="hover:bg-section-alt/50 transition-colors">

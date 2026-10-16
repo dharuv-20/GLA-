@@ -3,15 +3,15 @@ import { Course, FacultyMember, Testimonial, FAQItem, StudentResult, ServiceItem
 export const facultyList: FacultyMember[] = [
   {
     id: "fac-1",
-    name: "Harshita",
+    name: "Ms. Harshita Sablania",
     role: "Lead German Language Trainer",
-    avatar: { src: "/images/faculty/harshita.jpg", alt: "Harshita - German Language Trainer", width: 300, height: 300 },
+    avatar: { src: "/images/faculty/harshita.jpg", alt: "Ms. Harshita Sablania - German Language Trainer", width: 300, height: 300 },
     credentials: [
       "Diploma in German Language",
-      "3+ Years Dedicated Teaching Experience",
-      "Goethe & CEFR Exam Preparation Specialist"
+      "5+ Years Dedicated Teaching Experience",
+      "CEFR Exam Preparation Specialist"
     ],
-    bio: "Harshita specializes in interactive spoken German, active grammar immersion, and comprehensive exam preparation from A1 to advanced levels."
+    bio: "Ms. Harshita Sablania specializes in interactive spoken German, active grammar immersion, and comprehensive exam preparation from A1 to advanced levels."
   }
 ];
 
@@ -69,7 +69,7 @@ export const germanTestimonials: Testimonial[] = [
     authorName: "Neha Gupta",
     authorAvatar: { src: "", alt: "Neha Gupta", width: 80, height: 80 },
     ratingStars: 5,
-    quote: "I scored 96% in Goethe A1! Harshita Ma'am makes German fun and understandable from the very first lesson. The mock tests were identical to the real Goethe exam format.",
+    quote: "I scored 96% in Goethe A1! Ms. Harshita Sablania makes German fun and understandable from the very first lesson. The mock tests were identical to the real Goethe exam format.",
     outcomeTag: "Verified Student"
   },
   {
@@ -470,7 +470,7 @@ export const germanFaqs: FAQItem[] = [
   {
     id: "faq-de-2",
     question: "Are your certifications accepted for German university admissions and Ausbildung?",
-    answer: "Yes. Our curriculum strictly follows the CEFR framework and prepares students for official Goethe-Institut, telc, and ÖSD examinations, which are 100% recognized by the German Embassy, German universities, and employers."
+    answer: "While our course completion certificate strongly supports your profile and helps you find career opportunities in the corporate job market, official German university admissions, Ausbildung programs, and German Embassy visa applications legally require an internationally recognized examination credential. Because our training is strictly aligned with the global CEFR framework, we comprehensively prepare you to crack the official Goethe or TELC examination with high scores to qualify for these opportunities."
   },
   {
     id: "faq-de-3",
@@ -721,7 +721,7 @@ export const coursesList: Course[] = [
     metaTitle: "German Language Classes (A1 - C2) | Goethe & TELC Exam Prep | TGLA",
     metaDescription: "Learn German from certified instructors at TGLA. Level-wise courses (A1 to C2) tailored for Goethe/TELC certification, Ausbildung, and German university admissions.",
     shortDescription: "Your gateway to tuition-free education, Ausbildung vocational training, and careers in Germany.",
-    longDescription: "Master German grammar, listening, and speaking through our specialized immersion methodology. Designed to take candidates from absolute beginners (A1) to advanced proficiency (C2), this program focuses on building functional communication skills alongside rigorous Goethe-Institut and TELC exam preparation.",
+    longDescription: "Master German grammar, listening, and speaking through our specialized immersion methodology. Designed to take candidates from absolute beginners (A1) to advanced proficiency (C2), this program focuses on building functional communication skills alongside rigorous Goethe and TELC exam preparation.",
     durationLabel: "2 to 18 Months",
     nextBatchStartDate: "2026-09-01",
     maxClassSize: "5-7",
@@ -780,7 +780,7 @@ export const coursesList: Course[] = [
     ],
     learningOutcomes: [
       "Fluently hold everyday and professional conversations in German",
-      "Pass the official Goethe-Institut or TELC exams with confidence",
+      "Pass the official Goethe or TELC exams with confidence",
       "Write coherent structured essays, business letters, and reports",
       "Confidently navigate visa interview questions at the German Embassy"
     ],

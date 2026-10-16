@@ -234,7 +234,7 @@ export default function HomePage() {
               </h1>
               
               <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] animate-fade-in-up [animation-delay:300ms] fill-mode-forwards">
-                Overcome test anxiety and score higher on your first attempt. Join premium online or offline batches led by Goethe-Institut, British Council & IDP certified mentors.
+                Overcome test anxiety and score higher on your first attempt. Join premium online or offline batches led by Goethe, British Council & IDP certified mentors.
               </p>
 
               {/* Core Features Checklist */}
@@ -318,7 +318,7 @@ export default function HomePage() {
                 <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 sm:gap-7 text-xs font-bold text-slate-400">
                   <span className="hover:text-white transition-colors duration-200">BRITISH COUNCIL</span>
                   <span className="hover:text-white transition-colors duration-200">IDP EDUCATION</span>
-                  <span className="hover:text-white transition-colors duration-200">GOETHE-INSTITUT</span>
+                  <span className="hover:text-white transition-colors duration-200">GOETHE</span>
                   <span className="hover:text-white transition-colors duration-200">PTE</span>
                   <span className="hover:text-white transition-colors duration-200">CEFR BASED SYLLABUS</span>
                 </div>
@@ -435,7 +435,7 @@ export default function HomePage() {
                   </span>
                   <div>
                     <h4 className="text-sm font-bold text-navy">Weekly Diagnostic Mock Exams</h4>
-                    <p className="text-xs text-navy-muted">Replicates real IDP, British Council, and Goethe-Institut testing settings under strict time limits.</p>
+                    <p className="text-xs text-navy-muted">Replicates real IDP, British Council, and Goethe testing settings under strict time limits.</p>
                   </div>
                 </li>
                 <li className="flex gap-3 hover:translate-x-1.5 transition-transform duration-200">
