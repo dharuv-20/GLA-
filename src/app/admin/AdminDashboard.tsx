@@ -17,8 +17,9 @@ import {
   Search,
   Bold,
   Italic,
+  Underline,
+  Heading1,
   Heading2,
-  Heading3,
   Minus,
   List,
   ListOrdered,
@@ -26,15 +27,17 @@ import {
   Link as LinkIcon,
   Sparkles,
   ExternalLink,
-  FolderPlus,
   Columns,
   X,
   Layers,
   ShieldCheck,
-  Tag
+  Eraser,
+  Code,
+  Clock,
+  BookOpen
 } from 'lucide-react';
 import { BlogPost } from '@/types';
-import BlogContentRenderer from '@/components/BlogContentRenderer';
+import BlogContentRenderer, { legacyMarkdownToHtml } from '@/components/BlogContentRenderer';
 
 interface AdminDashboardProps {
   initialPosts: BlogPost[];
@@ -61,9 +64,10 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
 
   // UI state
   const [activeTab, setActiveTab] = useState<'edit' | 'preview' | 'split'>('edit');
+  const [editorMode, setEditorMode] = useState<'visual' | 'code'>('visual');
   const [user, setUser] = useState<any>(null);
   const [isIdentityLoaded, setIsIdentityLoaded] = useState(false);
-  const [isDark, setIsDark] = useState(true); // Defaults to brand dark mode
+  const [isDark, setIsDark] = useState(true);
   const [saveStatus, setSaveStatus] = useState<{ type: 'success' | 'error' | 'loading' | null; message: string }>({ type: null, message: '' });
   const [sidebarSearch, setSidebarSearch] = useState('');
   const [sidebarCategoryFilter, setSidebarCategoryFilter] = useState('all');
@@ -74,27 +78,57 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
   const [categoryModalError, setCategoryModalError] = useState('');
   const [categoryModalSuccess, setCategoryModalSuccess] = useState('');
 
-  // Textarea reference for editor toolbar
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  // Editor reference
+  const editorRef = useRef<HTMLDivElement>(null);
 
   // Check if running on localhost
   const isLocalhost = typeof window !== 'undefined' && 
     (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 
-  // Sync and bind Netlify Identity Widget callbacks on mount
+  // Sync theme with localStorage and root HTML document class
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialDark = savedTheme !== null ? savedTheme === 'dark' : true;
+    
+    setIsDark(initialDark);
+    if (initialDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  const handleToggleTheme = () => {
+    const nextTheme = !isDark;
+    setIsDark(nextTheme);
+    if (nextTheme) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  };
+
+  // Sync contentEditable innerHTML when post selection or activeTab changes
+  useEffect(() => {
+    if (editorRef.current && (activeTab === 'edit' || activeTab === 'split') && editorMode === 'visual') {
+      if (editorRef.current.innerHTML !== body) {
+        editorRef.current.innerHTML = body || '';
+      }
+    }
+  }, [selectedPost, isCreatingNew, activeTab, editorMode]);
+
+  // Bind Netlify Identity Widget callbacks on mount
   useEffect(() => {
     const initIdentity = () => {
       const netlifyIdentity = (window as any).netlifyIdentity;
       if (netlifyIdentity) {
         setIsIdentityLoaded(true);
-        
-        // Get current logged in user
         const currentUser = netlifyIdentity.currentUser();
-        if (currentUser) {
-          setUser(currentUser);
-        }
+        if (currentUser) setUser(currentUser);
 
-        // Bind events
         netlifyIdentity.on('login', (u: any) => {
           setUser(u);
           netlifyIdentity.close();
@@ -111,28 +145,19 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
       const script = document.createElement("script");
       script.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
       script.async = true;
-      script.onload = () => {
-        initIdentity();
-      };
-      script.onerror = () => {
-        console.error("Failed to load Netlify Identity script.");
-      };
+      script.onload = () => initIdentity();
       document.body.appendChild(script);
     }
   }, []);
 
   const handleLogin = () => {
     const netlifyIdentity = (window as any).netlifyIdentity;
-    if (netlifyIdentity) {
-      netlifyIdentity.open();
-    }
+    if (netlifyIdentity) netlifyIdentity.open();
   };
 
   const handleLogout = () => {
     const netlifyIdentity = (window as any).netlifyIdentity;
-    if (netlifyIdentity) {
-      netlifyIdentity.logout();
-    }
+    if (netlifyIdentity) netlifyIdentity.logout();
     setUser(null);
   };
 
@@ -143,7 +168,6 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     });
   };
 
-  // Helper to slugify titles for files (e.g. "Learn German!" -> "learn-german")
   const getSlug = (t: string) => {
     return t
       .toLowerCase()
@@ -153,7 +177,6 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
       .replace(/^-+|-+$/g, '');
   };
 
-  // Pre-fill form when post selection changes
   const selectPostToEdit = (post: BlogPost) => {
     setSelectedPost(post);
     setIsCreatingNew(false);
@@ -162,8 +185,16 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     setAuthor(post.author);
     setReadTime(post.readTime);
     setExcerpt(post.excerpt);
-    setBody(post.body);
+    
+    // Convert legacy markdown or format HTML body
+    const formattedHtml = legacyMarkdownToHtml(post.body);
+    setBody(formattedHtml);
+    if (editorRef.current) {
+      editorRef.current.innerHTML = formattedHtml;
+    }
+
     setActiveTab('edit');
+    setEditorMode('visual');
     setSaveStatus({ type: null, message: '' });
   };
 
@@ -175,73 +206,165 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     setAuthor('Faculty Mentor');
     setReadTime('5 min read');
     setExcerpt('');
-    setBody('');
+    setBody('<p>Start typing your article here...</p>');
+    if (editorRef.current) {
+      editorRef.current.innerHTML = '<p>Start typing your article here...</p>';
+    }
     setActiveTab('edit');
+    setEditorMode('visual');
     setSaveStatus({ type: null, message: '' });
   };
 
-  // Rich Text Editor Toolbar action
-  const insertFormatting = (prefix: string, suffix: string = '', defaultText: string = '') => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
+  // Sync editor content to state
+  const handleEditorInput = () => {
+    if (editorRef.current) {
+      setBody(editorRef.current.innerHTML);
+    }
+  };
 
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const currentVal = textarea.value;
+  // Safe DOM node insertion that preserves cursor position
+  const insertCustomHtml = (htmlString: string) => {
+    const editor = editorRef.current;
+    if (!editor) return;
+    editor.focus();
 
-    const hasSelection = start !== end;
-    const selectedText = hasSelection ? currentVal.substring(start, end) : defaultText;
-    const replacement = prefix + selectedText + suffix;
-
-    const updatedText = currentVal.substring(0, start) + replacement + currentVal.substring(end);
-    setBody(updatedText);
-
-    setTimeout(() => {
-      textarea.focus();
-      if (hasSelection) {
-        textarea.setSelectionRange(start, start + replacement.length);
-      } else {
-        const cursorStart = start + prefix.length;
-        const cursorEnd = cursorStart + defaultText.length;
-        textarea.setSelectionRange(cursorStart, cursorEnd);
+    const selection = window.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      range.deleteContents();
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = htmlString.trim();
+      const frag = document.createDocumentFragment();
+      let node: Node | null;
+      let lastNode: Node | null = null;
+      while ((node = tempDiv.firstChild)) {
+        lastNode = frag.appendChild(node);
       }
-    }, 0);
+      range.insertNode(frag);
+      if (lastNode) {
+        range.setStartAfter(lastNode);
+        range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    } else {
+      editor.innerHTML += htmlString;
+    }
+    handleEditorInput();
   };
 
-  const insertBlock = (blockText: string) => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
-
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const currentVal = textarea.value;
-
-    const needsNewlineBefore = start > 0 && currentVal[start - 1] !== '\n';
-    const prefix = needsNewlineBefore ? '\n\n' : '';
-    const replacement = prefix + blockText.trim() + '\n\n';
-
-    const updatedText = currentVal.substring(0, start) + replacement + currentVal.substring(end);
-    setBody(updatedText);
-
-    setTimeout(() => {
-      textarea.focus();
-      const pos = start + replacement.length;
-      textarea.setSelectionRange(pos, pos);
-    }, 0);
+  // Visual Editor Command Actions (e.preventDefault on mousedown ensures zero jumping / loss of selection)
+  const formatHeading1 = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('formatBlock', false, '<h2>');
+    handleEditorInput();
   };
 
-  // Keyboard shortcut handler
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const formatHeading2 = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('formatBlock', false, '<h3>');
+    handleEditorInput();
+  };
+
+  const formatParagraph = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('formatBlock', false, '<p>');
+    handleEditorInput();
+  };
+
+  const formatBold = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('bold', false);
+    handleEditorInput();
+  };
+
+  const formatItalic = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('italic', false);
+    handleEditorInput();
+  };
+
+  const formatUnderline = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('underline', false);
+    handleEditorInput();
+  };
+
+  const insertDivider = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('insertHorizontalRule', false);
+    handleEditorInput();
+  };
+
+  const formatBulletList = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('insertUnorderedList', false);
+    handleEditorInput();
+  };
+
+  const formatNumberedList = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('insertOrderedList', false);
+    handleEditorInput();
+  };
+
+  const formatQuote = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('formatBlock', false, '<blockquote>');
+    handleEditorInput();
+  };
+
+  const insertCalloutBox = (e: React.MouseEvent) => {
+    e.preventDefault();
+    insertCustomHtml(`
+      <div class="blog-callout-box">
+        <h4 class="font-bold text-sm mb-1">Key Insight / Study Tip</h4>
+        <p class="text-xs leading-relaxed m-0">Write your highlighted recommendation or key takeaway here...</p>
+      </div>
+      <p><br></p>
+    `);
+  };
+
+  const insertLink = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const url = window.prompt('Enter destination URL (e.g. https://tglalearning.com/courses):', 'https://');
+    if (url && url.trim() && url !== 'https://') {
+      document.execCommand('createLink', false, url.trim());
+      handleEditorInput();
+    }
+  };
+
+  const clearFormatting = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.execCommand('removeFormat', false);
+    document.execCommand('formatBlock', false, '<p>');
+    handleEditorInput();
+  };
+
+  // Keyboard shortcut handler for editor
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.ctrlKey || e.metaKey) {
       if (e.key === 'b' || e.key === 'B') {
         e.preventDefault();
-        insertFormatting('**', '**', 'bold text');
+        document.execCommand('bold', false);
+        handleEditorInput();
       } else if (e.key === 'i' || e.key === 'I') {
         e.preventDefault();
-        insertFormatting('*', '*', 'italic text');
+        document.execCommand('italic', false);
+        handleEditorInput();
+      } else if (e.key === 'u' || e.key === 'U') {
+        e.preventDefault();
+        document.execCommand('underline', false);
+        handleEditorInput();
       }
     }
   };
+
+  // Calculated word and reading metrics
+  const cleanPlainText = body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const wordCount = cleanPlainText ? cleanPlainText.split(' ').length : 0;
+  const charCount = cleanPlainText.length;
+  const autoCalculatedReadTime = `${Math.max(1, Math.ceil(wordCount / 180))} min read`;
 
   // Category Manager Methods
   const handleAddCategory = async (e?: React.FormEvent) => {
@@ -314,8 +437,8 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
   // Publish / Save pipeline
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim() || !body.trim()) {
-      setSaveStatus({ type: 'error', message: 'Please fill out the title and content fields.' });
+    if (!title.trim() || !body.trim() || body === '<p><br></p>') {
+      setSaveStatus({ type: 'error', message: 'Please provide both an article title and content.' });
       return;
     }
 
@@ -327,11 +450,11 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     const postPayload: BlogPost = {
       id: postID,
       slug,
-      title,
+      title: title.trim(),
       category,
-      author,
-      readTime,
-      excerpt,
+      author: author.trim(),
+      readTime: readTime.trim() || autoCalculatedReadTime,
+      excerpt: excerpt.trim(),
       body
     };
 
@@ -355,7 +478,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
       }
     } else {
       if (!user) {
-        setSaveStatus({ type: 'error', message: 'Authentication error. Please re-login.' });
+        setSaveStatus({ type: 'error', message: 'Authentication required. Please re-login.' });
         return;
       }
 
@@ -384,9 +507,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
           content: encodedContent,
           branch: "main"
         };
-        if (sha) {
-          payload.sha = sha;
-        }
+        if (sha) payload.sha = sha;
 
         const publishResponse = await fetch(gatewayUrl, {
           method: 'PUT',
@@ -399,7 +520,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
 
         if (publishResponse.ok) {
           updateLocalPostsState(postPayload);
-          setSaveStatus({ type: 'success', message: 'Published successfully! It will go live shortly.' });
+          setSaveStatus({ type: 'success', message: 'Published successfully! Changes will be live shortly.' });
         } else {
           const errText = await publishResponse.text();
           throw new Error(`Git Gateway rejected commit: ${errText}`);
@@ -410,7 +531,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     }
   };
 
-  // Delete blog post pipeline
+  // Delete article pipeline
   const handleDelete = async () => {
     if (!selectedPost) return;
 
@@ -459,10 +580,10 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
         }
 
         if (!sha) {
-          throw new Error("Could not retrieve the file SHA from GitHub.");
+          throw new Error("Could not find article file on GitHub to delete.");
         }
 
-        const payload = {
+        const deletePayload = {
           message: `cms: delete blog post "${selectedPost.title}"`,
           sha: sha,
           branch: "main"
@@ -474,29 +595,31 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(deletePayload)
         });
 
         if (deleteResponse.ok) {
           removeLocalPostState(selectedPost.id);
-          setSaveStatus({ type: 'success', message: 'Article deleted from GitHub successfully!' });
+          setSaveStatus({ type: 'success', message: 'Article successfully removed from GitHub repository!' });
         } else {
           const errText = await deleteResponse.text();
-          throw new Error(`Git Gateway rejected delete command: ${errText}`);
+          throw new Error(`Git Gateway error: ${errText}`);
         }
       } catch (err: any) {
-        setSaveStatus({ type: 'error', message: `Deletion failed: ${err.message}` });
+        setSaveStatus({ type: 'error', message: `Delete failed: ${err.message}` });
       }
     }
   };
 
   const updateLocalPostsState = (savedPost: BlogPost) => {
     setPosts(prev => {
-      const exists = prev.some(p => p.id === savedPost.id);
-      if (exists) {
-        return prev.map(p => p.id === savedPost.id ? savedPost : p).sort((a, b) => b.id - a.id);
+      const idx = prev.findIndex(p => p.id === savedPost.id);
+      if (idx >= 0) {
+        const copy = [...prev];
+        copy[idx] = savedPost;
+        return copy;
       } else {
-        return [savedPost, ...prev].sort((a, b) => b.id - a.id);
+        return [savedPost, ...prev];
       }
     });
     setSelectedPost(savedPost);
@@ -507,6 +630,9 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     setPosts(prev => prev.filter(p => p.id !== idToDelete));
     setSelectedPost(null);
     setIsCreatingNew(false);
+    setTitle('');
+    setExcerpt('');
+    setBody('');
   };
 
   // Filtered posts in the sidebar
@@ -517,32 +643,42 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     return matchesSearch && matchesCat;
   });
 
-  // Theme styling variables mapping
-  const containerTheme = isDark ? 'bg-[#00122E] text-white' : 'bg-slate-50 text-slate-800';
-  const headerTheme = isDark ? 'bg-[#010814]/85 border-card-border' : 'bg-white border-slate-200';
-  const sidebarTheme = isDark ? 'bg-[#010814]/40 border-card-border' : 'bg-slate-100/70 border-slate-200';
-  const inputTheme = isDark ? 'bg-[#010814]/70 border-slate-700 text-white placeholder:text-slate-500 focus:border-purple' : 'bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-purple';
-  const editorHeaderTheme = isDark ? 'bg-[#010814]/60 border-card-border' : 'bg-slate-50 border-slate-200';
-  const toolbarTheme = isDark ? 'bg-[#010a18] border-card-border' : 'bg-slate-100 border-slate-200';
+  // Explicit, High-Contrast UI Color Mappings
+  const theme = {
+    pageBg: isDark ? 'bg-[#070e1b] text-slate-100' : 'bg-slate-100 text-slate-900',
+    headerBg: isDark ? 'bg-[#0b1426] border-slate-800' : 'bg-white border-slate-200',
+    sidebarBg: isDark ? 'bg-[#08101e] border-slate-800' : 'bg-slate-50 border-slate-200',
+    input: isDark 
+      ? 'bg-[#0d1a33] border-slate-700 text-white placeholder:text-slate-400 focus:border-purple-400 focus:ring-1 focus:ring-purple-400' 
+      : 'bg-white border-slate-300 text-slate-900 placeholder:text-slate-500 focus:border-purple-600 focus:ring-1 focus:ring-purple-600',
+    label: isDark ? 'text-purple-300 font-bold uppercase tracking-wider' : 'text-purple-700 font-bold uppercase tracking-wider',
+    card: isDark ? 'bg-[#0d182e] border-slate-700/80 shadow-md' : 'bg-white border-slate-200 shadow-sm',
+    toolbar: isDark ? 'bg-[#0e1c36] border-slate-700 shadow-md' : 'bg-slate-100 border-slate-300 shadow-sm',
+    toolbarBtn: isDark 
+      ? 'bg-[#142647] text-slate-100 border-slate-700 hover:bg-purple-600 hover:text-white' 
+      : 'bg-white text-slate-800 border-slate-300 hover:bg-purple-600 hover:text-white',
+    editorBg: isDark ? 'bg-[#091224] border-slate-700 text-slate-100' : 'bg-white border-slate-300 text-slate-900',
+    previewCard: isDark ? 'bg-[#091224] border-slate-700 text-slate-100' : 'bg-white border-slate-200 text-slate-900'
+  };
 
   // --- RENDER LOGIN VIEW ---
   if (!user) {
     return (
-      <div className={`min-h-screen ${containerTheme} flex items-center justify-center p-6 relative overflow-hidden transition-colors duration-300`}>
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-purple/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple/10 rounded-full blur-3xl pointer-events-none" />
+      <div className={`min-h-screen ${theme.pageBg} flex items-center justify-center p-6 relative overflow-hidden transition-colors duration-300`}>
+        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-purple/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple/15 rounded-full blur-3xl pointer-events-none" />
 
-        <div className={`${isDark ? 'bg-[#010814]/75 border-card-border shadow-2xl' : 'bg-white border-slate-200 shadow-xl'} backdrop-blur-md border p-8 sm:p-10 rounded-2xl w-full max-w-md flex flex-col gap-6 relative z-10 transition-colors duration-300`}>
+        <div className={`${isDark ? 'bg-[#0d182e] border-slate-700 shadow-2xl' : 'bg-white border-slate-200 shadow-xl'} backdrop-blur-md border p-8 sm:p-10 rounded-2xl w-full max-w-md flex flex-col gap-6 relative z-10 transition-colors duration-300`}>
           <div className="flex flex-col gap-2 text-center">
-            <span className="inline-flex items-center justify-center gap-1.5 text-[11px] font-bold uppercase tracking-wider bg-purple/10 text-purple px-3 py-1 rounded-full border border-purple/20 self-center">
-              <ShieldCheck className="w-3.5 h-3.5 text-purple" />
+            <span className="inline-flex items-center justify-center gap-1.5 text-[11px] font-bold uppercase tracking-wider bg-purple/15 text-purple-400 dark:text-purple-300 px-3 py-1 rounded-full border border-purple/30 self-center">
+              <ShieldCheck className="w-3.5 h-3.5" />
               Global Language Academy
             </span>
             <h1 className={`text-2xl font-extrabold tracking-tight font-display ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Academy Control Panel
+              Academy Blog Control Panel
             </h1>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Sign in to manage academic articles, study resources, and blog categories.
+            <p className="text-xs text-slate-400 dark:text-slate-300 leading-relaxed">
+              Sign in to manage academic articles, write with the visual rich text editor, and organize blog categories.
             </p>
           </div>
 
@@ -559,7 +695,11 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
             {/* Quick Local Development Access */}
             <button
               onClick={handleLocalAdminLogin}
-              className="w-full py-2.5 bg-card/60 hover:bg-card border border-card-border text-navy-muted hover:text-navy text-xs font-semibold rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
+              className={`w-full py-2.5 border text-xs font-semibold rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 ${
+                isDark 
+                  ? 'bg-[#142647] border-slate-700 text-slate-200 hover:bg-[#1a335e]' 
+                  : 'bg-slate-100 border-slate-300 text-slate-800 hover:bg-slate-200'
+              }`}
             >
               <span>⚡ Continue as Local Administrator</span>
             </button>
@@ -571,25 +711,25 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
 
   // --- RENDER DASHBOARD VIEW ---
   return (
-    <div className={`min-h-screen ${containerTheme} flex flex-col font-sans transition-colors duration-300`}>
+    <div className={`min-h-screen ${theme.pageBg} flex flex-col font-sans transition-colors duration-300`}>
       
       {/* Top Banner Control Header */}
-      <header className={`${headerTheme} border-b px-6 py-3.5 flex justify-between items-center shrink-0 sticky top-0 z-30 backdrop-blur-md transition-colors duration-300`}>
+      <header className={`${theme.headerBg} border-b px-6 py-3.5 flex justify-between items-center shrink-0 sticky top-0 z-30 backdrop-blur-md transition-colors duration-300 shadow-sm`}>
         <div className="flex items-center gap-3">
           <span className="bg-purple/20 p-2 rounded-xl border border-purple/30">
-            <FileText className="w-5 h-5 text-purple" />
+            <FileText className="w-5 h-5 text-purple-400" />
           </span>
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
               <h1 className={`text-sm font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 GLA Academy Blog Studio
               </h1>
-              <span className="text-[10px] bg-purple/15 text-purple px-2 py-0.5 rounded-full font-bold">
-                CMS v2.0
+              <span className="text-[10px] bg-purple/20 text-purple-300 border border-purple/40 px-2 py-0.5 rounded-full font-bold">
+                CMS v2.5 Visual
               </span>
             </div>
             <span className="text-[11px] text-slate-400 hidden sm:inline">
-              Manage articles, rich formatting & categories
+              Visual WYSIWYG editor • Zero hashtags • High-contrast dark & light modes
             </span>
           </div>
         </div>
@@ -599,21 +739,25 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
           <button
             type="button"
             onClick={() => setIsCategoryModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-purple/30 bg-purple/10 text-purple font-semibold hover:bg-purple/20 transition-colors cursor-pointer text-xs"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-purple/40 bg-purple/15 text-purple-300 hover:bg-purple/25 font-semibold transition-colors cursor-pointer text-xs"
           >
-            <Layers className="w-3.5 h-3.5" />
+            <Layers className="w-3.5 h-3.5 text-purple-400" />
             <span>Manage Categories</span>
             <span className="bg-purple text-white px-1.5 py-0.2 rounded-full text-[10px] font-bold">
               {categories.length}
             </span>
           </button>
 
-          {/* View Public Blogs Link */}
+          {/* View Live Blog */}
           <a
             href="/blogs"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-card-border bg-card/60 text-navy-muted hover:text-navy hover:bg-card transition-colors cursor-pointer text-xs"
+            className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-semibold transition-colors cursor-pointer text-xs ${
+              isDark 
+                ? 'bg-[#142647] border-slate-700 text-slate-200 hover:bg-[#1a335e]' 
+                : 'bg-slate-100 border-slate-300 text-slate-800 hover:bg-slate-200'
+            }`}
           >
             <span>Live Site</span>
             <ExternalLink className="w-3.5 h-3.5" />
@@ -622,13 +766,13 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
           {/* Theme Toggler Button */}
           <button
             type="button"
-            onClick={() => setIsDark(!isDark)}
+            onClick={handleToggleTheme}
             className={`p-2 rounded-lg border transition-colors cursor-pointer ${
               isDark 
-                ? 'bg-[#010814]/60 border-card-border text-amber-300 hover:text-amber-200' 
+                ? 'bg-[#142647] border-slate-700 text-amber-300 hover:text-amber-200' 
                 : 'bg-white border-slate-300 text-slate-700 hover:text-slate-900'
             }`}
-            title="Toggle Dashboard Theme"
+            title="Toggle Light / Dark Mode"
             aria-label="Toggle theme"
           >
             {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -646,16 +790,16 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
         </div>
       </header>
 
-      {/* Main Workspace split */}
+      {/* Main Workspace Split */}
       <div className="flex flex-grow overflow-hidden relative">
         
         {/* Left Sidebar: Articles & Filter Navigator */}
-        <aside className={`w-80 sm:w-96 ${sidebarTheme} border-r flex flex-col shrink-0 overflow-hidden transition-colors duration-300`}>
+        <aside className={`w-80 sm:w-96 ${theme.sidebarBg} border-r flex flex-col shrink-0 overflow-hidden transition-colors duration-300`}>
           
-          <div className="p-4 border-b border-card-border flex flex-col gap-3 shrink-0">
+          <div className="p-4 border-b border-slate-700/60 flex flex-col gap-3 shrink-0">
             <button
               onClick={startNewPost}
-              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple via-purple to-purple-hover text-white py-2.5 px-4 rounded-xl font-bold text-xs shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple to-purple-hover text-white py-2.5 px-4 rounded-xl font-bold text-xs shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Write New Article</span>
@@ -669,7 +813,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                 placeholder="Search articles..."
                 value={sidebarSearch}
                 onChange={(e) => setSidebarSearch(e.target.value)}
-                className={`w-full pl-9 pr-3 py-1.5 text-xs rounded-lg border focus:outline-none transition-colors ${inputTheme}`}
+                className={`w-full pl-9 pr-3 py-1.5 text-xs rounded-lg border focus:outline-none transition-colors ${theme.input}`}
               />
             </div>
 
@@ -679,8 +823,8 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                 onClick={() => setSidebarCategoryFilter('all')}
                 className={`px-2.5 py-1 rounded-md font-bold whitespace-nowrap transition-colors cursor-pointer ${
                   sidebarCategoryFilter === 'all'
-                    ? 'bg-purple text-white'
-                    : 'bg-card/60 text-slate-400 hover:text-slate-200'
+                    ? 'bg-purple text-white shadow-sm'
+                    : isDark ? 'bg-[#142647] text-slate-300 hover:text-white' : 'bg-slate-200 text-slate-700 hover:text-slate-900'
                 }`}
               >
                 All ({posts.length})
@@ -693,8 +837,8 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                     onClick={() => setSidebarCategoryFilter(cat)}
                     className={`px-2.5 py-1 rounded-md font-bold whitespace-nowrap transition-colors cursor-pointer ${
                       sidebarCategoryFilter === cat
-                        ? 'bg-purple text-white'
-                        : 'bg-card/60 text-slate-400 hover:text-slate-200'
+                        ? 'bg-purple text-white shadow-sm'
+                        : isDark ? 'bg-[#142647] text-slate-300 hover:text-white' : 'bg-slate-200 text-slate-700 hover:text-slate-900'
                     }`}
                   >
                     {cat} ({count})
@@ -715,21 +859,23 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                     onClick={() => selectPostToEdit(post)}
                     className={`p-3.5 rounded-xl border transition-all cursor-pointer text-left flex flex-col gap-1.5 ${
                       isSelected
-                        ? 'bg-purple/15 border-purple shadow-sm'
+                        ? isDark
+                          ? 'bg-purple-950/60 border-purple-400 text-white shadow-md ring-1 ring-purple-400'
+                          : 'bg-purple-50 border-purple-500 text-purple-950 shadow-sm ring-1 ring-purple-500'
                         : isDark
-                          ? 'bg-[#010814]/30 border-card-border/60 hover:bg-[#010814]/60 hover:border-card-border'
-                          : 'bg-white border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                          ? 'bg-[#0d182e] border-slate-700/60 text-slate-200 hover:bg-[#122240] hover:border-slate-500'
+                          : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50 hover:border-slate-300'
                     }`}
                   >
                     <div className="flex items-center justify-between text-[10px] font-bold">
-                      <span className="text-purple bg-purple/15 px-2 py-0.5 rounded-md">
+                      <span className="text-purple-300 bg-purple/20 px-2 py-0.5 rounded-md border border-purple/30">
                         {post.category}
                       </span>
                       <span className="text-slate-400">{post.readTime}</span>
                     </div>
 
                     <h3 className={`text-xs font-bold line-clamp-2 leading-snug ${
-                      isSelected ? 'text-purple-300' : isDark ? 'text-slate-200' : 'text-slate-800'
+                      isSelected ? 'text-purple-300 font-extrabold' : isDark ? 'text-white' : 'text-slate-900'
                     }`}>
                       {post.title}
                     </h3>
@@ -742,7 +888,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
               })
             ) : (
               <div className="p-8 text-center text-xs text-slate-400 flex flex-col items-center gap-2">
-                <FileText className="w-8 h-8 opacity-30" />
+                <FileText className="w-8 h-8 opacity-40" />
                 <span>No articles found</span>
               </div>
             )}
@@ -750,17 +896,19 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
         </aside>
 
         {/* Right Area: Form & Editor Workspace */}
-        <main className="flex-grow flex flex-col overflow-hidden bg-card/10">
+        <main className="flex-grow flex flex-col overflow-hidden">
           
           {!selectedPost && !isCreatingNew ? (
-            <div className="flex-grow flex flex-col items-center justify-center p-8 text-center text-slate-400 gap-4">
-              <div className="p-4 bg-purple/10 rounded-full border border-purple/20">
-                <FileText className="w-12 h-12 text-purple" />
+            <div className="flex-grow flex flex-col items-center justify-center p-8 text-center gap-4">
+              <div className="p-4 bg-purple/15 rounded-full border border-purple/30">
+                <FileText className="w-12 h-12 text-purple-400" />
               </div>
               <div className="max-w-md flex flex-col gap-1.5">
-                <h2 className="text-lg font-bold text-navy dark:text-white">Select an Article or Start a New One</h2>
-                <p className="text-xs text-navy-muted">
-                  Choose a published article from the sidebar to edit its text, or click &ldquo;Write New Article&rdquo; to publish a fresh guide.
+                <h2 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  Select an Article or Start a New One
+                </h2>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Choose a published article from the sidebar to edit its text, or click &ldquo;Write New Article&rdquo; to draft and publish a fresh educational guide with our dedicated visual text editor.
                 </p>
               </div>
               <button
@@ -775,10 +923,10 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
             <form onSubmit={handleSave} className="flex-grow flex flex-col overflow-hidden">
               
               {/* Editor Top Bar with Tabs and Action buttons */}
-              <div className={`${editorHeaderTheme} border-b px-6 py-2.5 flex justify-between items-center shrink-0 transition-colors duration-300 flex-wrap gap-2`}>
+              <div className={`${theme.headerBg} border-b px-6 py-2.5 flex justify-between items-center shrink-0 transition-colors duration-300 flex-wrap gap-2`}>
                 
                 {/* View Mode Toggle Buttons */}
-                <div className="flex gap-1.5 bg-card/60 p-1 rounded-xl border border-card-border">
+                <div className={`flex gap-1.5 p-1 rounded-xl border ${isDark ? 'bg-[#0d1a33] border-slate-700' : 'bg-slate-200/80 border-slate-300'}`}>
                   <button
                     type="button"
                     onClick={() => setActiveTab('edit')}
@@ -789,7 +937,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                     }`}
                   >
                     <Edit2 className="w-3.5 h-3.5" />
-                    <span>Write</span>
+                    <span>Visual Writer</span>
                   </button>
                   <button
                     type="button"
@@ -801,7 +949,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                     }`}
                   >
                     <Eye className="w-3.5 h-3.5" />
-                    <span>Preview</span>
+                    <span>Live Preview</span>
                   </button>
                   <button
                     type="button"
@@ -813,14 +961,14 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                     }`}
                   >
                     <Columns className="w-3.5 h-3.5" />
-                    <span>Split View</span>
+                    <span>Split Screen</span>
                   </button>
                 </div>
 
                 {/* Right Action buttons */}
                 <div className="flex items-center gap-2">
                   <span className="text-[11px] text-slate-400 font-semibold hidden md:inline mr-2">
-                    {selectedPost ? `Editing ID: #${selectedPost.id}` : "✨ New Article"}
+                    {selectedPost ? `Editing Article ID: #${selectedPost.id}` : "✨ Fresh Article"}
                   </span>
 
                   {/* Delete Button */}
@@ -840,7 +988,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                   <button
                     type="submit"
                     disabled={saveStatus.type === 'loading'}
-                    className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple via-purple to-purple-hover text-white text-xs font-bold rounded-xl transition-all cursor-pointer shadow-md hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
+                    className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple to-purple-hover text-white text-xs font-bold rounded-xl transition-all cursor-pointer shadow-md hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
                   >
                     <Save className="w-4 h-4" />
                     <span>{saveStatus.type === 'loading' ? 'Publishing...' : 'Publish Article'}</span>
@@ -851,9 +999,9 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
               {/* Status Alert Banner */}
               {saveStatus.type && (
                 <div className={`px-6 py-2.5 border-b text-xs flex items-center justify-between shrink-0 animate-fade-in ${
-                  saveStatus.type === 'success' ? 'bg-emerald-950/40 text-emerald-300 border-emerald-800' :
-                  saveStatus.type === 'loading' ? 'bg-indigo-950/40 text-indigo-300 border-indigo-800' :
-                  'bg-rose-950/40 text-rose-300 border-rose-800'
+                  saveStatus.type === 'success' ? 'bg-emerald-950/80 text-emerald-200 border-emerald-700' :
+                  saveStatus.type === 'loading' ? 'bg-indigo-950/80 text-indigo-200 border-indigo-700' :
+                  'bg-rose-950/80 text-rose-200 border-rose-700'
                 }`}>
                   <div className="flex items-center gap-2">
                     {saveStatus.type === 'success' && <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />}
@@ -873,12 +1021,13 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
               {/* Editor Workspace Content */}
               <div className="flex-grow overflow-y-auto p-4 sm:p-6">
                 
+                {/* 1. VISUAL EDIT TAB */}
                 {activeTab === 'edit' && (
                   <div className="max-w-4xl mx-auto flex flex-col gap-5">
                     
-                    {/* Title */}
+                    {/* Blog Title */}
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[11px] font-bold uppercase tracking-wider text-purple">
+                      <label className={theme.label}>
                         Blog Title <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -886,22 +1035,22 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                         placeholder="e.g. 10 Essential Tips to Score 8+ Band in IELTS Writing..."
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-xl text-base font-semibold focus:outline-none transition-colors ${inputTheme}`}
+                        className={`w-full px-4 py-3 border rounded-xl text-base font-bold focus:outline-none transition-colors ${theme.input}`}
                         required
                       />
                     </div>
 
-                    {/* Metadata Split Row */}
+                    {/* Metadata Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       
                       {/* Category select with inline Add button */}
                       <div className="flex flex-col gap-1.5">
                         <div className="flex justify-between items-center">
-                          <label className="text-[11px] font-bold uppercase tracking-wider text-purple">Category</label>
+                          <label className={theme.label}>Category</label>
                           <button
                             type="button"
                             onClick={() => setIsCategoryModalOpen(true)}
-                            className="text-[10px] text-purple hover:underline font-bold flex items-center gap-0.5 cursor-pointer"
+                            className="text-[10px] text-purple-400 hover:underline font-bold flex items-center gap-0.5 cursor-pointer"
                           >
                             <Plus className="w-3 h-3" /> Add Category
                           </button>
@@ -909,10 +1058,10 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                         <select
                           value={category}
                           onChange={(e) => setCategory(e.target.value)}
-                          className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none transition-colors cursor-pointer ${inputTheme}`}
+                          className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none transition-colors cursor-pointer ${theme.input}`}
                         >
                           {categories.map((cat) => (
-                            <option key={cat} value={cat} className="bg-card text-navy">
+                            <option key={cat} value={cat} className={isDark ? "bg-[#0b1426] text-white" : "bg-white text-slate-900"}>
                               {cat}
                             </option>
                           ))}
@@ -921,24 +1070,34 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
 
                       {/* Author */}
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-[11px] font-bold uppercase tracking-wider text-purple">Author</label>
+                        <label className={theme.label}>Author</label>
                         <input
                           type="text"
                           value={author}
                           onChange={(e) => setAuthor(e.target.value)}
-                          className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none transition-colors ${inputTheme}`}
+                          className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none transition-colors ${theme.input}`}
                           required
                         />
                       </div>
 
                       {/* Read Time */}
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-[11px] font-bold uppercase tracking-wider text-purple">Estimated Read Time</label>
+                        <div className="flex justify-between items-center">
+                          <label className={theme.label}>Read Time</label>
+                          <button
+                            type="button"
+                            onClick={() => setReadTime(autoCalculatedReadTime)}
+                            className="text-[10px] text-purple-400 hover:underline font-semibold cursor-pointer"
+                            title="Auto-fill estimated read time"
+                          >
+                            Auto: {autoCalculatedReadTime}
+                          </button>
+                        </div>
                         <input
                           type="text"
                           value={readTime}
                           onChange={(e) => setReadTime(e.target.value)}
-                          className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none transition-colors ${inputTheme}`}
+                          className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none transition-colors ${theme.input}`}
                           required
                         />
                       </div>
@@ -947,38 +1106,82 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
 
                     {/* Card Excerpt */}
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[11px] font-bold uppercase tracking-wider text-purple">
-                        Card Summary Excerpt <span className="text-red-500">*</span>
+                      <label className={theme.label}>
+                        Summary Excerpt <span className="text-red-500">*</span>
                       </label>
                       <textarea
                         rows={2}
-                        placeholder="Write a brief, high-impact summary that appears on the blog cards and previews..."
+                        placeholder="Write a clear, high-impact summary that appears on blog cards and search engines..."
                         value={excerpt}
                         onChange={(e) => setExcerpt(e.target.value)}
-                        className={`w-full px-4 py-2.5 border rounded-xl text-xs focus:outline-none transition-colors resize-none leading-relaxed ${inputTheme}`}
+                        className={`w-full px-4 py-2.5 border rounded-xl text-xs focus:outline-none transition-colors resize-none leading-relaxed ${theme.input}`}
                         required
                       />
                     </div>
 
-                    {/* Dedicated Rich Text Writing Box */}
+                    {/* Dedicated Visual WYSIWYG Text Editor */}
                     <div className="flex flex-col gap-1.5">
                       <div className="flex justify-between items-center">
-                        <label className="text-[11px] font-bold uppercase tracking-wider text-purple">
-                          Article Content & Formatting <span className="text-red-500">*</span>
+                        <label className={theme.label}>
+                          Article Writing Canvas <span className="text-red-500">*</span>
                         </label>
-                        <span className="text-[10px] text-slate-400 font-medium">
-                          Supports Markdown (Bold, Italics, Headings, Dividers)
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] text-slate-400">
+                            {wordCount} words • {charCount} chars
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setEditorMode(editorMode === 'visual' ? 'code' : 'visual')}
+                            className="text-[10px] text-purple-400 hover:underline font-bold flex items-center gap-1 cursor-pointer"
+                          >
+                            <Code className="w-3 h-3" />
+                            {editorMode === 'visual' ? 'View HTML Code' : 'Back to Visual'}
+                          </button>
+                        </div>
                       </div>
 
-                      {/* Dedicated Rich Text Toolbar */}
-                      <div className={`p-1.5 border rounded-t-xl flex flex-wrap items-center gap-1 ${toolbarTheme}`}>
+                      {/* Sticky Dedicated Toolbar */}
+                      <div className={`p-2 border rounded-t-xl flex flex-wrap items-center gap-1.5 sticky top-0 z-20 ${theme.toolbar}`}>
                         
+                        {/* H1 Large Heading */}
+                        <button
+                          type="button"
+                          onMouseDown={formatHeading1}
+                          className={`px-2.5 py-1.5 rounded-lg border text-xs font-extrabold transition-all cursor-pointer flex items-center gap-1 ${theme.toolbarBtn}`}
+                          title="Heading 1 (Large Title)"
+                        >
+                          <Heading1 className="w-3.5 h-3.5 text-purple-400" />
+                          <span>H1 Large</span>
+                        </button>
+
+                        {/* H2 Section Heading */}
+                        <button
+                          type="button"
+                          onMouseDown={formatHeading2}
+                          className={`px-2.5 py-1.5 rounded-lg border text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${theme.toolbarBtn}`}
+                          title="Heading 2 (Section Header)"
+                        >
+                          <Heading2 className="w-3.5 h-3.5 text-purple-400" />
+                          <span>H2 Section</span>
+                        </button>
+
+                        {/* Normal Text Paragraph */}
+                        <button
+                          type="button"
+                          onMouseDown={formatParagraph}
+                          className={`px-2.5 py-1.5 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${theme.toolbarBtn}`}
+                          title="Normal Paragraph Text"
+                        >
+                          Paragraph
+                        </button>
+
+                        <div className="w-px h-5 bg-slate-700/80 mx-1" />
+
                         {/* Bold */}
                         <button
                           type="button"
-                          onClick={() => insertFormatting('**', '**', 'bold text')}
-                          className="p-1.5 rounded-lg hover:bg-card/80 text-navy-muted hover:text-navy transition-colors cursor-pointer"
+                          onMouseDown={formatBold}
+                          className={`p-1.5 px-2 rounded-lg border text-xs font-bold transition-all cursor-pointer ${theme.toolbarBtn}`}
                           title="Bold (Ctrl+B)"
                         >
                           <Bold className="w-4 h-4" />
@@ -987,55 +1190,43 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                         {/* Italic */}
                         <button
                           type="button"
-                          onClick={() => insertFormatting('*', '*', 'italic text')}
-                          className="p-1.5 rounded-lg hover:bg-card/80 text-navy-muted hover:text-navy transition-colors cursor-pointer"
+                          onMouseDown={formatItalic}
+                          className={`p-1.5 px-2 rounded-lg border text-xs italic transition-all cursor-pointer ${theme.toolbarBtn}`}
                           title="Italic (Ctrl+I)"
                         >
                           <Italic className="w-4 h-4" />
                         </button>
 
-                        <div className="w-px h-4 bg-card-border mx-1" />
-
-                        {/* Heading 2 */}
+                        {/* Underline */}
                         <button
                           type="button"
-                          onClick={() => insertBlock('## Big Section Heading')}
-                          className="px-2 py-1 rounded-lg hover:bg-card/80 text-navy-muted hover:text-navy transition-colors cursor-pointer text-xs font-bold"
-                          title="Heading 2 (Big in size)"
+                          onMouseDown={formatUnderline}
+                          className={`p-1.5 px-2 rounded-lg border text-xs underline transition-all cursor-pointer ${theme.toolbarBtn}`}
+                          title="Underline (Ctrl+U)"
                         >
-                          H2
+                          <Underline className="w-4 h-4" />
                         </button>
 
-                        {/* Heading 3 */}
+                        <div className="w-px h-5 bg-slate-700/80 mx-1" />
+
+                        {/* Line Separation Divider */}
                         <button
                           type="button"
-                          onClick={() => insertBlock('### Sub-Section Heading')}
-                          className="px-2 py-1 rounded-lg hover:bg-card/80 text-navy-muted hover:text-navy transition-colors cursor-pointer text-xs font-bold"
-                          title="Heading 3 (Medium Header)"
+                          onMouseDown={insertDivider}
+                          className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${theme.toolbarBtn}`}
+                          title="Insert Horizontal Line Divider"
                         >
-                          H3
-                        </button>
-
-                        <div className="w-px h-4 bg-card-border mx-1" />
-
-                        {/* Horizontal Line Separation */}
-                        <button
-                          type="button"
-                          onClick={() => insertBlock('---')}
-                          className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-card/80 text-navy-muted hover:text-navy transition-colors cursor-pointer text-xs font-semibold"
-                          title="Insert Line Separation (Divider)"
-                        >
-                          <Minus className="w-4 h-4" />
+                          <Minus className="w-4 h-4 text-purple-400" />
                           <span>Line Divider</span>
                         </button>
 
-                        <div className="w-px h-4 bg-card-border mx-1" />
+                        <div className="w-px h-5 bg-slate-700/80 mx-1" />
 
                         {/* Bullet List */}
                         <button
                           type="button"
-                          onClick={() => insertBlock('- First bullet item\n- Second bullet item\n- Third bullet item')}
-                          className="p-1.5 rounded-lg hover:bg-card/80 text-navy-muted hover:text-navy transition-colors cursor-pointer"
+                          onMouseDown={formatBulletList}
+                          className={`p-1.5 px-2 rounded-lg border text-xs transition-all cursor-pointer ${theme.toolbarBtn}`}
                           title="Bullet List"
                         >
                           <List className="w-4 h-4" />
@@ -1044,32 +1235,30 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                         {/* Numbered List */}
                         <button
                           type="button"
-                          onClick={() => insertBlock('1. First step\n2. Second step\n3. Third step')}
-                          className="p-1.5 rounded-lg hover:bg-card/80 text-navy-muted hover:text-navy transition-colors cursor-pointer"
+                          onMouseDown={formatNumberedList}
+                          className={`p-1.5 px-2 rounded-lg border text-xs transition-all cursor-pointer ${theme.toolbarBtn}`}
                           title="Numbered List"
                         >
                           <ListOrdered className="w-4 h-4" />
                         </button>
 
-                        {/* Structured Box / Step Card */}
+                        {/* Feature Box */}
                         <button
                           type="button"
-                          onClick={() => insertBlock('1. Core Strategy: Detail the actionable study advice or tip here...')}
-                          className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-card/80 text-navy-muted hover:text-navy transition-colors cursor-pointer text-xs font-semibold"
-                          title="Insert Highlight Step Box"
+                          onMouseDown={insertCalloutBox}
+                          className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-bold transition-all cursor-pointer text-purple-300 hover:text-white ${theme.toolbarBtn}`}
+                          title="Insert Highlight Callout Box"
                         >
-                          <Sparkles className="w-3.5 h-3.5 text-purple" />
+                          <Sparkles className="w-3.5 h-3.5 text-purple-400" />
                           <span>Feature Box</span>
                         </button>
 
-                        <div className="w-px h-4 bg-card-border mx-1" />
-
-                        {/* Quote */}
+                        {/* Blockquote */}
                         <button
                           type="button"
-                          onClick={() => insertBlock('> "Quote or expert advice here..."')}
-                          className="p-1.5 rounded-lg hover:bg-card/80 text-navy-muted hover:text-navy transition-colors cursor-pointer"
-                          title="Blockquote"
+                          onMouseDown={formatQuote}
+                          className={`p-1.5 px-2 rounded-lg border text-xs transition-all cursor-pointer ${theme.toolbarBtn}`}
+                          title="Insert Blockquote"
                         >
                           <Quote className="w-4 h-4" />
                         </button>
@@ -1077,139 +1266,128 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                         {/* Link */}
                         <button
                           type="button"
-                          onClick={() => insertFormatting('[', '](https://tglalearning.com/courses)', 'Link text')}
-                          className="p-1.5 rounded-lg hover:bg-card/80 text-navy-muted hover:text-navy transition-colors cursor-pointer"
+                          onMouseDown={insertLink}
+                          className={`p-1.5 px-2 rounded-lg border text-xs transition-all cursor-pointer ${theme.toolbarBtn}`}
                           title="Insert Web Link"
                         >
                           <LinkIcon className="w-4 h-4" />
                         </button>
+
+                        {/* Clear Formatting */}
+                        <button
+                          type="button"
+                          onMouseDown={clearFormatting}
+                          className={`p-1.5 px-2 rounded-lg border text-xs transition-all cursor-pointer ${theme.toolbarBtn}`}
+                          title="Clear Selected Formatting"
+                        >
+                          <Eraser className="w-4 h-4 text-rose-400" />
+                        </button>
                       </div>
 
-                      {/* Textarea */}
-                      <textarea
-                        ref={textareaRef}
-                        rows={16}
-                        placeholder="Compose your article body here... Use the toolbar above to make text bold, italic, add big headings, or insert line dividers."
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        className={`w-full px-4 py-4 border border-t-0 rounded-b-xl text-sm focus:outline-none transition-colors font-mono leading-relaxed resize-y ${inputTheme}`}
-                        required
-                      />
-                    </div>
-
-                  </div>
-                )}
-
-                {/* Single Tab: Live Preview */}
-                {activeTab === 'preview' && (
-                  <div className="max-w-3xl mx-auto bg-card border border-card-border text-navy p-8 sm:p-10 rounded-2xl shadow-xl">
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-purple pb-3 border-b border-card-border mb-6">
-                      <span className="bg-purple/10 px-2.5 py-0.5 rounded-full border border-purple/20">{category}</span>
-                      <span>•</span>
-                      <span>{readTime || '5 min read'}</span>
-                      <span>•</span>
-                      <span>By {author || 'Academy Faculty'}</span>
-                    </div>
-
-                    <h1 className="text-2xl sm:text-3xl font-extrabold font-display leading-tight text-navy mb-6">
-                      {title || 'Untitled Article'}
-                    </h1>
-
-                    <BlogContentRenderer content={body} />
-                  </div>
-                )}
-
-                {/* Split View: Write on Left, Real-time Preview on Right */}
-                {activeTab === 'split' && (
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 h-full items-start">
-                    
-                    {/* Left side editor */}
-                    <div className="flex flex-col gap-4">
-                      <div className="flex flex-col gap-1">
-                        <label className="text-[11px] font-bold uppercase text-purple">Title</label>
-                        <input
-                          type="text"
-                          value={title}
-                          onChange={(e) => setTitle(e.target.value)}
-                          className={`w-full px-3 py-2 text-sm font-semibold border rounded-lg ${inputTheme}`}
-                          placeholder="Article title..."
+                      {/* Visual ContentEditable Area */}
+                      {editorMode === 'visual' ? (
+                        <div
+                          ref={editorRef}
+                          contentEditable
+                          suppressContentEditableWarning
+                          onInput={handleEditorInput}
+                          onKeyDown={handleKeyDown}
+                          data-placeholder="Start writing your article... Highlight text and click H1, Bold, or Line Divider. Everything is formatted visually without cryptic hashtags."
+                          className={`w-full p-5 sm:p-6 border border-t-0 rounded-b-xl min-h-[440px] focus:outline-none transition-colors rich-editor-content ${theme.editorBg}`}
                         />
+                      ) : (
+                        <textarea
+                          rows={18}
+                          value={body}
+                          onChange={(e) => setBody(e.target.value)}
+                          className={`w-full p-4 border border-t-0 rounded-b-xl text-xs font-mono focus:outline-none transition-colors ${theme.editorBg}`}
+                        />
+                      )}
+
+                      {/* Editor Sub-Footer Guide */}
+                      <div className="flex justify-between items-center text-[11px] text-slate-400 pt-1 px-1">
+                        <span>✨ Visual Mode: Formatted text appears on screen exactly as students see it.</span>
+                        <span>{autoCalculatedReadTime}</span>
+                      </div>
+                    </div>
+
+                  </div>
+                )}
+
+                {/* 2. LIVE PREVIEW TAB */}
+                {activeTab === 'preview' && (
+                  <div className="max-w-4xl mx-auto flex flex-col gap-6">
+                    <div className="p-4 rounded-xl border border-purple/30 bg-purple/10 text-xs text-purple-300 flex items-center justify-between">
+                      <span className="font-semibold">Live Reader Simulation Mode</span>
+                      <span className="text-[10px] bg-purple text-white px-2 py-0.5 rounded-full font-bold">Preview</span>
+                    </div>
+
+                    <div className={`p-8 sm:p-10 rounded-2xl border ${theme.previewCard}`}>
+                      <div className="flex flex-col gap-4 border-b border-slate-700/60 pb-6 mb-6">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-bold uppercase tracking-wider text-purple-400 bg-purple/15 px-3 py-1 rounded-md border border-purple/30">
+                            {category}
+                          </span>
+                          <span className="text-xs text-slate-400">{readTime || autoCalculatedReadTime}</span>
+                        </div>
+                        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                          {title || "Untitled Article"}
+                        </h1>
+                        <p className="text-xs text-slate-400">
+                          By <strong className="text-slate-200">{author || "Faculty"}</strong> • Published by Global Language Academy
+                        </p>
                       </div>
 
-                      {/* Toolbar */}
-                      <div className={`p-1.5 border rounded-t-xl flex flex-wrap items-center gap-1 ${toolbarTheme}`}>
-                        <button
-                          type="button"
-                          onClick={() => insertFormatting('**', '**', 'bold text')}
-                          className="p-1 rounded hover:bg-card text-xs font-bold px-2"
-                        >
-                          B
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => insertFormatting('*', '*', 'italic text')}
-                          className="p-1 rounded hover:bg-card text-xs italic px-2"
-                        >
-                          I
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => insertBlock('## Big Section Heading')}
-                          className="p-1 rounded hover:bg-card text-xs font-bold px-2"
-                        >
-                          H2
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => insertBlock('### Sub-Section Heading')}
-                          className="p-1 rounded hover:bg-card text-xs font-bold px-2"
-                        >
-                          H3
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => insertBlock('---')}
-                          className="p-1 rounded hover:bg-card text-xs px-2"
-                        >
-                          Line Divider
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => insertBlock('- Bullet point')}
-                          className="p-1 rounded hover:bg-card text-xs px-2"
-                        >
-                          • List
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => insertBlock('1. Core Strategy: Description here...')}
-                          className="p-1 rounded hover:bg-card text-xs px-2 text-purple font-semibold"
-                        >
-                          ✨ Feature Box
-                        </button>
+                      <BlogContentRenderer content={body} />
+                    </div>
+                  </div>
+                )}
+
+                {/* 3. SPLIT SCREEN VIEW */}
+                {activeTab === 'split' && (
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 h-full">
+                    
+                    {/* Left: Visual Editor */}
+                    <div className="flex flex-col gap-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs font-bold uppercase tracking-wider text-purple-400">Visual Editor</span>
+                        <span className="text-[11px] text-slate-400">{wordCount} words</span>
+                      </div>
+                      
+                      <div className={`p-2 border rounded-t-xl flex flex-wrap items-center gap-1.5 sticky top-0 z-20 ${theme.toolbar}`}>
+                        <button type="button" onMouseDown={formatHeading1} className={`px-2 py-1 rounded text-xs font-bold ${theme.toolbarBtn}`}>H1</button>
+                        <button type="button" onMouseDown={formatHeading2} className={`px-2 py-1 rounded text-xs font-bold ${theme.toolbarBtn}`}>H2</button>
+                        <button type="button" onMouseDown={formatParagraph} className={`px-2 py-1 rounded text-xs ${theme.toolbarBtn}`}>P</button>
+                        <button type="button" onMouseDown={formatBold} className={`p-1.5 rounded ${theme.toolbarBtn}`}><Bold className="w-3.5 h-3.5" /></button>
+                        <button type="button" onMouseDown={formatItalic} className={`p-1.5 rounded ${theme.toolbarBtn}`}><Italic className="w-3.5 h-3.5" /></button>
+                        <button type="button" onMouseDown={insertDivider} className={`px-2 py-1 rounded text-xs font-semibold ${theme.toolbarBtn}`}>Divider</button>
+                        <button type="button" onMouseDown={formatBulletList} className={`p-1.5 rounded ${theme.toolbarBtn}`}><List className="w-3.5 h-3.5" /></button>
+                        <button type="button" onMouseDown={insertCalloutBox} className={`px-2 py-1 rounded text-xs font-bold text-purple-300 ${theme.toolbarBtn}`}>Box</button>
                       </div>
 
-                      <textarea
-                        ref={textareaRef}
-                        rows={18}
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
+                      <div
+                        ref={editorRef}
+                        contentEditable
+                        suppressContentEditableWarning
+                        onInput={handleEditorInput}
                         onKeyDown={handleKeyDown}
-                        placeholder="Type content here..."
-                        className={`w-full p-4 border border-t-0 rounded-b-xl text-sm font-mono leading-relaxed ${inputTheme}`}
+                        className={`w-full p-4 border border-t-0 rounded-b-xl min-h-[450px] focus:outline-none rich-editor-content ${theme.editorBg}`}
                       />
                     </div>
 
-                    {/* Right side real-time live preview */}
-                    <div className="bg-card border border-card-border p-6 sm:p-8 rounded-2xl shadow-xl overflow-y-auto max-h-[80vh]">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-purple block mb-2">
-                        {category} • {readTime || '5 min read'}
-                      </span>
-                      <h2 className="text-xl sm:text-2xl font-bold font-display text-navy mb-4">
-                        {title || 'Article Title Preview'}
-                      </h2>
-                      <BlogContentRenderer content={body} />
+                    {/* Right: Real-time Rendered Preview */}
+                    <div className="flex flex-col gap-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Live Preview Output</span>
+                        <span className="text-[11px] text-slate-400">Instant Sync</span>
+                      </div>
+                      
+                      <div className={`p-6 rounded-xl border overflow-y-auto max-h-[600px] ${theme.previewCard}`}>
+                        <h2 className="text-xl font-extrabold mb-4 pb-2 border-b border-slate-700/60">
+                          {title || "Untitled Article"}
+                        </h2>
+                        <BlogContentRenderer content={body} />
+                      </div>
                     </div>
 
                   </div>
@@ -1218,25 +1396,19 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
               </div>
             </form>
           )}
-        </main>
 
+        </main>
       </div>
 
-      {/* CATEGORY MANAGER MODAL */}
+      {/* Category Manager Modal */}
       {isCategoryModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className={`w-full max-w-lg ${isDark ? 'bg-[#010814] border-card-border text-white' : 'bg-white border-slate-200 text-slate-800'} border rounded-2xl shadow-2xl p-6 sm:p-7 flex flex-col gap-5 relative animate-scale-up`}>
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
+          <div className={`${isDark ? 'bg-[#0d182e] border-slate-700 text-white' : 'bg-white border-slate-200 text-slate-900'} border rounded-2xl w-full max-w-lg p-6 flex flex-col gap-5 shadow-2xl relative animate-scale-up`}>
             
-            {/* Modal Header */}
-            <div className="flex justify-between items-center pb-3 border-b border-card-border">
+            <div className="flex justify-between items-center border-b border-slate-700/60 pb-3">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-purple/15 text-purple">
-                  <Tag className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold">Category Management</h3>
-                  <p className="text-xs text-slate-400">Add or delete blog categories across the website.</p>
-                </div>
+                <Layers className="w-5 h-5 text-purple-400" />
+                <h3 className="text-base font-bold">Manage Blog Categories</h3>
               </div>
               <button
                 type="button"
@@ -1245,23 +1417,23 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                   setCategoryModalError('');
                   setCategoryModalSuccess('');
                 }}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-card/60 transition-colors cursor-pointer"
+                className="p-1 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Success & Error alerts */}
-            {categoryModalSuccess && (
-              <div className="p-2.5 bg-emerald-950/40 text-emerald-300 border border-emerald-800 rounded-lg text-xs flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 shrink-0 text-emerald-400" />
-                <span>{categoryModalSuccess}</span>
+            {/* Notification messages */}
+            {categoryModalError && (
+              <div className="p-3 bg-rose-950/80 text-rose-200 border border-rose-700 rounded-xl text-xs flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
+                <span>{categoryModalError}</span>
               </div>
             )}
-            {categoryModalError && (
-              <div className="p-2.5 bg-rose-950/40 text-rose-300 border border-rose-800 rounded-lg text-xs flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400" />
-                <span>{categoryModalError}</span>
+            {categoryModalSuccess && (
+              <div className="p-3 bg-emerald-950/80 text-emerald-200 border border-emerald-700 rounded-xl text-xs flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>{categoryModalSuccess}</span>
               </div>
             )}
 
@@ -1269,46 +1441,48 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
             <form onSubmit={handleAddCategory} className="flex gap-2">
               <input
                 type="text"
-                placeholder="Enter new category (e.g. French, TEF, Visa Guidance)..."
+                placeholder="Enter new category name (e.g. Study in Germany)..."
                 value={newCategoryName}
                 onChange={(e) => setNewCategoryName(e.target.value)}
-                className={`flex-grow px-3.5 py-2 text-xs rounded-xl border focus:outline-none ${inputTheme}`}
+                className={`flex-grow px-3.5 py-2 text-xs rounded-xl border focus:outline-none ${theme.input}`}
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-purple text-white text-xs font-bold rounded-xl hover:bg-purple-hover cursor-pointer shrink-0 flex items-center gap-1 shadow-sm"
+                className="px-4 py-2 bg-purple hover:bg-purple-hover text-white text-xs font-bold rounded-xl transition-colors cursor-pointer shrink-0 flex items-center gap-1.5 shadow-sm"
               >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add Category</span>
+                <Plus className="w-4 h-4" />
+                <span>Add</span>
               </button>
             </form>
 
             {/* Existing Categories List */}
             <div className="flex flex-col gap-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-purple">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                 Active Categories ({categories.length})
               </span>
-              <div className="max-h-60 overflow-y-auto flex flex-col gap-1.5 pr-1">
+              
+              <div className="max-h-60 overflow-y-auto flex flex-col gap-2 pr-1">
                 {categories.map((cat) => {
-                  const postsCount = posts.filter(p => p.category === cat).length;
+                  const usageCount = posts.filter(p => p.category === cat).length;
                   return (
                     <div
                       key={cat}
-                      className={`flex justify-between items-center px-3.5 py-2 rounded-xl border transition-colors ${
-                        isDark ? 'bg-[#010a18] border-card-border' : 'bg-slate-50 border-slate-200'
+                      className={`flex justify-between items-center p-2.5 rounded-xl border text-xs ${
+                        isDark ? 'bg-[#142647] border-slate-700 text-slate-100' : 'bg-slate-50 border-slate-200 text-slate-800'
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold">{cat}</span>
-                        <span className="text-[10px] text-slate-400 bg-card px-2 py-0.5 rounded-full border border-card-border">
-                          {postsCount} {postsCount === 1 ? 'article' : 'articles'}
+                        <span className="font-bold">{cat}</span>
+                        <span className="text-[10px] text-slate-400 bg-black/20 px-2 py-0.5 rounded-full">
+                          {usageCount} {usageCount === 1 ? 'article' : 'articles'}
                         </span>
                       </div>
+
                       <button
                         type="button"
                         onClick={() => handleDeleteCategory(cat)}
-                        className="p-1 rounded-md text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-colors cursor-pointer"
-                        title={`Delete category "${cat}"`}
+                        className="p-1 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 rounded transition-colors cursor-pointer"
+                        title={`Delete ${cat}`}
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -1318,8 +1492,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
               </div>
             </div>
 
-            {/* Modal Footer */}
-            <div className="pt-2 border-t border-card-border flex justify-end">
+            <div className="pt-2 border-t border-slate-700/60 flex justify-end">
               <button
                 type="button"
                 onClick={() => {
@@ -1327,7 +1500,9 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                   setCategoryModalError('');
                   setCategoryModalSuccess('');
                 }}
-                className="px-4 py-2 bg-card border border-card-border text-navy-muted hover:text-navy text-xs font-bold rounded-xl cursor-pointer"
+                className={`px-4 py-2 rounded-xl text-xs font-bold border transition-colors cursor-pointer ${
+                  isDark ? 'bg-[#142647] border-slate-700 text-slate-200 hover:bg-[#1a335e]' : 'bg-slate-100 border-slate-300 text-slate-800 hover:bg-slate-200'
+                }`}
               >
                 Done
               </button>

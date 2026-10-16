@@ -207,3 +207,164 @@ html {
   display: none !important;
 }
 
+/* =========================================================================
+   Rich Text Visual WYSIWYG Editor & Blog Reader High-Contrast Typography
+   ========================================================================= */
+.rich-editor-content,
+.blog-rendered-content {
+  line-height: 1.75;
+  color: #1e293b;
+}
+
+.rich-editor-content:empty:before {
+  content: attr(data-placeholder);
+  color: #94a3b8;
+  pointer-events: none;
+  display: block;
+}
+
+.rich-editor-content h1,
+.rich-editor-content h2,
+.blog-rendered-content h1,
+.blog-rendered-content h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.rich-editor-content h3,
+.rich-editor-content h4,
+.blog-rendered-content h3,
+.blog-rendered-content h4 {
+  font-size: 1.28rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 1.35rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+}
+
+.rich-editor-content p,
+.blog-rendered-content p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  min-height: 1.25rem;
+}
+
+.rich-editor-content hr,
+.blog-rendered-content hr {
+  margin: 1.75rem 0;
+  border: 0;
+  height: 1px;
+  background-color: #cbd5e1;
+}
+
+.rich-editor-content ul,
+.blog-rendered-content ul {
+  list-style-type: disc;
+  padding-left: 1.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.rich-editor-content ol,
+.blog-rendered-content ol {
+  list-style-type: decimal;
+  padding-left: 1.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.rich-editor-content li,
+.blog-rendered-content li {
+  margin: 0.35rem 0;
+}
+
+.rich-editor-content blockquote,
+.blog-rendered-content blockquote {
+  border-left: 4px solid #7e22ce;
+  padding: 0.75rem 1.25rem;
+  margin: 1.25rem 0;
+  font-style: italic;
+  background-color: #f5f3ff;
+  color: #3b0764;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.rich-editor-content .blog-callout-box,
+.blog-rendered-content .blog-callout-box {
+  border-left: 4px solid #7e22ce;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  background-color: #f8fafc;
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: #0f172a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.rich-editor-content a,
+.blog-rendered-content a {
+  text-decoration: underline;
+  font-weight: 600;
+  color: #6b21a8;
+  transition: opacity 0.2s;
+}
+
+.rich-editor-content a:hover,
+.blog-rendered-content a:hover {
+  color: #581c87;
+}
+
+/* Dark Mode Typography Overrides */
+.dark .rich-editor-content,
+.dark .blog-rendered-content {
+  color: #e2e8f0;
+}
+
+.dark .rich-editor-content h1,
+.dark .rich-editor-content h2,
+.dark .blog-rendered-content h1,
+.dark .blog-rendered-content h2,
+.dark .rich-editor-content h3,
+.dark .rich-editor-content h4,
+.dark .blog-rendered-content h3,
+.dark .blog-rendered-content h4 {
+  color: #ffffff;
+}
+
+.dark .rich-editor-content hr,
+.dark .blog-rendered-content hr {
+  background-color: #334155;
+}
+
+.dark .rich-editor-content blockquote,
+.dark .blog-rendered-content blockquote {
+  background-color: rgba(147, 51, 234, 0.16);
+  border-left-color: #c084fc;
+  color: #e9d5ff;
+}
+
+.dark .rich-editor-content .blog-callout-box,
+.dark .blog-rendered-content .blog-callout-box {
+  background-color: #0e1e38;
+  border-left-color: #c084fc;
+  color: #f1f5f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dark .rich-editor-content a,
+.dark .blog-rendered-content a {
+  color: #c084fc;
+}
+
+.dark .rich-editor-content a:hover,
+.dark .blog-rendered-content a:hover {
+  color: #e9d5ff;
+}
+
+
