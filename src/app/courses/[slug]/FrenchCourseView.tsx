@@ -722,7 +722,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
                   </div>
                   <div>
                     <span className="block text-[9px] sm:text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Duration</span>
-                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block">2 to 12 Months</span>
+                    <span className="text-[11px] sm:text-xs font-extrabold text-white mt-0.5 block">2 to 18 Months</span>
                   </div>
                 </div>
                 
@@ -1457,14 +1457,6 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
         </div>
       </section>
 
-      {/* WEBSITE CONTENT AND PROGRAM DISCLAIMER */}
-      <section className="bg-slate-50 dark:bg-[#020c1b] py-8 border-b border-card-border transition-colors duration-300">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-[11px] text-navy-muted leading-relaxed font-sans">
-            <strong>Website Content and Program Disclaimer:</strong> The French course syllabus and durations presented here are based on the course material supplied by The Global Language Academy. The DELF A1–B2 and DALF C1–C2 sections describe preparation programs and recommended course plans. They should not be interpreted as a guarantee of examination results or as a claim that the academy issues official DELF or DALF diplomas. The course brochure states that the syllabus is deliberately DALF-led for the advanced C1 and C2 preparation programs and is not an official FEI curriculum. Official DALF C1 and C2 diplomas are independent certifications aligned with the Common European Framework of Reference for Languages (CEFR). Course availability, batch timings, fees, and other enrolment details should be confirmed directly with The Global Language Academy.
-          </p>
-        </div>
-      </section>
 
       {/* FAQ ACCORDION */}
       <section className="bg-white dark:bg-[#00122E] text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">

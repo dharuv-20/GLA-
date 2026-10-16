@@ -322,13 +322,23 @@ export default function AboutPage() {
                   &ldquo;Education is the definitive pathway to unlocking youth potential worldwide. At TGLA, our purpose is not just to teach grammar rules, but to give each student the self-assurance, practical fluency, and accredited credentials needed to succeed globally.&rdquo;
                 </p>
 
-                <div className="border-t border-card-border/80 pt-4 flex items-center gap-4 relative z-10">
-                  <div className="w-12 h-12 rounded-2xl bg-purple text-white flex items-center justify-center font-bold font-display text-lg shadow-sm">
+                <div className="border-t border-card-border/80 pt-4 flex items-start sm:items-center gap-4 relative z-10">
+                  <div className="w-12 h-12 rounded-2xl bg-purple text-white flex items-center justify-center font-bold font-display text-lg shadow-sm shrink-0">
                     AR
                   </div>
-                  <div className="flex flex-col">
-                    <h4 className="text-base font-bold text-navy">Ms. Anuradhika Rana</h4>
-                    <p className="text-xs font-medium text-purple">Founder & Director, The Global Language Academy</p>
+                  <div className="flex flex-col gap-1 text-xs sm:text-sm">
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-extrabold text-purple tracking-wider text-[11px] sm:text-xs uppercase shrink-0">Name -</span>
+                      <span className="font-bold text-navy text-sm sm:text-base">Ms. Anuradhika Rana</span>
+                    </div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-extrabold text-purple tracking-wider text-[11px] sm:text-xs uppercase shrink-0">Des. -</span>
+                      <span className="font-medium text-navy-muted">Founder & Director</span>
+                    </div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-extrabold text-purple tracking-wider text-[11px] sm:text-xs uppercase shrink-0">Institute -</span>
+                      <span className="font-semibold text-navy">The Global Language Academy</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -374,7 +384,7 @@ export default function AboutPage() {
                     Our Vision
                   </h3>
                   <p className="text-sm sm:text-base text-navy-muted leading-relaxed mt-1">
-                    To provide quality language education that builds confidence, communication skills and global opportunities for every learner.
+                    To be a globally recognized center of linguistic excellence and cultural empowerment, equipping students, working professionals, and global aspirants with fluent cross-border communication skills, certified international credentials, and the self-assurance needed to unlock life-changing academic admissions, career growth, and international migration opportunities worldwide.
                   </p>
                 </div>
               </div>
@@ -401,7 +411,7 @@ export default function AboutPage() {
                     Our Mission
                   </h3>
                   <p className="text-sm sm:text-base text-navy-muted leading-relaxed mt-1">
-                    To deliver structured, practical and learner-focused training that helps students and professionals achieve their academic, professional and international goals.
+                    To deliver structured, CEFR-aligned language programs through certified native-fluent educators, rigorous diagnostic assessments, and immersive conversational practice. We are committed to fostering first-attempt international examination success, empowering intercultural confidence, and providing comprehensive visa and documentation guidance so every learner realizes their dream of global education and worldwide career advancement.
                   </p>
                 </div>
               </div>

@@ -794,7 +794,7 @@ export const coursesList: Course[] = [
     metaDescription: "Learn French with confidence at The Global Language Academy. Structured Inspire syllabus from A1 to B2 plus DALF C1 & C2 exam preparation in Delhi NCR.",
     shortDescription: "Learn French with confidence through structured learning, practical communication, and examination-focused preparation at The Global Language Academy.",
     longDescription: "Our French language courses are designed to help learners develop strong speaking, listening, reading, writing, pronunciation, grammar, and vocabulary skills for real-world communication and global opportunities. Follow the Inspire French series from A1 to B2, with specialized preparation for DALF C1 and C2.",
-    durationLabel: "2 - 12 Months",
+    durationLabel: "2 to 18 Months",
     nextBatchStartDate: "2026-09-10",
     maxClassSize: "5-7",
     levels: [
