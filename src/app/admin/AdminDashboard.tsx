@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   User, 
   LogOut, 
@@ -33,8 +34,6 @@ import {
   ShieldCheck,
   Eraser,
   Code,
-  Clock,
-  BookOpen,
   Key
 } from 'lucide-react';
 import { BlogPost } from '@/types';
@@ -72,6 +71,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
   const [saveStatus, setSaveStatus] = useState<{ type: 'success' | 'error' | 'loading' | null; message: string }>({ type: null, message: '' });
   const [sidebarSearch, setSidebarSearch] = useState('');
   const [sidebarCategoryFilter, setSidebarCategoryFilter] = useState('all');
+  const [mounted, setMounted] = useState(false);
 
   // Category modal state
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
@@ -97,6 +97,24 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
      window.location.hostname.endsWith('.local') ||
      Boolean(window.location.port) ||
      Boolean(user?.isLocalAdmin));
+
+  // Set mounted state
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  // Lock background scroll when any modal is open so it stays dead-center in the viewport
+  useEffect(() => {
+    if (isCategoryModalOpen || isGithubModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isCategoryModalOpen, isGithubModalOpen]);
 
   // Sync theme with localStorage and root HTML document class
   useEffect(() => {
@@ -400,6 +418,95 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
   const charCount = cleanPlainText.length;
   const autoCalculatedReadTime = `${Math.max(1, Math.ceil(wordCount / 180))} min read`;
 
+  // Sync Categories to Both Local Disk & Remote Git (Ensures main blog page is updated)
+  const syncCategoriesToRemote = async (updatedCategories: string[]) => {
+    // 1. Always call local API route
+    try {
+      await fetch('/api/categories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ categories: updatedCategories })
+      });
+    } catch (err) {
+      console.warn('Local categories sync error:', err);
+    }
+
+    // 2. If in production with GitHub token, commit directly to GitHub repository
+    if (githubToken) {
+      try {
+        const ghRepo = 'dharuv-20/GLA-';
+        const fileUrl = `https://api.github.com/repos/${ghRepo}/contents/src/content/categories.json`;
+        
+        let sha: string | null = null;
+        const checkRes = await fetch(fileUrl, {
+          headers: {
+            Authorization: `Bearer ${githubToken}`,
+            Accept: 'application/vnd.github.v3+json'
+          }
+        });
+        if (checkRes.ok) {
+          const fileData = await checkRes.json();
+          sha = fileData.sha;
+        }
+
+        const encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(updatedCategories, null, 2))));
+        const payload: any = {
+          message: 'cms: sync categories list with main blog page',
+          content: encodedContent,
+          branch: 'main'
+        };
+        if (sha) payload.sha = sha;
+
+        await fetch(fileUrl, {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${githubToken}`,
+            'Content-Type': 'application/json',
+            Accept: 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn('GitHub categories sync error:', err);
+      }
+    } else if (!isLocalhost && user) {
+      // 3. Or if in production with Netlify Identity, commit via Git Gateway
+      try {
+        const token = await getFreshToken(user);
+        if (token) {
+          const gatewayUrl = `/.netlify/git/github/contents/src/content/categories.json`;
+          let sha: string | null = null;
+          const checkRes = await fetch(gatewayUrl, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          if (checkRes.ok) {
+            const fileData = await checkRes.json();
+            sha = fileData.sha;
+          }
+
+          const encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(updatedCategories, null, 2))));
+          const payload: any = {
+            message: 'cms: sync categories list with main blog page',
+            content: encodedContent,
+            branch: 'main'
+          };
+          if (sha) payload.sha = sha;
+
+          await fetch(gatewayUrl, {
+            method: 'PUT',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+        }
+      } catch (err) {
+        console.warn('Netlify Git Gateway categories sync error:', err);
+      }
+    }
+  };
+
   // Category Manager Methods
   const handleAddCategory = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -422,16 +529,10 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     setNewCategoryName('');
 
     try {
-      const res = await fetch('/api/categories', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ categories: updated })
-      });
-      if (res.ok) {
-        setCategoryModalSuccess(`Category "${trimmed}" added successfully!`);
-      }
+      await syncCategoriesToRemote(updated);
+      setCategoryModalSuccess(`Category "${trimmed}" added and synced with main blog page!`);
     } catch (err: any) {
-      console.error('Failed to sync categories:', err);
+      console.error('Failed to sync category:', err);
     }
   };
 
@@ -440,9 +541,9 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     setCategoryModalSuccess('');
 
     const countUsing = posts.filter(p => p.category === catToDelete).length;
-    let confirmMsg = `Are you sure you want to delete the category "${catToDelete}"?`;
+    let confirmMsg = `Are you sure you want to delete "${catToDelete}"?`;
     if (countUsing > 0) {
-      confirmMsg += `\nWarning: ${countUsing} existing post(s) are currently assigned to this category.`;
+      confirmMsg += `\nWarning: ${countUsing} existing post(s) are currently tagged with this category.`;
     }
 
     if (!window.confirm(confirmMsg)) return;
@@ -455,16 +556,10 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     }
 
     try {
-      const res = await fetch('/api/categories', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ categories: updated })
-      });
-      if (res.ok) {
-        setCategoryModalSuccess(`Category "${catToDelete}" removed.`);
-      }
+      await syncCategoriesToRemote(updated);
+      setCategoryModalSuccess(`Category "${catToDelete}" removed from website!`);
     } catch (err: any) {
-      console.error('Failed to sync categories deletion:', err);
+      console.error('Failed to sync category removal:', err);
     }
   };
 
@@ -475,7 +570,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     setGithubToken(trimmed);
     if (trimmed) {
       localStorage.setItem('gla_github_token', trimmed);
-      setTokenSuccess('GitHub Access Token saved successfully! Future publishes will sync directly to GitHub.');
+      setTokenSuccess('GitHub Access Token saved permanently! Future publishes will sync directly to GitHub.');
     } else {
       localStorage.removeItem('gla_github_token');
       setTokenSuccess('Token cleared. Using Netlify Git Gateway.');
@@ -851,10 +946,10 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
               Global Language Academy
             </span>
             <h1 className={`text-2xl font-extrabold tracking-tight font-display ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Academy Blog Control Panel
+              GLA Control Panel
             </h1>
             <p className="text-xs text-slate-400 dark:text-slate-300 leading-relaxed">
-              Sign in to manage academic articles, write with the visual rich text editor, and organize blog categories.
+              Sign in to manage academic articles, write study guides, and organize blog categories.
             </p>
           </div>
 
@@ -897,16 +992,13 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
           </span>
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
-              <h1 className={`text-sm font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                GLA Academy Blog Studio
+              <h1 className={`text-base font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                GLA
               </h1>
-              <span className="text-[10px] bg-purple/20 text-purple-300 border border-purple/40 px-2 py-0.5 rounded-full font-bold">
-                CMS v2.5 Visual
+              <span className="text-[11px] text-slate-400 font-medium hidden sm:inline">
+                Global Language Academy
               </span>
             </div>
-            <span className="text-[11px] text-slate-400 hidden sm:inline">
-              Visual WYSIWYG editor • Zero hashtags • High-contrast dark & light modes
-            </span>
           </div>
         </div>
 
@@ -1101,7 +1193,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                   Select an Article or Start a New One
                 </h2>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Choose a published article from the sidebar to edit its text, or click &ldquo;Write New Article&rdquo; to draft and publish a fresh educational guide with our dedicated visual text editor.
+                  Choose a published article from the sidebar to edit its text, or click &ldquo;Write New Article&rdquo; to publish a fresh guide.
                 </p>
               </div>
               <button
@@ -1321,7 +1413,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                       />
                     </div>
 
-                    {/* Dedicated Visual WYSIWYG Text Editor */}
+                    {/* Dedicated Visual Text Editor */}
                     <div className="flex flex-col gap-1.5">
                       <div className="flex justify-between items-center">
                         <label className={theme.label}>
@@ -1494,7 +1586,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                           suppressContentEditableWarning
                           onInput={handleEditorInput}
                           onKeyDown={handleKeyDown}
-                          data-placeholder="Start writing your article... Highlight text and click H1, Bold, or Line Divider. Everything is formatted visually without cryptic hashtags."
+                          data-placeholder="Start typing your article here... Use the toolbar above to format headings, bold, italic, lists, and dividers."
                           className={`w-full p-5 sm:p-6 border border-t-0 rounded-b-xl min-h-[440px] focus:outline-none transition-colors rich-editor-content ${theme.editorBg}`}
                         />
                       ) : (
@@ -1508,7 +1600,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
 
                       {/* Editor Sub-Footer Guide */}
                       <div className="flex justify-between items-center text-[11px] text-slate-400 pt-1 px-1">
-                        <span>✨ Visual Mode: Formatted text appears on screen exactly as students see it.</span>
+                        <span>Global Language Academy Article Publisher</span>
                         <span>{autoCalculatedReadTime}</span>
                       </div>
                     </div>
@@ -1602,9 +1694,9 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
         </main>
       </div>
 
-      {/* Category Manager Modal */}
-      {isCategoryModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
+      {/* Category Manager Modal - Rendered via Portal directly into document.body to ensure dead-center positioning */}
+      {isCategoryModalOpen && mounted && createPortal(
+        <div className="fixed inset-0 z-[99999] bg-black/75 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
           <div className={`${isDark ? 'bg-[#0d182e] border-slate-700 text-white' : 'bg-white border-slate-200 text-slate-900'} border rounded-2xl w-full max-w-lg p-6 flex flex-col gap-5 shadow-2xl relative animate-scale-up`}>
             
             <div className="flex justify-between items-center border-b border-slate-700/60 pb-3">
@@ -1619,7 +1711,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                   setCategoryModalError('');
                   setCategoryModalSuccess('');
                 }}
-                className="p-1 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white"
+                className="p-1 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1657,13 +1749,13 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
               </button>
             </form>
 
-            {/* Existing Categories List */}
+            {/* Existing Categories List with dedicated scroll bar */}
             <div className="flex flex-col gap-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                 Active Categories ({categories.length})
               </span>
               
-              <div className="max-h-60 overflow-y-auto flex flex-col gap-2 pr-1">
+              <div className="max-h-64 overflow-y-auto flex flex-col gap-2 pr-1">
                 {categories.map((cat) => {
                   const usageCount = posts.filter(p => p.category === cat).length;
                   return (
@@ -1711,12 +1803,13 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
             </div>
 
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
-      {/* Git Connection / GitHub Token Settings Modal */}
-      {isGithubModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
+      {/* Git Connection / GitHub Token Settings Modal - Rendered via Portal */}
+      {isGithubModalOpen && mounted && createPortal(
+        <div className="fixed inset-0 z-[99999] bg-black/75 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
           <div className={`${isDark ? 'bg-[#0d182e] border-slate-700 text-white' : 'bg-white border-slate-200 text-slate-900'} border rounded-2xl w-full max-w-lg p-6 flex flex-col gap-5 shadow-2xl relative animate-scale-up`}>
             
             <div className="flex justify-between items-center border-b border-slate-700/60 pb-3">
@@ -1727,7 +1820,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
               <button
                 type="button"
                 onClick={() => setIsGithubModalOpen(false)}
-                className="p-1 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white"
+                className="p-1 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1805,7 +1898,8 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
             </div>
 
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
     </div>

@@ -18,10 +18,30 @@ export default function BlogsClient({ initialPosts, initialCategories }: BlogsCl
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
   const [mounted, setMounted] = useState(false);
 
+  // Dynamic categories synced directly with admin portal choices
+  const [categories, setCategories] = useState<string[]>(() => {
+    if (initialCategories && initialCategories.length > 0) {
+      return ['all', ...initialCategories];
+    }
+    return ['all'];
+  });
+
   // Set mounted state on client mount
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
+  }, []);
+
+  // Sync latest categories from the API on mount so changes in admin reflect immediately
+  useEffect(() => {
+    fetch('/api/categories')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.success && Array.isArray(data.categories) && data.categories.length > 0) {
+          setCategories(['all', ...data.categories]);
+        }
+      })
+      .catch(err => console.warn('Could not sync dynamic categories:', err));
   }, []);
 
   // Lock background scroll when the modal is active
@@ -42,13 +62,6 @@ export default function BlogsClient({ initialPosts, initialCategories }: BlogsCl
     const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
-
-  const categories = [
-    'all',
-    ...(initialCategories && initialCategories.length > 0
-      ? initialCategories
-      : ['IELTS', 'PTE', 'German', 'French', 'Japanese', 'Spoken English', 'Study Abroad', 'Career Guidance'])
-  ];
 
   return (
     <div className="flex flex-col text-slate-900 dark:text-slate-100 relative transition-colors duration-300">
@@ -72,9 +85,9 @@ export default function BlogsClient({ initialPosts, initialCategories }: BlogsCl
       <section className="bg-slate-50 dark:bg-[#070e1b] py-14 sm:py-16 transition-colors duration-300 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
           
-          {/* Controls Bar (Search + Category Filter) */}
+          {/* Controls Bar (Search + Dynamic Category Filter) */}
           <div className="flex flex-col md:flex-row gap-5 justify-between items-center bg-white dark:bg-[#0b162c] p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-            {/* Category Tabs */}
+            {/* Category Tabs - Exactly the categories chosen in the Admin Portal */}
             <div className="flex flex-wrap gap-2 w-full md:w-auto">
               {categories.map((cat) => (
                 <button
