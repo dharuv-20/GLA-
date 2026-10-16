@@ -346,8 +346,11 @@ const germanSyllabus: SyllabusLevel[] = [
         grammatik: ["Final evaluation & course completion"]
       }
     ]
-  },
-  {
+  }
+];
+
+const advancedGermanSyllabus: Record<'C1' | 'C2', SyllabusLevel> = {
+  C1: {
     code: "C1",
     name: "Advanced German C1",
     duration: "3 Months",
@@ -428,7 +431,7 @@ const germanSyllabus: SyllabusLevel[] = [
       }
     ]
   },
-  {
+  C2: {
     code: "C2",
     name: "Advanced German Mastery C2",
     duration: "5 Months",
@@ -557,19 +560,29 @@ const germanSyllabus: SyllabusLevel[] = [
       }
     ]
   }
-];
+};
 
 export default function GermanCourseView({ course, relatedCourses }: GermanCourseViewProps) {
   const [activeLevelIdx, setActiveLevelIdx] = useState(0);
   const [expandedWeeks, setExpandedWeeks] = useState<Record<string, boolean>>({ "0-Week 1": true });
   const [curriculumTab, setCurriculumTab] = useState<'C1' | 'C2'>('C1');
+  const [expandedAdvancedWeeks, setExpandedAdvancedWeeks] = useState<Record<string, boolean>>({ "C1-Week 1": true, "C2-Week 1": true });
   const [activeReviewIdx, setActiveReviewIdx] = useState(0);
 
   const activeLevel = germanSyllabus[activeLevelIdx];
+  const activeAdvanced = advancedGermanSyllabus[curriculumTab];
 
   const toggleWeek = (levelIdx: number, weekNum: string) => {
     const key = `${levelIdx}-${weekNum}`;
     setExpandedWeeks(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
+  const toggleAdvancedWeek = (levelCode: 'C1' | 'C2', weekNum: string) => {
+    const key = `${levelCode}-${weekNum}`;
+    setExpandedAdvancedWeeks(prev => ({
       ...prev,
       [key]: !prev[key]
     }));
@@ -949,7 +962,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
             <span className="text-xs font-bold uppercase tracking-widest text-purple">Syllabus</span>
             <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">Level-by-Level Weekly Curriculum</h2>
             <p className="text-sm text-navy-muted leading-relaxed">
-              Explore our structured 11-month timeline. Click on the tabs to select your CEFR target level.
+              Explore our structured 11-month timeline (A1 - B2). Click on the tabs to select your CEFR target level.
             </p>
           </div>
 
@@ -1121,8 +1134,327 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
         </div>
       </section>
 
-      {/* 5. Expectation and Goals Card Grid */}
+      {/* 5. Advanced Program Objectives & Rhythms */}
       <section className="bg-section-alt py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+          
+          <div className="text-center max-w-3xl mx-auto flex flex-col gap-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-purple">Advanced Framework</span>
+            <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">C1 & C2 Curriculum Objectives & Study Rhythm</h2>
+            <p className="text-sm text-navy-muted leading-relaxed">
+              Designed to take learners beyond basic correctness towards precision, stylistic control, and professional mastery.
+            </p>
+          </div>
+
+          {/* Block 1: Language Area Objectives Card */}
+          <div className="bg-card border border-card-border p-6 sm:p-8 rounded-2xl flex flex-col gap-6 shadow-sm transition-colors duration-300">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-2 border-b border-card-border">
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">CEFR Assessment Specifications</span>
+                <h3 className="text-base font-extrabold text-navy font-display uppercase tracking-wide">Language Area Objectives</h3>
+              </div>
+
+              {/* C1 vs C2 switch pills */}
+              <div className="flex bg-section-alt p-1.5 rounded-xl border border-card-border w-full sm:w-auto sm:min-w-[240px]">
+                <button
+                  type="button"
+                  onClick={() => setCurriculumTab('C1')}
+                  className={`flex-1 py-2 px-4 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer text-center ${
+                    curriculumTab === 'C1' ? 'bg-purple text-white shadow-sm' : 'text-navy-muted hover:text-navy'
+                  }`}
+                >
+                  C1 Advanced
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setCurriculumTab('C2')}
+                  className={`flex-1 py-2 px-4 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer text-center ${
+                    curriculumTab === 'C2' ? 'bg-purple text-white shadow-sm' : 'text-navy-muted hover:text-navy'
+                  }`}
+                >
+                  C2 Mastery
+                </button>
+              </div>
+            </div>
+
+            {/* Dynamic rendering based on active tab */}
+            <div className="flex flex-col gap-4 animate-fade-in">
+              {curriculumTab === 'C1' ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="p-4 bg-section-alt rounded-xl border border-card-border flex flex-col gap-1.5">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Sprechen (Speaking)</span>
+                    <p className="text-[11px] text-navy-muted leading-relaxed font-semibold">Present structured arguments, participate in complex discussions, mediate viewpoints, and use nuanced Redemittel.</p>
+                  </div>
+                  <div className="p-4 bg-section-alt rounded-xl border border-card-border flex flex-col gap-1.5">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Hören (Listening)</span>
+                    <p className="text-[11px] text-navy-muted leading-relaxed font-semibold">Understand radio features, lectures, interviews, and extended discussions; identify subtle attitudes and implications.</p>
+                  </div>
+                  <div className="p-4 bg-section-alt rounded-xl border border-card-border flex flex-col gap-1.5">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Lesen (Reading)</span>
+                    <p className="text-[11px] text-navy-muted leading-relaxed font-semibold">Work with journalistic, academic, literary and informational texts; infer hidden meanings and argumentation structure.</p>
+                  </div>
+                  <div className="p-4 bg-section-alt rounded-xl border border-card-border flex flex-col gap-1.5">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Schreiben (Writing)</span>
+                    <p className="text-[11px] text-navy-muted leading-relaxed font-semibold">Write structured comments, summaries, reviews, and cohesive argumentative texts with clear paragraph architecture.</p>
+                  </div>
+                  <div className="p-4 bg-section-alt rounded-xl border border-card-border flex flex-col gap-1.5 sm:col-span-2 lg:col-span-2">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Sprachmittlung & Grammatik (Mediation & Grammar)</span>
+                    <p className="text-[11px] text-navy-muted leading-relaxed font-semibold">Summarize and transfer complex data, reach workable consensus; consolidate nominal/verbal styles, reported speech, and complex clause relationships.</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="p-4 bg-section-alt rounded-xl border border-card-border flex flex-col gap-1.5">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Kommunikation (Speaking)</span>
+                    <p className="text-[11px] text-navy-muted leading-relaxed font-semibold">Express complex ideas precisely, flexibly and fluently; adapt register and delivery to formal, academic, or conversational contexts.</p>
+                  </div>
+                  <div className="p-4 bg-section-alt rounded-xl border border-card-border flex flex-col gap-1.5">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Verständnis (Listening & Reading)</span>
+                    <p className="text-[11px] text-navy-muted leading-relaxed font-semibold">Understand long, demanding texts/speeches, including implicit meanings, irony, speaker attitudes, and specialized academic terms.</p>
+                  </div>
+                  <div className="p-4 bg-section-alt rounded-xl border border-card-border flex flex-col gap-1.5">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Schreiben (Writing)</span>
+                    <p className="text-[11px] text-navy-muted leading-relaxed font-semibold">Produce sophisticated, highly argued texts with stylistic control, precise vocabulary, and effective cohesive transitions.</p>
+                  </div>
+                  <div className="p-4 bg-section-alt rounded-xl border border-card-border flex flex-col gap-1.5">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Sprachmittlung (Mediation)</span>
+                    <p className="text-[11px] text-navy-muted leading-relaxed font-semibold">Synthesize information from multiple sources and communicate details selectively for specific target audiences and purposes.</p>
+                  </div>
+                  <div className="p-4 bg-section-alt rounded-xl border border-card-border flex flex-col gap-1.5 sm:col-span-2 lg:col-span-2">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Stil & Grammatik (Style & Grammar)</span>
+                    <p className="text-[11px] text-navy-muted leading-relaxed font-semibold">Move beyond correctness to precision. Focus on complex clause architectures, nominalization, collocations, idioms, register nuances, and paraphrasing.</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="border-t border-card-border pt-4 text-xs font-semibold text-navy-muted flex items-center gap-2">
+              <Check className="w-4 h-4 text-purple shrink-0" />
+              <span><strong>Evaluation:</strong> Assessed via weekly and biweekly checks, portfolio files, recorded speaking tasks, and C1/C2 mock examinations.</span>
+            </div>
+          </div>
+
+          {/* Block 2: Balanced 2-Column Grid: Study Rhythm & Self-Study Practice */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* Learning Rhythm Card */}
+            <div className="bg-card border border-card-border p-6 sm:p-7 rounded-2xl flex flex-col gap-4 shadow-sm h-full transition-colors duration-300">
+              <div className="flex items-center gap-2.5 text-purple pb-2 border-b border-card-border">
+                <div className="p-2 rounded-xl bg-purple/10 border border-purple/20">
+                  <Calendar className="w-4 h-4 text-purple" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple block">Framework Guidance</span>
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-navy">Recommended Study Rhythm</h4>
+                </div>
+              </div>
+              <ul className="flex flex-col gap-3 text-xs text-navy font-semibold font-sans mt-1">
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <span className="text-purple mt-0.5 font-bold">•</span>
+                  <span>3–4 lessons per week depending on learner availability</span>
+                </li>
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <span className="text-purple mt-0.5 font-bold">•</span>
+                  <span>Every chapter follows: Vocabulary → Input → Grammar → Output → Mediation</span>
+                </li>
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <span className="text-purple mt-0.5 font-bold">•</span>
+                  <span>Individualized feedback logs focusing on recurring grammar & register errors</span>
+                </li>
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <span className="text-purple mt-0.5 font-bold">•</span>
+                  <span>Exam prep integrated starting Week 1 (intensifying in final weeks)</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Recommended Additional Practice */}
+            <div className="bg-card border border-card-border p-6 sm:p-7 rounded-2xl flex flex-col gap-4 shadow-sm h-full transition-colors duration-300">
+              <div className="flex items-center gap-2.5 text-purple pb-2 border-b border-card-border">
+                <div className="p-2 rounded-xl bg-purple/10 border border-purple/20">
+                  <Clock className="w-4 h-4 text-purple" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple block">Self-Paced Mastery</span>
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-navy">Recommended Self-Study Practice</h4>
+                </div>
+              </div>
+              <ul className="flex flex-col gap-3 text-xs text-navy font-semibold font-sans mt-1">
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <span className="text-purple mt-0.5 font-bold">•</span>
+                  <span><strong>Daily Practice:</strong> 20–30 minutes of advanced input (news, podcasts, essays)</span>
+                </li>
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <span className="text-purple mt-0.5 font-bold">•</span>
+                  <span><strong>Weekly Writing:</strong> Composing one 250–350 word structured C1/C2 text for review</span>
+                </li>
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <span className="text-purple mt-0.5 font-bold">•</span>
+                  <span><strong>Weekly Speaking:</strong> Record a 5–10 minute presentation or argument for self-review</span>
+                </li>
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <span className="text-purple mt-0.5 font-bold">•</span>
+                  <span><strong>Active Drills:</strong> Paraphrasing, synonym work, and sentence transformations</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          {/* Block 3: Full-Width C1 & C2 Weekly Curriculum Breakdown */}
+          <div className="flex flex-col gap-6">
+            {/* Metadata Banner */}
+            <div className="p-6 rounded-2xl bg-card border border-card-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-colors duration-300 shadow-sm">
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">
+                    Advanced Syllabus Roadmap
+                  </span>
+                  <span className="px-2 py-0.5 rounded-full bg-purple text-white text-[10px] font-extrabold uppercase tracking-wider">
+                    {activeAdvanced.code}
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-navy">{activeAdvanced.name}</h3>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-3 py-1.5 rounded-xl bg-section-alt border border-card-border text-navy text-xs font-semibold">
+                  ⏳ {activeAdvanced.duration}
+                </span>
+                <span className="px-3 py-1.5 rounded-xl bg-section-alt border border-card-border text-navy-muted text-xs font-semibold">
+                  📖 {activeAdvanced.books.join(", ")}
+                </span>
+              </div>
+            </div>
+
+            {/* Slogan Banner */}
+            <div className="relative p-6 rounded-2xl bg-gradient-to-r from-purple/10 to-purple/5 border border-purple/20 shadow-sm flex items-center gap-4">
+              <span className="p-3 bg-purple/20 border border-purple/30 rounded-xl text-purple shrink-0">
+                <Award className="w-5 h-5" />
+              </span>
+              <p className="text-xs sm:text-sm font-semibold italic text-navy leading-relaxed">
+                "{activeAdvanced.slogan}"
+              </p>
+            </div>
+
+            {/* Weekly Breakdown info banner */}
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-navy block">Weekly Schedule Breakdown</span>
+                <span className="text-[10px] font-bold text-purple uppercase tracking-wider bg-purple/10 px-2.5 py-0.5 rounded-full border border-purple/20">
+                  {activeAdvanced.weeks.length} Weeks
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-navy-muted font-medium bg-purple/5 border border-purple-200/20 p-3 rounded-xl">
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-purple text-white font-extrabold text-[10px] shrink-0 animate-bounce">i</span>
+                <span>Click on any week bar below to expand and view the vocabulary & grammar syllabus.</span>
+              </div>
+            </div>
+
+            {/* Weeks Accordion list */}
+            <div className="flex flex-col gap-4">
+              {activeAdvanced.weeks.map((week) => {
+                const key = `${curriculumTab}-${week.weekNum}`;
+                const isExpanded = expandedAdvancedWeeks[key] ?? false;
+
+                return (
+                  <div
+                    key={week.weekNum}
+                    className={`border transition-all duration-300 rounded-xl overflow-hidden mb-1 ${
+                      isExpanded
+                        ? 'border-purple-300/30 dark:border-purple/35 shadow-md border-l-4 border-l-purple scale-[1.002]'
+                        : 'border-card-border shadow-sm border-l-4 border-l-transparent bg-card hover:scale-[1.001] hover:shadow-md'
+                    }`}
+                  >
+                    {/* Accordion Header */}
+                    <button
+                      onClick={() => toggleAdvancedWeek(curriculumTab, week.weekNum)}
+                      type="button"
+                      className={`group w-full p-5 flex justify-between items-center text-left transition-colors cursor-pointer border-b border-card-border ${
+                        isExpanded
+                          ? 'bg-purple/5 dark:bg-purple/10'
+                          : 'bg-card hover:bg-purple/[0.02]'
+                      }`}
+                    >
+                      <div className="flex items-start sm:items-center gap-3">
+                        <span className={`px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-widest shadow-sm shrink-0 whitespace-nowrap transition-colors duration-200 ${
+                          isExpanded ? 'bg-purple text-white' : 'bg-purple/10 text-purple border border-purple/20'
+                        }`}>
+                          {week.weekNum}
+                        </span>
+                        <span className="text-xs font-bold text-navy pt-0.5 sm:pt-0 group-hover:text-purple transition-colors duration-200">
+                          {week.title}
+                        </span>
+                      </div>
+                      
+                      <div className="flex items-center gap-2">
+                        <span className="hidden sm:inline text-[9px] uppercase font-bold text-navy-muted tracking-wider group-hover:text-purple transition-colors duration-200">
+                          {isExpanded ? 'Click to collapse' : 'Click to expand'}
+                        </span>
+                        <div className={`p-1.5 rounded-full border transition-all duration-300 ${
+                          isExpanded 
+                            ? 'bg-purple border-purple text-white' 
+                            : 'bg-purple/10 border-purple/20 text-purple group-hover:bg-purple group-hover:text-white group-hover:border-purple'
+                        }`}>
+                          {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                        </div>
+                      </div>
+                    </button>
+
+                    {/* Accordion Body */}
+                    {isExpanded && (
+                      <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-5 border-t border-card-border bg-section-alt/30 transition-all duration-350">
+                        {/* Vocabulary / Vokabel */}
+                        <div className="p-5 rounded-2xl bg-gradient-to-br from-purple-light/20 to-card dark:from-purple/5 dark:to-card border border-purple-200/20 shadow-sm flex flex-col gap-3.5 hover-lift transition-all duration-200">
+                          <div className="flex items-center gap-2 pb-2.5 border-b border-card-border">
+                            <span className="p-1.5 rounded-lg bg-purple/10 text-purple">
+                              <BookOpen className="w-3.5 h-3.5" />
+                            </span>
+                            <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">
+                              Vocabulary & Communication Focus
+                            </span>
+                          </div>
+                          <ul className="flex flex-col gap-2.5 text-xs text-navy font-semibold">
+                            {week.vokabel.map((item, iIdx) => (
+                              <li key={iIdx} className="flex items-start gap-2 leading-relaxed">
+                                <span className="text-purple font-bold">•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Grammar & Syntax Focus */}
+                        <div className="p-5 rounded-2xl bg-gradient-to-br from-blue-50/20 to-card dark:from-blue-950/10 dark:to-card border border-blue-200/20 shadow-sm flex flex-col gap-3.5 hover-lift transition-all duration-200">
+                          <div className="flex items-center gap-2 pb-2.5 border-b border-card-border">
+                            <span className="p-1.5 rounded-lg bg-blue-500/10 text-blue-500">
+                              <CheckCircle className="w-3.5 h-3.5" />
+                            </span>
+                            <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-500">
+                              Grammar & Syntax Focus
+                            </span>
+                          </div>
+                          <ul className="flex flex-col gap-2.5 text-xs text-navy font-semibold">
+                            {week.grammatik.map((item, iIdx) => (
+                              <li key={iIdx} className="flex items-start gap-2 leading-relaxed">
+                                <span className="text-blue-500 font-bold">•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 6. Course Goals (Moved directly above Certification Guide) */}
+      <section className="bg-card py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -1137,193 +1469,31 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
               </p>
             </div>
             
-            <div className="lg:col-span-7 bg-card border border-card-border p-8 rounded-2xl shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-4 transition-colors duration-300">
-              <div className="flex items-center gap-3 p-3 bg-section-alt rounded-lg border border-card-border">
+            <div className="lg:col-span-7 bg-section-alt border border-card-border p-8 rounded-2xl shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-4 transition-colors duration-300">
+              <div className="flex items-center gap-3 p-3 bg-card rounded-lg border border-card-border">
                 <Check className="w-4.5 h-4.5 text-purple shrink-0" />
                 <span className="text-xs font-semibold text-navy leading-normal">Communicate confidently in basic everyday German</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-section-alt rounded-lg border border-card-border">
+              <div className="flex items-center gap-3 p-3 bg-card rounded-lg border border-card-border">
                 <Check className="w-4.5 h-4.5 text-purple shrink-0" />
                 <span className="text-xs font-semibold text-navy leading-normal">Understand common expressions & idioms</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-section-alt rounded-lg border border-card-border">
+              <div className="flex items-center gap-3 p-3 bg-card rounded-lg border border-card-border">
                 <Check className="w-4.5 h-4.5 text-purple shrink-0" />
                 <span className="text-xs font-semibold text-navy leading-normal">Form correct sentences in speaking & writing</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-section-alt rounded-lg border border-card-border">
+              <div className="flex items-center gap-3 p-3 bg-card rounded-lg border border-card-border">
                 <Check className="w-4.5 h-4.5 text-purple shrink-0" />
                 <span className="text-xs font-semibold text-navy leading-normal">Develop strong pronunciation & phonetic stress</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-section-alt rounded-lg border border-card-border col-span-1 sm:col-span-2">
+              <div className="flex items-center gap-3 p-3 bg-card rounded-lg border border-card-border col-span-1 sm:col-span-2">
                 <Check className="w-4.5 h-4.5 text-purple shrink-0" />
                 <span className="text-xs font-semibold text-navy leading-normal">Structure logical arguments, draft well-organized texts, and follow demanding academic lectures (C1 Level)</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-section-alt rounded-lg border border-card-border col-span-1 sm:col-span-2">
+              <div className="flex items-center gap-3 p-3 bg-card rounded-lg border border-card-border col-span-1 sm:col-span-2">
                 <Check className="w-4.5 h-4.5 text-purple shrink-0" />
                 <span className="text-xs font-semibold text-navy leading-normal">Communicate with absolute precision and fluency, adapting register to advanced professional and scientific settings (C2 Mastery)</span>
               </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* 5b. Advanced Program Objectives & Rhythms */}
-      <section className="bg-card py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">Advanced Framework</span>
-            <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">C1 & C2 Curriculum Objectives & Study Rhythm</h2>
-            <p className="text-sm text-navy-muted leading-relaxed">
-              Designed to take learners beyond basic correctness towards precision, stylistic control, and professional mastery.
-            </p>
-          </div>
-
-          {/* Grid layout for curriculum breakdown and recommended practice */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Left Column: Objectives Grid */}
-            <div className="lg:col-span-7 bg-section-alt border border-card-border p-6 sm:p-8 rounded-2xl flex flex-col gap-6 shadow-sm">
-              <div className="flex flex-col gap-1.5">
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">CEFR Assessment Specifications</span>
-                <h3 className="text-base font-extrabold text-navy font-display uppercase tracking-wide">Language Area Objectives</h3>
-              </div>
-
-              {/* C1 vs C2 switch pills */}
-              <div className="flex bg-card p-1.5 rounded-xl border border-card-border max-w-xs">
-                <button
-                  type="button"
-                  onClick={() => setCurriculumTab('C1')}
-                  className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer ${
-                    curriculumTab === 'C1' ? 'bg-purple text-white shadow-sm' : 'text-navy-muted hover:text-navy'
-                  }`}
-                >
-                  C1 Advanced
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setCurriculumTab('C2')}
-                  className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer ${
-                    curriculumTab === 'C2' ? 'bg-purple text-white shadow-sm' : 'text-navy-muted hover:text-navy'
-                  }`}
-                >
-                  C2 Mastery
-                </button>
-              </div>
-
-              {/* Dynamic rendering based on active tab */}
-              <div className="flex flex-col gap-4 animate-fade-in">
-                {curriculumTab === 'C1' ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="p-4 bg-card rounded-xl border border-card-border flex flex-col gap-1.5">
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Sprechen (Speaking)</span>
-                      <p className="text-[10px] text-navy-muted leading-relaxed font-semibold">Present structured arguments, participate in complex discussions, mediate viewpoints, and use nuanced Redemittel.</p>
-                    </div>
-                    <div className="p-4 bg-card rounded-xl border border-card-border flex flex-col gap-1.5">
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Hören (Listening)</span>
-                      <p className="text-[10px] text-navy-muted leading-relaxed font-semibold">Understand radio features, lectures, interviews, and extended discussions; identify subtle attitudes and implications.</p>
-                    </div>
-                    <div className="p-4 bg-card rounded-xl border border-card-border flex flex-col gap-1.5">
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Lesen (Reading)</span>
-                      <p className="text-[10px] text-navy-muted leading-relaxed font-semibold">Work with journalistic, academic, literary and informational texts; infer hidden meanings and argumentation structure.</p>
-                    </div>
-                    <div className="p-4 bg-card rounded-xl border border-card-border flex flex-col gap-1.5">
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Schreiben (Writing)</span>
-                      <p className="text-[10px] text-navy-muted leading-relaxed font-semibold">Write structured comments, summaries, reviews, and cohesive argumentative texts with clear paragraph architecture.</p>
-                    </div>
-                    <div className="p-4 bg-card rounded-xl border border-card-border flex flex-col gap-1.5 sm:col-span-2">
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Sprachmittlung & Grammatik (Mediation & Grammar)</span>
-                      <p className="text-[10px] text-navy-muted leading-relaxed font-semibold">Summarize and transfer complex data, reach workable consensus; consolidate nominal/verbal styles, reported speech, and complex clause relationships.</p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="p-4 bg-card rounded-xl border border-card-border flex flex-col gap-1.5">
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Kommunikation (Speaking)</span>
-                      <p className="text-[10px] text-navy-muted leading-relaxed font-semibold">Express complex ideas precisely, flexibly and fluently; adapt register and delivery to formal, academic, or conversational contexts.</p>
-                    </div>
-                    <div className="p-4 bg-card rounded-xl border border-card-border flex flex-col gap-1.5">
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Verständnis (Listening & Reading)</span>
-                      <p className="text-[10px] text-navy-muted leading-relaxed font-semibold">Understand long, demanding texts/speeches, including implicit meanings, irony, speaker attitudes, and specialized academic terms.</p>
-                    </div>
-                    <div className="p-4 bg-card rounded-xl border border-card-border flex flex-col gap-1.5">
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Schreiben (Writing)</span>
-                      <p className="text-[10px] text-navy-muted leading-relaxed font-semibold">Produce sophisticated, highly argued texts with stylistic control, precise vocabulary, and effective cohesive transitions.</p>
-                    </div>
-                    <div className="p-4 bg-card rounded-xl border border-card-border flex flex-col gap-1.5">
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Sprachmittlung (Mediation)</span>
-                      <p className="text-[10px] text-navy-muted leading-relaxed font-semibold">Synthesize information from multiple sources and communicate details selectively for specific target audiences and purposes.</p>
-                    </div>
-                    <div className="p-4 bg-card rounded-xl border border-card-border flex flex-col gap-1.5 sm:col-span-2">
-                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple">Stil & Grammatik (Style & Grammar)</span>
-                      <p className="text-[10px] text-navy-muted leading-relaxed font-semibold">Move beyond correctness to precision. Focus on complex clause architectures, nominalization, collocations, idioms, register nuances, and paraphrasing.</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="border-t border-card-border pt-4 text-xs font-semibold text-navy-muted">
-                <strong>Evaluation:</strong> Assessed via weekly and biweekly checks, portfolio files, recorded speaking tasks, and C1/C2 mock examinations.
-              </div>
-            </div>
-
-            {/* Right Column: Rhythms & Practice */}
-            <div className="lg:col-span-5 flex flex-col gap-6">
-              
-              {/* Learning Rhythm Card */}
-              <div className="bg-card border border-card-border p-6 rounded-2xl flex flex-col gap-4 shadow-sm">
-                <div className="flex items-center gap-2 text-purple">
-                  <Calendar className="w-4.5 h-4.5" />
-                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-navy">Recommended Study Rhythm</h4>
-                </div>
-                <ul className="flex flex-col gap-3 text-xs text-navy font-semibold font-sans">
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-purple mt-0.5">•</span>
-                    <span>3–4 lessons per week depending on learner availability</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-purple mt-0.5">•</span>
-                    <span>Every chapter follows: Vocabulary → Input → Grammar → Output → Mediation</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-purple mt-0.5">•</span>
-                    <span>Individualized feedback logs focusing on recurring grammar & register errors</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-purple mt-0.5">•</span>
-                    <span>Exam prep integrated starting Week 1 (intensifying in final weeks)</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Recommended Additional Practice */}
-              <div className="bg-card border border-card-border p-6 rounded-2xl flex flex-col gap-4 shadow-sm">
-                <div className="flex items-center gap-2 text-purple">
-                  <Clock className="w-4.5 h-4.5" />
-                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-navy">Recommended Self-Study Practice</h4>
-                </div>
-                <ul className="flex flex-col gap-3 text-xs text-navy font-semibold font-sans">
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-purple mt-0.5">•</span>
-                    <span><strong>Daily Practice:</strong> 20–30 minutes of advanced input (news, podcasts, essays)</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-purple mt-0.5">•</span>
-                    <span><strong>Weekly Writing:</strong> Composing one 250–350 word structured C1/C2 text for review</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-purple mt-0.5">•</span>
-                    <span><strong>Weekly Speaking:</strong> Record a 5–10 minute presentation or argument for self-review</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-purple mt-0.5">•</span>
-                    <span><strong>Active Drills:</strong> Paraphrasing, synonym work, and sentence transformations</span>
-                  </li>
-                </ul>
-              </div>
-
             </div>
 
           </div>

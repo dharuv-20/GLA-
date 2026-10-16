@@ -315,8 +315,8 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
   // 3-Level Syllabus active tab
   const [activeLevelTab, setActiveLevelTab] = useState<number>(0);
   
-  // Add-on bundle package selector: 'core' | 'bundle' | 'personality'
-  const [selectedBundle, setSelectedBundle] = useState<'bundle' | 'core' | 'personality'>('bundle');
+  // Transformation pathway selector: 'combo' | 'core' | 'personality'
+  const [selectedPathway, setSelectedPathway] = useState<'combo' | 'core' | 'personality'>('combo');
   
   // Personality Development syllabus active month tab
   const [activePdMonth, setActivePdMonth] = useState<number>(0);
@@ -334,15 +334,15 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
 
   const currentLevel = spokenEnglishLevels[activeLevelTab];
 
-  // Helper for bundle WhatsApp message
-  const getBundleWhatsAppMessage = () => {
-    if (selectedBundle === 'bundle') {
-      return "Hi TGLA, I am interested in the Spoken English + Personality Development (Add-On Bundle). Please share batch timings and fees structure.";
+  // Helper for pathway WhatsApp message
+  const getPathwayWhatsAppMessage = () => {
+    if (selectedPathway === 'combo') {
+      return "Hi TGLA, I am interested in the Spoken English + Personality Development Comprehensive Program. Please share batch timings and fee structure.";
     }
-    if (selectedBundle === 'personality') {
-      return "Hi TGLA, I am interested in the Personality Development Course (Standalone for Working Professionals). Please share batch timings and fees structure.";
+    if (selectedPathway === 'personality') {
+      return "Hi TGLA, I am interested in the Personality Development Program (for Working Professionals). Please share batch timings and fee structure.";
     }
-    return "Hi TGLA, I am interested in the 3-Month Spoken English Course. Please share batch timings and fees structure.";
+    return "Hi TGLA, I am interested in the 3-Month Spoken English Course. Please share batch timings and fee structure.";
   };
 
   return (
@@ -520,9 +520,9 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
       </section>
 
       {/* ========================================================= */}
-      {/* 3. INTERACTIVE BUNDLE & ADD-ON SELECTOR (THE PIZZA MODEL) */}
+      {/* 3. INTERACTIVE TRANSFORMATION PATHWAY SELECTOR            */}
       {/* ========================================================= */}
-      <section id="bundles" className="bg-white dark:bg-[#00122E] py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
+      <section id="pathways" className="bg-section-alt py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-14 flex flex-col gap-3">
@@ -531,28 +531,28 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
               Choose Your Transformation Pathway
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              We integrate <strong>Spoken English</strong> with an optional <strong>Personality Development</strong> add-on. Choose the exact learning model that aligns with your current career stage.
+              We integrate <strong>Spoken English</strong> with an optional <strong>Personality Development</strong> track. Choose the exact learning pathway that matches your career ambitions.
             </p>
           </div>
 
-          {/* 3 Cards: Core, Add-on Combo, and Standalone */}
+          {/* 3 Pathway Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
             
-            {/* Card 1: Spoken English Core */}
+            {/* Card 1: Spoken English Core Track */}
             <div
-              onClick={() => setSelectedBundle('core')}
+              onClick={() => setSelectedPathway('core')}
               className={`p-7 rounded-3xl border transition-all duration-300 flex flex-col justify-between cursor-pointer relative ${
-                selectedBundle === 'core'
-                  ? 'bg-purple/5 border-purple shadow-xl ring-2 ring-purple/20'
-                  : 'bg-slate-50 dark:bg-[#010814]/70 border-card-border hover:border-purple/40 hover-lift'
+                selectedPathway === 'core'
+                  ? 'bg-card border-purple shadow-xl ring-2 ring-purple/20 scale-[1.01]'
+                  : 'bg-card border-card-border hover:border-purple/40 hover-lift'
               }`}
             >
               <div className="flex flex-col gap-4">
                 <div className="flex justify-between items-start">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-navy font-sans">
-                    Core Course
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-section-alt border border-card-border text-navy font-sans">
+                    Core Fluency Track
                   </span>
-                  <span className="text-xs font-bold text-slate-500">3 Months</span>
+                  <span className="text-xs font-bold text-slate-500">⏳ 3 Months</span>
                 </div>
 
                 <div>
@@ -565,7 +565,7 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
                 <div className="border-t border-card-border pt-4 flex flex-col gap-2.5 text-xs text-navy font-semibold">
                   <div className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-purple shrink-0" />
-                    <span>Level 1: Beginner (Grammar Foundations & Usage)</span>
+                    <span>Level 1: Beginner (Grammar Foundations & Daily Usage)</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-purple shrink-0" />
@@ -581,7 +581,7 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-purple shrink-0" />
-                    <span>3–4 Sessions / Week • Micro-batches (5–7 students)</span>
+                    <span>3–4 Sessions / Week • Micro-batches (5 to 7 students)</span>
                   </div>
                 </div>
               </div>
@@ -589,10 +589,10 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
               <div className="mt-8 pt-4 border-t border-card-border">
                 <button
                   type="button"
-                  className={`w-full py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
-                    selectedBundle === 'core'
+                  className={`w-full py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    selectedPathway === 'core'
                       ? 'bg-purple text-white shadow-md'
-                      : 'bg-card border border-card-border text-navy hover:bg-purple hover:text-white'
+                      : 'bg-section-alt border border-card-border text-navy hover:bg-purple hover:text-white'
                   }`}
                 >
                   <span>Select Spoken English Only</span>
@@ -601,27 +601,27 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
               </div>
             </div>
 
-            {/* Card 2: Spoken English + Personality Development (Add-On Bundle) */}
+            {/* Card 2: Spoken English + Personality Development (Flagship Combined Track) */}
             <div
-              onClick={() => setSelectedBundle('bundle')}
+              onClick={() => setSelectedPathway('combo')}
               className={`p-7 rounded-3xl border transition-all duration-300 flex flex-col justify-between cursor-pointer relative ${
-                selectedBundle === 'bundle'
-                  ? 'bg-gradient-to-b from-purple/10 to-transparent border-purple shadow-2xl ring-2 ring-purple scale-102 lg:-translate-y-2'
-                  : 'bg-slate-50 dark:bg-[#010814]/70 border-card-border hover:border-purple/40 hover-lift'
+                selectedPathway === 'combo'
+                  ? 'bg-card border-purple shadow-2xl ring-2 ring-purple scale-102 lg:-translate-y-2'
+                  : 'bg-card border-card-border hover:border-purple/40 hover-lift'
               }`}
             >
-              {/* Most Popular Badge */}
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-purple text-white text-[10px] font-extrabold uppercase tracking-widest px-4 py-1 rounded-full shadow-lg flex items-center gap-1.5">
-                <Sparkles className="w-3 h-3 text-amber-300" />
-                <span>Recommended Power Bundle</span>
+              {/* Highlight Badge - No Bundle Word */}
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple to-purple-hover text-white text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 border border-purple-light/30 whitespace-nowrap">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
+                <span>⭐ Recommended • Complete Transformation</span>
               </div>
 
               <div className="flex flex-col gap-4 mt-2">
                 <div className="flex justify-between items-start">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-purple/20 text-purple font-sans">
-                    Complete Transformation
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-purple/15 text-purple border border-purple/20 font-sans">
+                    Dual Program (Fluency + Leadership)
                   </span>
-                  <span className="text-xs font-bold text-purple">3 + 2 Months</span>
+                  <span className="text-xs font-extrabold text-purple">⏳ 3 + 2 Months</span>
                 </div>
 
                 <div>
@@ -629,34 +629,34 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
                     Spoken English + Personality Development
                   </h3>
                   <p className="text-xs text-navy-muted mt-1 leading-relaxed">
-                    Our flagship executive program combining complete Spoken English fluency with executive presence, leadership, public speaking, and corporate grooming.
+                    Our flagship executive program combining complete English conversational fluency with executive presence, public speaking, leadership, and professional corporate grooming.
                   </p>
                 </div>
 
                 <div className="border-t border-card-border pt-4 flex flex-col gap-2.5 text-xs text-navy font-semibold">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span><strong>All 3 Levels</strong> of Spoken English (A1 to C2)</span>
+                    <span><strong>All 3 Levels</strong> of Spoken English (Beginner to Advanced)</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span><strong>Capstone Module:</strong> Intensive Interview Mastery</span>
+                    <span><strong>Capstone Module:</strong> Intensive MNC Interview & GD Mastery</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span><strong>Month 1 PD:</strong> Etiquette, Grooming & Self-Confidence</span>
+                    <span><strong>Month 1 PD:</strong> Workplace Etiquette, Grooming & Confidence</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span><strong>Month 2 PD:</strong> Public Speaking & Team Leadership</span>
+                    <span><strong>Month 2 PD:</strong> Public Speaking, Pitching & Team Leadership</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span><strong>1-on-1 Feedback</strong> + 90-Day Personal Action Plan</span>
+                    <span><strong>1-on-1 Feedback:</strong> Dedicated Voice Diagnostics & MTI Removal</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span><strong>Dual Certifications</strong> (Fluency & Executive Presence)</span>
+                    <span><strong>Dual Certifications:</strong> Spoken Fluency & Executive Presence</span>
                   </div>
                 </div>
               </div>
@@ -664,13 +664,13 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
               <div className="mt-8 pt-4 border-t border-card-border">
                 <button
                   type="button"
-                  className={`w-full py-3.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
-                    selectedBundle === 'bundle'
+                  className={`w-full py-3.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    selectedPathway === 'combo'
                       ? 'bg-purple text-white shadow-lg shadow-purple/30'
-                      : 'bg-card border border-card-border text-navy hover:bg-purple hover:text-white'
+                      : 'bg-section-alt border border-card-border text-navy hover:bg-purple hover:text-white'
                   }`}
                 >
-                  <span>Select Recommended Combo</span>
+                  <span>Select Complete Transformation Program</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -678,19 +678,19 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
 
             {/* Card 3: Personality Development Standalone */}
             <div
-              onClick={() => setSelectedBundle('personality')}
+              onClick={() => setSelectedPathway('personality')}
               className={`p-7 rounded-3xl border transition-all duration-300 flex flex-col justify-between cursor-pointer relative ${
-                selectedBundle === 'personality'
-                  ? 'bg-purple/5 border-purple shadow-xl ring-2 ring-purple/20'
-                  : 'bg-slate-50 dark:bg-[#010814]/70 border-card-border hover:border-purple/40 hover-lift'
+                selectedPathway === 'personality'
+                  ? 'bg-card border-purple shadow-xl ring-2 ring-purple/20 scale-[1.01]'
+                  : 'bg-card border-card-border hover:border-purple/40 hover-lift'
               }`}
             >
               <div className="flex flex-col gap-4">
                 <div className="flex justify-between items-start">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-navy font-sans">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-section-alt border border-card-border text-navy font-sans">
                     For Working Professionals
                   </span>
-                  <span className="text-xs font-bold text-slate-500">2 Months</span>
+                  <span className="text-xs font-bold text-slate-500">⏳ 2 Months</span>
                 </div>
 
                 <div>
@@ -727,10 +727,10 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
               <div className="mt-8 pt-4 border-t border-card-border">
                 <button
                   type="button"
-                  className={`w-full py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
-                    selectedBundle === 'personality'
+                  className={`w-full py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    selectedPathway === 'personality'
                       ? 'bg-purple text-white shadow-md'
-                      : 'bg-card border border-card-border text-navy hover:bg-purple hover:text-white'
+                      : 'bg-section-alt border border-card-border text-navy hover:bg-purple hover:text-white'
                   }`}
                 >
                   <span>Select Personality Development Only</span>
@@ -742,28 +742,39 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
           </div>
 
           {/* Quick Action Prompt Based on Selection */}
-          <div className="mt-10 p-5 rounded-2xl bg-slate-50 dark:bg-[#010814] border border-card-border max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-center sm:text-left">
-              <span className="w-3 h-3 rounded-full bg-purple animate-ping shrink-0 hidden sm:inline-block"></span>
-              <p className="text-xs sm:text-sm text-navy font-medium">
-                Selected: <strong className="text-purple">
-                  {selectedBundle === 'bundle'
-                    ? 'Spoken English + Personality Development (Recommended Add-On Combo)'
-                    : selectedBundle === 'personality'
-                    ? 'Personality Development Standalone (2 Months)'
-                    : 'Spoken English Core Course (3 Months)'}
-                </strong>
-              </p>
+          <div className="mt-12 p-6 rounded-2xl bg-card border border-card-border max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 shadow-sm transition-colors duration-300">
+            <div className="flex items-center gap-3.5 text-center md:text-left">
+              <span className="w-3 h-3 rounded-full bg-purple animate-ping shrink-0 hidden md:inline-block"></span>
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">Current Pathway Selection</span>
+                <p className="text-xs sm:text-sm text-navy font-bold leading-tight">
+                  {selectedPathway === 'combo'
+                    ? 'Spoken English + Personality Development (Complete Transformation • 5 Months)'
+                    : selectedPathway === 'personality'
+                    ? 'Personality Development Standalone (Executive Track • 2 Months)'
+                    : 'Spoken English Core Course (Fluency Track • 3 Months)'}
+                </p>
+              </div>
             </div>
-            <a
-              href={`https://wa.me/919217999511?text=${encodeURIComponent(getBundleWhatsAppMessage())}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#25D366] hover:bg-[#20ba59] text-white py-2.5 px-5 rounded-xl text-xs font-bold flex items-center gap-2 shadow-md hover:scale-102 transition-all shrink-0"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span>Inquire Batch & Fee Structure</span>
-            </a>
+            
+            <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
+              <a
+                href={`https://wa.me/919217999511?text=${encodeURIComponent(getPathwayWhatsAppMessage())}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#25D366] hover:bg-[#20ba59] text-white py-2.5 px-4 rounded-xl text-xs font-bold flex items-center gap-2 shadow-md hover:scale-102 transition-all cursor-pointer"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>Inquire on WhatsApp</span>
+              </a>
+              <a
+                href="#contact-enrolment"
+                className="bg-purple hover:bg-purple-hover text-white py-2.5 px-4 rounded-xl text-xs font-bold flex items-center gap-2 shadow-md hover:scale-102 transition-all cursor-pointer"
+              >
+                <Calendar className="w-4 h-4" />
+                <span>Book Your Consultation</span>
+              </a>
+            </div>
           </div>
 
         </div>
@@ -1239,7 +1250,7 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
               <div className="p-4 rounded-2xl bg-purple/5 border border-purple/15">
                 <span className="text-xs font-bold text-purple block mb-1">Flexible Sales & Learning Model:</span>
                 <p className="text-xs text-navy-muted leading-relaxed">
-                  Enroll in Spoken English on its own, bundle it with Personality Development for executive transformation, or take Personality Development standalone.
+                  Enroll in Spoken English on its own, combine it with Personality Development for executive transformation, or take Personality Development standalone.
                 </p>
               </div>
             </div>
@@ -1401,7 +1412,7 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
               {/* Action Buttons */}
               <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
                 <a
-                  href={`https://wa.me/919217999511?text=${encodeURIComponent(getBundleWhatsAppMessage())}`}
+                  href={`https://wa.me/919217999511?text=${encodeURIComponent(getPathwayWhatsAppMessage())}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5"

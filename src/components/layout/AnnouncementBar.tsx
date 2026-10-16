@@ -1,4 +1,5 @@
-import { MapPin, Phone, Mail } from 'lucide-react';
+import Link from 'next/link';
+import { MapPin, Tag, Mail } from 'lucide-react';
 
 export default function AnnouncementBar() {
   return (
@@ -10,12 +11,10 @@ export default function AnnouncementBar() {
         </div>
         
         <div className="flex items-center gap-1.5">
-          <Phone className="w-3.5 h-3.5 text-purple-light shrink-0" />
-          <span className="text-[11px] sm:text-xs">
-            <a href="tel:+919217999511" className="hover:text-purple-light transition-colors">+91 92179 99511</a>
-            <span className="mx-1.5 text-purple-light/50">|</span>
-            <a href="tel:+919217669511" className="hover:text-purple-light transition-colors">+91 92176 69511</a>
-          </span>
+          <Tag className="w-3.5 h-3.5 text-purple-light shrink-0" />
+          <Link href="/contact" className="text-[11px] sm:text-xs font-bold hover:text-purple-light transition-colors">
+            Special Offers
+          </Link>
         </div>
         
         <div className="flex items-center gap-1.5">

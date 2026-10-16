@@ -569,7 +569,7 @@ export const spokenEnglishFaqs: FAQItem[] = [
   {
     id: "faq-spk-2",
     question: "How does the Personality Development Add-On work with Spoken English?",
-    answer: "Personality Development is offered as an optional 2-month professional add-on designed for working professionals. You can enroll in Spoken English on its own, bundle it with Personality Development for complete personal and executive transformation, or take Personality Development as a standalone program."
+    answer: "Personality Development is offered as an optional 2-month professional add-on designed for working professionals. You can enroll in Spoken English on its own, combine it with Personality Development for complete personal and executive transformation, or take Personality Development as a standalone program."
   },
   {
     id: "faq-spk-3",

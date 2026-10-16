@@ -169,7 +169,7 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
           <option value="french-language" className="bg-card text-navy">French Language (A1 - C2)</option>
           <option value="japanese-language" className="bg-card text-navy">Japanese Language (N5 - N1)</option>
           <option value="spoken-english" className="bg-card text-navy">Spoken English Course (3 Levels)</option>
-          <option value="spoken-english-personality-bundle" className="bg-card text-navy">Spoken English + Personality Development</option>
+          <option value="spoken-english-personality" className="bg-card text-navy">Spoken English + Personality Development</option>
           <option value="personality-development" className="bg-card text-navy">Personality Development (Working Professionals)</option>
           <option value="ielts-preparation" className="bg-card text-navy">IELTS Exam Masterclass</option>
           <option value="pte-academic" className="bg-card text-navy">PTE Strategy</option>
