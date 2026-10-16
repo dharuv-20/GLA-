@@ -4,7 +4,22 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState, useEffect, Suspense } from 'react';
-import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { 
+  Loader2, 
+  CheckCircle2, 
+  AlertCircle, 
+  User, 
+  Phone, 
+  Mail, 
+  GraduationCap, 
+  Award, 
+  MapPin, 
+  ChevronDown, 
+  ArrowRight, 
+  ShieldCheck, 
+  Clock, 
+  Sparkles 
+} from 'lucide-react';
 import { germanLeadFormSchema, GermanLeadFormInput } from '../types';
 import { submitGermanLead } from '../actions/submitGermanLead';
 import { trackLeadSubmission } from '@/lib/analytics';
@@ -75,8 +90,8 @@ function GermanLeadFormInner() {
   if (submitResult?.success) {
     return (
       <div className="bg-card border border-card-border p-8 rounded-2xl shadow-xl text-center flex flex-col items-center justify-center gap-6 animate-fade-in text-navy min-h-[420px]">
-        <div className="p-4 bg-purple-hero/10 rounded-full border border-purple-hero/20 animate-bounce">
-          <CheckCircle2 className="w-12 h-12 text-purple-hero" />
+        <div className="p-4 bg-purple/10 rounded-full border border-purple/20 animate-bounce">
+          <CheckCircle2 className="w-12 h-12 text-purple" />
         </div>
         <div className="flex flex-col gap-2">
           <span className="text-xs font-bold uppercase tracking-widest text-purple">Vielen Dank!</span>
@@ -98,19 +113,20 @@ function GermanLeadFormInner() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-card border border-card-border p-6 sm:p-7 rounded-2xl shadow-xl flex flex-col gap-4 text-navy">
       <div>
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-[10px] font-extrabold uppercase tracking-widest bg-purple/10 text-purple px-2.5 py-0.5 rounded-full border border-purple/20">
-            Free Consultation
+        <div className="flex items-center gap-2 mb-1.5">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider bg-purple/10 text-purple px-2.5 py-0.5 rounded-full border border-purple/20">
+            <Sparkles className="w-3 h-3 text-purple" />
+            Free German Consultation
           </span>
         </div>
-        <h3 className="text-xl font-extrabold font-display text-navy tracking-tight">Book Your German Consultation</h3>
+        <h3 className="text-xl sm:text-2xl font-extrabold font-display text-navy tracking-tight">Book Your German Consultation</h3>
         <p className="text-xs text-navy-muted leading-relaxed mt-0.5">
-          Reserve your 1-on-1 language assessment & consultation session with certified faculty.
+          Reserve your 1-on-1 language assessment & consultation session with CEFR certified faculty.
         </p>
       </div>
 
       {submitResult && !submitResult.success && (
-        <div className="p-3 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800/40 text-red-700 dark:text-red-300 rounded-lg flex items-start gap-2.5 text-xs">
+        <div className="p-3 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800/40 text-red-700 dark:text-red-300 rounded-xl flex items-start gap-2.5 text-xs">
           <AlertCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
           <span>{submitResult.message}</span>
         </div>
@@ -118,19 +134,27 @@ function GermanLeadFormInner() {
 
       {/* Row 1: Full Name */}
       <div className="flex flex-col gap-1">
-        <label htmlFor="german-lead-name" className="text-[11px] font-bold uppercase tracking-wider text-navy">
-          Full Name <span className="text-purple">*</span>
+        <label htmlFor="german-lead-name" className="text-xs font-semibold text-navy flex items-center gap-1">
+          <span>Full Name</span>
+          <span className="text-red-500 font-bold">*</span>
         </label>
-        <input
-          id="german-lead-name"
-          type="text"
-          placeholder="e.g. Rohit Sen"
-          {...register('name')}
-          disabled={isSubmitting}
-          className={`w-full px-3.5 py-2.5 bg-card text-navy border rounded-lg text-sm transition-colors focus:outline-none ${
-            errors.name ? 'border-red-500 focus:border-red-500' : 'border-card-border focus:border-purple'
-          }`}
-        />
+        <div className="relative">
+          <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-muted/70 pointer-events-none">
+            <User className="w-4 h-4" />
+          </div>
+          <input
+            id="german-lead-name"
+            type="text"
+            placeholder="e.g. Rohit Sen"
+            {...register('name')}
+            disabled={isSubmitting}
+            className={`w-full pl-10 pr-3.5 py-2.5 bg-card text-navy border rounded-xl text-sm transition-all focus:outline-none placeholder:text-navy-muted/50 ${
+              errors.name
+                ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20'
+                : 'border-card-border hover:border-purple/40 focus:border-purple focus:ring-2 focus:ring-purple/20'
+            }`}
+          />
+        </div>
         {errors.name && (
           <span className="text-[11px] text-red-500 font-semibold">{errors.name.message}</span>
         )}
@@ -140,21 +164,26 @@ function GermanLeadFormInner() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {/* Contact Number */}
         <div className="flex flex-col gap-1">
-          <label htmlFor="german-lead-phone" className="text-[11px] font-bold uppercase tracking-wider text-navy">
-            Contact Number <span className="text-purple">*</span>
+          <label htmlFor="german-lead-phone" className="text-xs font-semibold text-navy flex items-center gap-1">
+            <span>Contact Number</span>
+            <span className="text-red-500 font-bold">*</span>
           </label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-navy-muted font-bold border-r border-card-border pr-2">
-              +91
-            </span>
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-navy-muted font-bold text-xs border-r border-card-border pr-2.5 pointer-events-none">
+              <Phone className="w-3.5 h-3.5 text-navy-muted/70" />
+              <span>+91</span>
+            </div>
             <input
               id="german-lead-phone"
               type="tel"
+              maxLength={10}
               placeholder="9217999511"
               {...register('phone')}
               disabled={isSubmitting}
-              className={`w-full pl-13 pr-3 py-2.5 bg-card text-navy border rounded-lg text-sm transition-colors focus:outline-none ${
-                errors.phone ? 'border-red-500 focus:border-red-500' : 'border-card-border focus:border-purple'
+              className={`w-full pl-18 pr-3.5 py-2.5 bg-card text-navy border rounded-xl text-sm transition-all focus:outline-none placeholder:text-navy-muted/50 ${
+                errors.phone
+                  ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20'
+                  : 'border-card-border hover:border-purple/40 focus:border-purple focus:ring-2 focus:ring-purple/20'
               }`}
             />
           </div>
@@ -165,19 +194,27 @@ function GermanLeadFormInner() {
 
         {/* Email */}
         <div className="flex flex-col gap-1">
-          <label htmlFor="german-lead-email" className="text-[11px] font-bold uppercase tracking-wider text-navy">
-            Email Address <span className="text-purple">*</span>
+          <label htmlFor="german-lead-email" className="text-xs font-semibold text-navy flex items-center gap-1">
+            <span>Email Address</span>
+            <span className="text-red-500 font-bold">*</span>
           </label>
-          <input
-            id="german-lead-email"
-            type="email"
-            placeholder="rohit@example.com"
-            {...register('email')}
-            disabled={isSubmitting}
-            className={`w-full px-3.5 py-2.5 bg-card text-navy border rounded-lg text-sm transition-colors focus:outline-none ${
-              errors.email ? 'border-red-500 focus:border-red-500' : 'border-card-border focus:border-purple'
-            }`}
-          />
+          <div className="relative">
+            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-muted/70 pointer-events-none">
+              <Mail className="w-4 h-4" />
+            </div>
+            <input
+              id="german-lead-email"
+              type="email"
+              placeholder="e.g. rohit@example.com"
+              {...register('email')}
+              disabled={isSubmitting}
+              className={`w-full pl-10 pr-3.5 py-2.5 bg-card text-navy border rounded-xl text-sm transition-all focus:outline-none placeholder:text-navy-muted/50 ${
+                errors.email
+                  ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20'
+                  : 'border-card-border hover:border-purple/40 focus:border-purple focus:ring-2 focus:ring-purple/20'
+              }`}
+            />
+          </div>
           {errors.email && (
             <span className="text-[11px] text-red-500 font-semibold">{errors.email.message}</span>
           )}
@@ -186,23 +223,34 @@ function GermanLeadFormInner() {
 
       {/* Row 3: Current Education Qualification */}
       <div className="flex flex-col gap-1">
-        <label htmlFor="german-lead-education" className="text-[11px] font-bold uppercase tracking-wider text-navy">
-          Current Education Qualification <span className="text-purple">*</span>
+        <label htmlFor="german-lead-education" className="text-xs font-semibold text-navy flex items-center gap-1">
+          <span>Current Education Qualification</span>
+          <span className="text-red-500 font-bold">*</span>
         </label>
-        <select
-          id="german-lead-education"
-          {...register('education')}
-          disabled={isSubmitting}
-          className={`w-full px-3.5 py-2.5 bg-card text-navy border rounded-lg text-sm transition-colors focus:outline-none appearance-none cursor-pointer ${
-            errors.education ? 'border-red-500 focus:border-red-500' : 'border-card-border focus:border-purple'
-          }`}
-        >
-          <option value="" className="bg-card text-navy">Select your qualification...</option>
-          <option value="School Student" className="bg-card text-navy">School Student</option>
-          <option value="College Student" className="bg-card text-navy">College Student</option>
-          <option value="Graduate" className="bg-card text-navy">Graduate</option>
-          <option value="Working Professional" className="bg-card text-navy">Working Professional</option>
-        </select>
+        <div className="relative">
+          <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-muted/70 pointer-events-none">
+            <GraduationCap className="w-4 h-4" />
+          </div>
+          <select
+            id="german-lead-education"
+            {...register('education')}
+            disabled={isSubmitting}
+            className={`w-full pl-10 pr-10 py-2.5 bg-card text-navy border rounded-xl text-sm transition-all focus:outline-none appearance-none cursor-pointer ${
+              errors.education
+                ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20'
+                : 'border-card-border hover:border-purple/40 focus:border-purple focus:ring-2 focus:ring-purple/20'
+            }`}
+          >
+            <option value="" className="bg-card text-navy">Select your qualification...</option>
+            <option value="School Student" className="bg-card text-navy">School Student</option>
+            <option value="College Student" className="bg-card text-navy">College Student</option>
+            <option value="Graduate" className="bg-card text-navy">Graduate</option>
+            <option value="Working Professional" className="bg-card text-navy">Working Professional</option>
+          </select>
+          <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-navy-muted pointer-events-none">
+            <ChevronDown className="w-4 h-4" />
+          </div>
+        </div>
         {errors.education && (
           <span className="text-[11px] text-red-500 font-semibold">{errors.education.message}</span>
         )}
@@ -212,25 +260,36 @@ function GermanLeadFormInner() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {/* German Level */}
         <div className="flex flex-col gap-1">
-          <label htmlFor="german-lead-level" className="text-[11px] font-bold uppercase tracking-wider text-navy">
-            Current German Level <span className="text-purple">*</span>
+          <label htmlFor="german-lead-level" className="text-xs font-semibold text-navy flex items-center gap-1">
+            <span>Current German Level</span>
+            <span className="text-red-500 font-bold">*</span>
           </label>
-          <select
-            id="german-lead-level"
-            {...register('germanLevel')}
-            disabled={isSubmitting}
-            className={`w-full px-3.5 py-2.5 bg-card text-navy border rounded-lg text-sm transition-colors focus:outline-none appearance-none cursor-pointer ${
-              errors.germanLevel ? 'border-red-500 focus:border-red-500' : 'border-card-border focus:border-purple'
-            }`}
-          >
-            <option value="" className="bg-card text-navy">Select your level...</option>
-            <option value="Beginner / No knowledge" className="bg-card text-navy">Beginner / No knowledge</option>
-            <option value="A1" className="bg-card text-navy">A1 Level</option>
-            <option value="A2" className="bg-card text-navy">A2 Level</option>
-            <option value="B1" className="bg-card text-navy">B1 Level</option>
-            <option value="B2" className="bg-card text-navy">B2 Level</option>
-            <option value="C1/C2" className="bg-card text-navy">C1 / C2 Level</option>
-          </select>
+          <div className="relative">
+            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-muted/70 pointer-events-none">
+              <Award className="w-4 h-4" />
+            </div>
+            <select
+              id="german-lead-level"
+              {...register('germanLevel')}
+              disabled={isSubmitting}
+              className={`w-full pl-10 pr-10 py-2.5 bg-card text-navy border rounded-xl text-sm transition-all focus:outline-none appearance-none cursor-pointer ${
+                errors.germanLevel
+                  ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20'
+                  : 'border-card-border hover:border-purple/40 focus:border-purple focus:ring-2 focus:ring-purple/20'
+              }`}
+            >
+              <option value="" className="bg-card text-navy">Select your level...</option>
+              <option value="Beginner / No knowledge" className="bg-card text-navy">Beginner / No knowledge</option>
+              <option value="A1" className="bg-card text-navy">A1 Level (Elementary)</option>
+              <option value="A2" className="bg-card text-navy">A2 Level (Pre-Intermediate)</option>
+              <option value="B1" className="bg-card text-navy">B1 Level (Intermediate)</option>
+              <option value="B2" className="bg-card text-navy">B2 Level (Upper-Intermediate)</option>
+              <option value="C1/C2" className="bg-card text-navy">C1 / C2 Level (Advanced)</option>
+            </select>
+            <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-navy-muted pointer-events-none">
+              <ChevronDown className="w-4 h-4" />
+            </div>
+          </div>
           {errors.germanLevel && (
             <span className="text-[11px] text-red-500 font-semibold">{errors.germanLevel.message}</span>
           )}
@@ -238,22 +297,33 @@ function GermanLeadFormInner() {
 
         {/* Preferred Mode of Learning */}
         <div className="flex flex-col gap-1">
-          <label htmlFor="german-lead-mode" className="text-[11px] font-bold uppercase tracking-wider text-navy">
-            Preferred Learning Mode <span className="text-purple">*</span>
+          <label htmlFor="german-lead-mode" className="text-xs font-semibold text-navy flex items-center gap-1">
+            <span>Preferred Learning Mode</span>
+            <span className="text-red-500 font-bold">*</span>
           </label>
-          <select
-            id="german-lead-mode"
-            {...register('learningMode')}
-            disabled={isSubmitting}
-            className={`w-full px-3.5 py-2.5 bg-card text-navy border rounded-lg text-sm transition-colors focus:outline-none appearance-none cursor-pointer ${
-              errors.learningMode ? 'border-red-500 focus:border-red-500' : 'border-card-border focus:border-purple'
-            }`}
-          >
-            <option value="" className="bg-card text-navy">Select learning mode...</option>
-            <option value="Offline – Dwarka" className="bg-card text-navy">Offline – Dwarka</option>
-            <option value="Online" className="bg-card text-navy">Online</option>
-            <option value="Either Online or Offline" className="bg-card text-navy">Either Online or Offline</option>
-          </select>
+          <div className="relative">
+            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-muted/70 pointer-events-none">
+              <MapPin className="w-4 h-4" />
+            </div>
+            <select
+              id="german-lead-mode"
+              {...register('learningMode')}
+              disabled={isSubmitting}
+              className={`w-full pl-10 pr-10 py-2.5 bg-card text-navy border rounded-xl text-sm transition-all focus:outline-none appearance-none cursor-pointer ${
+                errors.learningMode
+                  ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20'
+                  : 'border-card-border hover:border-purple/40 focus:border-purple focus:ring-2 focus:ring-purple/20'
+              }`}
+            >
+              <option value="" className="bg-card text-navy">Select learning mode...</option>
+              <option value="Offline – Dwarka" className="bg-card text-navy">Offline – Dwarka Campus</option>
+              <option value="Online" className="bg-card text-navy">Online (Live Interactive)</option>
+              <option value="Either Online or Offline" className="bg-card text-navy">Either Online or Offline</option>
+            </select>
+            <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-navy-muted pointer-events-none">
+              <ChevronDown className="w-4 h-4" />
+            </div>
+          </div>
           {errors.learningMode && (
             <span className="text-[11px] text-red-500 font-semibold">{errors.learningMode.message}</span>
           )}
@@ -269,7 +339,7 @@ function GermanLeadFormInner() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple to-purple-hover text-white py-3 px-4 rounded-xl font-bold text-sm shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed mt-1"
+        className="w-full relative group overflow-hidden bg-gradient-to-r from-purple via-purple to-purple-hover text-white py-3 px-5 rounded-xl font-bold text-sm tracking-wide shadow-md hover:shadow-lg hover:shadow-purple/20 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-1"
       >
         {isSubmitting ? (
           <>
@@ -277,13 +347,27 @@ function GermanLeadFormInner() {
             <span>Reserving Consultation...</span>
           </>
         ) : (
-          <span>Book Your Consultation &rarr;</span>
+          <>
+            <span>Book Your Consultation</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </>
         )}
       </button>
 
-      <p className="text-[10px] text-navy-muted text-center leading-relaxed">
-        🔒 We respect your privacy. No spam. Receive confirmation details directly via WhatsApp.
-      </p>
+      {/* Trust Badges Footer */}
+      <div className="flex items-center justify-center gap-3 pt-1 text-[11px] text-navy-muted font-medium flex-wrap">
+        <span className="flex items-center gap-1">
+          <ShieldCheck className="w-3.5 h-3.5 text-purple shrink-0" /> 100% Privacy
+        </span>
+        <span className="text-card-border">•</span>
+        <span className="flex items-center gap-1">
+          <Clock className="w-3.5 h-3.5 text-purple shrink-0" /> Quick Callback
+        </span>
+        <span className="text-card-border">•</span>
+        <span className="flex items-center gap-1">
+          <Sparkles className="w-3.5 h-3.5 text-purple shrink-0" /> Free Assessment
+        </span>
+      </div>
     </form>
   );
 }
