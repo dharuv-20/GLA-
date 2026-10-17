@@ -34,7 +34,9 @@ import {
   ShieldCheck,
   Eraser,
   Code,
-  Key
+  Key,
+  Upload,
+  Loader2
 } from 'lucide-react';
 import { BlogPost } from '@/types';
 import BlogContentRenderer, { legacyMarkdownToHtml } from '@/components/BlogContentRenderer';
@@ -85,6 +87,18 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
   const [tokenInput, setTokenInput] = useState('');
   const [tokenSuccess, setTokenSuccess] = useState('');
 
+  // Pending changes tracking (Avoid pushing on every small change)
+  const [pendingCategoriesChange, setPendingCategoriesChange] = useState<boolean>(false);
+  const [pendingBlogUpdates, setPendingBlogUpdates] = useState<Record<string, BlogPost>>({});
+  const [pendingBlogDeletions, setPendingBlogDeletions] = useState<{ slug: string; title: string }[]>([]);
+
+  // Main Submit Changes modal & progress state
+  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+  const [isSubmittingAll, setIsSubmittingAll] = useState(false);
+  const [submitProgressStep, setSubmitProgressStep] = useState('');
+  const [submitSuccess, setSubmitSuccess] = useState('');
+  const [submitError, setSubmitError] = useState('');
+
   // Editor reference
   const editorRef = useRef<HTMLDivElement>(null);
 
@@ -98,6 +112,12 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
      Boolean(window.location.port) ||
      Boolean(user?.isLocalAdmin));
 
+  // Total count of unsaved/unpushed changes
+  const totalPendingCount = 
+    (pendingCategoriesChange ? 1 : 0) + 
+    Object.keys(pendingBlogUpdates).length + 
+    pendingBlogDeletions.length;
+
   // Set mounted state
   useEffect(() => {
     setMounted(true);
@@ -106,7 +126,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
 
   // Lock background scroll when any modal is open so it stays dead-center in the viewport
   useEffect(() => {
-    if (isCategoryModalOpen || isGithubModalOpen) {
+    if (isCategoryModalOpen || isGithubModalOpen || isSubmitModalOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -114,7 +134,7 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     return () => {
       document.body.style.overflow = '';
     };
-  }, [isCategoryModalOpen, isGithubModalOpen]);
+  }, [isCategoryModalOpen, isGithubModalOpen, isSubmitModalOpen]);
 
   // Sync theme with localStorage and root HTML document class
   useEffect(() => {
@@ -134,7 +154,32 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
       setGithubToken(savedGh);
       setTokenInput(savedGh);
     }
+
+    // Load saved pending drafts if available
+    try {
+      const savedPending = localStorage.getItem('gla_admin_pending_v1');
+      if (savedPending) {
+        const parsed = JSON.parse(savedPending);
+        if (parsed.pendingCategoriesChange) setPendingCategoriesChange(true);
+        if (parsed.pendingBlogUpdates) setPendingBlogUpdates(parsed.pendingBlogUpdates);
+        if (parsed.pendingBlogDeletions) setPendingBlogDeletions(parsed.pendingBlogDeletions);
+      }
+    } catch {}
   }, []);
+
+  const persistPending = (
+    catChange: boolean,
+    updates: Record<string, BlogPost>,
+    deletions: { slug: string; title: string }[]
+  ) => {
+    try {
+      localStorage.setItem('gla_admin_pending_v1', JSON.stringify({
+        pendingCategoriesChange: catChange,
+        pendingBlogUpdates: updates,
+        pendingBlogDeletions: deletions
+      }));
+    } catch {}
+  };
 
   const handleToggleTheme = () => {
     const nextTheme = !isDark;
@@ -418,96 +463,167 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
   const charCount = cleanPlainText.length;
   const autoCalculatedReadTime = `${Math.max(1, Math.ceil(wordCount / 180))} min read`;
 
-  // Sync Categories to Both Local Disk & Remote Git (Ensures main blog page is updated)
-  const syncCategoriesToRemote = async (updatedCategories: string[]) => {
-    // 1. Always call local API route
-    try {
-      await fetch('/api/categories', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ categories: updatedCategories })
+  // Remote file commit helper (Called ONLY when clicking main "Submit Changes" button)
+  const commitFileToRemote = async (filePath: string, contentStr: string, commitMsg: string) => {
+    const encodedContent = btoa(unescape(encodeURIComponent(contentStr)));
+
+    if (githubToken) {
+      const ghRepo = 'dharuv-20/GLA-';
+      const fileUrl = `https://api.github.com/repos/${ghRepo}/contents/${filePath}`;
+
+      let sha: string | null = null;
+      const checkRes = await fetch(fileUrl, {
+        headers: {
+          Authorization: `Bearer ${githubToken}`,
+          Accept: 'application/vnd.github.v3+json'
+        }
       });
-    } catch (err) {
-      console.warn('Local categories sync error:', err);
+      if (checkRes.ok) {
+        const fileData = await checkRes.json();
+        sha = fileData.sha;
+      }
+
+      const payload: any = {
+        message: commitMsg,
+        content: encodedContent,
+        branch: 'main'
+      };
+      if (sha) payload.sha = sha;
+
+      const res = await fetch(fileUrl, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${githubToken}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/vnd.github.v3+json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.message || `GitHub rejected commit for ${filePath}`);
+      }
+      return;
     }
 
-    // 2. If in production with GitHub token, commit directly to GitHub repository
+    if (user) {
+      const token = await getFreshToken(user);
+      if (!token) throw new Error('Identity session expired. Please sign in again.');
+
+      const gatewayUrl = `/.netlify/git/github/contents/${filePath}`;
+      let sha: string | null = null;
+      const checkRes = await fetch(gatewayUrl, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (checkRes.ok) {
+        const fileData = await checkRes.json();
+        sha = fileData.sha;
+      }
+
+      const payload: any = {
+        message: commitMsg,
+        content: encodedContent,
+        branch: 'main'
+      };
+      if (sha) payload.sha = sha;
+
+      const res = await fetch(gatewayUrl, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`Git Gateway error: ${errText}`);
+      }
+      return;
+    }
+
+    throw new Error('Please configure your GitHub token under "Git Connection" or log in with Netlify Identity.');
+  };
+
+  // Remote file delete helper (Called ONLY when clicking main "Submit Changes" button)
+  const deleteFileFromRemote = async (filePath: string, commitMsg: string) => {
     if (githubToken) {
-      try {
-        const ghRepo = 'dharuv-20/GLA-';
-        const fileUrl = `https://api.github.com/repos/${ghRepo}/contents/src/content/categories.json`;
-        
-        let sha: string | null = null;
-        const checkRes = await fetch(fileUrl, {
-          headers: {
-            Authorization: `Bearer ${githubToken}`,
-            Accept: 'application/vnd.github.v3+json'
-          }
-        });
-        if (checkRes.ok) {
-          const fileData = await checkRes.json();
-          sha = fileData.sha;
-        }
+      const ghRepo = 'dharuv-20/GLA-';
+      const fileUrl = `https://api.github.com/repos/${ghRepo}/contents/${filePath}`;
 
-        const encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(updatedCategories, null, 2))));
-        const payload: any = {
-          message: 'cms: sync categories list with main blog page',
-          content: encodedContent,
+      let sha: string | null = null;
+      const checkRes = await fetch(fileUrl, {
+        headers: {
+          Authorization: `Bearer ${githubToken}`,
+          Accept: 'application/vnd.github.v3+json'
+        }
+      });
+      if (checkRes.ok) {
+        const fileData = await checkRes.json();
+        sha = fileData.sha;
+      }
+      if (!sha) return; // File already gone on remote
+
+      const res = await fetch(fileUrl, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${githubToken}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/vnd.github.v3+json'
+        },
+        body: JSON.stringify({
+          message: commitMsg,
+          sha,
           branch: 'main'
-        };
-        if (sha) payload.sha = sha;
+        })
+      });
 
-        await fetch(fileUrl, {
-          method: 'PUT',
-          headers: {
-            Authorization: `Bearer ${githubToken}`,
-            'Content-Type': 'application/json',
-            Accept: 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify(payload)
-        });
-      } catch (err) {
-        console.warn('GitHub categories sync error:', err);
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.message || `Failed to delete ${filePath}`);
       }
-    } else if (!isLocalhost && user) {
-      // 3. Or if in production with Netlify Identity, commit via Git Gateway
-      try {
-        const token = await getFreshToken(user);
-        if (token) {
-          const gatewayUrl = `/.netlify/git/github/contents/src/content/categories.json`;
-          let sha: string | null = null;
-          const checkRes = await fetch(gatewayUrl, {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          if (checkRes.ok) {
-            const fileData = await checkRes.json();
-            sha = fileData.sha;
-          }
+      return;
+    }
 
-          const encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(updatedCategories, null, 2))));
-          const payload: any = {
-            message: 'cms: sync categories list with main blog page',
-            content: encodedContent,
-            branch: 'main'
-          };
-          if (sha) payload.sha = sha;
+    if (user) {
+      const token = await getFreshToken(user);
+      if (!token) throw new Error('Identity session expired.');
 
-          await fetch(gatewayUrl, {
-            method: 'PUT',
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-          });
-        }
-      } catch (err) {
-        console.warn('Netlify Git Gateway categories sync error:', err);
+      const gatewayUrl = `/.netlify/git/github/contents/${filePath}`;
+      let sha: string | null = null;
+      const checkRes = await fetch(gatewayUrl, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (checkRes.ok) {
+        const fileData = await checkRes.json();
+        sha = fileData.sha;
       }
+      if (!sha) return;
+
+      const res = await fetch(gatewayUrl, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: commitMsg,
+          sha,
+          branch: 'main'
+        })
+      });
+
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`Git Gateway error: ${errText}`);
+      }
+      return;
     }
   };
 
-  // Category Manager Methods
+  // Category Manager Methods (Updates local/in-memory state without pushing every time)
   const handleAddCategory = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     setCategoryModalError('');
@@ -527,13 +643,21 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     const updated = [...categories, trimmed];
     setCategories(updated);
     setNewCategoryName('');
+    setPendingCategoriesChange(true);
+    persistPending(true, pendingBlogUpdates, pendingBlogDeletions);
 
+    // Save to local development disk if available
     try {
-      await syncCategoriesToRemote(updated);
-      setCategoryModalSuccess(`Category "${trimmed}" added and synced with main blog page!`);
-    } catch (err: any) {
-      console.error('Failed to sync category:', err);
+      await fetch('/api/categories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ categories: updated })
+      });
+    } catch (err) {
+      console.warn('Local categories sync error:', err);
     }
+
+    setCategoryModalSuccess(`Category "${trimmed}" added! Click the top "Submit Changes" button when you are ready to publish all updates to the live site.`);
   };
 
   const handleDeleteCategory = async (catToDelete: string) => {
@@ -555,12 +679,21 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
       setCategory(updated[0] || 'General');
     }
 
+    setPendingCategoriesChange(true);
+    persistPending(true, pendingBlogUpdates, pendingBlogDeletions);
+
+    // Save to local development disk if available
     try {
-      await syncCategoriesToRemote(updated);
-      setCategoryModalSuccess(`Category "${catToDelete}" removed from website!`);
-    } catch (err: any) {
-      console.error('Failed to sync category removal:', err);
+      await fetch('/api/categories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ categories: updated })
+      });
+    } catch (err) {
+      console.warn('Local categories sync error:', err);
     }
+
+    setCategoryModalSuccess(`Category "${catToDelete}" removed from dashboard! Click "Submit Changes" in the top bar to apply live.`);
   };
 
   // Save GitHub Token Handler
@@ -581,15 +714,13 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
     }, 1500);
   };
 
-  // Publish / Save pipeline
+  // Save article draft to dashboard (Does NOT push to GitHub every time)
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim() || !body.trim() || body === '<p><br></p>') {
       setSaveStatus({ type: 'error', message: 'Please provide both an article title and content.' });
       return;
     }
-
-    setSaveStatus({ type: 'loading', message: 'Publishing and saving changes...' });
 
     const postID = selectedPost ? selectedPost.id : Math.max(...posts.map(p => p.id), 0) + 1;
     const slug = selectedPost ? selectedPost.slug : getSlug(title);
@@ -605,280 +736,203 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
       body
     };
 
-    // 1. LOCAL WORKSPACE DEVELOPMENT MODE
-    if (isLocalhost) {
-      try {
-        const response = await fetch('/api/save-blog', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ slug, post: postPayload })
-        });
-        
-        const resData = await response.json();
-        if (response.ok && resData.success) {
-          updateLocalPostsState(postPayload);
-          setSaveStatus({ type: 'success', message: `Saved locally to src/content/blogs/${slug}.json!` });
-        } else {
-          throw new Error(resData.error || 'Failed to save');
-        }
-      } catch (err: any) {
-        setSaveStatus({ type: 'error', message: `Local save failed: ${err.message}` });
-      }
-      return;
-    }
+    // Update in-memory dashboard posts
+    updateLocalPostsState(postPayload);
 
-    // 2. DIRECT GITHUB API COMMIT (Alternative when configured)
-    if (githubToken) {
-      try {
-        setSaveStatus({ type: 'loading', message: 'Committing directly to GitHub repository...' });
-        const ghRepo = 'dharuv-20/GLA-';
-        const fileUrl = `https://api.github.com/repos/${ghRepo}/contents/src/content/blogs/${slug}.json`;
-
-        let sha: string | null = null;
-        const checkRes = await fetch(fileUrl, {
-          headers: {
-            Authorization: `Bearer ${githubToken}`,
-            Accept: 'application/vnd.github.v3+json'
-          }
-        });
-        if (checkRes.ok) {
-          const fileData = await checkRes.json();
-          sha = fileData.sha;
-        }
-
-        const commitMessage = selectedPost 
-          ? `cms: update blog post "${title}"`
-          : `cms: create blog post "${title}"`;
-
-        const encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(postPayload, null, 2))));
-        const payload: any = {
-          message: commitMessage,
-          content: encodedContent,
-          branch: "main"
-        };
-        if (sha) payload.sha = sha;
-
-        const publishRes = await fetch(fileUrl, {
-          method: 'PUT',
-          headers: {
-            Authorization: `Bearer ${githubToken}`,
-            'Content-Type': 'application/json',
-            Accept: 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify(payload)
-        });
-
-        if (publishRes.ok) {
-          updateLocalPostsState(postPayload);
-          setSaveStatus({ type: 'success', message: 'Published directly to GitHub! Netlify build will trigger shortly.' });
-        } else {
-          const errData = await publishRes.json().catch(() => ({}));
-          throw new Error(errData.message || 'GitHub API rejected commit');
-        }
-      } catch (err: any) {
-        setSaveStatus({ type: 'error', message: `GitHub publish failed: ${err.message}` });
-      }
-      return;
-    }
-
-    // 3. NETLIFY GIT GATEWAY
-    if (!user) {
-      setSaveStatus({ type: 'error', message: 'Authentication required. Please sign in.' });
-      return;
-    }
-
+    // Save locally to local API route if available
     try {
-      const token = await getFreshToken(user);
-      if (!token) {
-        throw new Error('Your session token has expired. Please click "Sign Out" and log back in.');
-      }
-
-      const gatewayUrl = `/.netlify/git/github/contents/src/content/blogs/${slug}.json`;
-
-      let sha: string | null = null;
-      const checkResponse = await fetch(gatewayUrl, {
-        headers: { Authorization: `Bearer ${token}` }
+      await fetch('/api/save-blog', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, post: postPayload })
       });
-
-      if (checkResponse.ok) {
-        const fileData = await checkResponse.json();
-        sha = fileData.sha;
-      }
-
-      const commitMessage = selectedPost 
-        ? `cms: update blog post "${title}"`
-        : `cms: create blog post "${title}"`;
-
-      const encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(postPayload, null, 2))));
-
-      const payload: any = {
-        message: commitMessage,
-        content: encodedContent,
-        branch: "main"
-      };
-      if (sha) payload.sha = sha;
-
-      const publishResponse = await fetch(gatewayUrl, {
-        method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (publishResponse.ok) {
-        updateLocalPostsState(postPayload);
-        setSaveStatus({ type: 'success', message: 'Published successfully! Changes will be live shortly.' });
-      } else {
-        const errText = await publishResponse.text();
-        let parsedMsg = errText;
-        try {
-          const errObj = JSON.parse(errText);
-          if (errObj.msg?.includes('Operator microservice headers missing') || errObj.code === 400) {
-            parsedMsg = 'Netlify Git Gateway is not enabled in your Netlify site settings or session expired. Click "Git Connection" above to connect your GitHub token or re-enable Git Gateway in Netlify.';
-          } else if (errObj.msg) {
-            parsedMsg = errObj.msg;
-          }
-        } catch {}
-        throw new Error(parsedMsg);
-      }
-    } catch (err: any) {
-      setSaveStatus({ type: 'error', message: `Publish error: ${err.message}` });
+    } catch (err) {
+      console.warn('Local save warning:', err);
     }
+
+    // Record as pending update, remove from pending deletions
+    const newUpdates = { ...pendingBlogUpdates, [slug]: postPayload };
+    const newDeletions = pendingBlogDeletions.filter(d => d.slug !== slug);
+    setPendingBlogUpdates(newUpdates);
+    setPendingBlogDeletions(newDeletions);
+    persistPending(pendingCategoriesChange, newUpdates, newDeletions);
+
+    setSaveStatus({
+      type: 'success',
+      message: `Article "${title.trim()}" saved to dashboard! Click the main "Submit Changes" button in the top bar when you are ready to publish all updates to the live site.`
+    });
   };
 
-  // Delete article pipeline
+  // Delete article from dashboard (Does NOT push to GitHub every time)
   const handleDelete = async () => {
     if (!selectedPost) return;
 
-    const confirmDelete = window.confirm(`Are you sure you want to delete the article "${selectedPost.title}"? This cannot be undone.`);
+    const confirmDelete = window.confirm(`Are you sure you want to delete the article "${selectedPost.title}"?`);
     if (!confirmDelete) return;
 
-    setSaveStatus({ type: 'loading', message: 'Deleting article...' });
     const slug = selectedPost.slug;
+    const deletedTitle = selectedPost.title;
 
-    // 1. LOCAL WORKSPACE
-    if (isLocalhost) {
-      try {
-        const response = await fetch('/api/delete-blog', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ slug })
-        });
-        
-        const resData = await response.json();
-        if (response.ok && resData.success) {
-          removeLocalPostState(selectedPost.id);
-          setSaveStatus({ type: 'success', message: 'Article deleted successfully from local workspace!' });
-        } else {
-          throw new Error(resData.error || 'Failed to delete');
-        }
-      } catch (err: any) {
-        setSaveStatus({ type: 'error', message: `Local deletion failed: ${err.message}` });
-      }
-      return;
+    // Remove from in-memory dashboard posts
+    removeLocalPostState(selectedPost.id);
+
+    // Remove locally if API is available
+    try {
+      await fetch('/api/delete-blog', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug })
+      });
+    } catch (err) {
+      console.warn('Local delete warning:', err);
     }
 
-    // 2. DIRECT GITHUB API DELETE
-    if (githubToken) {
+    // Record as pending deletion, remove from pending updates
+    const newUpdates = { ...pendingBlogUpdates };
+    delete newUpdates[slug];
+    const newDeletions = [...pendingBlogDeletions.filter(d => d.slug !== slug), { slug, title: deletedTitle }];
+    setPendingBlogUpdates(newUpdates);
+    setPendingBlogDeletions(newDeletions);
+    persistPending(pendingCategoriesChange, newUpdates, newDeletions);
+
+    setSaveStatus({
+      type: 'success',
+      message: `Article "${deletedTitle}" deleted from dashboard! Click the main "Submit Changes" button in the top bar to apply live.`
+    });
+  };
+
+  // Discard all pending drafts
+  const handleDiscardAllPending = () => {
+    if (window.confirm('Are you sure you want to discard all pending changes? Your unsaved drafts will be reset.')) {
+      setPendingCategoriesChange(false);
+      setPendingBlogUpdates({});
+      setPendingBlogDeletions([]);
       try {
-        const ghRepo = 'dharuv-20/GLA-';
-        const fileUrl = `https://api.github.com/repos/${ghRepo}/contents/src/content/blogs/${slug}.json`;
+        localStorage.removeItem('gla_admin_pending_v1');
+      } catch {}
+      setIsSubmitModalOpen(false);
+      setSaveStatus({ type: 'success', message: 'Pending drafts discarded.' });
+    }
+  };
 
-        let sha: string | null = null;
-        const checkRes = await fetch(fileUrl, {
-          headers: {
-            Authorization: `Bearer ${githubToken}`,
-            Accept: 'application/vnd.github.v3+json'
-          }
-        });
-        if (checkRes.ok) {
-          const fileData = await checkRes.json();
-          sha = fileData.sha;
-        }
+  // Main Submit Function: Pushes ALL pending categories, articles, and deletions in a single batch
+  const handleSubmitAllChanges = async () => {
+    // Determine what needs to be pushed
+    let updatesToPush = { ...pendingBlogUpdates };
 
-        if (!sha) {
-          throw new Error("Could not find article file on GitHub to delete.");
-        }
-
-        const deletePayload = {
-          message: `cms: delete blog post "${selectedPost.title}"`,
-          sha: sha,
-          branch: "main"
+    // If editor has active unsaved article content, auto-include it
+    if (title.trim() && body.trim() && body !== '<p><br></p>') {
+      const currentSlug = selectedPost ? selectedPost.slug : getSlug(title);
+      if (!updatesToPush[currentSlug]) {
+        const postPayload: BlogPost = {
+          id: selectedPost ? selectedPost.id : Math.max(...posts.map(p => p.id), 0) + 1,
+          slug: currentSlug,
+          title: title.trim(),
+          category,
+          author: author.trim(),
+          readTime: readTime.trim() || autoCalculatedReadTime,
+          excerpt: excerpt.trim(),
+          body
         };
-
-        const deleteResponse = await fetch(fileUrl, {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${githubToken}`,
-            'Content-Type': 'application/json',
-            Accept: 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify(deletePayload)
-        });
-
-        if (deleteResponse.ok) {
-          removeLocalPostState(selectedPost.id);
-          setSaveStatus({ type: 'success', message: 'Article successfully removed from GitHub repository!' });
-        } else {
-          const errData = await deleteResponse.json().catch(() => ({}));
-          throw new Error(errData.message || 'GitHub API rejected deletion');
-        }
-      } catch (err: any) {
-        setSaveStatus({ type: 'error', message: `Delete failed: ${err.message}` });
+        updatesToPush[currentSlug] = postPayload;
+        updateLocalPostsState(postPayload);
+        try {
+          await fetch('/api/save-blog', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ slug: currentSlug, post: postPayload })
+          });
+        } catch {}
       }
+    }
+
+    const hasCategoriesToPush = pendingCategoriesChange;
+    const blogsToUpdate = Object.values(updatesToPush);
+    const blogsToDelete = [...pendingBlogDeletions];
+
+    const totalOps = (hasCategoriesToPush ? 1 : 0) + blogsToUpdate.length + blogsToDelete.length;
+
+    if (totalOps === 0) {
+      setSubmitSuccess('All items are already in sync! No pending changes were detected.');
       return;
     }
 
-    // 3. NETLIFY GIT GATEWAY DELETE
-    if (!user) {
-      setSaveStatus({ type: 'error', message: 'Authentication required.' });
+    setIsSubmittingAll(true);
+    setSubmitError('');
+    setSubmitSuccess('');
+
+    // Check auth if remote push is needed
+    if (!githubToken && !user && !isLocalhost) {
+      setIsSubmittingAll(false);
+      setSubmitError('Authentication required to push to remote repository. Click "Git Connection" to enter your GitHub token or sign in.');
+      return;
+    }
+
+    // Localhost without GitHub token: already saved locally
+    if (isLocalhost && !githubToken && !user) {
+      setIsSubmittingAll(false);
+      setPendingCategoriesChange(false);
+      setPendingBlogUpdates({});
+      setPendingBlogDeletions([]);
+      try {
+        localStorage.removeItem('gla_admin_pending_v1');
+      } catch {}
+      setSubmitSuccess('All changes are saved to your local workspace disk! (Configure your GitHub token under "Git Connection" to push directly to GitHub).');
       return;
     }
 
     try {
-      const token = await getFreshToken(user);
-      const gatewayUrl = `/.netlify/git/github/contents/src/content/blogs/${slug}.json`;
+      // 1. Categories commit
+      if (hasCategoriesToPush) {
+        setSubmitProgressStep(`Committing updated categories (${categories.length} categories)...`);
+        await commitFileToRemote(
+          'src/content/categories.json',
+          JSON.stringify(categories, null, 2),
+          'cms: update blog categories list'
+        );
+      }
 
-      let sha: string | null = null;
-      const checkResponse = await fetch(gatewayUrl, {
-        headers: { Authorization: `Bearer ${token}` }
+      // 2. Blog post updates / creations
+      for (let i = 0; i < blogsToUpdate.length; i++) {
+        const post = blogsToUpdate[i];
+        setSubmitProgressStep(`Pushing article ${i + 1} of ${blogsToUpdate.length}: "${post.title}"...`);
+        await commitFileToRemote(
+          `src/content/blogs/${post.slug}.json`,
+          JSON.stringify(post, null, 2),
+          `cms: save blog post "${post.title}"`
+        );
+      }
+
+      // 3. Blog post deletions
+      for (let i = 0; i < blogsToDelete.length; i++) {
+        const del = blogsToDelete[i];
+        setSubmitProgressStep(`Deleting article ${i + 1} of ${blogsToDelete.length}: "${del.title}"...`);
+        await deleteFileFromRemote(
+          `src/content/blogs/${del.slug}.json`,
+          `cms: delete blog post "${del.title}"`
+        );
+      }
+
+      // Success cleanup
+      setPendingCategoriesChange(false);
+      setPendingBlogUpdates({});
+      setPendingBlogDeletions([]);
+      try {
+        localStorage.removeItem('gla_admin_pending_v1');
+      } catch {}
+
+      setSubmitProgressStep('');
+      setSubmitSuccess('🚀 All changes pushed successfully to GitHub! Live site deployment has been initiated.');
+      setSaveStatus({
+        type: 'success',
+        message: 'All changes successfully published to the live website!'
       });
-
-      if (checkResponse.ok) {
-        const fileData = await checkResponse.json();
-        sha = fileData.sha;
-      }
-
-      if (!sha) {
-        throw new Error("Could not find article file on GitHub to delete.");
-      }
-
-      const deletePayload = {
-        message: `cms: delete blog post "${selectedPost.title}"`,
-        sha: sha,
-        branch: "main"
-      };
-
-      const deleteResponse = await fetch(gatewayUrl, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(deletePayload)
-      });
-
-      if (deleteResponse.ok) {
-        removeLocalPostState(selectedPost.id);
-        setSaveStatus({ type: 'success', message: 'Article successfully removed from repository!' });
-      } else {
-        const errText = await deleteResponse.text();
-        throw new Error(`Git Gateway error: ${errText}`);
-      }
     } catch (err: any) {
-      setSaveStatus({ type: 'error', message: `Delete failed: ${err.message}` });
+      console.error('Submit all changes error:', err);
+      setSubmitProgressStep('');
+      setSubmitError(`Push failed: ${err.message || 'Unknown error occurred while pushing to remote'}`);
+    } finally {
+      setIsSubmittingAll(false);
     }
   };
 
@@ -1002,7 +1056,35 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
           </div>
         </div>
 
-        <div className="flex items-center gap-3 text-xs">
+        <div className="flex items-center gap-2.5 sm:gap-3 text-xs">
+          {/* Main Submit Changes Button */}
+          <button
+            type="button"
+            onClick={() => {
+              setSubmitError('');
+              setSubmitSuccess('');
+              setIsSubmitModalOpen(true);
+            }}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold transition-all cursor-pointer text-xs shadow-md ${
+              totalPendingCount > 0
+                ? 'bg-gradient-to-r from-emerald-600 via-purple to-purple-hover hover:scale-[1.02] active:scale-[0.98] text-white ring-2 ring-emerald-400 shadow-emerald-500/20'
+                : 'bg-purple/20 hover:bg-purple/30 text-purple-200 border border-purple/40'
+            }`}
+            title="Publish all pending categories and article drafts to the live site"
+          >
+            <Upload className="w-3.5 h-3.5 text-purple-300" />
+            <span className="font-extrabold tracking-wide">Submit Changes</span>
+            {totalPendingCount > 0 ? (
+              <span className="bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded-full text-[10px] font-black animate-pulse">
+                {totalPendingCount}
+              </span>
+            ) : (
+              <span className="text-[10px] text-slate-400 font-normal hidden sm:inline">
+                (0)
+              </span>
+            )}
+          </button>
+
           {/* Git Publishing Connection Button */}
           <button
             type="button"
@@ -1269,14 +1351,15 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                     </button>
                   )}
 
-                  {/* Publish Save Button */}
+                  {/* Save Draft to Dashboard Button */}
                   <button
                     type="submit"
                     disabled={saveStatus.type === 'loading'}
                     className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple to-purple-hover text-white text-xs font-bold rounded-xl transition-all cursor-pointer shadow-md hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
+                    title="Save article draft to dashboard"
                   >
                     <Save className="w-4 h-4" />
-                    <span>{saveStatus.type === 'loading' ? 'Publishing...' : 'Publish Article'}</span>
+                    <span>Save Article</span>
                   </button>
                 </div>
               </div>
@@ -1292,6 +1375,15 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
                     {saveStatus.type === 'success' && <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />}
                     {saveStatus.type === 'error' && <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />}
                     <span className="font-semibold">{saveStatus.message}</span>
+                    {saveStatus.type === 'success' && totalPendingCount > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => setIsSubmitModalOpen(true)}
+                        className="underline font-bold text-amber-300 hover:text-white cursor-pointer ml-1"
+                      >
+                        [Submit All Changes Now]
+                      </button>
+                    )}
                     {saveStatus.type === 'error' && saveStatus.message.includes('Git Gateway') && (
                       <button
                         type="button"
@@ -1786,7 +1878,10 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
               </div>
             </div>
 
-            <div className="pt-2 border-t border-slate-700/60 flex justify-end">
+            <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between">
+              <span className="text-[11px] text-slate-400">
+                💡 Categories saved to dashboard. Click <strong>Submit Changes</strong> in top bar to publish live.
+              </span>
               <button
                 type="button"
                 onClick={() => {
@@ -1895,6 +1990,199 @@ export default function AdminDashboard({ initialPosts, initialCategories = [] }:
               >
                 Close
               </button>
+            </div>
+
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* Submit All Changes Modal - Rendered via Portal directly into document.body */}
+      {isSubmitModalOpen && mounted && createPortal(
+        <div className="fixed inset-0 z-[99999] bg-black/75 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
+          <div className={`${isDark ? 'bg-[#0d182e] border-slate-700 text-white' : 'bg-white border-slate-200 text-slate-900'} border rounded-2xl w-full max-w-xl p-6 sm:p-7 flex flex-col gap-5 shadow-2xl relative animate-scale-up max-h-[90vh] overflow-y-auto`}>
+            
+            <div className="flex justify-between items-center border-b border-slate-700/60 pb-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-purple/20 border border-purple/40 flex items-center justify-center text-purple-400">
+                  <Upload className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold">Submit Changes to Live Website</h3>
+                  <p className="text-[11px] text-slate-400">Review pending updates across categories and blog articles before pushing</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (!isSubmittingAll) {
+                    setIsSubmitModalOpen(false);
+                    setSubmitError('');
+                    setSubmitSuccess('');
+                  }
+                }}
+                disabled={isSubmittingAll}
+                className="p-1 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white cursor-pointer disabled:opacity-30"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Error & Success Alerts */}
+            {submitError && (
+              <div className="p-3 bg-rose-950/80 text-rose-200 border border-rose-700 rounded-xl text-xs flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
+                <span>{submitError}</span>
+              </div>
+            )}
+            {submitSuccess && (
+              <div className="p-3.5 bg-emerald-950/80 text-emerald-200 border border-emerald-700 rounded-xl text-xs flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span className="font-semibold">{submitSuccess}</span>
+              </div>
+            )}
+
+            {/* Loading / Progress indicator */}
+            {isSubmittingAll && (
+              <div className="p-4 bg-purple-950/60 border border-purple-500/40 rounded-xl flex items-center gap-3 animate-pulse">
+                <Loader2 className="w-5 h-5 text-purple-400 animate-spin shrink-0" />
+                <div className="flex flex-col">
+                  <span className="text-xs font-bold text-white">Pushing changes to live website...</span>
+                  <span className="text-[11px] text-purple-300">{submitProgressStep || 'Please wait while updates are committed to the repository...'}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Changes Breakdown Cards */}
+            <div className="flex flex-col gap-3">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                Pending Updates Summary
+              </span>
+
+              {/* 1. Categories Card */}
+              <div className={`p-3.5 rounded-xl border flex items-start gap-3 ${
+                pendingCategoriesChange 
+                  ? 'border-amber-500/40 bg-amber-500/10' 
+                  : isDark ? 'border-slate-800 bg-[#081224]' : 'border-slate-200 bg-slate-50'
+              }`}>
+                <Layers className={`w-4 h-4 mt-0.5 shrink-0 ${pendingCategoriesChange ? 'text-amber-400' : 'text-slate-400'}`} />
+                <div className="flex flex-col gap-1 text-xs w-full">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold">Categories List</span>
+                    {pendingCategoriesChange ? (
+                      <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-amber-400 text-slate-950">Modified</span>
+                    ) : (
+                      <span className="px-2 py-0.5 text-[10px] rounded-full bg-slate-700/50 text-slate-400">No Changes</span>
+                    )}
+                  </div>
+                  <span className="text-[11px] text-slate-400">
+                    {categories.length} active categories: {categories.slice(0, 6).join(', ')}{categories.length > 6 ? ` +${categories.length - 6} more` : ''}
+                  </span>
+                </div>
+              </div>
+
+              {/* 2. Blog Updates Card */}
+              <div className={`p-3.5 rounded-xl border flex items-start gap-3 ${
+                Object.keys(pendingBlogUpdates).length > 0 
+                  ? 'border-emerald-500/40 bg-emerald-500/10' 
+                  : isDark ? 'border-slate-800 bg-[#081224]' : 'border-slate-200 bg-slate-50'
+              }`}>
+                <FileText className={`w-4 h-4 mt-0.5 shrink-0 ${Object.keys(pendingBlogUpdates).length > 0 ? 'text-emerald-400' : 'text-slate-400'}`} />
+                <div className="flex flex-col gap-1 text-xs w-full">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold">Articles Modified / Created</span>
+                    <span className={`px-2 py-0.5 text-[10px] font-bold rounded-full ${
+                      Object.keys(pendingBlogUpdates).length > 0 ? 'bg-emerald-500 text-white' : 'bg-slate-700/50 text-slate-400'
+                    }`}>
+                      {Object.keys(pendingBlogUpdates).length} article(s)
+                    </span>
+                  </div>
+                  {Object.keys(pendingBlogUpdates).length > 0 ? (
+                    <ul className="text-[11px] text-slate-300 list-disc list-inside space-y-0.5 mt-1 max-h-24 overflow-y-auto">
+                      {Object.values(pendingBlogUpdates).map(p => (
+                        <li key={p.slug} className="truncate">{p.title}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span className="text-[11px] text-slate-400">No article updates drafted</span>
+                  )}
+                </div>
+              </div>
+
+              {/* 3. Blog Deletions Card */}
+              {pendingBlogDeletions.length > 0 && (
+                <div className="p-3.5 rounded-xl border border-rose-500/40 bg-rose-500/10 flex items-start gap-3">
+                  <Trash2 className="w-4 h-4 mt-0.5 text-rose-400 shrink-0" />
+                  <div className="flex flex-col gap-1 text-xs w-full">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-rose-300">Articles To Delete</span>
+                      <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-rose-500 text-white">
+                        {pendingBlogDeletions.length} article(s)
+                      </span>
+                    </div>
+                    <ul className="text-[11px] text-rose-200/90 list-disc list-inside space-y-0.5 mt-1 max-h-24 overflow-y-auto">
+                      {pendingBlogDeletions.map(d => (
+                        <li key={d.slug} className="truncate">{d.title}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+
+              {/* Target info */}
+              <div className="text-[11px] text-slate-400 pt-1 flex items-center justify-between">
+                <span>Target: <strong className="text-slate-300">dharuv-20/GLA-</strong> (branch: <code>main</code>)</span>
+                <span>{githubToken ? '🔑 GitHub Token Active' : user ? '🔐 Netlify Gateway' : '💻 Local Workspace'}</span>
+              </div>
+            </div>
+
+            {/* Modal Actions */}
+            <div className="pt-3 border-t border-slate-700/60 flex items-center justify-between gap-3 flex-wrap">
+              <div>
+                {totalPendingCount > 0 && !isSubmittingAll && !submitSuccess && (
+                  <button
+                    type="button"
+                    onClick={handleDiscardAllPending}
+                    className="text-xs text-rose-400 hover:text-rose-300 underline cursor-pointer"
+                  >
+                    Discard pending drafts
+                  </button>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  disabled={isSubmittingAll}
+                  onClick={() => setIsSubmitModalOpen(false)}
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-colors cursor-pointer disabled:opacity-40 ${
+                    isDark ? 'bg-[#142647] border-slate-700 text-slate-200 hover:bg-[#1a335e]' : 'bg-slate-100 border-slate-300 text-slate-800 hover:bg-slate-200'
+                  }`}
+                >
+                  {submitSuccess ? 'Close' : 'Cancel'}
+                </button>
+
+                {!submitSuccess && (
+                  <button
+                    type="button"
+                    disabled={isSubmittingAll}
+                    onClick={handleSubmitAllChanges}
+                    className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple to-purple-hover hover:scale-[1.02] active:scale-[0.98] text-white text-xs font-bold rounded-xl shadow-lg transition-all cursor-pointer disabled:opacity-50"
+                  >
+                    {isSubmittingAll ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Pushing to Live...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="w-4 h-4" />
+                        <span>Confirm & Push All Changes</span>
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
             </div>
 
           </div>

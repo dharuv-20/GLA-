@@ -324,17 +324,11 @@ export default function AboutPage() {
 
                 <div className="border-t border-card-border/80 pt-5 flex items-center gap-4 relative z-10">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple to-purple-hover text-white flex items-center justify-center font-bold font-display text-lg shadow-md shrink-0">
-                    AR
+                    PR
                   </div>
-                  <div className="grid grid-cols-[76px_1fr] sm:grid-cols-[84px_1fr] items-baseline gap-x-2.5 gap-y-1.5 text-sm sm:text-base">
-                    <span className="text-xs sm:text-sm font-bold text-purple uppercase tracking-wide">Name -</span>
-                    <span className="text-sm sm:text-base font-bold text-navy">Ms. Anuradhika Rana</span>
-
-                    <span className="text-xs sm:text-sm font-bold text-purple uppercase tracking-wide">Des. -</span>
-                    <span className="text-sm sm:text-base font-medium text-navy">Founder & Director</span>
-
-                    <span className="text-xs sm:text-sm font-bold text-purple uppercase tracking-wide">Institute -</span>
-                    <span className="text-sm sm:text-base font-medium text-navy">The Global Language Academy</span>
+                  <div className="flex flex-col">
+                    <h4 className="text-base font-bold text-navy">Ms. Pinki Rana</h4>
+                    <p className="text-xs font-medium text-purple">Founder & Director, The Global Language Academy</p>
                   </div>
                 </div>
               </div>
