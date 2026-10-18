@@ -5,8 +5,8 @@ export default function OrganizationSchema() {
       {
         "@type": ["EducationalOrganization", "LocalBusiness"],
         "@id": "https://tglalearning.com/#organization",
-        "name": "TGLA - The Global Language Academy",
-        "alternateName": ["TGLA", "The Global Language Academy", "TGLA Learning"],
+        "name": "The Global Language Academy",
+        "alternateName": ["The Global Language Academy (TGLA)", "TGLA", "TGLA Learning"],
         "url": "https://tglalearning.com",
         "logo": "https://tglalearning.com/icon.png",
         "image": "https://tglalearning.com/images/logo-dark.png",
@@ -54,8 +54,8 @@ export default function OrganizationSchema() {
         "@type": "WebSite",
         "@id": "https://tglalearning.com/#website",
         "url": "https://tglalearning.com",
-        "name": "TGLA - The Global Language Academy",
-        "alternateName": "TGLA",
+        "name": "The Global Language Academy",
+        "alternateName": ["The Global Language Academy (TGLA)", "TGLA", "TGLA Learning"],
         "publisher": {
           "@id": "https://tglalearning.com/#organization"
         },
