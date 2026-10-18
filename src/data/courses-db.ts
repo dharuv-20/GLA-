@@ -1020,7 +1020,7 @@ export const coursesList: Course[] = [
     title: "German Language Program (A1 - C2)",
     metaTitle: "German Language Classes (A1 - C2) | Goethe & TELC Exam Prep | TGLA",
     metaDescription: "Learn German from certified instructors at TGLA. Level-wise courses (A1 to C2) tailored for Goethe/TELC certification, Ausbildung, and German university admissions.",
-    shortDescription: "Your gateway to tuition-free education, Ausbildung vocational training, and careers in Germany.",
+    shortDescription: "Learn German with confidence through structured learning, practical communication, Goethe exam preparation, and career pathways in Germany at The Global Language Academy.",
     longDescription: "Master German grammar, listening, and speaking through our specialized immersion methodology. Designed to take candidates from absolute beginners (A1) to advanced proficiency (C2), this program focuses on building functional communication skills alongside rigorous Goethe and TELC exam preparation.",
     durationLabel: "2 to 18 Months",
     nextBatchStartDate: "2026-09-01",

@@ -176,7 +176,7 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
                       <h3 className="text-lg sm:text-xl font-extrabold font-display text-navy tracking-tight group-hover:text-purple transition-colors leading-snug">
                         <FormattedTitle title={course.title} bracketClassName="text-base sm:text-lg font-bold text-navy group-hover:text-purple mt-0.5" />
                       </h3>
-                      <p className="text-xs sm:text-sm text-navy-muted leading-relaxed line-clamp-3">
+                      <p className="text-xs sm:text-sm text-navy-muted leading-relaxed line-clamp-3 min-h-[3.6rem] sm:min-h-[4rem]">
                         {course.shortDescription}
                       </p>
                     </div>

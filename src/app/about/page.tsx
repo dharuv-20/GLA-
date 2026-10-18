@@ -362,24 +362,24 @@ export default function AboutPage() {
             <div className="group bg-card p-8 sm:p-10 rounded-3xl border border-card-border hover:border-purple/50 shadow-sm hover:shadow-[0_20px_45px_rgba(75,36,94,0.10)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between gap-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-purple/5 rounded-full blur-2xl pointer-events-none"></div>
               
-              <div className="flex flex-col gap-4 relative z-10">
+              <div className="flex flex-col gap-4 relative z-10 flex-grow">
                 <div className="w-14 h-14 rounded-2xl bg-purple/10 border border-purple/20 flex items-center justify-center group-hover:bg-purple transition-all duration-300 shadow-sm shrink-0">
                   <Eye className="w-7 h-7 text-purple group-hover:text-white transition-colors duration-300" />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 flex-grow">
                   <span className="text-xs font-bold text-purple uppercase tracking-wider">
                     Future Aspiration
                   </span>
                   <h3 className="text-2xl font-extrabold font-display text-navy tracking-tight">
                     Our Vision
                   </h3>
-                  <p className="text-sm sm:text-base text-navy-muted leading-relaxed mt-1">
-                    To be a globally recognized center of linguistic excellence and cultural empowerment, equipping students, working professionals, and global aspirants with fluent cross-border communication skills, certified international credentials, and the self-assurance needed to unlock life-changing academic admissions, career growth, and international migration opportunities worldwide.
+                  <p className="text-sm sm:text-base text-navy-muted leading-relaxed mt-1 flex-grow">
+                    To be a globally recognized center of linguistic excellence and cultural empowerment, equipping students, working professionals, and global aspirants with fluent cross-border communication skills, certified international credentials, and the self-assurance to unlock life-changing university admissions, career growth, and migration opportunities worldwide.
                   </p>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-card-border/60 flex items-center gap-2 text-xs font-bold text-purple">
+              <div className="pt-4 border-t border-card-border/60 flex items-center gap-2 text-xs font-bold text-purple mt-auto">
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Building Worldwide Self-Reliance & Fluency</span>
               </div>
@@ -389,24 +389,24 @@ export default function AboutPage() {
             <div className="group bg-card p-8 sm:p-10 rounded-3xl border border-card-border hover:border-purple/50 shadow-sm hover:shadow-[0_20px_45px_rgba(75,36,94,0.10)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between gap-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-purple/5 rounded-full blur-2xl pointer-events-none"></div>
 
-              <div className="flex flex-col gap-4 relative z-10">
+              <div className="flex flex-col gap-4 relative z-10 flex-grow">
                 <div className="w-14 h-14 rounded-2xl bg-purple/10 border border-purple/20 flex items-center justify-center group-hover:bg-purple transition-all duration-300 shadow-sm shrink-0">
                   <Compass className="w-7 h-7 text-purple group-hover:text-white transition-colors duration-300" />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 flex-grow">
                   <span className="text-xs font-bold text-purple uppercase tracking-wider">
                     Daily Commitment
                   </span>
                   <h3 className="text-2xl font-extrabold font-display text-navy tracking-tight">
                     Our Mission
                   </h3>
-                  <p className="text-sm sm:text-base text-navy-muted leading-relaxed mt-1">
-                    To deliver structured, CEFR-aligned language programs through certified native-fluent educators, rigorous diagnostic assessments, and immersive conversational practice. We are committed to fostering first-attempt international examination success, empowering intercultural confidence, and providing comprehensive visa and documentation guidance so every learner realizes their dream of global education and worldwide career advancement.
+                  <p className="text-sm sm:text-base text-navy-muted leading-relaxed mt-1 flex-grow">
+                    To deliver structured, CEFR-aligned language programs through certified native-fluent educators, rigorous diagnostic assessments, and immersive conversational practice, empowering learners with first-attempt international exam clearance, intercultural confidence, and dedicated visa guidance for worldwide education and career advancement.
                   </p>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-card-border/60 flex items-center gap-2 text-xs font-bold text-purple">
+              <div className="pt-4 border-t border-card-border/60 flex items-center gap-2 text-xs font-bold text-purple mt-auto">
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Empowering Careers & International Visas</span>
               </div>
