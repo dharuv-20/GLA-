@@ -17,6 +17,46 @@ export const facultyList: FacultyMember[] = [
 
 export const germanTestimonials: Testimonial[] = [
   {
+    id: "test-de-priya",
+    authorName: "Priya Verma",
+    authorAvatar: { src: "", alt: "Priya Verma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "This is the best German language institute I have attended. The trainers are highly experienced, the teaching methods are practical, and the study material is excellent. Compared to other institutes, GLA provides better individual attention, flexible class schedules, and outstanding exam preparation. I highly recommend this institute to anyone serious about learning German.",
+    outcomeTag: "2 months ago · 5.0 Star"
+  },
+  {
+    id: "test-de-kiran",
+    authorName: "Kiran Jagtap",
+    authorAvatar: { src: "", alt: "Kiran Jagtap", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "My interaction with GLA during the demo session was a great experience and helped me feel confident about taking the next step toward enrollment. The demo and discussion with the German language trainer were informative and convincing. I would recommend GLA to anyone who wants to learn German from the basics and progress to advanced levels.",
+    outcomeTag: "1 month ago · 5.0 Star"
+  },
+  {
+    id: "test-de-shuchi",
+    authorName: "Shuchi Arora",
+    authorAvatar: { src: "", alt: "Shuchi Arora", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I enrolled in both the English and German language programs at GLA. The teaching methodology is excellent, and the faculty paid special attention to improving my speaking skills. As a result, I feel much more confident speaking now. I have successfully cleared my A1 and A2 German exams and will begin preparing for B1 next. I highly recommend GLA to anyone looking to improve their language skills.",
+    outcomeTag: "2 weeks ago · 5.0 Star"
+  },
+  {
+    id: "test-de-riddhim",
+    authorName: "Riddhim Sharma",
+    authorAvatar: { src: "", alt: "Riddhim Sharma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I had a great experience with German and IELTS training at The Global Language Academy. The trainers are knowledgeable, supportive, and excellent at explaining concepts clearly. The individual attention, regular practice, and personalized guidance made learning easier and more effective. The overall training approach is professional, and the team is always available to answer questions and provide guidance. I would definitely recommend TGLA to anyone looking for quality German language training or IELTS preparation.",
+    outcomeTag: "1 month ago · 5.0 Star"
+  },
+  {
+    id: "test-de-aarav",
+    authorName: "Aarav Arora",
+    authorAvatar: { src: "", alt: "Aarav Arora", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is an excellent institute. I enrolled in both the German and English language programs, and the faculty and staff were extremely helpful and supportive. The study material was informative and useful, making the learning experience even better. I had a very positive experience and would recommend GLA to anyone interested in learning these languages.",
+    outcomeTag: "1 month ago · 5.0 Star"
+  },
+  {
     id: "test-de-1",
     authorName: "Rohit Sen",
     authorAvatar: { src: "", alt: "Rohit Sen", width: 80, height: 80 },
@@ -226,6 +266,22 @@ export const japaneseTestimonials: Testimonial[] = [
 
 export const spokenEnglishTestimonials: Testimonial[] = [
   {
+    id: "test-spk-shuchi",
+    authorName: "Shuchi Arora",
+    authorAvatar: { src: "", alt: "Shuchi Arora", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I enrolled in both the English and German language programs at GLA. The teaching methodology is excellent, and the faculty paid special attention to improving my speaking skills. As a result, I feel much more confident speaking now in interviews and meetings.",
+    outcomeTag: "2 weeks ago · 5.0 Star"
+  },
+  {
+    id: "test-spk-aarav",
+    authorName: "Aarav Arora",
+    authorAvatar: { src: "", alt: "Aarav Arora", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is an excellent institute. I enrolled in both the German and English language programs, and the faculty and staff were extremely helpful and supportive. The study material was informative and useful, making the learning experience even better.",
+    outcomeTag: "1 month ago · 5.0 Star"
+  },
+  {
     id: "test-spk-1",
     authorName: "Vikram Malhotra",
     authorAvatar: { src: "", alt: "Vikram Malhotra", width: 80, height: 80 },
@@ -292,6 +348,14 @@ export const spokenEnglishTestimonials: Testimonial[] = [
 ];
 
 export const ieltsTestimonials: Testimonial[] = [
+  {
+    id: "test-ielts-riddhim",
+    authorName: "Riddhim Sharma",
+    authorAvatar: { src: "", alt: "Riddhim Sharma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I had a great experience with IELTS preparation at The Global Language Academy. The trainers are knowledgeable, supportive, and excellent at explaining exam strategies. The personalized guidance and regular practice made achieving my target band score much easier.",
+    outcomeTag: "1 month ago · 5.0 Star"
+  },
   {
     id: "test-ielts-1",
     authorName: "Dr. Ananya Mehta",
@@ -425,7 +489,243 @@ export const pteTestimonials: Testimonial[] = [
   }
 ];
 
+export const googleReviewsList: Testimonial[] = [
+  {
+    id: "g-rev-1",
+    authorName: "Priya Verma",
+    authorAvatar: { src: "", alt: "Priya Verma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "This is the best German language institute I have attended. The trainers are highly experienced, the teaching methods are practical, and the study material is excellent. Compared to other institutes, GLA provides better individual attention, flexible class schedules, and outstanding exam preparation. I highly recommend this institute to anyone serious about learning German.",
+    outcomeTag: "2 months ago · 5.0 Star"
+  },
+  {
+    id: "g-rev-2",
+    authorName: "Kiran Jagtap",
+    authorAvatar: { src: "", alt: "Kiran Jagtap", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "My interaction with GLA during the demo session was a great experience and helped me feel confident about taking the next step toward enrollment. The demo and discussion with the German language trainer were informative and convincing. I would recommend GLA to anyone who wants to learn German from the basics and progress to advanced levels.",
+    outcomeTag: "1 month ago · 5.0 Star"
+  },
+  {
+    id: "g-rev-3",
+    authorName: "Shuchi Arora",
+    authorAvatar: { src: "", alt: "Shuchi Arora", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I enrolled in both the English and German language programs at GLA. The teaching methodology is excellent, and the faculty paid special attention to improving my speaking skills. As a result, I feel much more confident speaking now. I have successfully cleared my A1 and A2 German exams and will begin preparing for B1 next. I highly recommend GLA to anyone looking to improve their language skills.",
+    outcomeTag: "2 weeks ago · 5.0 Star"
+  },
+  {
+    id: "g-rev-4",
+    authorName: "Riddhim Sharma",
+    authorAvatar: { src: "", alt: "Riddhim Sharma", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I had a great experience with German and IELTS training at The Global Language Academy. The trainers are knowledgeable, supportive, and excellent at explaining concepts clearly. The individual attention, regular practice, and personalized guidance made learning easier and more effective. The overall training approach is professional, and the team is always available to answer questions and provide guidance. I would definitely recommend TGLA to anyone looking for quality German language training or IELTS preparation.",
+    outcomeTag: "1 month ago · 5.0 Star"
+  },
+  {
+    id: "g-rev-5",
+    authorName: "Narindra Sablania",
+    authorAvatar: { src: "", alt: "Narindra Sablania", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Choosing GLA was one of my best decisions. The teachers are extremely helpful, and the entire process is smooth and transparent. There are no false promises; the academy delivers what it commits to. Overall, I had a great experience and would recommend GLA to others.",
+    outcomeTag: "1 month ago · 5.0 Star"
+  },
+  {
+    id: "g-rev-6",
+    authorName: "Aashvi Arora",
+    authorAvatar: { src: "", alt: "Aashvi Arora", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I had an amazing experience with GLA. Initially, I was skeptical about enrolling in an online coaching program, but the experience turned out to be excellent. The staff and teachers were supportive, approachable, and helpful throughout. The classes were well scheduled, and the overall learning experience was smooth and comfortable. I would definitely recommend GLA's online programs to anyone looking for a reliable language academy.",
+    outcomeTag: "1 month ago · 5.0 Star"
+  },
+  {
+    id: "g-rev-7",
+    authorName: "Aarav Arora",
+    authorAvatar: { src: "", alt: "Aarav Arora", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is an excellent institute. I enrolled in both the German and English language programs, and the faculty and staff were extremely helpful and supportive. The study material was informative and useful, making the learning experience even better. I had a very positive experience and would recommend GLA to anyone interested in learning these languages.",
+    outcomeTag: "1 month ago · 5.0 Star"
+  },
+  {
+    id: "g-rev-8",
+    authorName: "Ved",
+    authorAvatar: { src: "", alt: "Ved", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is amazing! The teachers are very professional and kind. They explain everything clearly and help us learn fast. I feel comfortable asking questions, and they always support me. The classes are fun and interesting. I love being here! If you want to learn a new language, this is the best place! Highly recommend!",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-9",
+    authorName: "Rohit",
+    authorAvatar: { src: "", alt: "Rohit", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is a fantastic choice for anyone looking to enhance their language skills! With quick service and reasonably priced classes, it caters to all levels. The instructors are knowledgeable and passionate, creating an engaging learning environment. I highly recommend this academy for anyone wanting to learn a new language or improve their proficiency.",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-10",
+    authorName: "Aarti",
+    authorAvatar: { src: "", alt: "Aarti", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is excellent! The faculty is very professional and approachable. Booking classes is easy, and the service is quick. They have a methodical approach to teaching, which helps a lot. The academy offers many facilities. Plus, the prices are reasonable. I highly recommend this place for language learning!",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-11",
+    authorName: "Vanshika Gautam",
+    authorAvatar: { src: "", alt: "Vanshika Gautam", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "My experience at The Global Language Academy was outstanding! The resourceful library offered a wealth of materials for language learning. Clean washrooms and AC classrooms ensured a comfortable environment. Plus, the quick service from staff made every visit efficient and enjoyable. A perfect place for anyone looking to enhance their language skills!",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-12",
+    authorName: "Bhawna Tomar",
+    authorAvatar: { src: "", alt: "Bhawna Tomar", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I had a great time at The Global Language Academy! The classes are fun and interesting. I learned a lot about different languages and cultures. What I really liked is that the prices are reasonable. You get good quality lessons without spending too much money. I recommend this place to everyone who wants to learn a new language!",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-13",
+    authorName: "Anushka Singh",
+    authorAvatar: { src: "", alt: "Anushka Singh", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "I have had a very positive experience at this language academy. The teachers are knowledgeable and supportive, and the lessons are well-structured. It has greatly improved my language skills and confidence.",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-14",
+    authorName: "Jagat Singh",
+    authorAvatar: { src: "", alt: "Jagat Singh", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is a fantastic place for anyone looking to enhance their language skills! The instructors are highly knowledgeable and create an engaging learning environment. What stands out the most is the reasonably priced courses, making it accessible for everyone. Whether you're a beginner or looking to refine your skills, this academy is definitely worth considering!",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-15",
+    authorName: "Bharti Rao",
+    authorAvatar: { src: "", alt: "Bharti Rao", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is amazing! Their methodical approach makes learning fun and easy. I love how I can book classes quickly without any hassle. The prices are very reasonable, making it great for everyone. The teachers are friendly and supportive. I feel confident in my language skills now! I highly recommend this academy to anyone wanting to learn a new language!",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-16",
+    authorName: "Tanisha",
+    authorAvatar: { src: "", alt: "Tanisha", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is an exceptional place for anyone looking to enhance their language skills. The AC classrooms create a comfortable learning environment, while the smartboards make lessons engaging and interactive. Their resourceful library is a treasure trove of materials. Most importantly, the expert faculty ensures that students receive top-notch guidance. Highly recommended!",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-17",
+    authorName: "Saurabh",
+    authorAvatar: { src: "", alt: "Saurabh", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is truly a gem for anyone looking to enhance their language skills. Their methodical approach to teaching is commendable, making complex concepts easy to grasp. The instructors are not only knowledgeable but also highly supportive, creating a warm learning environment. I've seen significant improvement in my fluency and confidence. Highly recommend!",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-18",
+    authorName: "Mansi Singh",
+    authorAvatar: { src: "", alt: "Mansi Singh", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "It was a great experience to take a demo session. It was very helpful to get knowledge about job opportunities worldwide. The trainer is very experienced and supportive.",
+    outcomeTag: "18 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-19",
+    authorName: "Mansi Singh Baisla",
+    authorAvatar: { src: "", alt: "Mansi Singh Baisla", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Excellent academy with experienced teachers and affordable fees. The teaching method is effective, and the staff is very helpful. Highly recommended!",
+    outcomeTag: "11 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-20",
+    authorName: "Ajay",
+    authorAvatar: { src: "", alt: "Ajay", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy stands out as an exceptional coaching center, offering personalized one-on-one mentoring that truly enhances the learning experience. With highly experienced instructors and regular evaluations, students receive tailored feedback to ensure their progress. The supportive environment fosters confidence and fluency in language skills. I highly recommend The Global Language Academy!",
+    outcomeTag: "9 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-21",
+    authorName: "Avirl",
+    authorAvatar: { src: "", alt: "Avirl", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy is an exceptional coaching center that truly stands out. With a diverse range of quality courses, it caters to learners of all levels. The personal mentoring ensures tailored guidance, making the learning experience even more enriching. Plus, their EMI options make education accessible and reasonably priced. Highly recommend for anyone looking to enhance their language skills in a supportive environment!",
+    outcomeTag: "8 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-22",
+    authorName: "Sarita",
+    authorAvatar: { src: "", alt: "Sarita", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "The Global Language Academy offers excellent courses that really help students improve their language skills. The teachers are highly experienced and know how to make learning fun and effective. They also provide EMI options, which is a big plus. Plus, the prices are reasonable for such high-quality education. Overall, I highly recommend this academy for anyone looking to learn a new language!",
+    outcomeTag: "8 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-23",
+    authorName: "Sarita Soni",
+    authorAvatar: { src: "", alt: "Sarita Soni", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "An excellent teacher with outstanding teaching skills. They explain concepts clearly, make learning easy. Their patience, dedication and ability to motivate students help everyone understand and succeed. Truly inspiring and highly appreciated. All students must join The Global Language Academy — highly recommend!",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-24",
+    authorName: "Surender Singh",
+    authorAvatar: { src: "", alt: "Surender Singh", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Easy booking with experienced team. Good experience and recommendations for all who want to learn a foreign language or improve communication.",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-25",
+    authorName: "Amardeep",
+    authorAvatar: { src: "", alt: "Amardeep", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Resourceful library with complete language learning materials, supportive faculty, and comfortable classrooms. Great experience!",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-26",
+    authorName: "Nivedita",
+    authorAvatar: { src: "", alt: "Nivedita", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Nice academy with very supportive and polite faculty. Great learning experience, well-structured lessons, and personalized attention.",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-27",
+    authorName: "Gohan Kumar",
+    authorAvatar: { src: "", alt: "Gohan Kumar", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Expert faculty and professional staff with quick service and well-maintained AC classrooms. Very supportive and encouraging environment.",
+    outcomeTag: "21 August · 5.0 Star"
+  },
+  {
+    id: "g-rev-28",
+    authorName: "Atul",
+    authorAvatar: { src: "", alt: "Atul", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Expert faculty with great guidance throughout the language course. Highly recommended for foreign language learning.",
+    outcomeTag: "19 June · 5.0 Star"
+  },
+  {
+    id: "g-rev-29",
+    authorName: "Kiran Kumar",
+    authorAvatar: { src: "", alt: "Kiran Kumar", width: 80, height: 80 },
+    ratingStars: 5,
+    quote: "Great coaching institute for foreign languages and IELTS exam preparation. Highly recommended for everyone looking for high scores!",
+    outcomeTag: "2 July · 5.0 Star"
+  }
+];
+
 export const testimonialsList: Testimonial[] = [
+  ...googleReviewsList,
   ...germanTestimonials,
   ...frenchTestimonials,
   ...japaneseTestimonials,

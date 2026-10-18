@@ -23,7 +23,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-sm text-slate-300 leading-relaxed max-w-sm">
-              The Global Language Academy is a premium education platform helping candidates clear international language exams and achieve global career opportunities.
+              The Global Language Academy (TGLA) is Delhi NCR&apos;s premier language education institute helping candidates clear international language exams and achieve global career opportunities.
             </p>
             <div className="flex gap-4 mt-2">
               <a href="https://www.facebook.com/share/1RcNQDJLLG/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-navy-muted hover:bg-purple transition-colors" aria-label="Follow us on Facebook">

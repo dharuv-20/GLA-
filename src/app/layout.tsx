@@ -32,11 +32,14 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "The Global Language Academy (TGLA) | German, French, Japanese, IELTS & PTE Coaching",
-    template: "%s | The Global Language Academy (TGLA)",
+    default: "TGLA | The Global Language Academy — German, French, Japanese, IELTS & PTE Coaching",
+    template: "%s | TGLA",
   },
-  description: "Join TGLA for certified German (A1-C2), French (A1-B2 & DALF C1/C2), Japanese (JLPT), Spoken English, IELTS (7.5+ Band), and PTE Strategy coaching in Delhi NCR & online. Small interactive batches with guaranteed exam success.",
+  description: "Join TGLA (The Global Language Academy) for certified German (A1-C2), French (A1-B2 & DALF C1/C2), Japanese (JLPT), Spoken English, IELTS (7.5+ Band), and PTE Strategy coaching in Delhi NCR & online. Small interactive batches with guaranteed exam success.",
   keywords: [
+    "TGLA",
+    "The Global Language Academy",
+    "TGLA Learning",
     "German Language Classes",
     "French Language Courses",
     "Japanese Language Courses",
@@ -47,28 +50,26 @@ export const metadata: Metadata = {
     "Goethe Zertifikat Preparation",
     "DELF DALF French Preparation",
     "JLPT N5 N4 N3 N2 N1 Japanese",
-    "Study Abroad Language Institute",
-    "The Global Language Academy",
-    "TGLA Learning"
+    "Study Abroad Language Institute"
   ],
-  authors: [{ name: "The Global Language Academy", url: "https://tglalearning.com" }],
-  creator: "The Global Language Academy",
-  publisher: "The Global Language Academy",
+  authors: [{ name: "The Global Language Academy (TGLA)", url: "https://tglalearning.com" }],
+  creator: "The Global Language Academy (TGLA)",
+  publisher: "The Global Language Academy (TGLA)",
   metadataBase: new URL("https://tglalearning.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "The Global Language Academy (TGLA) | German, French, Japanese, IELTS & PTE Coaching",
+    title: "TGLA | The Global Language Academy — German, French, Japanese, IELTS & PTE Coaching",
     description: "Premier foreign language & test prep academy in Delhi NCR. Certified German (A1-C2), French (A1-B2/DALF), Japanese (JLPT), Spoken English, IELTS & PTE coaching.",
     url: "https://tglalearning.com",
-    siteName: "The Global Language Academy",
+    siteName: "TGLA - The Global Language Academy",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Global Language Academy (TGLA)",
+    title: "TGLA | The Global Language Academy",
     description: "Certified German, French, Japanese, Spoken English, IELTS, and PTE coaching in Delhi NCR & online. Small batches with native-level trainers.",
   },
   robots: {

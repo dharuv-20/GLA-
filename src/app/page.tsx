@@ -40,15 +40,18 @@ import HeroBackgroundVideo from '@/components/home/HeroBackgroundVideo';
 import DeferredGoogleMap from '@/components/layout/DeferredGoogleMap';
 
 export const metadata: Metadata = {
-  title: "German, French & IELTS Coaching in Delhi NCR | TGLA",
-  description: "Learn German, French, Japanese, Spoken English, IELTS and PTE with TGLA. Explore structured courses, exam preparation and online or Delhi NCR classes.",
+  title: {
+    absolute: "TGLA: German, French, Japanese & IELTS Coaching in Delhi NCR | The Global Language Academy",
+  },
+  description: "Learn German (A1-C2), French, Japanese, Spoken English, IELTS and PTE with TGLA (The Global Language Academy). Certified native & Goethe trainers, interactive batches, and 100% exam preparation in Delhi NCR & online.",
   alternates: {
     canonical: "https://tglalearning.com",
   },
   openGraph: {
-    title: "German, French & IELTS Coaching in Delhi NCR | TGLA",
-    description: "Learn German, French, Japanese, Spoken English, IELTS and PTE with TGLA. Explore structured courses, exam preparation and online or Delhi NCR classes.",
+    title: "TGLA: German, French, Japanese & IELTS Coaching in Delhi NCR",
+    description: "Learn German (A1-C2), French, Japanese, Spoken English, IELTS and PTE with TGLA (The Global Language Academy). Certified native & Goethe trainers, interactive batches, and 100% exam preparation in Delhi NCR & online.",
     url: "https://tglalearning.com",
+    siteName: "TGLA - The Global Language Academy",
   },
 };
 

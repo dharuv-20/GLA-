@@ -5,8 +5,8 @@ export default function OrganizationSchema() {
       {
         "@type": ["EducationalOrganization", "LocalBusiness"],
         "@id": "https://tglalearning.com/#organization",
-        "name": "The Global Language Academy",
-        "alternateName": "TGLA - The Global Language Academy",
+        "name": "TGLA - The Global Language Academy",
+        "alternateName": ["TGLA", "The Global Language Academy", "TGLA Learning"],
         "url": "https://tglalearning.com",
         "logo": "https://tglalearning.com/icon.png",
         "image": "https://tglalearning.com/images/logo-dark.png",
@@ -14,6 +14,14 @@ export default function OrganizationSchema() {
         "telephone": "+91-9217999511",
         "email": "care@glaind.com",
         "priceRange": "$$",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": "50",
+          "reviewCount": "50"
+        },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "3rd Floor, Plot No. 94, PKT-10, Dwarka Sector 13, Opposite Metro Station, Near Radisson Blu Hotel",
@@ -46,7 +54,8 @@ export default function OrganizationSchema() {
         "@type": "WebSite",
         "@id": "https://tglalearning.com/#website",
         "url": "https://tglalearning.com",
-        "name": "The Global Language Academy",
+        "name": "TGLA - The Global Language Academy",
+        "alternateName": "TGLA",
         "publisher": {
           "@id": "https://tglalearning.com/#organization"
         },
