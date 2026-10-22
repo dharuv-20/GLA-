@@ -5,17 +5,17 @@ import { Course } from '@/types';
 import FormattedTitle from '@/components/FormattedTitle';
 
 const courseImages: Record<string, string> = {
-  'german-language': '/images/classroom.webp',
-  'ielts-preparation': '/images/computer-lab.webp',
-  'pte-academic': '/images/lobby.webp',
-  'french-language': '/images/classroom.webp',
-  'japanese-language': '/images/computer-lab.webp',
-  'spoken-english': '/images/lobby.webp',
-  'personality-development': '/images/classroom.webp',
+  'german-language': '/images/courses/german-language.webp',
+  'ielts-preparation': '/images/courses/ielts-preparation.webp',
+  'pte-academic': '/images/courses/pte-academic.webp',
+  'french-language': '/images/courses/french-language.webp',
+  'japanese-language': '/images/courses/japanese-language.webp',
+  'spoken-english': '/images/courses/spoken-english.webp',
+  'personality-development': '/images/courses/personality-development.webp',
 };
 
 export default function CourseCard({ course }: { course: Course }) {
-  const imageUrl = courseImages[course.slug] || '/images/classroom.webp';
+  const imageUrl = courseImages[course.slug] || '/images/courses/german-language.webp';
 
   return (
     <div className="group flex flex-col bg-card border border-card-border/60 hover:border-purple-300/35 rounded-2xl overflow-hidden shadow-sm hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_40px_rgba(147,51,234,0.06)] hover:-translate-y-1.5 transition-all duration-300 h-full">
