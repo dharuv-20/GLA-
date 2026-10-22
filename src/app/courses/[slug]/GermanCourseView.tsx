@@ -238,7 +238,7 @@ const germanSyllabus: SyllabusLevel[] = [
     code: "B1 Plus",
     name: "Upper-Intermediate Level",
     duration: "2 Months",
-    books: ["Aspekte neu B1 plus"],
+    books: ["Kontext B1 plus"],
     slogan: "Refine Vocabulary, Master Structures, Speak Interactively.",
     weeks: [
       {
@@ -295,7 +295,7 @@ const germanSyllabus: SyllabusLevel[] = [
     code: "B2",
     name: "Advanced Intermediate Development",
     duration: "2 Months",
-    books: ["Aspekte neu B2"],
+    books: ["Kontext B2"],
     slogan: "Learn. Practice. Succeed. Your German Journey Continues.",
     weeks: [
       {
@@ -837,7 +837,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                     <BookOpen className="w-4 h-4 text-purple" />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <h4 className="text-xs font-extrabold text-navy">Aspekte neu</h4>
+                    <h4 className="text-xs font-extrabold text-navy">Kontext</h4>
                     <p className="text-[10px] text-navy-muted leading-relaxed font-semibold font-sans">
                       Upper-intermediate training manuals mapping professional debate forms, CV drafting templates, and complex text orientation skills.
                     </p>
@@ -850,7 +850,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
                     <BookOpen className="w-4 h-4 text-purple" />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <h4 className="text-xs font-extrabold text-navy">Kontext C1</h4>
+                    <h4 className="text-xs font-extrabold text-navy">Kontext</h4>
                     <p className="text-[10px] text-navy-muted leading-relaxed font-semibold font-sans">
                       Advanced German coursebook covering academic presentation styles, research methods, scientific arguments, and C2-level extension mediation work.
                     </p>

@@ -789,7 +789,7 @@ export const germanFaqs: FAQItem[] = [
   {
     id: "faq-de-3",
     question: "What textbooks and learning resources are provided in the German course?",
-    answer: "We use standard German courseware including Netzwerk neu for A1–A2, Aspekte neu for B1–C1, and authentic past Goethe/telc examination papers alongside our digital LMS portal."
+    answer: "We use standard German courseware including Netzwerk neu for A1–A2, Kontext for B1–C2, and authentic past Goethe/telc examination papers alongside our digital LMS portal."
   },
   {
     id: "faq-de-4",
