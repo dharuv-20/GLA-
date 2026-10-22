@@ -677,6 +677,39 @@ export default function HomePage() {
           </div>
 
           <div className="max-w-4xl mx-auto flex flex-col gap-8">
+            {/* Leadership Spotlight Banner */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-purple/10 via-card to-purple/5 border border-purple/25 shadow-md flex flex-col sm:flex-row items-center gap-6">
+              <div className="relative shrink-0">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-purple/40 shadow-lg ring-4 ring-purple/10 bg-purple/10">
+                  <img
+                    src="/images/leadership/pinki-rana.jpg"
+                    alt="Ms. Pinki Rana - Founder & Director, The Global Language Academy"
+                    loading="lazy"
+                    width={200}
+                    height={200}
+                    className="w-full h-full object-cover object-[center_12%]"
+                  />
+                </div>
+                <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-wider bg-purple text-white shadow-sm">
+                  Founder &amp; Director
+                </span>
+              </div>
+
+              <div className="flex-1 flex flex-col gap-2 text-center sm:text-left">
+                <span className="text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-purple">
+                  Director&apos;s Welcome
+                </span>
+                <p className="text-sm sm:text-base italic text-navy leading-relaxed font-sans font-medium">
+                  &ldquo;Education is the definitive pathway to unlocking youth potential worldwide. At TGLA, our purpose is not just to teach grammar rules, but to give each student the self-assurance, practical fluency, and accredited credentials needed to succeed globally.&rdquo;
+                </p>
+                <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 mt-1">
+                  <h4 className="text-base font-extrabold font-display text-navy">Ms. Pinki Rana</h4>
+                  <span className="hidden sm:inline text-navy-muted">•</span>
+                  <span className="text-xs font-bold text-purple">Founder &amp; Director, The Global Language Academy</span>
+                </div>
+              </div>
+            </div>
+
             {facultyList.map((fac) => (
               <FacultyCard key={fac.id} faculty={fac} layout="horizontal" />
             ))}

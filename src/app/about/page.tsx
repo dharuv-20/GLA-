@@ -308,27 +308,55 @@ export default function AboutPage() {
 
             {/* Right Column: Leadership Quote Card */}
             <div className="lg:col-span-5">
-              <div className="relative p-7 sm:p-9 rounded-3xl bg-gradient-to-br from-section-alt via-card to-section-alt border border-purple/25 shadow-lg flex flex-col gap-6 overflow-hidden">
-                <div className="absolute top-0 right-0 w-36 h-36 bg-purple/10 rounded-full blur-2xl pointer-events-none"></div>
+              <div className="relative p-7 sm:p-9 rounded-3xl bg-gradient-to-br from-section-alt via-card to-section-alt border border-purple/30 shadow-xl flex flex-col gap-6 overflow-hidden hover:border-purple/50 transition-all duration-300">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-purple/10 rounded-full blur-3xl pointer-events-none"></div>
                 <span className="absolute top-6 right-6 text-purple opacity-20">
                   <Quote className="w-14 h-14" />
                 </span>
                 
-                <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-                  Director&apos;s Message
-                </span>
-                
-                <p className="text-base sm:text-lg font-medium italic text-navy leading-relaxed relative z-10">
-                  &ldquo;Education is the definitive pathway to unlocking youth potential worldwide. At TGLA, our purpose is not just to teach grammar rules, but to give each student the self-assurance, practical fluency, and accredited credentials needed to succeed globally.&rdquo;
-                </p>
-
-                <div className="border-t border-card-border/80 pt-5 flex items-center gap-4 relative z-10">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple to-purple-hover text-white flex items-center justify-center font-bold font-display text-lg shadow-md shrink-0">
-                    PR
+                {/* Header: Photo + Name + Designation */}
+                <div className="flex items-center gap-4.5 relative z-10">
+                  <div className="relative shrink-0">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-purple/40 shadow-lg ring-4 ring-purple/10 bg-purple/10">
+                      <img
+                        src="/images/leadership/pinki-rana.jpg"
+                        alt="Ms. Pinki Rana - Founder & Director, The Global Language Academy"
+                        loading="lazy"
+                        width={200}
+                        height={200}
+                        className="w-full h-full object-cover object-[center_12%]"
+                      />
+                    </div>
+                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-wider bg-purple text-white shadow-sm">
+                      Leadership
+                    </span>
                   </div>
+
                   <div className="flex flex-col">
-                    <h4 className="text-base font-bold text-navy">Ms. Pinki Rana</h4>
-                    <p className="text-xs font-medium text-purple">Founder & Director, The Global Language Academy</p>
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">
+                      Director&apos;s Message
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-extrabold font-display text-navy tracking-tight mt-0.5">
+                      Ms. Pinki Rana
+                    </h3>
+                    <p className="text-xs font-bold text-purple mt-0.5">
+                      Founder &amp; Director
+                    </p>
+                    <span className="text-[11px] font-semibold text-navy-muted">
+                      The Global Language Academy
+                    </span>
+                  </div>
+                </div>
+                
+                {/* Director's Quote */}
+                <div className="border-t border-card-border/80 pt-4 flex flex-col gap-3 relative z-10">
+                  <p className="text-sm sm:text-base font-medium italic text-navy leading-relaxed font-sans">
+                    &ldquo;Education is the definitive pathway to unlocking youth potential worldwide. At TGLA, our purpose is not just to teach grammar rules, but to give each student the self-assurance, practical fluency, and accredited credentials needed to succeed globally.&rdquo;
+                  </p>
+
+                  <div className="flex items-center gap-2 pt-2 border-t border-card-border/50 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Empowering Global Education &amp; Career Pathways</span>
                   </div>
                 </div>
               </div>
