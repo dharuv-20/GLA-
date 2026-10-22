@@ -676,7 +676,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto flex flex-col gap-8">
             {facultyList.map((fac) => (
               <FacultyCard key={fac.id} faculty={fac} layout="horizontal" />
             ))}

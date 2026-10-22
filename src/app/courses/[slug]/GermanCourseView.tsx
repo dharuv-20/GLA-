@@ -1579,7 +1579,7 @@ export default function GermanCourseView({ course, relatedCourses }: GermanCours
             <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">Who Will Train You?</h2>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto flex flex-col gap-8">
             {course.faculty.map((trainer) => (
               <div key={trainer.id} className="w-full">
                 <FacultyCard faculty={trainer} />

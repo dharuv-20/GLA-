@@ -13,6 +13,19 @@ export const facultyList: FacultyMember[] = [
       "CEFR Exam Preparation Specialist"
     ],
     bio: "Ms. Harshita Sablania specializes in interactive spoken German, active grammar immersion, and comprehensive exam preparation from A1 to advanced levels."
+  },
+  {
+    id: "fac-2",
+    name: "Ms. Stuti Saran",
+    role: "Senior German Language Trainer",
+    avatar: { src: "/images/faculty/stuti.jpg", alt: "Ms. Stuti Saran - German Language Trainer", width: 300, height: 300 },
+    credentials: [
+      "Diploma in German Language",
+      "Master in Hospitality",
+      "10+ Years Dedicated Teaching Experience",
+      "CEFR Exam Preparation Specialist"
+    ],
+    bio: "Ms. Stuti Saran brings over a decade of German language pedagogical expertise, focusing on CEFR examination excellence, structured grammar mastery, and professional intercultural fluency."
   }
 ];
 
@@ -1063,7 +1076,7 @@ export const coursesList: Course[] = [
         modules: ["Advanced Idiomatic Expressions", "Complex Sentence Structures (Nomen-Verb-Verbindungen)", "Academic Reading & Writing", "Expressing Nuanced Opinions"]
       }
     ],
-    faculty: [facultyList[0]],
+    faculty: facultyList,
     testimonials: germanTestimonials,
     faqs: germanFaqs,
     studentResults: [studentResultsList[0]],

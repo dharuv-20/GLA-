@@ -711,7 +711,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto flex flex-col gap-8">
             {facultyList.map((fac) => (
               <div key={fac.id} className="h-full">
                 <FacultyCard faculty={fac} layout="horizontal" />
