@@ -5,8 +5,9 @@ export const facultyList: FacultyMember[] = [
     id: "fac-1",
     name: "Ms. Harshita Sablania",
     role: "Lead German Language Trainer",
-    avatar: { src: "/images/faculty/harshita.jpg", alt: "Ms. Harshita Sablania - German Language Trainer", width: 300, height: 300 },
+    avatar: { src: "/images/faculty/harshita.jpg?v=2", alt: "Ms. Harshita Sablania - German Language Trainer", width: 300, height: 300 },
     credentials: [
+      "Master in German Language",
       "Diploma in German Language",
       "5+ Years Dedicated Teaching Experience",
       "CEFR Exam Preparation Specialist"

@@ -28,7 +28,8 @@ import {
   Navigation,
   CalendarCheck
 } from 'lucide-react';
-import { coursesList, testimonialsList } from '@/data/courses-db';
+import { coursesList, testimonialsList, facultyList } from '@/data/courses-db';
+import FacultyCard from '@/components/FacultyCard';
 import { homeFaqsList } from '@/data/home-faqs';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
 import CountUp from '@/components/CountUp';
@@ -655,6 +656,31 @@ export default function HomePage() {
             </Link>
           </div>
 
+        </div>
+      </section>
+
+      {/* ========================================================= */}
+      {/* SECTION: ACADEMY FACULTY & MENTORSHIP                     */}
+      {/* ========================================================= */}
+      <section className="bg-section-alt text-navy py-16 sm:py-20 lg:py-24 border-b border-card-border transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14 flex flex-col gap-3">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
+              Certified Faculty
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
+              Meet Our Expert Instructors &amp; Mentors
+            </h2>
+            <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
+              We do not outsource lectures to unverified tutors. Train directly with certified language specialists and examiner-trained mentors.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            {facultyList.map((fac) => (
+              <FacultyCard key={fac.id} faculty={fac} layout="horizontal" />
+            ))}
+          </div>
         </div>
       </section>
 

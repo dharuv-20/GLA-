@@ -19,7 +19,7 @@ export default function FacultyCard({ faculty, layout = 'horizontal' }: FacultyC
   // Pick an icon based on credential content
   const getCredentialIcon = (text: string) => {
     const lower = text.toLowerCase();
-    if (lower.includes('diploma') || lower.includes('degree') || lower.includes('certified')) {
+    if (lower.includes('diploma') || lower.includes('degree') || lower.includes('certified') || lower.includes('master')) {
       return GraduationCap;
     }
     if (lower.includes('year') || lower.includes('experience')) {
@@ -53,7 +53,7 @@ export default function FacultyCard({ faculty, layout = 'horizontal' }: FacultyC
                     loading="lazy"
                     width={180}
                     height={180}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-[center_20%]"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00122E] via-purple/40 to-[#00122E] text-white">
@@ -142,7 +142,7 @@ export default function FacultyCard({ faculty, layout = 'horizontal' }: FacultyC
                   loading="lazy"
                   width={200}
                   height={200}
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-[center_20%]"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00122E] via-purple/40 to-[#00122E] text-white">
