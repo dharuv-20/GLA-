@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 import { coursesList, testimonialsList, facultyList } from '@/data/courses-db';
 import FacultyCard from '@/components/FacultyCard';
+import DirectorCard from '@/components/DirectorCard';
 import { homeFaqsList } from '@/data/home-faqs';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
 import CountUp from '@/components/CountUp';
@@ -660,59 +661,68 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================= */}
-      {/* SECTION: ACADEMY FACULTY & MENTORSHIP                     */}
+      {/* SECTION: ACADEMY LEADERSHIP & CERTIFIED FACULTY           */}
       {/* ========================================================= */}
       <section className="bg-section-alt text-navy py-16 sm:py-20 lg:py-24 border-b border-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14 flex flex-col gap-3">
+          
+          {/* Main Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
             <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              Certified Faculty
+              Academy Leadership &amp; Faculty
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              Meet Our Expert Instructors &amp; Mentors
+              Meet Our Leadership &amp; Expert Mentors
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              We do not outsource lectures to unverified tutors. Train directly with certified language specialists and examiner-trained mentors.
+              Led by visionary education leadership and powered by accredited language specialists, TGLA delivers world-class CEFR examination outcomes and practical fluency.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto flex flex-col gap-8">
-            {/* Leadership Spotlight Banner */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-purple/10 via-card to-purple/5 border border-purple/25 shadow-md flex flex-col sm:flex-row items-center gap-6">
-              <div className="relative shrink-0">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-purple/40 shadow-lg ring-4 ring-purple/10 bg-purple/10">
-                  <img
-                    src="/images/leadership/pinki-rana.jpg"
-                    alt="Ms. Pinki Rana - Founder & Director, The Global Language Academy"
-                    loading="lazy"
-                    width={200}
-                    height={200}
-                    className="w-full h-full object-cover object-[center_12%]"
-                  />
-                </div>
-                <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-wider bg-purple text-white shadow-sm">
-                  Founder &amp; Director
+          <div className="max-w-5xl mx-auto flex flex-col gap-12 sm:gap-14">
+            
+            {/* TIER 1: INSTITUTIONAL LEADERSHIP (FOUNDER & DIRECTOR) */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <span className="h-px bg-purple/20 flex-1"></span>
+                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
+                  <Award className="w-3.5 h-3.5 text-purple" />
+                  Tier 1 • Institutional Leadership
                 </span>
+                <span className="h-px bg-purple/20 flex-1"></span>
               </div>
 
-              <div className="flex-1 flex flex-col gap-2 text-center sm:text-left">
-                <span className="text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-purple">
-                  Director&apos;s Welcome
+              {/* Founder & Director Spotlight Card */}
+              <DirectorCard variant="spotlight" />
+            </div>
+
+            {/* TIER 2: CERTIFIED LANGUAGE FACULTY & TRAINERS */}
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-3">
+                <span className="h-px bg-purple/20 flex-1"></span>
+                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
+                  <GraduationCap className="w-3.5 h-3.5 text-purple" />
+                  Tier 2 • Certified Language Faculty &amp; Mentors
                 </span>
-                <p className="text-sm sm:text-base italic text-navy leading-relaxed font-sans font-medium">
-                  &ldquo;Education is the definitive pathway to unlocking youth potential worldwide. At TGLA, our purpose is not just to teach grammar rules, but to give each student the self-assurance, practical fluency, and accredited credentials needed to succeed globally.&rdquo;
+                <span className="h-px bg-purple/20 flex-1"></span>
+              </div>
+
+              <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">
+                  Learn Directly From Certified Goethe &amp; CEFR Specialists
+                </h3>
+                <p className="text-xs sm:text-sm text-navy-muted mt-1">
+                  Small, interactive batches (5 to 7 students) mentored by accredited educators with proven track records.
                 </p>
-                <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 mt-1">
-                  <h4 className="text-base font-extrabold font-display text-navy">Ms. Pinki Rana</h4>
-                  <span className="hidden sm:inline text-navy-muted">•</span>
-                  <span className="text-xs font-bold text-purple">Founder &amp; Director, The Global Language Academy</span>
-                </div>
+              </div>
+
+              <div className="flex flex-col gap-8">
+                {facultyList.map((fac) => (
+                  <FacultyCard key={fac.id} faculty={fac} layout="horizontal" />
+                ))}
               </div>
             </div>
 
-            {facultyList.map((fac) => (
-              <FacultyCard key={fac.id} faculty={fac} layout="horizontal" />
-            ))}
           </div>
         </div>
       </section>

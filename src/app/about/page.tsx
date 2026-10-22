@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { facultyList } from '@/data/courses-db';
 import FacultyCard from '@/components/FacultyCard';
+import DirectorCard from '@/components/DirectorCard';
 import CountUp from '@/components/CountUp';
 
 export const metadata: Metadata = {
@@ -308,58 +309,7 @@ export default function AboutPage() {
 
             {/* Right Column: Leadership Quote Card */}
             <div className="lg:col-span-5">
-              <div className="relative p-7 sm:p-9 rounded-3xl bg-gradient-to-br from-section-alt via-card to-section-alt border border-purple/30 shadow-xl flex flex-col gap-6 overflow-hidden hover:border-purple/50 transition-all duration-300">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-purple/10 rounded-full blur-3xl pointer-events-none"></div>
-                <span className="absolute top-6 right-6 text-purple opacity-20">
-                  <Quote className="w-14 h-14" />
-                </span>
-                
-                {/* Header: Photo + Name + Designation */}
-                <div className="flex items-center gap-4.5 relative z-10">
-                  <div className="relative shrink-0">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-purple/40 shadow-lg ring-4 ring-purple/10 bg-purple/10">
-                      <img
-                        src="/images/leadership/pinki-rana.jpg"
-                        alt="Ms. Pinki Rana - Founder & Director, The Global Language Academy"
-                        loading="lazy"
-                        width={200}
-                        height={200}
-                        className="w-full h-full object-cover object-[center_12%]"
-                      />
-                    </div>
-                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-wider bg-purple text-white shadow-sm">
-                      Leadership
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">
-                      Director&apos;s Message
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold font-display text-navy tracking-tight mt-0.5">
-                      Ms. Pinki Rana
-                    </h3>
-                    <p className="text-xs font-bold text-purple mt-0.5">
-                      Founder &amp; Director
-                    </p>
-                    <span className="text-[11px] font-semibold text-navy-muted">
-                      The Global Language Academy
-                    </span>
-                  </div>
-                </div>
-                
-                {/* Director's Quote */}
-                <div className="border-t border-card-border/80 pt-4 flex flex-col gap-3 relative z-10">
-                  <p className="text-sm sm:text-base font-medium italic text-navy leading-relaxed font-sans">
-                    &ldquo;Education is the definitive pathway to unlocking youth potential worldwide. At TGLA, our purpose is not just to teach grammar rules, but to give each student the self-assurance, practical fluency, and accredited credentials needed to succeed globally.&rdquo;
-                  </p>
-
-                  <div className="flex items-center gap-2 pt-2 border-t border-card-border/50 text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>Empowering Global Education &amp; Career Pathways</span>
-                  </div>
-                </div>
-              </div>
+              <DirectorCard variant="sidebar" />
             </div>
 
           </div>
@@ -722,29 +672,69 @@ export default function AboutPage() {
       </section>
 
       {/* ========================================================= */}
-      {/* 8. MEET OUR EXPERT TRAINERS (FACULTY PROFILES)            */}
+      {/* 8. ACADEMY LEADERSHIP & CERTIFIED FACULTY                 */}
       {/* ========================================================= */}
       <section className="bg-white dark:bg-[#071324] text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 flex flex-col gap-3">
             <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              Academy Faculty
+              Academy Leadership &amp; Faculty
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              Meet Our Certified Instructors & Mentors
+              Meet Our Leadership &amp; Certified Mentors
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              We do not outsource lectures to inexperienced tutors. Learn directly from credentialed, examiner-trained mentors.
+              We do not outsource lectures to unverified tutors. Learn directly under visionary leadership and credentialed, examiner-trained mentors.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto flex flex-col gap-8">
-            {facultyList.map((fac) => (
-              <div key={fac.id} className="h-full">
-                <FacultyCard faculty={fac} layout="horizontal" />
+          <div className="max-w-5xl mx-auto flex flex-col gap-12 sm:gap-14">
+            
+            {/* TIER 1: INSTITUTIONAL LEADERSHIP (FOUNDER & DIRECTOR) */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <span className="h-px bg-purple/20 flex-1"></span>
+                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
+                  <Award className="w-3.5 h-3.5 text-purple" />
+                  Tier 1 • Institutional Leadership
+                </span>
+                <span className="h-px bg-purple/20 flex-1"></span>
               </div>
-            ))}
+
+              {/* Founder & Director Spotlight Card */}
+              <DirectorCard variant="spotlight" />
+            </div>
+
+            {/* TIER 2: CERTIFIED LANGUAGE FACULTY & TRAINERS */}
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-3">
+                <span className="h-px bg-purple/20 flex-1"></span>
+                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
+                  <GraduationCap className="w-3.5 h-3.5 text-purple" />
+                  Tier 2 • Certified Language Faculty &amp; Mentors
+                </span>
+                <span className="h-px bg-purple/20 flex-1"></span>
+              </div>
+
+              <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">
+                  Learn Directly From Certified Goethe &amp; CEFR Specialists
+                </h3>
+                <p className="text-xs sm:text-sm text-navy-muted mt-1">
+                  Small, interactive batches (5 to 7 students) mentored by accredited educators with proven track records.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-8">
+                {facultyList.map((fac) => (
+                  <div key={fac.id} className="h-full">
+                    <FacultyCard faculty={fac} layout="horizontal" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
 
         </div>
