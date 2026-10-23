@@ -63,21 +63,21 @@ export default function CoursesSlider({ courses }: CoursesSliderProps) {
   const getCourseImage = (slug: string) => {
     switch (slug) {
       case 'german-language':
-        return '/images/courses/german-language.webp';
+        return '/images/courses/german-landmark.webp';
       case 'french-language':
-        return '/images/courses/french-language.webp';
+        return '/images/courses/french-landmark.webp';
       case 'japanese-language':
-        return '/images/courses/japanese-language.webp';
+        return '/images/courses/japanese-landmark.webp';
       case 'spoken-english':
-        return '/images/courses/spoken-english.webp';
+        return '/images/courses/spoken-english-landmark.webp';
       case 'ielts-preparation':
-        return '/images/courses/ielts-preparation.webp';
+        return '/images/courses/ielts-preparation-landmark.webp';
       case 'pte-academic':
-        return '/images/courses/pte-academic.webp';
+        return '/images/courses/pte-academic-landmark.webp';
       case 'personality-development':
-        return '/images/courses/personality-development.webp';
+        return '/images/courses/personality-development-landmark.webp';
       default:
-        return '/images/courses/german-language.webp';
+        return '/images/courses/german-landmark.webp';
     }
   };
 

@@ -5,17 +5,17 @@ import { Course } from '@/types';
 import FormattedTitle from '@/components/FormattedTitle';
 
 const courseImages: Record<string, string> = {
-  'german-language': '/images/courses/german-language.webp',
-  'ielts-preparation': '/images/courses/ielts-preparation.webp',
-  'pte-academic': '/images/courses/pte-academic.webp',
-  'french-language': '/images/courses/french-language.webp',
-  'japanese-language': '/images/courses/japanese-language.webp',
-  'spoken-english': '/images/courses/spoken-english.webp',
-  'personality-development': '/images/courses/personality-development.webp',
+  'german-language': '/images/courses/german-landmark.webp',
+  'ielts-preparation': '/images/courses/ielts-preparation-landmark.webp',
+  'pte-academic': '/images/courses/pte-academic-landmark.webp',
+  'french-language': '/images/courses/french-landmark.webp',
+  'japanese-language': '/images/courses/japanese-landmark.webp',
+  'spoken-english': '/images/courses/spoken-english-landmark.webp',
+  'personality-development': '/images/courses/personality-development-landmark.webp',
 };
 
 export default function CourseCard({ course }: { course: Course }) {
-  const imageUrl = courseImages[course.slug] || '/images/courses/german-language.webp';
+  const imageUrl = courseImages[course.slug] || '/images/courses/german-landmark.webp';
 
   return (
     <div className="group flex flex-col bg-card border border-card-border/60 hover:border-purple-300/35 rounded-2xl overflow-hidden shadow-sm hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_40px_rgba(147,51,234,0.06)] hover:-translate-y-1.5 transition-all duration-300 h-full">
