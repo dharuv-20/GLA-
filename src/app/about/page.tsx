@@ -750,10 +750,10 @@ export default function AboutPage() {
 
               <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">
                 <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">
-                  Personalized Course Counseling &amp; Admissions Guidance
+                  Personalized Course Councelling &amp; Admissions Guidance
                 </h3>
                 <p className="text-xs sm:text-sm text-navy-muted mt-1">
-                  Connect with our dedicated counselor for level evaluations, fee structures, batch schedules, and study abroad consultation.
+                  Connect with our dedicated councillor for level evaluations, fee structures, batch schedules, and study abroad consultation.
                 </p>
               </div>
 

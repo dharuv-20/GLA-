@@ -9,7 +9,7 @@ interface CounselorCardProps {
 
 export default function CounselorCard({ counselor = counselorProfile }: CounselorCardProps) {
   const whatsappMessage = encodeURIComponent(
-    `Hi TGLA, I would like to consult with the Admissions Counselor regarding course enrollment and batch timings.`
+    `Hi TGLA, I would like to consult with the Admissions Councillor regarding course enrollment and batch timings.`
   );
 
   return (
@@ -39,7 +39,7 @@ export default function CounselorCard({ counselor = counselorProfile }: Counselo
             {/* Active Status Badge */}
             <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-500 text-white shadow-md border border-white/20">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              Admissions Advisory
+              Admissions Councillor
             </span>
           </div>
 
@@ -112,7 +112,7 @@ export default function CounselorCard({ counselor = counselorProfile }: Counselo
               className="inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all duration-200"
             >
               <MessageCircle className="w-4 h-4 fill-white text-emerald-600" />
-              <span>Chat with Admissions Counselor</span>
+              <span>Chat with Admissions Councillor</span>
             </a>
             <span className="text-xs text-navy-muted font-medium">
               Free consultation &amp; level assessment
