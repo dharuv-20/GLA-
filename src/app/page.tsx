@@ -859,7 +859,7 @@ export default function HomePage() {
                 </h2>
                 
                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                  Choose your course, speak with our counsellors and take the first step toward your global goals.
+                  Choose your course, speak with our Councillors and take the first step toward your global goals.
                 </p>
 
                 {/* Action Buttons */}
