@@ -5,6 +5,7 @@ import {
   ShieldCheck,
   Target,
   Users,
+  UserCheck,
   Award,
   Eye,
   Compass,
@@ -32,6 +33,7 @@ import {
 import { facultyList } from '@/data/courses-db';
 import FacultyCard from '@/components/FacultyCard';
 import DirectorCard from '@/components/DirectorCard';
+import CounselorCard from '@/components/CounselorCard';
 import CountUp from '@/components/CountUp';
 
 export const metadata: Metadata = {
@@ -733,6 +735,29 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* TIER 3: ACADEMIC ADVISORY & STUDENT COUNSELING */}
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-3">
+                <span className="h-px bg-purple/20 flex-1"></span>
+                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
+                  <UserCheck className="w-3.5 h-3.5 text-purple" />
+                  Tier 3 • Academic Advisory &amp; Student Support
+                </span>
+                <span className="h-px bg-purple/20 flex-1"></span>
+              </div>
+
+              <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">
+                  Personalized Course Counseling &amp; Admissions Guidance
+                </h3>
+                <p className="text-xs sm:text-sm text-navy-muted mt-1">
+                  Connect with our dedicated counselor for level evaluations, fee structures, batch schedules, and study abroad consultation.
+                </p>
+              </div>
+
+              <CounselorCard />
             </div>
 
           </div>

@@ -1,5 +1,19 @@
 import { Course, FacultyMember, Testimonial, FAQItem, StudentResult, ServiceItem } from '../types';
 
+export const counselorProfile = {
+  id: "staff-counselor-1",
+  name: "Senior Academic Counselor",
+  role: "Admissions & Academic Counselor",
+  avatar: { src: "/images/staff/counselor.webp", alt: "Senior Academic & Admissions Counselor - The Global Language Academy", width: 300, height: 300 },
+  credentials: [
+    "Course Level & Batch Diagnostic Counseling",
+    "Study Abroad & Visa Documentation Advisory",
+    "Personalized 1-on-1 Student Guidance",
+    "Dwarka Campus & Online Admissions Support"
+  ],
+  bio: "Our Academic Counselor provides direct, personalized assistance to help students and parents choose the right foreign language program, map out CEFR examination timelines, and navigate international study pathways."
+};
+
 export const facultyList: FacultyMember[] = [
   {
     id: "fac-1",
