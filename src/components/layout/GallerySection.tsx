@@ -13,6 +13,12 @@ interface GalleryItem {
 
 const galleryItems: GalleryItem[] = [
   {
+    src: '/images/gallery/academy-reception-desk.webp',
+    title: 'The Global Language Academy Main Reception & Welcome Desk',
+    tag: 'Campus Foyer',
+    description: 'Our state-of-the-art academy reception and student consultation foyer in Dwarka, Delhi NCR.'
+  },
+  {
     src: '/images/gallery/german-classroom-session.webp',
     title: 'Interactive Small-Batch German Classroom',
     tag: 'Live Batch',

@@ -2,16 +2,16 @@ import { Course, FacultyMember, Testimonial, FAQItem, StudentResult, ServiceItem
 
 export const counselorProfile = {
   id: "staff-counselor-1",
-  name: "Senior Academic Councillor",
-  role: "Admissions & Academic Councillor",
-  avatar: { src: "/images/staff/counselor.webp", alt: "Senior Academic & Admissions Councillor - The Global Language Academy", width: 300, height: 300 },
+  name: "Ms. Priya Arora",
+  role: "Senior Academic & Admissions Councillor",
+  avatar: { src: "/images/staff/counselor.webp", alt: "Ms. Priya Arora - Senior Academic & Admissions Councillor, The Global Language Academy", width: 300, height: 300 },
   credentials: [
-    "Course Level & Batch Diagnostic Councelling",
-    "Study Abroad & Visa Documentation Advisory",
-    "Personalized 1-on-1 Student Guidance",
-    "Dwarka Campus & Online Admissions Support"
+    "B.Ed, Educational Psychology",
+    "20+ Years in Admission Councelling",
+    "Course Selection & Academic Requirements",
+    "Student-Focused Academic & Career Planning"
   ],
-  bio: "Our Academic Councillor provides direct, personalized assistance to help students and parents choose the right foreign language program, map out CEFR examination timelines, and navigate international study pathways."
+  bio: "Priya Arora is an experienced Education Professional with over 20 years of expertise in Admission Counselling. She specializes in guiding students and parents with the right course selection, admission processes, and academic requirements. With her extensive experience and student-focused approach, she helps learners make informed decisions and choose the right path for their academic and career goals."
 };
 
 export const facultyList: FacultyMember[] = [

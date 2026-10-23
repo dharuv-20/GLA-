@@ -753,7 +753,7 @@ export default function AboutPage() {
                   Personalized Course Councelling &amp; Admissions Guidance
                 </h3>
                 <p className="text-xs sm:text-sm text-navy-muted mt-1">
-                  Connect with our dedicated councillor for level evaluations, fee structures, batch schedules, and study abroad consultation.
+                  Connect with our dedicated councillor Ms. Priya Arora for level evaluations, fee structures, batch schedules, and study abroad consultation.
                 </p>
               </div>
 

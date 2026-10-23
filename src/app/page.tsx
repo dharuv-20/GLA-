@@ -741,7 +741,7 @@ export default function HomePage() {
                   Personalized Course Councelling &amp; Admissions Guidance
                 </h3>
                 <p className="text-xs sm:text-sm text-navy-muted mt-1">
-                  Connect with our dedicated councillor for level evaluations, fee structures, batch schedules, and study abroad consultation.
+                  Connect with our dedicated councillor Ms. Priya Arora for level evaluations, fee structures, batch schedules, and study abroad consultation.
                 </p>
               </div>
 
@@ -806,7 +806,7 @@ export default function HomePage() {
                 Have specific questions about course levels or exam slots?
               </h3>
               <p className="text-xs sm:text-sm text-navy-muted leading-relaxed">
-                Our certified language councillors in Dwarka are ready to assist you with batch schedules, fees, and visa advisory.
+                Our dedicated admissions councillor Ms. Priya Arora in Dwarka is ready to assist you with batch schedules, fees, and visa advisory.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-2.5 shrink-0 w-full sm:w-auto">

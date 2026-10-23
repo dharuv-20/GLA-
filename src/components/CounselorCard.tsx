@@ -9,7 +9,7 @@ interface CounselorCardProps {
 
 export default function CounselorCard({ counselor = counselorProfile }: CounselorCardProps) {
   const whatsappMessage = encodeURIComponent(
-    `Hi TGLA, I would like to consult with the Admissions Councillor regarding course enrollment and batch timings.`
+    `Hi TGLA, I would like to consult with Ms. Priya Arora (Admissions Councillor) regarding course selection and admission guidance.`
   );
 
   return (
