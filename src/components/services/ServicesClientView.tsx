@@ -458,7 +458,7 @@ export default function ServicesClientView() {
     {
       id: "srv-faq-6",
       question: "Can I attend counselling sessions in person at your academy?",
-      answer: "Yes, our central advisory campus is located on the 3rd Floor, Plot No 94, PKT-10, Dwarka Sector 13, New Delhi (Opposite Metro Station, Near Radisson Blu Hotel). You are welcome to visit for an in-person profile discussion or connect with our advisors via phone or video consultation."
+      answer: "Yes, you are welcome to visit our Training Center at Second Floor, Plot No 20, Rd Number 203, Parmanand Colony, Sector 12 Dwarka, New Delhi 110078 (Near City Centre), or our Registered Office at Sector 13 Dwarka. You can also connect with our advisors directly by calling 011 4058 3726 or messaging us on WhatsApp (+91 92179 99511)."
     }
   ];
 

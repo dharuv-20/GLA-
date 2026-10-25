@@ -49,11 +49,11 @@ export const homeFaqsList: FAQItem[] = [
   {
     id: "hfaq-10",
     question: "How can I book a counselling session?",
-    answer: "You can book a free diagnostic counselling and consultation session by submitting the contact form on our website, calling our admissions desk directly at +91 92179 99511, or messaging us on WhatsApp."
+    answer: "You can book a free diagnostic counselling and consultation session by submitting the contact form on our website, calling our admissions desk directly at 011 4058 3726 (Landline) / +91 92179 99511 (Mobile), or messaging us on WhatsApp."
   },
   {
     id: "hfaq-11",
     question: "Where is TGLA located?",
-    answer: "The Global Language Academy (TGLA) is located at: 3rd Floor, Plot no 94, PKT-10, Dwarka Sector 12, Opposite Metro Station (Near Radisson Blu Hotel), New Delhi, Delhi 110078."
+    answer: "The Global Language Academy operates two central facilities in Dwarka, New Delhi: (1) Training Center: Second Floor, Plot No 20, Rd Number 203, Parmanand Colony, Pocket 8, Block B, Near City Centre, Sector 12 Dwarka, New Delhi 110078. (2) Registered Office: 3rd Floor, Plot No 94, PKT-10, Dwarka Sector 13 (Opposite Metro Station, Near Radisson Blu Hotel), New Delhi 110078."
   }
 ];

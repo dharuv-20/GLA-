@@ -5,7 +5,7 @@ import DeferredGoogleMap from '@/components/layout/DeferredGoogleMap';
 
 export const metadata: Metadata = {
   title: "Contact Us & Center Directions | Schedule Consultation",
-  description: "Contact The Global Language Academy (TGLA) in Delhi NCR. Call +91 92179 99511 or visit our center. Schedule your 1-on-1 language consultation today.",
+  description: "Contact The Global Language Academy (TGLA) in Delhi NCR. Call 011 4058 3726 / +91 92179 99511 or visit our Training Center. Schedule your 1-on-1 language consultation today.",
   alternates: {
     canonical: "/contact",
   },
@@ -58,21 +58,53 @@ export default function ContactPage() {
               
               {/* Branch details */}
               <div
-                className="reveal hover-lift bg-section-alt p-6 rounded-xl border border-card-border flex flex-col gap-4 transition-colors duration-300"
+                className="reveal hover-lift bg-section-alt p-6 rounded-xl border border-card-border flex flex-col gap-4.5 transition-colors duration-300"
                 style={{ transitionDelay: '0ms' }}
               >
-                <h3 className="text-base font-bold font-display text-navy border-b border-card-border/40 pb-2">TGLA Physical Branch</h3>
+                <h3 className="text-base font-bold font-display text-navy border-b border-card-border/40 pb-2">Our Academy Centers</h3>
                 
-                <div className="flex items-start gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">
+                {/* Sector 12 Training Center */}
+                <div className="flex items-start gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200 p-3 rounded-lg bg-card border border-card-border/60">
                   <MapPin className="w-5 h-5 text-purple shrink-0 mt-0.5" />
-                  <span>3rd Floor, Plot no 94, PKT- 10, Dwarka Sec.13 Opp. Metro station, Near Radisson Blu Hotel, Delhi 110078</span>
+                  <div className="flex flex-col gap-0.5">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-extrabold text-navy text-xs uppercase tracking-wider">Sector 12 - Training Center</span>
+                      <span className="text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-0.2 rounded-full font-bold border border-emerald-500/20">Main Campus</span>
+                    </div>
+                    <span className="text-xs leading-relaxed">Second floor, Plot No 20, Rd Number 203, Parmanand Colony, Pocket 8, Block B, Near City Centre, Sector 12 Dwarka, New Delhi, 110078</span>
+                    <a
+                      href="https://share.google/hprWambmKrS2wBLQ3"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold text-purple hover:underline inline-flex items-center gap-1 mt-1"
+                    >
+                      <span>Get Directions on Google Maps</span>
+                      <span>&rarr;</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Sector 13 Registered Office */}
+                <div className="flex items-start gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200 p-3 rounded-lg bg-card border border-card-border/60">
+                  <MapPin className="w-5 h-5 text-purple shrink-0 mt-0.5" />
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-extrabold text-navy text-xs uppercase tracking-wider">Sector 13 - Registered Office</span>
+                    <span className="text-xs leading-relaxed">3rd Floor, Plot No 94, PKT-10, Dwarka Sector 13 (Opp. Metro Station, Near Radisson Blu Hotel), Delhi 110078</span>
+                  </div>
                 </div>
                 
-                <div className="flex items-start gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">
+                {/* Phone Contacts */}
+                <div className="flex items-start gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200 pt-1">
                   <Phone className="w-5 h-5 text-purple shrink-0 mt-0.5" />
-                  <div className="flex flex-col gap-1">
-                    <a href="tel:+919217999511" className="hover:text-purple text-navy font-semibold transition-colors">+91 92179 99511</a>
-                    <a href="tel:+919217669511" className="hover:text-purple text-navy font-semibold transition-colors">+91 92176 69511</a>
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-purple">Landline:</span>
+                      <a href="tel:01140583726" className="hover:text-purple text-navy font-bold transition-colors">011 4058 3726</a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-purple">Mobile / WhatsApp:</span>
+                      <a href="tel:+919217999511" className="hover:text-purple text-navy font-semibold transition-colors">+91 92179 99511</a>
+                    </div>
                   </div>
                 </div>
                 
@@ -134,7 +166,23 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-10 flex flex-col gap-3">
-            <h2 className="reveal text-2xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '0ms' }}>Interactive Campus Directions</h2>
+            <h2 className="reveal text-2xl font-extrabold font-display text-navy tracking-tight" style={{ transitionDelay: '0ms' }}>
+              Sector 12 Training Center - Campus Directions
+            </h2>
+            <p className="text-sm text-navy-muted">
+              Second floor, Plot No 20, Rd Number 203, Parmanand Colony, Pocket 8, Block B, Near City Centre, Sector 12 Dwarka, New Delhi 110078
+            </p>
+            <div>
+              <a
+                href="https://share.google/hprWambmKrS2wBLQ3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple hover:bg-purple-hover text-white text-xs font-bold rounded-xl shadow-sm transition-all"
+              >
+                <span>Open in Google Maps</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
           </div>
           
           <div

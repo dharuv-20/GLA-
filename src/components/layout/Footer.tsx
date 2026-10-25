@@ -69,16 +69,38 @@ export default function Footer() {
 
           {/* Contact & Branch */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-base font-bold font-display uppercase tracking-wider mb-2 text-purple-300">Contact Info</h3>
+            <h3 className="text-base font-bold font-display uppercase tracking-wider mb-2 text-purple-300">Contact &amp; Locations</h3>
+            
+            {/* Training Center */}
             <div className="flex items-start gap-2.5 text-sm text-slate-300">
               <MapPin className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />
-              <span>3rd Floor, Plot no 94, PKT- 10, Dwarka Sec.13 Opp. Metro station, Near Radisson Blu Hotel, Delhi 110078</span>
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs font-bold text-white uppercase tracking-wider">Sector 12 - Training Center:</span>
+                <span className="text-xs leading-relaxed">Second Floor, Plot No 20, Rd Number 203, Parmanand Colony, Pocket 8, Block B, Near City Centre, Sector 12 Dwarka, New Delhi 110078</span>
+              </div>
             </div>
+
+            {/* Registered Office */}
             <div className="flex items-start gap-2.5 text-sm text-slate-300">
+              <MapPin className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs font-bold text-white uppercase tracking-wider">Sector 13 - Registered Office:</span>
+                <span className="text-xs leading-relaxed">3rd Floor, Plot No 94, PKT-10, Dwarka Sector 13 (Opp. Metro Station, Near Radisson Blu Hotel), New Delhi 110078</span>
+              </div>
+            </div>
+
+            {/* Phone numbers */}
+            <div className="flex items-start gap-2.5 text-sm text-slate-300 pt-1">
               <Phone className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />
               <div className="flex flex-col gap-1">
-                <a href="tel:+919217999511" className="hover:text-white transition-colors">+91 92179 99511</a>
-                <a href="tel:+919217669511" className="hover:text-white transition-colors">+91 92176 69511</a>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-purple-200">Landline:</span>
+                  <a href="tel:01140583726" className="hover:text-white transition-colors font-bold text-white">011 4058 3726</a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-purple-200">Mobile / WhatsApp:</span>
+                  <a href="tel:+919217999511" className="hover:text-white transition-colors">+91 92179 99511</a>
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-2.5 text-sm text-slate-300">

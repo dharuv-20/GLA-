@@ -10,7 +10,7 @@ interface DeferredGoogleMapProps {
 
 export default function DeferredGoogleMap({
   className = "w-full h-full",
-  title = "The Global Language Academy Location Map"
+  title = "The Global Language Academy - Sector 12 Training Center Location Map"
 }: DeferredGoogleMapProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -43,7 +43,7 @@ export default function DeferredGoogleMap({
     >
       {isLoaded ? (
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d35068.13912469187!2d77.030589!3d28.594833!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b3c8edb5021%3A0xa58f068e97394567!2sThe%20Global%20Language%20Academy!5e1!3m2!1sen!2sin!4v1786024730032!5m2!1sen!2sin"
+          src="https://maps.google.com/maps?q=The+Global+Language+Academy,+Plot+No+20,+Rd+Number+203,+Parmanand+Colony,+Sector+12+Dwarka,+New+Delhi+110078&t=&z=16&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="100%"
           style={{ border: 0 }}
@@ -59,7 +59,7 @@ export default function DeferredGoogleMap({
             <MapPin className="w-6 h-6 text-purple-light" />
           </div>
           <p className="text-xs font-bold text-slate-200 mb-1">
-            Dwarka Sector 13, Opposite Metro Station, Delhi
+            Training Center: Sector 12 Dwarka (Near City Centre), Delhi
           </p>
           <span className="text-[11px] text-slate-400 mb-4">
             Loading Google Map location...

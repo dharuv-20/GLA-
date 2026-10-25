@@ -726,7 +726,7 @@ export default function HomePage() {
                 <span>Chat with Advisor</span>
               </a>
               <a
-                href="tel:+919217999511"
+                href="tel:01140583726"
                 className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-purple/10 hover:bg-purple/20 text-purple border border-purple/20 font-bold text-xs rounded-xl transition-all w-full sm:w-auto"
               >
                 <Phone className="w-3.5 h-3.5" />
@@ -788,13 +788,13 @@ export default function HomePage() {
 
                 {/* Contact numbers */}
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4 border-t border-white/15 text-xs sm:text-sm text-slate-300">
-                  <span>Direct Helpline:</span>
-                  <a href="tel:+919217999511" className="font-bold text-white hover:text-purple-300 transition-colors">
-                    +91 92179 99511
+                  <span className="text-purple-200 font-semibold">Direct Helpline:</span>
+                  <a href="tel:01140583726" className="font-bold text-white hover:text-purple-300 transition-colors">
+                    011 4058 3726 (Landline)
                   </a>
                   <span>|</span>
-                  <a href="tel:+919217669511" className="font-bold text-white hover:text-purple-300 transition-colors">
-                    +91 92176 69511
+                  <a href="tel:+919217999511" className="font-bold text-white hover:text-purple-300 transition-colors">
+                    +91 92179 99511 (Mobile / WhatsApp)
                   </a>
                 </div>
               </div>
@@ -803,29 +803,45 @@ export default function HomePage() {
               <div className="lg:col-span-6 flex flex-col gap-4">
                 
                 {/* Physical Location Detail Card */}
-                <div className="bg-white/10 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-white/15 text-white shadow-sm flex items-start gap-3.5">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-purple/30 border border-purple-300/30 shrink-0 flex items-center justify-center p-1 overflow-hidden">
-                    <Image
-                      src="/images/assets/metro-location-pin.webp"
-                      alt="Dwarka Sector 12 Metro Station Landmark Pin - The Global Language Academy"
-                      width={56}
-                      height={58}
-                      loading="lazy"
-                      className="w-full h-full object-contain drop-shadow-md"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1 flex-1">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <h4 className="text-sm sm:text-base font-extrabold font-display text-white">
-                        Campus Location & Advisory Hub
-                      </h4>
-                      <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2 py-0.5 rounded-full font-bold">
-                        Opp. Metro Sector 13
-                      </span>
+                <div className="bg-white/10 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-white/15 text-white shadow-sm flex flex-col gap-3">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-purple/30 border border-purple-300/30 shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                      <Image
+                        src="/images/assets/metro-location-pin.webp"
+                        alt="Dwarka Sector 12 Landmark Pin - The Global Language Academy"
+                        width={56}
+                        height={58}
+                        loading="lazy"
+                        className="w-full h-full object-contain drop-shadow-md"
+                      />
                     </div>
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      3rd Floor, Plot no 94, PKT-10, Dwarka Sector 13, Opposite Metro Station (Near Radisson Blu Hotel), New Delhi 110078
-                    </p>
+                    <div className="flex flex-col gap-1 flex-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h4 className="text-sm sm:text-base font-extrabold font-display text-white">
+                          Sector 12 - Training Center
+                        </h4>
+                        <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2 py-0.5 rounded-full font-bold">
+                          Near City Centre
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-300 leading-relaxed">
+                        Second floor, Plot No 20, Rd Number 203, Parmanand Colony, Pocket 8, Block B, Near City Centre, Sector 12 Dwarka, New Delhi 110078
+                      </p>
+                      <a
+                        href="https://share.google/hprWambmKrS2wBLQ3"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-200 hover:text-white transition-colors mt-0.5"
+                      >
+                        <Navigation className="w-3.5 h-3.5" />
+                        <span>Open Training Center on Google Maps &rarr;</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="pt-2.5 border-t border-white/10 text-xs text-slate-300 flex items-start gap-2">
+                    <span className="font-bold text-white shrink-0">Registered Office:</span>
+                    <span>3rd Floor, Plot No 94, PKT-10, Dwarka Sector 13 (Opp. Metro Station, Near Radisson Blu Hotel), New Delhi 110078</span>
                   </div>
                 </div>
 
