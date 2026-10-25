@@ -684,25 +684,17 @@ export default function AboutPage() {
               Academy Leadership &amp; Faculty
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              Meet Our Leadership &amp; Certified Mentors
+              Meet Our Certified Faculty &amp; Mentors
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              We do not outsource lectures to unverified tutors. Learn directly under visionary leadership and credentialed, examiner-trained mentors.
+              We do not outsource lectures to unverified tutors. Learn directly under credentialed, examiner-trained faculty and certified admissions counsellors.
             </p>
           </div>
 
           <div className="max-w-5xl mx-auto flex flex-col gap-12 sm:gap-14">
             
-            {/* TIER 1: INSTITUTIONAL LEADERSHIP (FOUNDER & DIRECTOR) */}
-            <div className="flex flex-col gap-4">
-              
-
-              {/* Founder & Director Spotlight Card */}
-              <DirectorCard variant="spotlight" />
-            </div>
-
             {/* CERTIFIED LANGUAGE FACULTY & TRAINERS */}
-            <div className="flex flex-col gap-6 pt-6 border-t border-card-border/60">
+            <div className="flex flex-col gap-6">
               
 
               <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">

@@ -23,15 +23,12 @@ import {
   Sparkles,
   Clock,
   Users,
-  UserCheck,
   Target,
   ExternalLink,
   Navigation,
   CalendarCheck
 } from 'lucide-react';
-import { coursesList, testimonialsList, facultyList } from '@/data/courses-db';
-import FacultyCard from '@/components/FacultyCard';
-import CounselorCard from '@/components/CounselorCard';
+import { coursesList, testimonialsList } from '@/data/courses-db';
 import { homeFaqsList } from '@/data/home-faqs';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
 import CountUp from '@/components/CountUp';
@@ -658,67 +655,6 @@ export default function HomePage() {
             </Link>
           </div>
 
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* SECTION: ACADEMY LEADERSHIP & CERTIFIED FACULTY           */}
-      {/* ========================================================= */}
-      <section className="bg-section-alt text-navy py-16 sm:py-20 lg:py-24 border-b border-card-border transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Main Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              Academy Faculty &amp; Mentors
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              Meet Our Certified Faculty &amp; Counsellors
-            </h2>
-            <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              Powered by certified language educators and dedicated admissions guidance, TGLA delivers world-class CEFR examination outcomes and practical fluency.
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto flex flex-col gap-12 sm:gap-14">
-            
-{/* TIER 2: CERTIFIED LANGUAGE FACULTY & TRAINERS */}
-            <div className="flex flex-col gap-6">
-
-
-              <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">
-                <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">
-                  Learn Directly From Certified Goethe &amp; CEFR Specialists
-                </h3>
-                <p className="text-xs sm:text-sm text-navy-muted mt-1">
-                  Small, interactive batches (5 to 7 students) mentored by accredited educators with proven track records.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-8">
-                {facultyList.map((fac) => (
-                  <FacultyCard key={fac.id} faculty={fac} layout="horizontal" />
-                ))}
-              </div>
-            </div>
-
-            {/* ACADEMIC ADVISORY & STUDENT COUNSELLING */}
-            <div className="flex flex-col gap-6 pt-8 border-t border-card-border/60">
-
-
-              <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">
-                <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">
-                  Personalized Course Counselling &amp; Admissions Guidance
-                </h3>
-                <p className="text-xs sm:text-sm text-navy-muted mt-1">
-                  Connect with our dedicated counsellor Ms. Priya Arora for level evaluations, fee structures, batch schedules, and study abroad consultation.
-                </p>
-              </div>
-
-              <CounselorCard />
-            </div>
-
-          </div>
         </div>
       </section>
 
