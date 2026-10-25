@@ -19,7 +19,7 @@ export const homeFaqsList: FAQItem[] = [
   {
     id: "hfaq-4",
     question: "Which German levels do you teach?",
-    answer: "We teach all 6 CEFR-aligned German proficiency levels: A1 (Foundation), A2 (Elementary), B1 (Intermediate), B2 (Upper-Intermediate/Vantage), C1 (Advanced Proficiency), and C2 (Mastery), with specialized exam bootcamps for Goethe and TELC."
+    answer: "We teach all CEFR-aligned German proficiency levels: A1 (Foundation), A2 (Elementary), B1 (Intermediate), B1+ (Intermediate Plus), B2 (Upper-Intermediate/Vantage), C1 (Advanced Proficiency), and C2 (Mastery), with specialized exam bootcamps for Goethe and TELC."
   },
   {
     id: "hfaq-5",

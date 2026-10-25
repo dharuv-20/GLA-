@@ -601,7 +601,7 @@ export default function AboutPage() {
               </h2>
               
               <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-                The Global Language Academy is proud to be an <strong className="text-navy">ISO 9001:2015 Certified</strong> organization. This international certification verifies our strict adherence to world-class Quality Management Systems across language course curriculum design, faculty qualification standards, examination preparation protocols, and overseas career counseling.
+                The Global Language Academy is proud to be an <strong className="text-navy">ISO 9001:2015 Certified</strong> organization. This international certification verifies our strict adherence to world-class Quality Management Systems across language course curriculum design, faculty qualification standards, examination preparation protocols, and overseas career counselling.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
@@ -661,7 +661,7 @@ export default function AboutPage() {
                     ISO 9001:2015 Standard
                   </h3>
                   <p className="text-xs text-navy-muted max-w-xs mx-auto leading-relaxed">
-                    Quality Management System in Provision of Foreign Language Training & Study Abroad Counseling Services.
+                    Quality Management System in Provision of Foreign Language Training & Study Abroad Counselling Services.
                   </p>
                 </div>
 
@@ -695,29 +695,15 @@ export default function AboutPage() {
             
             {/* TIER 1: INSTITUTIONAL LEADERSHIP (FOUNDER & DIRECTOR) */}
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-3">
-                <span className="h-px bg-purple/20 flex-1"></span>
-                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
-                  <Award className="w-3.5 h-3.5 text-purple" />
-                  Tier 1 • Institutional Leadership
-                </span>
-                <span className="h-px bg-purple/20 flex-1"></span>
-              </div>
+              
 
               {/* Founder & Director Spotlight Card */}
               <DirectorCard variant="spotlight" />
             </div>
 
-            {/* TIER 2: CERTIFIED LANGUAGE FACULTY & TRAINERS */}
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-3">
-                <span className="h-px bg-purple/20 flex-1"></span>
-                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
-                  <GraduationCap className="w-3.5 h-3.5 text-purple" />
-                  Tier 2 • Certified Language Faculty &amp; Mentors
-                </span>
-                <span className="h-px bg-purple/20 flex-1"></span>
-              </div>
+            {/* CERTIFIED LANGUAGE FACULTY & TRAINERS */}
+            <div className="flex flex-col gap-6 pt-6 border-t border-card-border/60">
+              
 
               <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">
                 <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">
@@ -737,23 +723,16 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* TIER 3: ACADEMIC ADVISORY & STUDENT COUNSELING */}
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-3">
-                <span className="h-px bg-purple/20 flex-1"></span>
-                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
-                  <UserCheck className="w-3.5 h-3.5 text-purple" />
-                  Tier 3 • Academic Advisory &amp; Student Support
-                </span>
-                <span className="h-px bg-purple/20 flex-1"></span>
-              </div>
+            {/* ACADEMIC ADVISORY & STUDENT COUNSELLING */}
+            <div className="flex flex-col gap-6 pt-6 border-t border-card-border/60">
+              
 
               <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">
                 <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">
-                  Personalized Course Councelling &amp; Admissions Guidance
+                  Personalized Course Counselling &amp; Admissions Guidance
                 </h3>
                 <p className="text-xs sm:text-sm text-navy-muted mt-1">
-                  Connect with our dedicated councillor Ms. Priya Arora for level evaluations, fee structures, batch schedules, and study abroad consultation.
+                  Connect with our dedicated counsellor Ms. Priya Arora for level evaluations, fee structures, batch schedules, and study abroad consultation.
                 </p>
               </div>
 

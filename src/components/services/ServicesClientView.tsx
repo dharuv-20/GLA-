@@ -457,7 +457,7 @@ export default function ServicesClientView() {
     },
     {
       id: "srv-faq-6",
-      question: "Can I attend counseling sessions in person at your academy?",
+      question: "Can I attend counselling sessions in person at your academy?",
       answer: "Yes, our central advisory campus is located on the 3rd Floor, Plot No 94, PKT-10, Dwarka Sector 13, New Delhi (Opposite Metro Station, Near Radisson Blu Hotel). You are welcome to visit for an in-person profile discussion or connect with our advisors via phone or video consultation."
     }
   ];
@@ -1355,7 +1355,7 @@ export default function ServicesClientView() {
                             <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple">Phase 01</span>
                             <Compass className="w-4 h-4 text-purple" />
                           </div>
-                          <h4 className="text-sm font-bold text-navy">Initial Profile Assessment & Counseling</h4>
+                          <h4 className="text-sm font-bold text-navy">Initial Profile Assessment & Counselling</h4>
                           <p className="text-xs text-navy-muted leading-relaxed">
                             Evaluating educational background, language level, occupational goals, and setting a realistic preparation roadmap.
                           </p>
@@ -1711,7 +1711,7 @@ export default function ServicesClientView() {
             </h2>
             
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
-              Schedule a free advisory session with our experienced counselors at our Dwarka campus or online via video call.
+              Schedule a free advisory session with our experienced counsellors at our Dwarka campus or online via video call.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-2 relative z-10">

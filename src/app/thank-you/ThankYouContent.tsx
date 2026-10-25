@@ -124,7 +124,7 @@ export default function ThankYouContent() {
             Thank You for Submitting!
           </h1>
           <p className="text-sm text-navy-muted leading-relaxed max-w-md mx-auto mt-1">
-            Our academic counselor will contact you shortly on WhatsApp or phone to confirm your consultation session and batch timing.
+            Our academic counsellor will contact you shortly on WhatsApp or phone to confirm your consultation session and batch timing.
           </p>
         </div>
 
@@ -132,7 +132,7 @@ export default function ThankYouContent() {
         <div className="w-full bg-section-alt/80 border border-card-border/60 rounded-2xl p-4 sm:p-5 flex flex-col gap-3 text-left">
           <div className="flex items-center justify-between text-xs font-bold text-navy border-b border-card-border/40 pb-2.5">
             <span className="flex items-center gap-1.5 text-purple">
-              <Clock className="w-4 h-4" /> Priority Counseling Active
+              <Clock className="w-4 h-4" /> Priority Counselling Active
             </span>
             <span className="text-emerald-500 font-semibold flex items-center gap-1">
               ● Verified Lead

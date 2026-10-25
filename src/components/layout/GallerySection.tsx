@@ -26,9 +26,9 @@ const galleryItems: GalleryItem[] = [
   },
   {
     src: '/images/gallery/director-counseling-consultation.webp',
-    title: "Director's Academic & Career Counseling",
+    title: "Director's Academic & Career Counselling",
     tag: 'Leadership',
-    description: 'Personalized pathway counseling with Founder & Director Ms. Pinki Rana.'
+    description: 'Personalized pathway counselling with Founder & Director Ms. Pinki Rana.'
   },
   {
     src: '/images/gallery/faculty-mentorship-desk.webp',
@@ -40,7 +40,7 @@ const galleryItems: GalleryItem[] = [
     src: '/images/gallery/study-abroad-roundtable.webp',
     title: 'Study Abroad & Visa Roundtable Session',
     tag: 'Global Pathways',
-    description: 'Strategic counseling for European universities, Ausbildung, and visa readiness.'
+    description: 'Strategic counselling for European universities, Ausbildung, and visa readiness.'
   },
   {
     src: '/images/gallery/modern-campus-facility.webp',

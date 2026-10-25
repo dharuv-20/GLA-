@@ -9,7 +9,7 @@ interface CounselorCardProps {
 
 export default function CounselorCard({ counselor = counselorProfile }: CounselorCardProps) {
   const whatsappMessage = encodeURIComponent(
-    `Hi TGLA, I would like to consult with Ms. Priya Arora (Admissions Councillor) regarding course selection and admission guidance.`
+    `Hi TGLA, I would like to consult with Ms. Priya Arora (Admissions Counsellor) regarding course selection and admission guidance.`
   );
 
   return (
@@ -39,7 +39,7 @@ export default function CounselorCard({ counselor = counselorProfile }: Counselo
             {/* Active Status Badge */}
             <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-500 text-white shadow-md border border-white/20">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              Admissions Councillor
+              Admissions Counsellor
             </span>
           </div>
 
@@ -74,9 +74,6 @@ export default function CounselorCard({ counselor = counselorProfile }: Counselo
             <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-navy tracking-tight mt-1">
               {counselor.name}
             </h3>
-            <span className="text-xs font-semibold text-purple font-sans">
-              The Global Language Academy (TGLA)
-            </span>
           </div>
 
           {/* Counselor Bio */}
@@ -112,7 +109,7 @@ export default function CounselorCard({ counselor = counselorProfile }: Counselo
               className="inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all duration-200"
             >
               <MessageCircle className="w-4 h-4 fill-white text-emerald-600" />
-              <span>Chat with Admissions Councillor</span>
+              <span>Chat with Admissions Counsellor</span>
             </a>
             <span className="text-xs text-navy-muted font-medium">
               Free consultation &amp; level assessment

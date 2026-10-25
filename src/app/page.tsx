@@ -31,7 +31,6 @@ import {
 } from 'lucide-react';
 import { coursesList, testimonialsList, facultyList } from '@/data/courses-db';
 import FacultyCard from '@/components/FacultyCard';
-import DirectorCard from '@/components/DirectorCard';
 import CounselorCard from '@/components/CounselorCard';
 import { homeFaqsList } from '@/data/home-faqs';
 import LeadForm from '@/features/lead-capture/components/LeadForm';
@@ -671,43 +670,21 @@ export default function HomePage() {
           {/* Main Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 flex flex-col gap-3">
             <span className="text-xs font-extrabold uppercase tracking-widest text-purple">
-              Academy Leadership &amp; Faculty
+              Academy Faculty &amp; Mentors
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-navy tracking-tight">
-              Meet Our Leadership &amp; Expert Mentors
+              Meet Our Certified Faculty &amp; Counsellors
             </h2>
             <p className="text-sm sm:text-base text-navy-muted leading-relaxed">
-              Led by visionary education leadership and powered by accredited language specialists, TGLA delivers world-class CEFR examination outcomes and practical fluency.
+              Powered by certified language educators and dedicated admissions guidance, TGLA delivers world-class CEFR examination outcomes and practical fluency.
             </p>
           </div>
 
           <div className="max-w-5xl mx-auto flex flex-col gap-12 sm:gap-14">
             
-            {/* TIER 1: INSTITUTIONAL LEADERSHIP (FOUNDER & DIRECTOR) */}
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-3">
-                <span className="h-px bg-purple/20 flex-1"></span>
-                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
-                  <Award className="w-3.5 h-3.5 text-purple" />
-                  Tier 1 • Institutional Leadership
-                </span>
-                <span className="h-px bg-purple/20 flex-1"></span>
-              </div>
-
-              {/* Founder & Director Spotlight Card */}
-              <DirectorCard variant="spotlight" />
-            </div>
-
-            {/* TIER 2: CERTIFIED LANGUAGE FACULTY & TRAINERS */}
+{/* TIER 2: CERTIFIED LANGUAGE FACULTY & TRAINERS */}
             <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-3">
-                <span className="h-px bg-purple/20 flex-1"></span>
-                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
-                  <GraduationCap className="w-3.5 h-3.5 text-purple" />
-                  Tier 2 • Certified Language Faculty &amp; Mentors
-                </span>
-                <span className="h-px bg-purple/20 flex-1"></span>
-              </div>
+
 
               <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">
                 <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">
@@ -725,23 +702,16 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* TIER 3: ACADEMIC ADVISORY & STUDENT COUNSELING */}
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-3">
-                <span className="h-px bg-purple/20 flex-1"></span>
-                <span className="text-xs font-extrabold uppercase tracking-widest text-purple flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple/10 border border-purple/20 shadow-xs">
-                  <UserCheck className="w-3.5 h-3.5 text-purple" />
-                  Tier 3 • Academic Advisory &amp; Student Support
-                </span>
-                <span className="h-px bg-purple/20 flex-1"></span>
-              </div>
+            {/* ACADEMIC ADVISORY & STUDENT COUNSELLING */}
+            <div className="flex flex-col gap-6 pt-8 border-t border-card-border/60">
+
 
               <div className="text-center max-w-2xl mx-auto -mt-2 mb-2">
                 <h3 className="text-xl sm:text-2xl font-bold font-display text-navy">
-                  Personalized Course Councelling &amp; Admissions Guidance
+                  Personalized Course Counselling &amp; Admissions Guidance
                 </h3>
                 <p className="text-xs sm:text-sm text-navy-muted mt-1">
-                  Connect with our dedicated councillor Ms. Priya Arora for level evaluations, fee structures, batch schedules, and study abroad consultation.
+                  Connect with our dedicated counsellor Ms. Priya Arora for level evaluations, fee structures, batch schedules, and study abroad consultation.
                 </p>
               </div>
 
@@ -806,7 +776,7 @@ export default function HomePage() {
                 Have specific questions about course levels or exam slots?
               </h3>
               <p className="text-xs sm:text-sm text-navy-muted leading-relaxed">
-                Our dedicated admissions councillor Ms. Priya Arora in Dwarka is ready to assist you with batch schedules, fees, and visa advisory.
+                Our dedicated admissions counsellor Ms. Priya Arora in Dwarka is ready to assist you with batch schedules, fees, and visa advisory.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-2.5 shrink-0 w-full sm:w-auto">
@@ -859,7 +829,7 @@ export default function HomePage() {
                 </h2>
                 
                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                  Choose your course, speak with our Councillors and take the first step toward your global goals.
+                  Choose your course, speak with our Counsellors and take the first step toward your global goals.
                 </p>
 
                 {/* Action Buttons */}
