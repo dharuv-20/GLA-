@@ -9,15 +9,15 @@ export interface GermanLeadSubmissionResponse {
 }
 
 // Google Form Endpoint and Entry IDs for German Course
-const GERMAN_GOOGLE_FORM_ENDPOINT = "https://docs.google.com/forms/d/e/1FAIpQLSf3AIefhntduchzhGVexBAgNLMuLwtBzCsvjXqHQGP4Eyz7tw/formResponse";
+const GERMAN_GOOGLE_FORM_ENDPOINT = "https://docs.google.com/forms/d/e/1FAIpQLSduzH2xHvNWRNFM_L5xKQJd4Obot1b6xt8zi61FJmTXucq01w/formResponse";
 
 const ENTRY_MAP = {
-  name: "entry.856793875",
-  phone: "entry.1977796070",
-  email: "entry.448512702",
-  education: "entry.646430350",
-  germanLevel: "entry.1393693464",
-  learningMode: "entry.2122139248",
+  name: "entry.1911499075",
+  phone: "entry.138740472",
+  email: "entry.1499774623",
+  education: "entry.321556839",
+  germanLevel: "entry.1172742771",
+  learningMode: "entry.1356078340",
 };
 
 export async function submitGermanLead(data: GermanLeadFormInput): Promise<GermanLeadSubmissionResponse> {

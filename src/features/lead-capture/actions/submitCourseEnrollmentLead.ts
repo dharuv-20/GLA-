@@ -8,11 +8,11 @@ export interface CourseEnrollmentResponse {
 }
 
 const GOOGLE_FORM_ENDPOINTS: Record<CourseEnrollmentLeadInput['courseSlug'], string> = {
-  'french-language': "https://docs.google.com/forms/d/e/1FAIpQLSddPd-td1rHqYMV4C64nqJPug_8uEqiYLSfBNTLNCfF3jUirQ/formResponse",
-  'japanese-language': "https://docs.google.com/forms/d/e/1FAIpQLSdJivVvqtGMZY1YUWdhel75W6LIzJSJtup_pULIpyE8m3KpoA/formResponse",
-  'spoken-english': "https://docs.google.com/forms/d/e/1FAIpQLSdt9Zuy36EMi0xEAa2Ph0CK3YDmog7pDm7B-YcThYeyShMWmA/formResponse",
-  'pte-academic': "https://docs.google.com/forms/d/e/1FAIpQLSfwscRuEp0clF-lQYP2pftgKvDRm-IP5APWauPdhaKAp914Ng/formResponse",
-  'ielts-preparation': "https://docs.google.com/forms/d/e/1FAIpQLSekoK021YwjLIeDiwkEpqNSruU7X3va3sZNGZKQTlJ64upP8w/formResponse",
+  'french-language': "https://docs.google.com/forms/d/e/1FAIpQLSck42kMHxcCpSB_ZwevAIWDoioNKZZ4l04uUDsePd8yW_3kBA/formResponse",
+  'japanese-language': "https://docs.google.com/forms/d/e/1FAIpQLSe4mXaG6DKsWXACFYwn4XUipGhIbLyTvYEkcH-InRR_PBdieg/formResponse",
+  'spoken-english': "https://docs.google.com/forms/d/e/1FAIpQLScuekDkmG5-kl2Ck36IpFhFfXrzfCd4Wzc_kFXzTdKSwmEjlQ/formResponse",
+  'pte-academic': "https://docs.google.com/forms/d/e/1FAIpQLSdGSt7guoIuphk0N1abNnM4eiwp-FE0bzIx-OU6KqFL_NxiYA/formResponse",
+  'ielts-preparation': "https://docs.google.com/forms/d/e/1FAIpQLSfZYq_bBn-gpB0IsSQmaxu6DxGKv6WlA2Fa-Uh4uOmylsdzrQ/formResponse",
 };
 
 const SUCCESS_MESSAGES: Record<CourseEnrollmentLeadInput['courseSlug'], string> = {
@@ -24,12 +24,12 @@ const SUCCESS_MESSAGES: Record<CourseEnrollmentLeadInput['courseSlug'], string> 
 };
 
 const ENTRY_MAP = {
-  name: "entry.856793875",
-  phone: "entry.1977796070",
-  email: "entry.448512702",
-  education: "entry.646430350",
-  level: "entry.1393693464",
-  learningMode: "entry.2122139248",
+  name: "entry.1911499075",
+  phone: "entry.138740472",
+  email: "entry.1499774623",
+  education: "entry.321556839",
+  level: "entry.1172742771",
+  learningMode: "entry.1356078340",
 };
 
 export async function submitCourseEnrollmentLead(data: CourseEnrollmentLeadInput): Promise<CourseEnrollmentResponse> {

@@ -27,7 +27,7 @@ export async function submitLead(data: LeadFormInput): Promise<LeadSubmissionRes
 
     // Submit to Google Form in the backend
     try {
-      const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdRfJ5gC2TbW-sc17PI6TKzr1NZikDeW1a8Z6djLZc-DjzqaA/formResponse";
+      const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLScrKYxkYDW45bm2UX7l-hFzyKEt5CU4jw8o9pfH4IXauHsivg/formResponse";
       const courseMap: Record<string, string> = {
         "german-language": "German Language Program (A1 - C2)",
         "french-language": "French Language Program (A1 - C2)",
@@ -42,10 +42,10 @@ export async function submitLead(data: LeadFormInput): Promise<LeadSubmissionRes
       const courseName = courseMap[lead.course] || lead.course;
 
       const formData = new URLSearchParams();
-      formData.append("entry.1743382299", lead.name);
-      formData.append("entry.961976256", lead.phone);
-      formData.append("entry.5771", lead.email);
-      formData.append("entry.1090317556", courseName);
+      formData.append("entry.1911499075", lead.name);
+      formData.append("entry.138740472", lead.phone);
+      formData.append("entry.1499774623", lead.email);
+      formData.append("entry.321556839", courseName);
       formData.append("fvv", "1");
       formData.append("pageHistory", "0");
 
