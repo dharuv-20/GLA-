@@ -46,7 +46,7 @@ export const facSaloni: FacultyMember = {
   id: "fac-3",
   name: "Ms. Saloni Awasthi",
   role: "Lead French Language Trainer",
-  avatar: { src: "/images/faculty/saloni.webp", alt: "Ms. Saloni Awasthi - Lead French Language Trainer", width: 300, height: 300 },
+  avatar: { src: "", alt: "Ms. Saloni Awasthi - Lead French Language Trainer", width: 300, height: 300 },
   credentials: [
     "Master in French",
     "7+ Years Dedicated Teaching Experience",
@@ -60,7 +60,7 @@ export const facKashish: FacultyMember = {
   id: "fac-4",
   name: "Ms. Kashish Ahlawat",
   role: "Lead Japanese Language Trainer",
-  avatar: { src: "/images/faculty/kashish.webp", alt: "Ms. Kashish Ahlawat - Lead Japanese Language Trainer", width: 300, height: 300 },
+  avatar: { src: "", alt: "Ms. Kashish Ahlawat - Lead Japanese Language Trainer", width: 300, height: 300 },
   credentials: [
     "Diploma in Japanese",
     "6+ Years Dedicated Teaching Experience",
@@ -74,7 +74,7 @@ export const facHardika: FacultyMember = {
   id: "fac-5",
   name: "Ms. Hardika",
   role: "Lead IELTS & PTE Expert / Senior English Mentor",
-  avatar: { src: "/images/faculty/hardika.webp", alt: "Ms. Hardika - IELTS, PTE & English Trainer", width: 300, height: 300 },
+  avatar: { src: "", alt: "Ms. Hardika - IELTS, PTE & English Trainer", width: 300, height: 300 },
   credentials: [
     "Masters in English Literature",
     "5+ Years Dedicated Teaching Experience",

@@ -8,6 +8,18 @@ interface FacultyCardProps {
 
 export default function FacultyCard({ faculty, layout = 'horizontal' }: FacultyCardProps) {
   const hasPhoto = Boolean(faculty.avatar?.src && faculty.avatar.src.trim() !== "");
+  const getInitials = (fullName: string) => {
+    const cleaned = fullName.replace(/^(ms\.|mr\.|dr\.|prof\.)\s*/i, '').trim();
+    const parts = cleaned.split(/\s+/).filter(Boolean);
+    if (parts.length >= 2) {
+      return `${parts[0].charAt(0)}${parts[parts.length - 1].charAt(0)}`.toUpperCase();
+    }
+    if (parts.length === 1) {
+      return parts[0].slice(0, 2).toUpperCase();
+    }
+    return "GLA";
+  };
+
 
   // Fallback credentials if empty
   const credentials = faculty.credentials && faculty.credentials.length > 0 ? faculty.credentials : [
@@ -56,9 +68,16 @@ export default function FacultyCard({ faculty, layout = 'horizontal' }: FacultyC
                     className="w-full h-full object-cover object-[center_20%]"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00122E] via-purple/40 to-[#00122E] text-white">
-                    <span className="text-3xl font-extrabold font-display tracking-wider text-white">
-                      {faculty.name.split(' ').map(n => n.charAt(0)).join('')}
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#00122E] via-[#081f44] to-[#2E1065] text-white p-2 sm:p-3 select-none relative overflow-hidden text-center">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-purple-500/25 via-transparent to-transparent pointer-events-none" />
+                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-1 shadow-inner shrink-0">
+                      <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-purple-200" />
+                    </div>
+                    <span className="text-lg sm:text-2xl font-black font-display tracking-wider text-white">
+                      {getInitials(faculty.name)}
+                    </span>
+                    <span className="text-[8px] sm:text-[9px] uppercase font-bold tracking-widest text-purple-200/90 mt-0.5">
+                      Faculty
                     </span>
                   </div>
                 )}
@@ -145,9 +164,16 @@ export default function FacultyCard({ faculty, layout = 'horizontal' }: FacultyC
                   className="w-full h-full object-cover object-[center_20%]"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00122E] via-purple/40 to-[#00122E] text-white">
-                  <span className="text-3xl font-extrabold font-display tracking-wider text-white">
-                    {faculty.name.split(' ').map(n => n.charAt(0)).join('')}
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#00122E] via-[#081f44] to-[#2E1065] text-white p-2 sm:p-3 select-none relative overflow-hidden text-center">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-purple-500/25 via-transparent to-transparent pointer-events-none" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-1.5 shadow-inner shrink-0">
+                    <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-purple-200" />
+                  </div>
+                  <span className="text-xl sm:text-2xl font-black font-display tracking-wider text-white">
+                    {getInitials(faculty.name)}
+                  </span>
+                  <span className="text-[9px] uppercase font-bold tracking-widest text-purple-200/90 mt-0.5">
+                    Faculty
                   </span>
                 </div>
               )}
