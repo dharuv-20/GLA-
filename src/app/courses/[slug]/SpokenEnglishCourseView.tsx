@@ -45,6 +45,7 @@ import { Course } from '@/types';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
 import { SpokenEnglishLeadForm } from '@/features/lead-capture/components/CourseEnrollmentForm';
+import FacultyCard from '@/components/FacultyCard';
 import FormattedTitle from '@/components/FormattedTitle';
 
 interface SpokenEnglishCourseViewProps {
@@ -1269,6 +1270,26 @@ export default function SpokenEnglishCourseView({ course, relatedCourses }: Spok
       </section>
 
       {/* ========================================================= */}
+      {/* Course Faculty Profile */}
+      {course.faculty && course.faculty.length > 0 && (
+        <section className="bg-card text-navy py-16 sm:py-24 border-b border-card-border transition-colors duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
+              <span className="text-xs font-bold uppercase tracking-widest text-purple">Faculty</span>
+              <h2 className="text-3xl font-extrabold font-display text-navy tracking-tight">Who Will Train You?</h2>
+            </div>
+
+            <div className="max-w-4xl mx-auto flex flex-col gap-8">
+              {course.faculty.map((trainer) => (
+                <div key={trainer.id} className="w-full">
+                  <FacultyCard faculty={trainer} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 8. STUDENT TRANSFORMATIONS & TESTIMONIALS                 */}
       {/* ========================================================= */}
       {course.testimonials && course.testimonials.length > 0 && (

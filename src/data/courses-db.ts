@@ -14,33 +14,82 @@ export const counselorProfile = {
   bio: "Priya Arora is an experienced Education Professional with over 20 years of expertise in Admission Counselling. She specializes in guiding students and parents with the right course selection, admission processes, and academic requirements. With her extensive experience and student-focused approach, she helps learners make informed decisions and choose the right path for their academic and career goals."
 };
 
+export const facHarshita: FacultyMember = {
+  id: "fac-1",
+  name: "Ms. Harshita Sablania",
+  role: "Lead German Language Trainer",
+  avatar: { src: "/images/faculty/harshita.jpg?v=2", alt: "Ms. Harshita Sablania - German Language Trainer", width: 300, height: 300 },
+  credentials: [
+    "Master in German Language",
+    "Diploma in German Language",
+    "5+ Years Dedicated Teaching Experience",
+    "CEFR Exam Preparation Specialist"
+  ],
+  bio: "Ms. Harshita Sablania specializes in interactive spoken German, active grammar immersion, and comprehensive exam preparation from A1 to advanced levels."
+};
+
+export const facStuti: FacultyMember = {
+  id: "fac-2",
+  name: "Ms. Stuti Saran",
+  role: "Senior German Language Trainer",
+  avatar: { src: "/images/faculty/stuti.jpg", alt: "Ms. Stuti Saran - German Language Trainer", width: 300, height: 300 },
+  credentials: [
+    "Diploma in German Language",
+    "Master in Hospitality",
+    "10+ Years Dedicated Teaching Experience",
+    "CEFR Exam Preparation Specialist"
+  ],
+  bio: "Ms. Stuti Saran brings over a decade of German language pedagogical expertise, focusing on CEFR examination excellence, structured grammar mastery, and professional intercultural fluency."
+};
+
+export const facSaloni: FacultyMember = {
+  id: "fac-3",
+  name: "Ms. Saloni Awasthi",
+  role: "Lead French Language Trainer",
+  avatar: { src: "/images/faculty/saloni.webp", alt: "Ms. Saloni Awasthi - Lead French Language Trainer", width: 300, height: 300 },
+  credentials: [
+    "Master in French",
+    "7+ Years Dedicated Teaching Experience",
+    "Canada Return Faculty",
+    "DELF / DALF & TEF Canada Exam Specialist"
+  ],
+  bio: "Ms. Saloni Awasthi is an experienced French language educator with over 7 years of teaching experience. Holding a Master in French and bringing valuable Canada return teaching exposure, she specializes in communicative fluency, grammar precision, and exam preparation for DELF, DALF, and TEF Canada."
+};
+
+export const facKashish: FacultyMember = {
+  id: "fac-4",
+  name: "Ms. Kashish Ahlawat",
+  role: "Lead Japanese Language Trainer",
+  avatar: { src: "/images/faculty/kashish.webp", alt: "Ms. Kashish Ahlawat - Lead Japanese Language Trainer", width: 300, height: 300 },
+  credentials: [
+    "Diploma in Japanese",
+    "6+ Years Dedicated Teaching Experience",
+    "Expert in Exam Preparation (JLPT)",
+    "JLPT N5 to N1 Curriculum Specialist"
+  ],
+  bio: "Ms. Kashish Ahlawat has over 6 years of dedicated Japanese language teaching experience. With a Diploma in Japanese, she is an expert in JLPT exam preparation, specializing in Kanji mastery, listening comprehension, Keigo business Japanese, and structured curriculum delivery."
+};
+
+export const facHardika: FacultyMember = {
+  id: "fac-5",
+  name: "Ms. Hardika",
+  role: "Lead IELTS & PTE Expert / Senior English Mentor",
+  avatar: { src: "/images/faculty/hardika.webp", alt: "Ms. Hardika - IELTS, PTE & English Trainer", width: 300, height: 300 },
+  credentials: [
+    "Masters in English Literature",
+    "5+ Years Dedicated Teaching Experience",
+    "Expert with 100% Result Track Record",
+    "IELTS Band 8.0+ & PTE Academic 79+ Specialist"
+  ],
+  bio: "Ms. Hardika is an acclaimed English and international test preparation trainer with a Masters in English Literature and 5+ years of dedicated experience. She holds an outstanding 100% result record in mentoring learners for IELTS (Band 7.5–8.5+), PTE Academic (79+), and high-impact spoken English communication."
+};
+
 export const facultyList: FacultyMember[] = [
-  {
-    id: "fac-1",
-    name: "Ms. Harshita Sablania",
-    role: "Lead German Language Trainer",
-    avatar: { src: "/images/faculty/harshita.jpg?v=2", alt: "Ms. Harshita Sablania - German Language Trainer", width: 300, height: 300 },
-    credentials: [
-      "Master in German Language",
-      "Diploma in German Language",
-      "5+ Years Dedicated Teaching Experience",
-      "CEFR Exam Preparation Specialist"
-    ],
-    bio: "Ms. Harshita Sablania specializes in interactive spoken German, active grammar immersion, and comprehensive exam preparation from A1 to advanced levels."
-  },
-  {
-    id: "fac-2",
-    name: "Ms. Stuti Saran",
-    role: "Senior German Language Trainer",
-    avatar: { src: "/images/faculty/stuti.jpg", alt: "Ms. Stuti Saran - German Language Trainer", width: 300, height: 300 },
-    credentials: [
-      "Diploma in German Language",
-      "Master in Hospitality",
-      "10+ Years Dedicated Teaching Experience",
-      "CEFR Exam Preparation Specialist"
-    ],
-    bio: "Ms. Stuti Saran brings over a decade of German language pedagogical expertise, focusing on CEFR examination excellence, structured grammar mastery, and professional intercultural fluency."
-  }
+  facHarshita,
+  facStuti,
+  facSaloni,
+  facKashish,
+  facHardika
 ];
 
 export const germanTestimonials: Testimonial[] = [
@@ -1090,7 +1139,7 @@ export const coursesList: Course[] = [
         modules: ["Advanced Idiomatic Expressions", "Complex Sentence Structures (Nomen-Verb-Verbindungen)", "Academic Reading & Writing", "Expressing Nuanced Opinions"]
       }
     ],
-    faculty: facultyList,
+    faculty: [facHarshita, facStuti],
     testimonials: germanTestimonials,
     faqs: germanFaqs,
     studentResults: [studentResultsList[0]],
@@ -1148,7 +1197,7 @@ export const coursesList: Course[] = [
         modules: ["Subjunctive & Conditionnel", "Argumentative Essays & Debates", "DELF B1/B2 Tasks", "TEF / TCF Canada Prep"]
       }
     ],
-    faculty: [],
+    faculty: [facSaloni],
     testimonials: frenchTestimonials,
     faqs: frenchFaqs,
     studentResults: [studentResultsList[0]],
@@ -1220,7 +1269,7 @@ export const coursesList: Course[] = [
         modules: ["Noun Modification & Relative Clauses", "Giving & Receiving Benefactive Verbs", "Conditionals & Logic", "Final Assessment & Conversational Check"]
       }
     ],
-    faculty: [],
+    faculty: [facKashish],
     testimonials: japaneseTestimonials,
     faqs: japaneseFaqs,
     studentResults: [studentResultsList[0]],
@@ -1305,7 +1354,7 @@ export const coursesList: Course[] = [
         ]
       }
     ],
-    faculty: [],
+    faculty: [facHardika],
     testimonials: spokenEnglishTestimonials,
     faqs: spokenEnglishFaqs,
     studentResults: [studentResultsList[1]],
@@ -1379,7 +1428,7 @@ export const coursesList: Course[] = [
         ]
       }
     ],
-    faculty: [],
+    faculty: [facHardika],
     testimonials: ieltsTestimonials,
     faqs: ieltsFaqs,
     studentResults: [studentResultsList[1]],
@@ -1468,7 +1517,7 @@ export const coursesList: Course[] = [
         ]
       }
     ],
-    faculty: [],
+    faculty: [facHardika],
     testimonials: pteTestimonials,
     faqs: pteFaqs,
     studentResults: [studentResultsList[2]],
