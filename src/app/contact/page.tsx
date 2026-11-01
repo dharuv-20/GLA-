@@ -5,7 +5,7 @@ import DeferredGoogleMap from '@/components/layout/DeferredGoogleMap';
 
 export const metadata: Metadata = {
   title: "Contact Us & Center Directions | Schedule Consultation",
-  description: "Contact The Global Language Academy (TGLA) in Delhi NCR. Call 011 4058 3726 / +91 92179 99511 or visit our Training Center. Schedule your 1-on-1 language consultation today.",
+  description: "Contact The Global Language Academy (TGLA) in Delhi NCR. Call +91 92179 99511 / 011 4058 3726 / +91 92176 69511 or visit our Training Center. Schedule your 1-on-1 language consultation today.",
   alternates: {
     canonical: "/contact",
   },
@@ -98,12 +98,16 @@ export default function ContactPage() {
                   <Phone className="w-5 h-5 text-purple shrink-0 mt-0.5" />
                   <div className="flex flex-col gap-1.5">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-purple">Landline:</span>
-                      <a href="tel:01140583726" className="hover:text-purple text-navy font-bold transition-colors">011 4058 3726</a>
+                      <span className="text-xs font-bold text-purple">Mobile / WhatsApp:</span>
+                      <a href="tel:+919217999511" className="hover:text-purple text-navy font-bold transition-colors">+91 92179 99511</a>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-purple">Mobile / WhatsApp:</span>
-                      <a href="tel:+919217999511" className="hover:text-purple text-navy font-semibold transition-colors">+91 92179 99511</a>
+                      <span className="text-xs font-bold text-purple">Landline:</span>
+                      <a href="tel:01140583726" className="hover:text-purple text-navy font-semibold transition-colors">011 4058 3726</a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-purple">Helpline:</span>
+                      <a href="tel:+919217669511" className="hover:text-purple text-navy font-semibold transition-colors">+91 92176 69511</a>
                     </div>
                   </div>
                 </div>

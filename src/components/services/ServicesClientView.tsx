@@ -458,7 +458,7 @@ export default function ServicesClientView() {
     {
       id: "srv-faq-6",
       question: "Can I attend counselling sessions in person at your academy?",
-      answer: "Yes, you are welcome to visit our Training Center at Second Floor, Plot No 20, Rd Number 203, Parmanand Colony, Sector 12 Dwarka, New Delhi 110078 (Near City Centre), or our Registered Office at Sector 13 Dwarka. You can also connect with our advisors directly by calling 011 4058 3726 or messaging us on WhatsApp (+91 92179 99511)."
+      answer: "Yes, you are welcome to visit our Training Center at Second Floor, Plot No 20, Rd Number 203, Parmanand Colony, Sector 12 Dwarka, New Delhi 110078 (Near City Centre), or our Registered Office at Sector 13 Dwarka. You can also connect with our advisors directly by calling +91 92179 99511 / 011 4058 3726 / +91 92176 69511 or messaging us on WhatsApp (+91 92179 99511)."
     }
   ];
 
@@ -1735,9 +1735,13 @@ export default function ServicesClientView() {
 
             {/* Helpline contact info */}
             <div className="flex flex-wrap items-center justify-center gap-4 pt-4 border-t border-white/15 text-xs sm:text-sm text-slate-300 relative z-10">
-              <span>Direct Academy Helpline:</span>
+              <span className="text-purple-200 font-semibold">Direct Academy Helpline:</span>
               <a href="tel:+919217999511" className="font-bold text-white hover:text-purple-300 transition-colors">
-                +91 92179 99511
+                +91 92179 99511 (Mobile / WhatsApp)
+              </a>
+              <span>|</span>
+              <a href="tel:01140583726" className="font-bold text-white hover:text-purple-300 transition-colors">
+                011 4058 3726 (Landline)
               </a>
               <span>|</span>
               <a href="tel:+919217669511" className="font-bold text-white hover:text-purple-300 transition-colors">

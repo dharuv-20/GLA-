@@ -1063,7 +1063,7 @@ export default function FrenchCourseView({ course, relatedCourses }: FrenchCours
           {/* 9-Step Learning Cycle Visual Roadmap */}
           <div className="bg-slate-50 dark:bg-[#010814]/60 p-6 sm:p-8 rounded-3xl border border-card-border shadow-sm">
             <div className="text-center mb-8">
-              <span className="text-[11px] font-extrabold uppercase tracking-widest text-purple">The TGLA Weekly Learning Cycle</span>
+              <span className="text-[11px] font-extrabold uppercase tracking-widest text-purple">TGLA Weekly Learning Cycle</span>
               <h3 className="text-lg sm:text-xl font-bold font-display text-navy mt-1">
                 9-Phase Integrated Skill Progression
               </h3>
