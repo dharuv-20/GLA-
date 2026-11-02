@@ -76,7 +76,7 @@ export default function Footer() {
               <MapPin className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />
               <div className="flex flex-col gap-0.5">
                 <span className="text-xs font-bold text-white uppercase tracking-wider">Sector 12 - Training Center:</span>
-                <span className="text-xs leading-relaxed">Second Floor, Plot No 20, Rd Number 203, Parmanand Colony, Pocket 8, Block B, Near City Centre, Sector 12 Dwarka, New Delhi 110078</span>
+                <a href="https://maps.app.goo.gl/MjoAJesxjva2uNEX8?g_st=ic" target="_blank" rel="noopener noreferrer" className="text-xs leading-relaxed hover:text-purple-200 transition-colors">Second Floor, Plot No 20, Rd Number 203, Parmanand Colony, Pocket 8, Block B, Near City Centre, Sector 12 Dwarka, New Delhi 110078</a>
               </div>
             </div>
 
@@ -94,16 +94,16 @@ export default function Footer() {
               <Phone className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />
               <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-purple-200">Mobile / WhatsApp:</span>
+                  <span className="text-xs text-purple-200">Landline:</span>
+                  <a href="tel:01140583726" className="hover:text-white transition-colors font-bold text-white">011 4058 3726</a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-purple-200">WhatsApp:</span>
                   <a href="tel:+919217999511" className="hover:text-white transition-colors font-bold text-white">+91 92179 99511</a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-purple-200">Landline:</span>
-                  <a href="tel:01140583726" className="hover:text-white transition-colors">011 4058 3726</a>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-purple-200">Helpline:</span>
-                  <a href="tel:+919217669511" className="hover:text-white transition-colors">+91 92176 69511</a>
+                  <span className="text-xs text-purple-200">WhatsApp:</span>
+                  <a href="tel:+919217669511" className="hover:text-white transition-colors font-bold text-white">+91 92176 69511</a>
                 </div>
               </div>
             </div>

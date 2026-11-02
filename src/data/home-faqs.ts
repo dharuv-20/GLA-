@@ -49,7 +49,7 @@ export const homeFaqsList: FAQItem[] = [
   {
     id: "hfaq-10",
     question: "How can I book a counselling session?",
-    answer: "You can book a free diagnostic counselling and consultation session by submitting the contact form on our website, calling our admissions desk directly at +91 92179 99511 / 011 4058 3726 / +91 92176 69511, or messaging us on WhatsApp."
+    answer: "You can book a free diagnostic counselling and consultation session by submitting the contact form on our website, calling our admissions desk directly at 011 4058 3726 (Landline) / +91 92179 99511 (WhatsApp) / +91 92176 69511 (WhatsApp)."
   },
   {
     id: "hfaq-11",

@@ -783,16 +783,16 @@ export default function AboutPage() {
             {/* Helpline contact */}
             <div className="flex flex-wrap items-center justify-center gap-4 pt-4 border-t border-white/15 text-xs sm:text-sm text-slate-300 relative z-10">
               <span className="text-purple-200 font-semibold">Direct Campus Helpline:</span>
-              <a href="tel:+919217999511" className="font-bold text-white hover:text-purple-300 transition-colors">
-                +91 92179 99511 (Mobile / WhatsApp)
-              </a>
-              <span>|</span>
               <a href="tel:01140583726" className="font-bold text-white hover:text-purple-300 transition-colors">
                 011 4058 3726 (Landline)
               </a>
               <span>|</span>
+              <a href="tel:+919217999511" className="font-bold text-white hover:text-purple-300 transition-colors">
+                +91 92179 99511 (WhatsApp)
+              </a>
+              <span>|</span>
               <a href="tel:+919217669511" className="font-bold text-white hover:text-purple-300 transition-colors">
-                +91 92176 69511
+                +91 92176 69511 (WhatsApp)
               </a>
             </div>
 
