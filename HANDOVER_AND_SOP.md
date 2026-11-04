@@ -4,28 +4,66 @@
 
 ## 1. Executive Summary & Quick Reference
 
-This document serves as the official operational handover for **The Global Language Academy (TGLA)** web platform (`glaind.com`). It contains all production assets, source code repositories, lead generation integrations, blogging workflows (SOP), and system maintenance guidelines for both the client's internal management team and technical administrators.
+This document serves as the official operational handover for **The Global Language Academy (TGLA)** web platform. The website is currently built, hosted, and live on **Netlify**, connected to your purchased custom domain. 
+
+It contains all production assets, source code repositories, domain DNS instructions, lead generation integrations, blogging workflows (SOP), and system maintenance guidelines for both the client's management team and technical administrators.
 
 ### Core Assets & Repositories
 
-| Item | Details |
+| Item | Current Production Details |
 | :--- | :--- |
 | **Website Platform** | The Global Language Academy (TGLA) |
-| **Production URL** | `https://glaind.com` |
+| **Live Hosting Platform** | **Netlify** (Active Production Environment) |
+| **Connected Custom Domain** | Purchased Domain (DNS configured to Netlify) |
 | **Source Code Repository** | [GitHub: dharuv-20/GLA-](https://github.com/dharuv-20/GLA-.git) |
 | **Production Branch** | `main` |
 | **Primary Technology** | Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS |
-| **Content Management** | Decap CMS (Git-based Markdown) + Supabase-ready architecture |
+| **Content Management** | Decap CMS (Git-backed Markdown) + Netlify Identity / Git Gateway |
 | **Form Backend & CRM** | Google Forms & Google Sheets Cloud Integrations |
 | **Handover Date** | November 2026 |
 
 ---
 
-## 2. Lead Generation & Contact Infrastructure
+## 2. Connecting Your Purchased Domain to Netlify
+
+Since you own your custom domain (purchased from GoDaddy, Namecheap, Hostinger, Google Domains, etc.), here is how it connects to your live Netlify site.
+
+### Method 1: Netlify DNS (Recommended — Automatic SSL & Fastest Performance)
+
+1. Log into your **Netlify Dashboard** and select your TGLA site.
+2. Go to **Site Configuration** > **Domain management** > Click **Add a domain**.
+3. Enter your purchased domain name (e.g. `glaind.com`) and click **Verify** > **Add domain**.
+4. Click **Set up Netlify DNS**. Netlify will provide 4 custom Nameservers:
+   - `dns1.p01.nsone.net`
+   - `dns2.p01.nsone.net`
+   - `dns3.p01.nsone.net`
+   - `dns4.p01.nsone.net`
+5. Log into where you bought the domain (Domain Registrar) > find **Nameservers / DNS Settings** > select **Custom Nameservers** and paste the 4 Netlify nameservers.
+6. **Free SSL Certificate**: Netlify will automatically generate and install a free Let's Encrypt SSL certificate within a few hours.
+
+### Method 2: Standard DNS Records (If you manage DNS at your Registrar)
+
+If your domain registrar also handles your business email (like Google Workspace or Microsoft 365) and you prefer not to change nameservers:
+
+1. In Netlify: Go to **Domain management** > **Add custom domain** (`glaind.com`).
+2. Log into your Domain Registrar's DNS Manager and configure two records:
+   - **Apex / Root Domain (`@`)**:
+     - Type: `A`
+     - Name / Host: `@` (or leave blank)
+     - Value / Destination: `75.2.60.5` (Netlify Load Balancer IP)
+   - **WWW Subdomain**:
+     - Type: `CNAME`
+     - Name / Host: `www`
+     - Value / Destination: `your-site-name.netlify.app`
+3. Netlify will detect the records and automatically issue the SSL certificate.
+
+---
+
+## 3. Lead Generation & Contact Infrastructure
 
 All lead generation across the website is integrated into individual, secure Google Forms that automatically populate dedicated Google Sheets for real-time tracking by admissions counsellors.
 
-### 2.1 Google Form Response Endpoints & Connected Sheets
+### 3.1 Google Form Response Endpoints & Connected Sheets
 
 | Course / Page | Google Form Link | Purpose |
 | :--- | :--- | :--- |
@@ -40,7 +78,7 @@ All lead generation across the website is integrated into individual, secure Goo
 > [!TIP]
 > **Admissions Team Best Practice**: Inside each Google Form, click on the **Responses** tab and enable **"Get email notifications for new responses"** so your front desk receives an instant email alert every time a student submits an enquiry.
 
-### 2.2 Official Academy Contact Details (Site-wide Standard)
+### 3.2 Official Academy Contact Details (Site-wide Standard)
 
 The contact numbers must follow this exact order across all marketing and website copy:
 1. **Landline (Admissions Desk):** `011 4058 3726`
@@ -48,7 +86,7 @@ The contact numbers must follow this exact order across all marketing and websit
 3. **Secondary WhatsApp / Student Helpline:** `+91 92176 69511`
 4. **Official Email:** `care@glaind.com`
 
-### 2.3 Physical Campuses & Directions
+### 3.3 Physical Campuses & Directions
 
 - **Sector 12 Training Center:**
   - *Address:* Second Floor, Plot No 20, Rd Number 203, Parmanand Colony, Pocket 8, Block B, Near City Centre, Sector 12 Dwarka, New Delhi 110078
@@ -58,42 +96,43 @@ The contact numbers must follow this exact order across all marketing and websit
 
 ---
 
-## 3. Standard Operating Procedure (SOP): Blog Management
+## 4. Standard Operating Procedure (SOP): Blog Management
 
 The website includes a high-performance, SEO-optimized blog engine designed for instant search engine indexing. Articles are rendered server-side with structured Schema.org markup.
 
 ```mermaid
 flowchart LR
-    A["Admissions / Marketing Team"] -->|"Option 1: Web Portal"| B["/admin (Decap CMS)"]
-    A -->|"Option 2: Git / Code"| C["content/blog/*.md"]
-    B --> D["Markdown & Metadata"]
-    C --> D
-    D --> E["Next.js Static Generation / ISR"]
-    E --> F["Live Blog at glaind.com/blog"]
+    A["Marketing / Content Team"] -->|"Option 1: Web Browser"| B["yourdomain.com/admin/"]
+    A -->|"Option 2: Git Codebase"| C["content/blog/*.md"]
+    B --> D["Decap CMS + Netlify Git Gateway"]
+    C --> E["GitHub main branch"]
+    D --> E
+    E --> F["Netlify Automated Build"]
+    F --> G["Live Blog at /blog"]
 ```
 
-### 3.1 Method 1: Publishing via the Web CMS Admin Portal
+### 4.1 Method 1: Publishing via the Web CMS Admin Portal (`/admin`)
 
 This is the easiest method for non-technical content writers and marketing executives.
 
-1. Navigate to `https://glaind.com/admin/` in your web browser.
-2. Sign in using your authorized GitHub or Netlify Identity credentials.
+1. Navigate to `https://<your-domain>/admin/` (or your Netlify URL `/admin/`) in your browser.
+2. Sign in using your Netlify Identity or authorized GitHub credentials.
 3. In the sidebar, select **Blog Posts**.
 4. Click **New Blog Post**.
 5. Fill in the required metadata fields:
-   - **Title**: Compelling, keyword-rich headline (e.g., *"How to Score Band 8.0 in IELTS in 30 Days"*).
-   - **Publish Date**: Select current or scheduled date.
+   - **Title**: Compelling headline (e.g., *"How to Score Band 8.0 in IELTS in 30 Days"*).
+   - **Publish Date**: Current date.
    - **Author**: e.g., *"TGLA Academic Team"* or trainer name (e.g., *"Ms. Hardika"*).
-   - **Category**: Select from dropdown: `German`, `French`, `Japanese`, `IELTS`, `PTE`, `Spoken English`, or `Study Abroad`.
+   - **Category**: Select `German`, `French`, `Japanese`, `IELTS`, `PTE`, `Spoken English`, or `Study Abroad`.
    - **Cover Image**: Upload a high-resolution WebP or JPG banner (recommended: 1200x630px).
    - **Excerpt**: 1-2 sentence meta description for Google search snippets (150-160 characters).
    - **Body**: Write your article using the rich markdown editor (headings, bullet points, images, quotes).
 6. Click **Save** > **Publish** > **Publish Now**.
-7. The platform will automatically compile the page and display it on `glaind.com/blog` within minutes.
+7. Netlify will automatically detect the new article, compile it, and publish it live on `/blog` in approximately 60 seconds.
 
 ---
 
-### 3.2 Method 2: Creating Blog Posts Directly in Source Code
+### 4.2 Method 2: Creating Blog Posts Directly in Source Code
 
 Developers or technical staff can push articles directly via Git:
 
@@ -116,15 +155,9 @@ Developers or technical staff can push articles directly via Git:
    ## Introduction
 
    Write the article contents here using standard markdown syntax.
-
-   ### Key Exam Sections
-   - **Lesen (Reading):** 65 minutes
-   - **Hören (Listening):** 40 minutes
-   - **Schreiben (Writing):** 60 minutes
-   - **Sprechen (Speaking):** 15 minutes
    ```
 4. Place your article cover image in `public/images/blog/`.
-5. Commit and push your changes to GitHub:
+5. Commit and push:
    ```bash
    git add content/blog/how-to-prepare-for-goethe-b1-exam.md public/images/blog/
    git commit -m "feat(blog): publish Goethe B1 preparation guide"
@@ -133,7 +166,7 @@ Developers or technical staff can push articles directly via Git:
 
 ---
 
-## 4. Technical Architecture & Codebase Navigation
+## 5. Technical Architecture & Codebase Navigation
 
 The application uses the modern **Next.js 16 App Router** with React 19.
 
@@ -185,7 +218,7 @@ GLA/
 
 ---
 
-## 5. Developer Setup & Local Environment Runbook
+## 6. Developer Setup & Local Environment Runbook
 
 For any developer continuing technical development or updates on this project:
 
@@ -221,45 +254,32 @@ For any developer continuing technical development or updates on this project:
 
 ---
 
-## 6. Deployment Guides
+## 7. How Netlify Continuous Deployment Works
 
-### Option A: Current Netlify Setup (Continuous Integration)
-- The GitHub repository `dharuv-20/GLA-` is connected to Netlify.
-- Every commit pushed to the `main` branch triggers an automated build (`next build`) and deploys the changes within 60–90 seconds.
+- The GitHub repository `dharuv-20/GLA-` is directly linked to Netlify.
+- Whenever changes are pushed to the `main` branch (via Git or via the `/admin` CMS editor), Netlify automatically triggers an atomic production build (`next build`).
+- In case of any bad commit, Netlify keeps a complete history of prior deploys and allows 1-click instant rollbacks to any previous working state.
 
-### Option B: Hostinger Business Web Hosting Setup (Recommended)
-If migrating hosting to Hostinger's **Business / Unlimited Plan ($3.49/mo)**:
-
-1. **Access hPanel**: Log into your Hostinger Dashboard and open **Advanced > Node.js**.
-2. **Create Application**:
-   - **Node.js Version**: Select `Node.js 20.x LTS` or `22.x LTS`.
-   - **Application Root**: `/home/uXXXXX/public_html` (or desired directory).
-   - **Application Startup File**: `server.js` (with Next.js standalone mode).
-3. **Connect Git Repository**:
-   - In hPanel, go to **Git Repository** and paste `https://github.com/dharuv-20/GLA-.git`.
-   - Set Branch to `main`.
-4. **Deploy Command**:
-   ```bash
-   npm install && npm run build
-   ```
-5. **SSL Certificate**: Click **Security > SSL** in hPanel and enable the free Lifetime SSL with auto-renewal.
-6. **Domain DNS**: Point your domain's `A Record` to your Hostinger server IP address.
+### Inviting the Client / Transferring the Netlify Site:
+1. In Netlify, navigate to **Team Settings** > **Members**.
+2. Click **Invite new members** and enter the client's email address.
+3. You can also transfer complete site ownership to the client's Netlify team via **Site settings** > **General** > **Transfer site**.
 
 ---
 
-## 7. How to Update Frequent Content
+## 8. How to Update Frequent Content
 
-### 7.1 How to Update Course Fees, Durations, or Batches
+### 8.1 How to Update Course Fees, Durations, or Batches
 All course pricing and curriculum details are centralized in a single file:
 - File path: `src/data/courses-db.ts`
 - Open the file and locate the specific course slug (`german`, `french`, `japanese`, `ielts`, `pte`, `spoken-english`).
-- Edit `price`, `duration`, `batchSchedule`, or `highlights`. Save and commit. The changes propagate automatically across all cards, modals, and landing views.
+- Edit `price`, `duration`, `batchSchedule`, or `highlights`. Save and push. Netlify automatically rebuilds and deploys the updates across all course cards, modals, and landing views.
 
-### 7.2 How to Update Faculty Details
+### 8.2 How to Update Faculty Details
 - Faculty metadata is configured inside `src/data/courses-db.ts` under the `faculty` object for each course.
 - Faculty cards render with academic monogram graduation badges (`SA`, `KA`, `HA`) via `src/components/FacultyCard.tsx`.
 
-### 7.3 How to Change Contact Numbers or Email
+### 8.3 How to Change Contact Numbers or Email
 Contact numbers are consistently defined in:
 - Header: `src/components/layout/Header.tsx`
 - Footer: `src/components/layout/Footer.tsx`
@@ -268,15 +288,17 @@ Contact numbers are consistently defined in:
 
 ---
 
-## 8. Handover Sign-off Checklist
+## 9. Handover Sign-off Checklist
 
+- [x] Website actively built, hosted, and live on Netlify.
+- [x] Purchased domain mapping instructions documented (Netlify DNS & Standard A/CNAME).
 - [x] All 7 Course & Common lead capture forms connected and verified with HTTP 200 live tests.
 - [x] Landline (`011 4058 3726`) placed as primary desk contact, followed by WhatsApp `92179 99511` & `92176 69511`.
 - [x] Google Maps location pin linked to the Sector 12 Dwarka Training Center (`https://maps.app.goo.gl/MjoAJesxjva2uNEX8?g_st=ic`).
 - [x] Academic faculty profiles formatted with monogram crest badges.
 - [x] Git repository synced and up to date on `main` branch.
-- [x] Decap CMS blog system configured for operational publishing.
-- [x] Handover documentation generated and delivered.
+- [x] Decap CMS blog system configured on Netlify for operational publishing.
+- [x] Handover documentation delivered to client.
 
 ---
 *Document prepared for: Management & Technical Operations Team, The Global Language Academy (TGLA).*
