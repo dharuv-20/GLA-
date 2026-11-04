@@ -125,8 +125,23 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-navy-muted flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-          <p>&copy; {new Date().getFullYear()} TGLA Learning Pvt. Ltd. All rights reserved.</p>
+        <div className="mt-12 pt-8 border-t border-navy-muted flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 text-center md:text-left">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+            <p>&copy; {new Date().getFullYear()} TGLA Learning Pvt. Ltd. All rights reserved.</p>
+            <span className="hidden sm:inline text-slate-600">•</span>
+            <p className="flex items-center gap-1.5">
+              <span>Website by</span>
+              <a
+                href="https://wa.me/918969698999?text=Hi%20Prajana%20Business%20Sol.%2C%20I%20saw%20The%20Global%20Language%20Academy%20website%20developed%20by%20you%20and%20would%20like%20to%20inquire%20about%20your%20services."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-purple-300 hover:text-white underline underline-offset-2 transition-colors inline-flex items-center gap-1"
+                title="Contact Prajana Business Sol. on WhatsApp"
+              >
+                Prajana Business Sol.
+              </a>
+            </p>
+          </div>
           <div className="flex gap-6">
             <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
