@@ -4,58 +4,34 @@
 
 ## 1. Executive Summary & Quick Reference
 
-This document serves as the official operational handover for **The Global Language Academy (TGLA)** web platform. The website is currently built, hosted, and live on **Netlify**, connected to your purchased custom domain. 
+This document serves as the official operational handover for **The Global Language Academy (TGLA)** web platform. The website is actively built, hosted, and live on **Netlify**, mapped to the official custom domain **`https://tglalearning.com`**.
 
-It contains all production assets, source code repositories, domain DNS instructions, lead generation integrations, blogging workflows (SOP), and system maintenance guidelines for both the client's management team and technical administrators.
+It contains all production assets, source code repositories, lead generation integrations, blogging workflows (SOP), and system maintenance guidelines for both the client's management team and technical administrators.
 
 ### Core Assets & Repositories
 
 | Item | Current Production Details |
 | :--- | :--- |
 | **Website Platform** | The Global Language Academy (TGLA) |
-| **Live Hosting Platform** | **Netlify** (Active Production Environment) |
-| **Connected Custom Domain** | Purchased Domain (DNS configured to Netlify) |
+| **Official Live Domain** | **[https://tglalearning.com](https://tglalearning.com)** |
+| **Hosting Platform** | **Netlify** (Active Production Environment — SSL Active) |
 | **Source Code Repository** | [GitHub: dharuv-20/GLA-](https://github.com/dharuv-20/GLA-.git) |
 | **Production Branch** | `main` |
 | **Primary Technology** | Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS |
 | **Content Management** | Decap CMS (Git-backed Markdown) + Netlify Identity / Git Gateway |
+| **Live Blog CMS Portal** | **`https://tglalearning.com/admin`** |
+| **Public Blog Page** | **`https://tglalearning.com/blogs`** |
 | **Form Backend & CRM** | Google Forms & Google Sheets Cloud Integrations |
 | **Handover Date** | November 2026 |
 
 ---
 
-## 2. Connecting Your Purchased Domain to Netlify
+## 2. Live Domain Status & DNS Verification
 
-Since you own your custom domain (purchased from GoDaddy, Namecheap, Hostinger, Google Domains, etc.), here is how it connects to your live Netlify site.
-
-### Method 1: Netlify DNS (Recommended — Automatic SSL & Fastest Performance)
-
-1. Log into your **Netlify Dashboard** and select your TGLA site.
-2. Go to **Site Configuration** > **Domain management** > Click **Add a domain**.
-3. Enter your purchased domain name (e.g. `glaind.com`) and click **Verify** > **Add domain**.
-4. Click **Set up Netlify DNS**. Netlify will provide 4 custom Nameservers:
-   - `dns1.p01.nsone.net`
-   - `dns2.p01.nsone.net`
-   - `dns3.p01.nsone.net`
-   - `dns4.p01.nsone.net`
-5. Log into where you bought the domain (Domain Registrar) > find **Nameservers / DNS Settings** > select **Custom Nameservers** and paste the 4 Netlify nameservers.
-6. **Free SSL Certificate**: Netlify will automatically generate and install a free Let's Encrypt SSL certificate within a few hours.
-
-### Method 2: Standard DNS Records (If you manage DNS at your Registrar)
-
-If your domain registrar also handles your business email (like Google Workspace or Microsoft 365) and you prefer not to change nameservers:
-
-1. In Netlify: Go to **Domain management** > **Add custom domain** (`glaind.com`).
-2. Log into your Domain Registrar's DNS Manager and configure two records:
-   - **Apex / Root Domain (`@`)**:
-     - Type: `A`
-     - Name / Host: `@` (or leave blank)
-     - Value / Destination: `75.2.60.5` (Netlify Load Balancer IP)
-   - **WWW Subdomain**:
-     - Type: `CNAME`
-     - Name / Host: `www`
-     - Value / Destination: `your-site-name.netlify.app`
-3. Netlify will detect the records and automatically issue the SSL certificate.
+The domain **`https://tglalearning.com`** is already configured and verified live on Netlify:
+- **Apex Domain (`tglalearning.com`)**: Resolves to Netlify Anycast IP `75.2.60.5`
+- **SSL / HTTPS**: Automated Let's Encrypt Wildcard Certificate (Active & Secure)
+- **Status Code**: `HTTP 200 OK` across all production pages
 
 ---
 
@@ -84,7 +60,7 @@ The contact numbers must follow this exact order across all marketing and websit
 1. **Landline (Admissions Desk):** `011 4058 3726`
 2. **Primary WhatsApp / Counsellor Helpline:** `+91 92179 99511`
 3. **Secondary WhatsApp / Student Helpline:** `+91 92176 69511`
-4. **Official Email:** `care@glaind.com`
+4. **Official Email:** `care@glaind.com` (or `care@tglalearning.com`)
 
 ### 3.3 Physical Campuses & Directions
 
@@ -102,20 +78,18 @@ The website includes a high-performance, SEO-optimized blog engine designed for 
 
 ```mermaid
 flowchart LR
-    A["Marketing / Content Team"] -->|"Option 1: Web Browser"| B["yourdomain.com/admin/"]
-    A -->|"Option 2: Git Codebase"| C["content/blog/*.md"]
-    B --> D["Decap CMS + Netlify Git Gateway"]
-    C --> E["GitHub main branch"]
-    D --> E
-    E --> F["Netlify Automated Build"]
-    F --> G["Live Blog at /blog"]
+    A["Marketing / Content Team"] -->|"1. Opens in Browser"| B["tglalearning.com/admin"]
+    B -->|"2. Signs in"| C["Netlify Identity / Git Gateway"]
+    C -->|"3. Creates & Publishes Post"| D["GitHub main branch (.md file)"]
+    D -->|"4. Triggers Auto-Build"| E["Netlify CDN"]
+    E -->|"5. Goes Live"| F["tglalearning.com/blogs"]
 ```
 
 ### 4.1 Method 1: Publishing via the Web CMS Admin Portal (`/admin`)
 
 This is the easiest method for non-technical content writers and marketing executives.
 
-1. Navigate to `https://<your-domain>/admin/` (or your Netlify URL `/admin/`) in your browser.
+1. Navigate to **`https://tglalearning.com/admin`** in your browser.
 2. Sign in using your Netlify Identity or authorized GitHub credentials.
 3. In the sidebar, select **Blog Posts**.
 4. Click **New Blog Post**.
@@ -128,7 +102,7 @@ This is the easiest method for non-technical content writers and marketing execu
    - **Excerpt**: 1-2 sentence meta description for Google search snippets (150-160 characters).
    - **Body**: Write your article using the rich markdown editor (headings, bullet points, images, quotes).
 6. Click **Save** > **Publish** > **Publish Now**.
-7. Netlify will automatically detect the new article, compile it, and publish it live on `/blog` in approximately 60 seconds.
+7. Netlify will automatically detect the new article, compile it, and publish it live on **`https://tglalearning.com/blogs`** in approximately 60 seconds.
 
 ---
 
@@ -196,7 +170,8 @@ GLA/
 │   │   │   ├── IeltsCourseView.tsx
 │   │   │   ├── PteCourseView.tsx
 │   │   │   └── SpokenEnglishCourseView.tsx
-│   │   ├── blog/                   # Blog index & individual article dynamic viewer
+│   │   ├── blogs/                  # Blog index (/blogs) & individual dynamic article viewer
+│   │   ├── admin/                  # Administrative dashboard
 │   │   ├── thank-you/              # Conversion landing page after lead submission
 │   │   ├── sitemap.ts              # Automated XML sitemap generator for Googlebot
 │   │   └── robots.ts               # Search crawler indexing directives
@@ -258,7 +233,7 @@ For any developer continuing technical development or updates on this project:
 
 - The GitHub repository `dharuv-20/GLA-` is directly linked to Netlify.
 - Whenever changes are pushed to the `main` branch (via Git or via the `/admin` CMS editor), Netlify automatically triggers an atomic production build (`next build`).
-- In case of any bad commit, Netlify keeps a complete history of prior deploys and allows 1-click instant rollbacks to any previous working state.
+- In case of any issue, Netlify keeps a complete history of prior deploys and allows 1-click instant rollbacks to any previous working state.
 
 ### Inviting the Client / Transferring the Netlify Site:
 1. In Netlify, navigate to **Team Settings** > **Members**.
@@ -290,8 +265,8 @@ Contact numbers are consistently defined in:
 
 ## 9. Handover Sign-off Checklist
 
-- [x] Website actively built, hosted, and live on Netlify.
-- [x] Purchased domain mapping instructions documented (Netlify DNS & Standard A/CNAME).
+- [x] Website actively built, hosted, and live on Netlify at `https://tglalearning.com`.
+- [x] Verified HTTP 200 response across all major routes (`/`, `/about`, `/contact`, `/services`, `/blogs`, `/courses/*`).
 - [x] All 7 Course & Common lead capture forms connected and verified with HTTP 200 live tests.
 - [x] Landline (`011 4058 3726`) placed as primary desk contact, followed by WhatsApp `92179 99511` & `92176 69511`.
 - [x] Google Maps location pin linked to the Sector 12 Dwarka Training Center (`https://maps.app.goo.gl/MjoAJesxjva2uNEX8?g_st=ic`).
