@@ -29,8 +29,8 @@ In any web browser (Chrome, Safari, Edge), open:
 
 ### Step 2: Log In with Your Credentials
 Enter your blog admin login credentials:
-- **Email / Username:** `dharuvrajliwal10@gmail.com`
-- **Password:** `12345678`
+- **Email / Username:** `tglalearning.online@gmail.com`
+- **Password:** `TGLA@!@#$`
 
 ### Step 3: Create or Edit a Blog Post
 1. Click **Blog Posts** in the left menu.
