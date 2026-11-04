@@ -114,7 +114,7 @@ export default function ContactPage() {
                 
                 <div className="flex items-center gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">
                   <Mail className="w-5 h-5 text-purple shrink-0" />
-                  <a href="mailto:care@glaind.com" className="hover:text-purple text-navy font-semibold transition-colors">care@glaind.com</a>
+                  <a href="mailto:care@tglalearning.com" className="hover:text-purple text-navy font-semibold transition-colors">care@tglalearning.com</a>
                 </div>
 
                 <div className="flex items-start gap-3 text-sm text-navy-muted hover:translate-x-1 transition-transform duration-200">

@@ -109,7 +109,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2.5 text-sm text-slate-300">
               <Mail className="w-5 h-5 text-purple-300 shrink-0" />
-              <a href="mailto:care@glaind.com" className="hover:text-white">care@glaind.com</a>
+              <a href="mailto:care@tglalearning.com" className="hover:text-white">care@tglalearning.com</a>
             </div>
             <div className="flex items-start gap-2.5 text-sm text-slate-300">
               <Clock className="w-5 h-5 text-purple-300 shrink-0 mt-0.5" />

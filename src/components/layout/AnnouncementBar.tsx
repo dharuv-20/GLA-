@@ -19,7 +19,7 @@ export default function AnnouncementBar() {
         
         <div className="flex items-center gap-1.5">
           <Mail className="w-3.5 h-3.5 text-purple-light shrink-0" />
-          <a href="mailto:care@glaind.com" className="text-[11px] sm:text-xs hover:text-purple-light transition-colors font-sans">care@glaind.com</a>
+          <a href="mailto:care@tglalearning.com" className="text-[11px] sm:text-xs hover:text-purple-light transition-colors font-sans">care@tglalearning.com</a>
         </div>
       </div>
     </div>

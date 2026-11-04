@@ -10,7 +10,7 @@
 | **Admin Blog Portal** | [https://tglalearning.com/admin](https://tglalearning.com/admin) |
 | **Live Blogs Page** | [https://tglalearning.com/blogs](https://tglalearning.com/blogs) |
 | **Source Code Repository** | [GitHub: dharuv-20/GLA-](https://github.com/dharuv-20/GLA-.git) |
-| **Primary Contact Email** | `care@glaind.com` |
+| **Official Contact Email** | `care@tglalearning.com` |
 
 ---
 
@@ -27,8 +27,10 @@ Step 1: Go to Admin Portal  ──▶  Step 2: Log In  ──▶  Step 3: Write 
 In any web browser (Chrome, Safari, Edge), open:
 👉 **`https://tglalearning.com/admin`**
 
-### Step 2: Log In
-Enter the login credentials (email and password) provided to you by your administrator.
+### Step 2: Log In with Your Credentials
+Enter your blog admin login credentials:
+- **Email / Username:** `dharuvrajliwal10@gmail.com`
+- **Password:** `12345678`
 
 ### Step 3: Create or Edit a Blog Post
 1. Click **Blog Posts** in the left menu.
@@ -76,7 +78,7 @@ The contact details are set up across all pages, footers, and mobile buttons in 
 1. **Admissions Desk (Landline):** `011 4058 3726`
 2. **Primary WhatsApp (Counsellor Helpline):** `+91 92179 99511`
 3. **Secondary WhatsApp (Student Support):** `+91 92176 69511`
-4. **Official Email:** `care@glaind.com`
+4. **Official Email:** `care@tglalearning.com`
 
 ### Campus Locations:
 - **Sector 12 Training Center:**
