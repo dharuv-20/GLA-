@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Montserrat, DM_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -113,6 +114,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col font-sans" suppressHydrationWarning>
+        {/* ========================================================================= */}
+        {/* MARKETING, SEO & ADS TRACKING SCRIPTS (PASTE META PIXEL & GTM HERE)       */}
+        {/* NOTICE: DO NOT MODIFY, MOVE, OR REMOVE ANY OTHER LINES OF CODE ON THIS PAGE*/}
+        {/* ========================================================================= */}
         <GoogleAnalytics />
         {/* Site-wide Structured Data Schema (Organization, LocalBusiness, WebSite) */}
         <OrganizationSchema />
