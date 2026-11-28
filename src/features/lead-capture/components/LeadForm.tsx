@@ -79,7 +79,7 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
     window.dataLayer = window.dataLayer || [];
 
     window.dataLayer.push({
-      event: "lead_form_success",
+      event: "Submit_lead_form",
     });
   }
         if (onSuccess) {
