@@ -118,6 +118,13 @@ export default function RootLayout({
         {/* MARKETING, SEO & ADS TRACKING SCRIPTS (PASTE META PIXEL & GTM HERE)       */}
         {/* NOTICE: DO NOT MODIFY, MOVE, OR REMOVE ANY OTHER LINES OF CODE ON THIS PAGE*/}
         {/* ========================================================================= */}
+
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-THGJLFR9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
         <GoogleAnalytics />
         {/* Site-wide Structured Data Schema (Organization, LocalBusiness, WebSite) */}
         <OrganizationSchema />
