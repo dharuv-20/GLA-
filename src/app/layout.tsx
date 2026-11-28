@@ -98,6 +98,28 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+
+          <Script
+    id="GTM-THGJLFR9"
+    strategy="beforeInteractive"
+    dangerouslySetInnerHTML={{
+      __html: `
+        (function(w,d,s,l,i){
+          w[l]=w[l]||[];
+          w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+          var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),
+              dl=l!='dataLayer'?'&l='+l:'';
+          j.async=true;
+          j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+          f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-THGJLFR9');
+      `,
+    }}
+  />
+
+
+
         {/* Anti-flash inline script to disable splash screen instantly on repeat visits before body paint */}
         <script
           dangerouslySetInnerHTML={{
@@ -112,6 +134,7 @@ export default function RootLayout({
             `
           }}
         />
+        
       </head>
       <body className="min-h-screen flex flex-col font-sans" suppressHydrationWarning>
         {/* ========================================================================= */}
@@ -119,12 +142,7 @@ export default function RootLayout({
         {/* NOTICE: DO NOT MODIFY, MOVE, OR REMOVE ANY OTHER LINES OF CODE ON THIS PAGE*/}
         {/* ========================================================================= */}
 
-        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-THGJLFR9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-</script>
+       
         <GoogleAnalytics />
         {/* Site-wide Structured Data Schema (Organization, LocalBusiness, WebSite) */}
         <OrganizationSchema />
