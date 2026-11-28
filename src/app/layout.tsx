@@ -118,6 +118,29 @@ export default function RootLayout({
     }}
   />
 
+        <Script
+  id="AW-18556093589"
+  strategy="beforeInteractive"
+  dangerouslySetInnerHTML={{
+    __html: `
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18556093589/YIkiCOqzgsEdEJWJnpBF',
+          'event_callback': callback
+        });
+
+        return false;
+      }
+    `,
+  }}
+/>
+
 
 
         {/* Anti-flash inline script to disable splash screen instantly on repeat visits before body paint */}
