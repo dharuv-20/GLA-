@@ -74,6 +74,14 @@ function LeadFormInner({ defaultCourse = "", onSuccess }: { defaultCourse?: stri
 
       if (result.success) {
         trackLeadSubmission('general_lead_form', data.course);
+
+        if (typeof window !== "undefined") {
+    window.dataLayer = window.dataLayer || [];
+
+    window.dataLayer.push({
+      event: "lead_form_success",
+    });
+  }
         if (onSuccess) {
           onSuccess();
         }
